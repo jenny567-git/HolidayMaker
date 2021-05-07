@@ -1,2 +1,1 @@
-# HolidayMaker
-Hotel booking app #vuejs #stripe #webapi
+# HolidayMakerGrupp1

@@ -16,7 +16,7 @@ namespace HolidayMakerBackEnd.Models.Database
             : base(options)
         {
         }
-
+        
         public virtual DbSet<Accomodation> Accomodations { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Country> Countries { get; set; }

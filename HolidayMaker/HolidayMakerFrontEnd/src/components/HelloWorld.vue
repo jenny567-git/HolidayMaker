@@ -14,6 +14,7 @@
     Edit
     <code>components/HelloWorld.vue</code> to test hot module replacement.
   </p>
+  <router-link to="/home">test</router-link>
 </template>
 
 <script setup>

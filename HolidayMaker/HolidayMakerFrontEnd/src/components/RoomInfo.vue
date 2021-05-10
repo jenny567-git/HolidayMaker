@@ -1,16 +1,62 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-6">
-        <h3>Standard rooms (room type 1)</h3>
-          <p>Max Capacity: (room.maxCapatiy) 
-            <i class="fas fa-user-alt"></i>
-          </p>
-        Rooms:
-        <input type="number" min="0" value="0" />
+      
+      <!-- left column -->
+      <div class="col-md-6">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <div class="col-md-6">
+              <Images/>
+            </div>
+            <div class="col-md-6">
+            <h3>(room type 1)</h3>
+            <p>Max Capacity: (room.maxCapatiy) 
+              <i class="fas fa-user-alt"></i>
+            </p>
+            <p>Rooms:
+            <input type="number" min="0" value="0" />
+            </p>
+            <div class="row">
+                  <div class="col-md-6">
+                    <p>Price/unit:</p>
+                  </div>
+                  <div class="col-md-6">
+                      <p style="color: red">214 SEK</p>
+                  </div>
+                </div>
+                </div>
+          </li>
+
+
+          <li class="list-group-item">
+            <div class="col-md-6">
+              <Images/>
+            </div>
+            <div class="col-md-6">
+            <h3>(room type 1)</h3>
+            <p>Max Capacity: (room.maxCapatiy) 
+              <i class="fas fa-user-alt"></i>
+            </p>
+            <p>Rooms:
+            <input type="number" min="0" value="0" />
+            </p>
+            <div class="row">
+                  <div class="col-md-6">
+                    <p>Price/unit:</p>
+                  </div>
+                  <div class="col-md-6">
+                      <p style="color: red">214 SEK</p>
+                  </div>
+                </div>
+                </div>
+          </li>
+        </ul>
+        
       </div>
 
-      <div class="col-6">
+<!-- right column -->
+      <div class="col-md-6">
         <h3>Options</h3>
         <div class="row">
           <div class="input-group mb-3">
@@ -51,7 +97,7 @@
         </div>
         <div class="row pt-5">
           <div class="col-md-6">
-              <p>Total price: 123 SEK</p>
+              <p>Total price: 1223 SEK</p>
           </div>
           <div class="col-md-6">
               <button type="button" class="btn btn-primary">Book</button>
@@ -60,16 +106,16 @@
       </div>
       
     </div>
+    
   </div>
 </template>
 
 <script>
+import Images from '/src/components/RoomPhotoSlider.vue'
+
 export default {
-  components: {},
-  computed: {
-    foods() {
-      return;
-    },
-  },
-};
+components: {
+    Images
+  }
+}
 </script>

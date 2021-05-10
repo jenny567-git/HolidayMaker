@@ -3,6 +3,7 @@ import HelloWorld from '/src/components/HelloWorld.vue'
 
 import HotelView from '/src/components/pages/HotelView.vue'
 import RoomInfo from '/src/components/RoomInfo.vue'
+import Photos from '/src/components/Photos.vue'
 
 import { registerRuntimeCompiler } from '@vue/runtime-core'
 
@@ -21,6 +22,11 @@ const routes = [
         path: '/hotels/:id/rooms',
         name: 'hotels',
         component: RoomInfo,
+    },
+    {
+        path: '/hotels/:id/Photos',
+        name: 'photos',
+        component: Photos,
     }
 ]
 const router = createRouter({

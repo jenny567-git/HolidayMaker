@@ -4,7 +4,15 @@ const store = createStore({
     state:{
         home: {title: "store name"},
         name: "Vue",
-        array: {
+        hotels: {
+            1:{
+                name: 'Hotel 1',
+                description: 'Desc 1'
+            },
+            2:{
+                name: 'Hotel 2',
+                description: 'Desc 2'
+            },
         },
         user: {
             loggedIn: false,

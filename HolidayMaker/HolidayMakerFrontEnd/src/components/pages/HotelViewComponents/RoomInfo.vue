@@ -128,7 +128,7 @@
 </template>
 
 <script>
-import Images from '/src/components/RoomPhotoSlider.vue'
+import Images from './RoomPhotoSlider.vue'
 
 export default {
 components: {

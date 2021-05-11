@@ -2,8 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HelloWorld from '/src/components/HelloWorld.vue'
 import Info from '../components/pages/HotelViewComponents/Info.vue'
 import HotelView from '/src/components/pages/HotelView.vue'
-import RoomInfo from '/src/components/RoomInfo.vue'
-import Photos from '/src/components/Photos.vue'
+import RoomInfo from '../components/pages/HotelViewComponents/RoomInfo.vue'
+import Photos from '../components/pages/HotelViewComponents/Photos.vue'
 
 import { registerRuntimeCompiler } from '@vue/runtime-core'
 

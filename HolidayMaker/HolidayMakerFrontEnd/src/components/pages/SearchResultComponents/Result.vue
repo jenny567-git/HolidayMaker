@@ -7,7 +7,7 @@
             <div class="col-md-8">
                 <b>(hotel name)</b>
                 <p>(3535) SEK</p>
-                <p>Ratings: (AverageRating)</p>
+                <p>Ratings: <span class="badge rounded-pill bg-secondary">(AverageRating)</span></p>
                 
                 <button type="button" class="btn btn-primary">See details</button>
             </div>

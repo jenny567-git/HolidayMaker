@@ -7,7 +7,7 @@
             <div class="col">
 
                 <!-- OPTION 1: CHECKBOX -->
-                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <!-- <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
                     <label class="btn btn-outline-primary" for="btnradio1">Price: Lowest first</label>
 
@@ -16,11 +16,11 @@
 
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
                     <label class="btn btn-outline-primary" for="btnradio3">Distance to centrum: Nearest first</label>
-                </div>
+                </div> -->
 
 
                 <!-- OPTION 2 : DROPDOWN -->
-                <!-- <div class="dropdown">
+                <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         Sort by
                     </button>
@@ -29,7 +29,7 @@
                         <li><a class="dropdown-item" href="#">Rating: Highest first</a></li>
                         <li><a class="dropdown-item" href="#">Distance to centrum: Nearest first</a></li>
                     </ul>
-                </div> -->
+                </div>
             </div>
         </div>
         <div class="row">
@@ -37,6 +37,12 @@
                 <Filter/>
             </div>
             <div class="col-md-8">
+                <Result/>
+                <hr>
+                <Result/>
+                <hr>
+                <Result/>
+                <hr>
                 <Result/>
             </div>
         </div>

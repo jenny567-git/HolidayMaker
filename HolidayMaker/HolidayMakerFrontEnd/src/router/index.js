@@ -20,18 +20,19 @@ const routes = [
         children: [{
             path: 'info',
             component: Info,
-        }]
-    },
-    {
-        path: '/hotels/:id/rooms',
-        name: 'hotels',
-        component: RoomInfo,
-    },
-    {
-        path: '/hotels/:id/Photos',
-        name: 'photos',
-        component: Photos,
-    }
+        },
+        {
+            path: 'rooms',
+            name: 'hotels',
+            component: RoomInfo,
+        },
+        {
+            path: 'Photos',
+            name: 'photos',
+            component: Photos,
+        } 
+    ]
+    }   
 ]
 const router = createRouter({
     history: createWebHistory(),

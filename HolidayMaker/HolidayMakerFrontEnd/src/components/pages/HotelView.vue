@@ -27,13 +27,13 @@
                             <router-link :to="'/hotels/' + this.$route.params.id + '/info'" class="nav-link"> Info </router-link>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Photos</a>
+                            <router-link :to="'/hotels/' + this.$route.params.id + '/photos'" class="nav-link"> Photos </router-link>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Reviews</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Rooms</a>
+                            <router-link :to="'/hotels/' + this.$route.params.id + '/rooms'" class="nav-link"> Rooms </router-link>
                         </li>
                         
                     </ul>

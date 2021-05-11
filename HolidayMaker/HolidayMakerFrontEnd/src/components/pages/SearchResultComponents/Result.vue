@@ -6,7 +6,7 @@
             </div>
             <div class="col-md-8">
                 <b>(hotel name)</b>
-                <p>3535 SEK</p>
+                <p>(3535) SEK</p>
                 <p>Ratings: (AverageRating)</p>
                 
                 <button type="button" class="btn btn-primary">See details</button>

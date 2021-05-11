@@ -40,7 +40,7 @@ namespace HolidayMakerBackEnd.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                throw new ArgumentException("named Hotel not found");
+                throw new ArgumentException("Named Hotel not found");
             }
 
             //var result = _searchService.GetHotelByName(input);
@@ -62,5 +62,7 @@ namespace HolidayMakerBackEnd.Controllers
             var result = _searchService.GetHotelByCountry(input);
             return result;
         } 
+
+        
     }
 }

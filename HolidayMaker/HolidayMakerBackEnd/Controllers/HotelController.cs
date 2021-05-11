@@ -21,9 +21,9 @@ namespace HolidayMakerBackEnd.Controllers
         }
 
         [HttpGet("GetAvailableRooms/{id}")]
-        public IEnumerable<Room> GetAvailableRooms (int id)
+        public IEnumerable<Room> GetAvailableRooms (int id, DateTime date1, DateTime date2)
         {
-            var result = _hotelService.GetAvailableRooms(id);
+            var result = _hotelService.GetAvailableRooms(id, date1, date2);
             return result;
         }
 
@@ -34,12 +34,12 @@ namespace HolidayMakerBackEnd.Controllers
             return result;
         }
 
-        [HttpGet("GetRoomsAvailableByDate")]
-        public IEnumerable<Room> GetRoomsAvailableByDate(DateTime date)
-        {
-            var result = _hotelService.GetRoomsAvailableByDate(date);
-            return result;
-        }
+        //[HttpGet("GetRoomsAvailableByDate")]
+        //public IEnumerable<Room> GetRoomsAvailableByDate(DateTime date)
+        //{
+        //    var result = _hotelService.GetRoomsAvailableByDate(date);
+        //    return result;
+        //}
 
 
     }

@@ -24,7 +24,7 @@
                             <a class="nav-link active" href="#">Overview</a> <!-- Replace with router link to -->
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Info</a>
+                            <router-link :to="'/hotels/' + this.$route.params.id + '/info'" class="nav-link"> Info </router-link>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Photos</a>
@@ -39,13 +39,20 @@
                     </ul>
                 </div>
             </div>
+            <div> <!-- tab view -->
+                <router-view></router-view>
+            </div>
         </div>
     </div>
 </template>
 
 
 <script>
+import Info from './HotelViewComponents/Info.vue'
 export default ({
+    components:{
+        Info,
+    },
     computed:{
         hotel(){
             return this.$store.state.hotels[this.$route.params.id];

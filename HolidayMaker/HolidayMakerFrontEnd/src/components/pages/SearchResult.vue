@@ -4,12 +4,10 @@
             <h1>Search result</h1>
         </div>
         <div class="row">
-            <div class="col">
-                col 1
+            <div class="col-md-4">
                 <Filter/>
             </div>
-            <div class="col">
-                col2
+            <div class="col-md-8">
                 <Result/>
             </div>
         </div>

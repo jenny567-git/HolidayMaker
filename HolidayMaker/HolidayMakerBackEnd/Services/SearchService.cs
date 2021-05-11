@@ -33,8 +33,19 @@ namespace HolidayMakerBackEnd.Services
             var result = _db.Hotels.Where(n => n.City.CityName == input).AsEnumerable();
 
             return result;
-            
 
         }
+
+        public IEnumerable<Hotel> GetHotelByCountry(string input)
+        {
+
+            var result = _db.Hotels.Where(n => n.Country.CountryName == input).AsEnumerable();
+
+            return result;
+           
+        }
+
+        
+
     }
 }

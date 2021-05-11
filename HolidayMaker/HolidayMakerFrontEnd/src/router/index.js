@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HelloWorld from '/src/components/HelloWorld.vue'
-
+import Info from '../components/pages/HotelViewComponents/Info.vue'
 import HotelView from '/src/components/pages/HotelView.vue'
 import RoomInfo from '/src/components/RoomInfo.vue'
 import Photos from '/src/components/Photos.vue'
@@ -17,6 +17,10 @@ const routes = [
         path: '/hotels/:id',
         name: 'hotels',
         component: HotelView,
+        children: [{
+            path: 'info',
+            component: Info,
+        }]
     },
     {
         path: '/hotels/:id/rooms',

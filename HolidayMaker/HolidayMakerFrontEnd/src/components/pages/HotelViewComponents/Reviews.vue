@@ -4,14 +4,14 @@
             <button type="button" class="btn btn-primary">Add review</button>
         </div>
         <div class="row">
-            <h3>Guest reviews</h3>
+            <h2>Guest reviews</h2>
         </div>
         <div class="row">
             <div class="col">
-                <h3>Guest rating</h3>
+                
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="reviewRatingDropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown button
+                        Rating
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="reviewRatingDropdownMenu">
                         <li><a class="dropdown-item" href="#">4+</a></li>
@@ -22,10 +22,10 @@
                 </div>
             </div>
             <div class="col">
-                <h3>Language</h3>
+                
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="reviewLanguageDropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown button
+                            Language
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="reviewLanguageDropdownMenu">
                             <li><a class="dropdown-item" href="#">English</a></li>
@@ -33,6 +33,18 @@
                         </ul>
                     </div>
             </div>
+        <div class="row">
+            <ReviewSubComp/>
+        </div>
         </div>
     </div>
 </template>
+
+<script>
+import ReviewSubComp from './ReviewSubComponent.vue'
+export default {
+    components: {
+    ReviewSubComp
+  }
+}
+</script>

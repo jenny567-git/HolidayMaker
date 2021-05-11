@@ -5,6 +5,7 @@ import HotelView from '/src/components/pages/HotelView.vue'
 import RoomInfo from '../components/pages/HotelViewComponents/RoomInfo.vue'
 import Photos from '../components/pages/HotelViewComponents/Photos.vue'
 import Reviews from '../components/pages/HotelViewComponents/Reviews.vue'
+import SearchResult from '../components/pages/SearchResult.vue'
 
 import { registerRuntimeCompiler } from '@vue/runtime-core'
 
@@ -13,6 +14,11 @@ const routes = [
         path: '/',
         name: 'Home',
         component: HelloWorld,
+    },
+    {
+        path: '/result',
+        name: 'Result',
+        component: SearchResult
     },
     {
         path: '/hotels/:id',

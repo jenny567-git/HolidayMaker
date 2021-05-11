@@ -1,16 +1,21 @@
 <template>
   <div>
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Hello Vue 3 + Vite" />
+    <div class="datepicker">
+    <confirmdate v-model="value" selectionMode="range" />
+  </div>
   </div>
 </template>
 
-<script setup>
-import HelloWorld from "./components/HelloWorld.vue";
+<script>
+import ConfirmDate from './components/ConfirmDate'
 
-//TEST!
-// This starter template is using Vue 3 experimental <script setup> SFCs
-// Check out https://github.com/vuejs/rfcs/blob/script-setup-2/active-rfcs/0000-script-setup.md
+export default {
+  name: 'App',
+  components: {
+    ConfirmDate
+  }
+}
+
 </script>
 
 <style>
@@ -22,4 +27,6 @@ import HelloWorld from "./components/HelloWorld.vue";
   color: #2c3e50;
   margin-top: 60px;
 }
+
+
 </style>

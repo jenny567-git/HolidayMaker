@@ -20,11 +20,26 @@ namespace HolidayMakerBackEnd.Controllers
             _searchService = new SearchService();
         }
 
-        [HttpGet("Search/getAllHotel")]
-        public ActionResult<IEnumerable<Hotel>> GetAllHotels()
+        [HttpGet("GetAllHotels")]
+        public IEnumerable<Hotel> GetAllHotel()
         {
-            var result = _searchService.GetAllHotel().AsEnumerable();
+            var result = _searchService.GetAllHotels();
             return result;
         }
+
+        [HttpGet("GetHotelByName")]
+        public IEnumerable<Hotel> GetHotelByName(string input)
+        {
+            var result = _searchService.GetHotelByName(input);
+            return result;
+        }
+
+        [HttpGet("GetHotelByCity")]
+        public IEnumerable<Hotel> GetHotelByCity(string input)
+        {
+            var result = _searchService.GetHotelByCity(input);
+            return result;
+        }
+
     }
 }

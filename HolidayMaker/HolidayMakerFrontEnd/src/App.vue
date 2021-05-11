@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import ConfirmDate from './components/ConfirmDate'
+import ConfirmDate from './components/ConfirmDate.vue'
 
 export default {
   name: 'App',

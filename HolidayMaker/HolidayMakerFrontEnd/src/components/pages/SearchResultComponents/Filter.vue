@@ -2,9 +2,18 @@
   <div>
     <div>
         <p>Price range (SEK)</p>
-        <Slider v-model="example2.value" v-bind="example2" :max="5000"></Slider>
+        <Slider v-model="pricerange.value" v-bind="pricerange" :max="50000"></Slider>
     </div>
-
+    <hr>
+    <div>
+        <p>Distance to beach (km)</p>
+        <Slider v-model="beachRange.value" v-bind="beachRange" :max="5000"></Slider>
+    </div>
+    <hr>
+    <div>
+        <p>Distance to city (km)</p>
+        <Slider v-model="cityRange.value" v-bind="cityRange" :max="5000"></Slider>
+    </div>
     <hr />
     <div>
       <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -70,8 +79,14 @@ export default {
         },
       data() {
          return {
-             example2: {
-                        value: [0, 800]
+              pricerange: {
+                        value: [0, 40000]
+                        },
+              beachRange: {
+                        value: [500]
+                        },
+              cityRange: {
+                        value: [800]
                         }
         }
       } 

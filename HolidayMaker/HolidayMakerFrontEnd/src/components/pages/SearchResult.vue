@@ -12,7 +12,6 @@
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item" href="#">Price: Lowest first</a></li>
                         <li><a class="dropdown-item" href="#">Rating: Highest first</a></li>
-                        <li><a class="dropdown-item" href="#">Distance to centrum: Nearest first</a></li>
                     </ul>
                 </div>
             </div>

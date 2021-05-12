@@ -2,7 +2,7 @@
   <div>
     <div>
         <p>Price range (SEK)</p>
-        <Slider v-model="example2.value" v-bind="example2"></Slider>
+        <Slider v-model="example2.value" v-bind="example2" :max="5000"></Slider>
     </div>
 
     <hr />
@@ -81,7 +81,7 @@ export default {
       data() {
          return {
              example2: {
-                        value: [20, 40]
+                        value: [0, 80]
                         }
         }
       } 
@@ -92,42 +92,5 @@ export default {
 <style src="@vueform/slider/themes/default.css"></style>
 
 <style scoped>
-/* body {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  background: #f1f1f1;
-}
 
-h3 {
-  margin-top: 0;
-}
-
-.example {
-  background: #ffffff;
-  margin: 20px;
-  border-color: #e7e7e7;
-  padding: 40px;
-}
-
-.example pre {
-  background: #f9f9f9;
-  padding: 18px 6px;
-  overflow-x: scroll;
-  margin-top: 10px;
-}
-
-.output {
-  font-family: Courier, Courier New, Lucida Console, Monaco, Consolas;
-  background: #000000;
-  color: #ffffff;
-  padding: 20px;
-  margin-bottom: 50px;
-  display: inline-block;
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 13px;
-}
-
-.slider-vertical {
-  margin: -30px auto 0;
-} */
 </style>

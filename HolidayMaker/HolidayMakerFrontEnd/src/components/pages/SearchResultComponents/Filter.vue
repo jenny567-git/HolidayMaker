@@ -52,40 +52,6 @@
                         Restaurant
                     </label>
                 </div>
-              <div class="list-group">
-                <label class="list-group-item">
-                  <input
-                    class="form-check-input me-1"
-                    type="checkbox"
-                    value=""
-                  />
-                  Pool
-                </label>
-                <label class="list-group-item">
-                  <input
-                    class="form-check-input me-1"
-                    type="checkbox"
-                    value=""
-                  />
-                  Night Entertainment
-                </label>
-                <label class="list-group-item">
-                  <input
-                    class="form-check-input me-1"
-                    type="checkbox"
-                    value=""
-                  />
-                  Child club
-                </label>
-                <label class="list-group-item">
-                  <input
-                    class="form-check-input me-1"
-                    type="checkbox"
-                    value=""
-                  />
-                  Restaurant
-                </label>
-              </div>
             </div>
           </div>
         </div>

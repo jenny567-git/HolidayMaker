@@ -1,9 +1,10 @@
 <template>
     <div>
         <div class="row">
-            <div class="col">
+            <div class="col pt-5 text-start">
                 <h1>Search result: (X) found</h1>
             </div>
+            <hr>
             <div class="col">
 
                 <!-- OPTION 1: CHECKBOX -->

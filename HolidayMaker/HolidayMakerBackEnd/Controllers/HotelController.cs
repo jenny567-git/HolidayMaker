@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HolidayMakerBackEnd.Services;
 using HolidayMakerBackEnd.Models.Database;
+using HolidayMakerBackEnd.Models.ViewModels;
 
 namespace HolidayMakerBackEnd.Controllers
 {
@@ -21,7 +22,7 @@ namespace HolidayMakerBackEnd.Controllers
         }
 
         [HttpGet("GetAvailableRooms/{id}")]
-        public IEnumerable<Room> GetAvailableRooms (int id, DateTime date1, DateTime date2)
+        public IEnumerable<ReservedRoom> GetAvailableRooms (int id, DateTime date1, DateTime date2)
         {
             var result = _hotelService.GetAvailableRooms(id, date1, date2);
             return result;
@@ -41,6 +42,6 @@ namespace HolidayMakerBackEnd.Controllers
         //    return result;
         //}
 
-
+       
     }
 }

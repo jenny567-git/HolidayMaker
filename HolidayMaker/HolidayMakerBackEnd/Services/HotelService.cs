@@ -17,16 +17,21 @@ namespace HolidayMakerBackEnd.Services
             _db = new HolidayMakerContext();
         }
 
-        public IEnumerable<Hotel> GetAvailableRooms(int id, DateTime date1, DateTime date2)
+        public IEnumerable<ReservedRoom> GetAvailableRooms(int id, DateTime date1, DateTime date2)
         {
-            
-            
 
 
+
+
+            var summa = _db.ReservedRooms.Where(x => x.RoomId == id);
+            var a = _db.ReservedRooms.Sum(x => x.RoomId);
+            return summa;
+
+            //var result = _db.Rooms.Where(x => x.HotelId == id).AsEnumerable();
+            //return result;
 
             //var test = _db.Hotels.Where(r => r.Id == id).Select(r => r.Rooms).AsEnumerable();
             //return test;
-
 
             //funkar
             //var reservations = _db.Reservations.Include(r => r.ReservedRooms).Where(r => r.HotelId == id && r.StartDate <= date1 && r.EndDate >= date2);

@@ -1,11 +1,24 @@
 <template>
     <div>
-        <div class="row">
-            <div class="col pt-5 text-start">
+        <div class="row pt-5">
+            <div class="col-md-6">
                 <h1>Search result: (X) found</h1>
             </div>
+            <div class="col-md-6">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Sort by
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="#">Price: Lowest first</a></li>
+                        <li><a class="dropdown-item" href="#">Rating: Highest first</a></li>
+                        <li><a class="dropdown-item" href="#">Distance to centrum: Nearest first</a></li>
+                    </ul>
+                </div>
+            </div>
+            </div>
             <hr>
-            <div class="col">
+            <!-- <div class="col"> -->
 
                 <!-- OPTION 1: CHECKBOX -->
                 <!-- <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
@@ -21,7 +34,7 @@
 
 
                 <!-- OPTION 2 : DROPDOWN -->
-                <div class="dropdown">
+                <!-- <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         Sort by
                     </button>
@@ -30,9 +43,9 @@
                         <li><a class="dropdown-item" href="#">Rating: Highest first</a></li>
                         <li><a class="dropdown-item" href="#">Distance to centrum: Nearest first</a></li>
                     </ul>
-                </div>
-            </div>
-        </div>
+                </div> -->
+                
+            <!-- </div> -->
         <div class="row">
             <div class="col-md-4">
                 <Filter/>

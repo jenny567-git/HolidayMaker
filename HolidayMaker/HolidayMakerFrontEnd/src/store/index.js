@@ -4,6 +4,11 @@ const store = createStore({
     state:{
         home: {title: "store name"},
         name: "Vue",
+        addReview: {
+            name:'',
+            email:'',
+            message:''
+        },
         hotels: {
             1:{
                 name: 'Hotel 1',
@@ -19,7 +24,12 @@ const store = createStore({
         }
    },
    mutations:{
-
+        setEmail(store, value){
+            store.addReview.email = value
+        },
+        setMessage(store, value){
+            store.addReview.message = value
+        },
    },
    actions:{
         

@@ -6,6 +6,7 @@ import RoomInfo from '../components/pages/HotelViewComponents/RoomInfo.vue'
 import Photos from '../components/pages/HotelViewComponents/Photos.vue'
 import Reviews from '../components/pages/HotelViewComponents/Reviews.vue'
 import SearchResult from '../components/pages/SearchResult.vue'
+import AddReview from '../components/pages/HotelViewComponents/ReviewComponents/AddReview.vue'
 
 import { registerRuntimeCompiler } from '@vue/runtime-core'
 
@@ -19,6 +20,11 @@ const routes = [
         path: '/result',
         name: 'result',
         component: SearchResult
+    },
+    {
+        path: '/addReview',
+        name: 'addReview',
+        component: AddReview
     },
     {
         path: '/hotels/:id',

@@ -1,8 +1,12 @@
 <template>
- <div class="input-group">
-    <ConfirmDate />
-    
-</div>
+  <main>
+    <div class="container">
+
+      <img alt="Vue logo" src="./assets/logo.png" />
+      <HelloWorld msg="Hello Vue 3 + Vite" />
+      <router-view/>
+    </div>
+  </main>
 </template>
 
 <script>

@@ -47,7 +47,7 @@ export default {
     },
     data(){
         return{
-            completed: false // remove when actually getting the completion status!
+            completed: true // remove when actually getting the completion status!
         }
     },
     computed:{

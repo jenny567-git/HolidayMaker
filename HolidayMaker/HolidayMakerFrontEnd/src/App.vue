@@ -1,9 +1,8 @@
 <template>
-  <div>
-    <div class="datepicker">
-    <confirmdate v-model="value" selectionMode="range" />
-  </div>
-  </div>
+ <div class="input-group">
+    <ConfirmDate />
+    
+</div>
 </template>
 
 <script>
@@ -16,6 +15,7 @@ export default {
   }
 }
 
+
 </script>
 
 <style>
@@ -26,6 +26,14 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.input-group{
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    width: fit-content;
+    align-content: center;
 }
 
 

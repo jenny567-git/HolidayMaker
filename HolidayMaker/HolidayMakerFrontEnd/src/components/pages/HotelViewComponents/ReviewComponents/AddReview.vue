@@ -1,6 +1,9 @@
 <template>
     <div>
     <form>
+      <div class="pt-5">
+        <RatingSlider/>
+        </div>
         <div class="form-group">
         <label for="exampleFormControlInput1">Your name</label>
         <input v-model="name" type="text" class="form-control" />
@@ -19,21 +22,11 @@
 </template>
 
 <script>
+import RatingSlider from './RatingSlider.vue'
+
   export default{
-    computed:{
-        // addreview(){
-            
-        //     name(value) {
-        //     this.$store.commit('updateName', value)
-        // },
-        // email(value) {
-        //     this.$store.commit('updateEmail', value)
-        // },
-        // message(value) {
-        //     this.$store.commit('updateMessage', value)
-        // }
-        // }
-        
+      components: {
+        RatingSlider
     }
   }
 </script>

@@ -1,13 +1,16 @@
 <template>
     <div>
-        <div class="row">
-            <button type="button" class="btn btn-primary">Add review</button>
+        <div class="row pt-5">
+            <div class="col-md-10">
+                <h2>Guest reviews</h2>
+            </div>
+            <div class="col-md-2 text-end">
+                <button type="button" class="btn btn-primary">Add review</button>
+            </div>
         </div>
+        <hr>
         <div class="row">
-            <h2>Guest reviews</h2>
-        </div>
-        <div class="row">
-            <div class="col">
+            <div class="col-md-4">
                 
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="reviewRatingDropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
@@ -21,9 +24,9 @@
                     </ul>
                 </div>
             </div>
-            <div class="col">
+            <div class="col-md-8">
                 
-                    <div class="dropdown">
+                    <div class="dropdown text-end">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="reviewLanguageDropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
                             Language
                         </button>
@@ -41,7 +44,7 @@
 </template>
 
 <script>
-import ReviewSubComp from './ReviewSubComponent.vue'
+import ReviewSubComp from './ReviewComponents/ReviewSubComponent.vue'
 export default {
     components: {
     ReviewSubComp

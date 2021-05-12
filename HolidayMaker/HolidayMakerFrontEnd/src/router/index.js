@@ -17,7 +17,7 @@ const routes = [
     },
     {
         path: '/result',
-        name: 'Result',
+        name: 'result',
         component: SearchResult
     },
     {

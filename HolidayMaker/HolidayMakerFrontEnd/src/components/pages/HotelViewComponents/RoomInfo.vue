@@ -67,9 +67,7 @@
               </div>
             </div>
           </li>
-          
         </ul>
-        <router-link to="/hotels/1/Photos">Hotel 1 Photos </router-link>
       </div>
 
 <!-- right column -->

@@ -31,7 +31,7 @@ const routes = [
         name: 'hotels',
         component: HotelView,
         children: [{
-            path: 'info',
+            path: '',
             component: Info,
         },
         {

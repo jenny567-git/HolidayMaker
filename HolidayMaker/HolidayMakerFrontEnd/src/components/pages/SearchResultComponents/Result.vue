@@ -9,8 +9,11 @@
                 <p>(3535) SEK</p>
                 <p>Ratings: <span class="badge rounded-pill bg-secondary">(AverageRating)</span></p>
                 
+                <router-link :to="'/hotels/1'" class="nav-link"> 
+                    <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+                </router-link>
+                <label class="btn btn-outline-primary" for="btn-check-outlined">See details</label><br>
 
-                <button type="button" class="btn btn-primary" data-bs-toggle="button" autocomplete="off">Toggle button</button>
                 <!-- <div v-if="ShowInfo() == true">
                     <Info/>   
                 </div> -->

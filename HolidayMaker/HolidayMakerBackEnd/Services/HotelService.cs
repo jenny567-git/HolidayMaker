@@ -17,15 +17,11 @@ namespace HolidayMakerBackEnd.Services
             _db = new HolidayMakerContext();
         }
 
-        public IEnumerable<ReservedRoom> GetAvailableRooms(int id, DateTime date1, DateTime date2)
+        public IEnumerable<Hotel> GetAvailableRooms(int id, DateTime date1, DateTime date2)
         {
-
-
-
-
-            var summa = _db.ReservedRooms.Where(x => x.RoomId == id);
-            var a = _db.ReservedRooms.Sum(x => x.RoomId);
-            return summa;
+            //var summa = _db.ReservedRooms.Where(x => x.RoomId == id);
+            //var a = _db.ReservedRooms.Sum(x => x.RoomId);
+            //return summa;
 
             //var result = _db.Rooms.Where(x => x.HotelId == id).AsEnumerable();
             //return result;
@@ -37,16 +33,20 @@ namespace HolidayMakerBackEnd.Services
             //var reservations = _db.Reservations.Include(r => r.ReservedRooms).Where(r => r.HotelId == id && r.StartDate <= date1 && r.EndDate >= date2);
             //return null;
 
-            //using (HolidayMakerContext db = new HolidayMakerContext())
+            // var aQuery = (from h in _db.Hotel
+            //                 join r in _db.Reservation
+            //                 on r.ReservationId equals h.HotelId
+            //                 join rr in ReservedRooms 
+
+
+            //using (var context = new Reservation)
             //{
-            //    List<Hotel> hotels = db.Hotels.ToList();
-            //    List<Room> rooms = db.Rooms.ToList();
-            //    List<ReservedRoom> reservedRooms = db.ReservedRooms.ToList();
-
-            //    var totalmess = from h in hotels
-            //                    join r in rooms on i.Room_Id equals
-            //                    from r in table1.ToList()
-
+            //    var reservation = _db.ReservedRooms
+            //          .join(
+            //          _db.Rooms,
+            //          Rooms => rooms.RoomsId,
+            //          
+            //          )
             //}
 
 
@@ -64,10 +64,7 @@ namespace HolidayMakerBackEnd.Services
             return _db.Reviews.Where(r => r.Hotel.Id == id).AsEnumerable();
         }
 
-        //public IEnumerable<Room> GetRoomsAvailableByDate(DateTime date)
-        //{
-            
-        //}
+       
 
     }
 }

@@ -22,11 +22,12 @@ namespace HolidayMakerBackEnd.Controllers
         }
 
         [HttpGet("GetAvailableRooms/{id}")]
-        public IEnumerable<ReservedRoom> GetAvailableRooms (int id, DateTime date1, DateTime date2)
+        public IEnumerable<ReservedRoom> GetAvailableRooms(int id, DateTime date1, DateTime date2)
         {
             var result = _hotelService.GetAvailableRooms(id, date1, date2);
             return result;
         }
+
 
         [HttpGet("GetReviews/{id}")]
         public IEnumerable<Review> GetReviews(int id)

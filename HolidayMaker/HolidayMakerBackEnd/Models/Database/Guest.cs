@@ -23,8 +23,14 @@ namespace HolidayMakerBackEnd.Models.Database
         public string Phone { get; set; }
         public string Email { get; set; }
 
+        public List<ReservedRoom> reservedRooms { get; set; }
+
         public virtual ICollection<Reservation> Reservations { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
         public virtual ICollection<SavedHotel> SavedHotels { get; set; }
+
+
+
+
     }
 }

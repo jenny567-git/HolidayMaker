@@ -19,24 +19,30 @@ namespace HolidayMakerBackEnd.Services
 
         public void AddReservation(BookingInputModel model)
         {
+            
             var newBooking = new Reservation()
             {
                 StartDate = model.StartDate,
                 EndDate = model.EndDate,
-                //TotalPrice = CalculateCost(),
+                TotalPrice = model.TotalPrice,
                 DateCreated = DateTime.Now,
                 HotelId = model.HotelId,
                 GuestId = model.GuestId,
-               
+                
+                             
                 
             };
+
+            
 
             _db.Reservations.Add(newBooking);
             _db.SaveChanges();
         }
       
-        public void CalculateCost()
+        public void CalculateCost(int id)
         {
+            
+
 
         }
        

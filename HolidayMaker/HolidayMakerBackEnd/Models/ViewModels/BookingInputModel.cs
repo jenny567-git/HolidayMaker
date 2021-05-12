@@ -18,6 +18,12 @@ namespace HolidayMakerBackEnd.Models.ViewModels
         public int GuestId { get; set; }
 
 
+        public ReservedRoom reserved { get; set; }
+
+
+
+
+
         //public Guest Guest { get; set; }
         //public Hotel Hotel { get; set; }
         //public virtual ICollection<ReservedRoom> ReservedRooms { get; set; }

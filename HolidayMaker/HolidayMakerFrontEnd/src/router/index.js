@@ -4,6 +4,9 @@ import Info from '../components/pages/HotelViewComponents/Info.vue'
 import HotelView from '/src/components/pages/HotelView.vue'
 import RoomInfo from '../components/pages/HotelViewComponents/RoomInfo.vue'
 import Photos from '../components/pages/HotelViewComponents/Photos.vue'
+import Reviews from '../components/pages/HotelViewComponents/Reviews.vue'
+import SearchResult from '../components/pages/SearchResult.vue'
+import AddReview from '../components/pages/HotelViewComponents/ReviewComponents/AddReview.vue'
 import OrderCompletedView from '../components/pages/OrderCompletedView.vue'
 
 import { registerRuntimeCompiler } from '@vue/runtime-core'
@@ -15,11 +18,21 @@ const routes = [
         component: HelloWorld,
     },
     {
+        path: '/result',
+        name: 'result',
+        component: SearchResult
+    },
+    {
+        path: '/addReview',
+        name: 'addReview',
+        component: AddReview
+    },
+    {
         path: '/hotels/:id',
         name: 'hotels',
         component: HotelView,
         children: [{
-            path: 'info',
+            path: '',
             component: Info,
         },
         {
@@ -31,7 +44,12 @@ const routes = [
             path: 'Photos',
             name: 'photos',
             component: Photos,
-        } 
+        },
+        {
+            path: 'Reviews',
+            name: 'reviews',
+            component: Reviews,
+        }  
     ]
     },
     {

@@ -21,16 +21,13 @@
                 <div class="col-md-12">
                     <ul class="nav nav-pills">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">Overview</a> <!-- Replace with router link to -->
-                        </li>
-                        <li class="nav-item">
-                            <router-link :to="'/hotels/' + this.$route.params.id + '/info'" class="nav-link"> Info </router-link>
+                            <router-link :to="'/hotels/' + this.$route.params.id + '/'" class="nav-link active"> Info </router-link>
                         </li>
                         <li class="nav-item">
                             <router-link :to="'/hotels/' + this.$route.params.id + '/photos'" class="nav-link"> Photos </router-link>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Reviews</a>
+                            <router-link :to="'/hotels/' + this.$route.params.id + '/reviews'" class="nav-link"> Reviews </router-link>
                         </li>
                         <li class="nav-item">
                             <router-link :to="'/hotels/' + this.$route.params.id + '/rooms'" class="nav-link"> Rooms </router-link>

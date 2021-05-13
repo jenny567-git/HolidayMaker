@@ -16,10 +16,11 @@
       <code>components/HelloWorld.vue</code> to test hot module replacement.
     </p>
 
-    <router-link to="/home">test</router-link>
+    <router-link to="/home">test | </router-link>
     <router-link to="/hotels/1">Hotel 1 | </router-link>
     <router-link to="/hotels/2">Hotel 2 | </router-link>
-    <router-link to="/hotels/1/rooms">Hotel 1 rooms </router-link>
+    <router-link to="/result">Search result view | </router-link>
+    <router-link to="/addReview">Add review </router-link>
   </div>
 </template>
 

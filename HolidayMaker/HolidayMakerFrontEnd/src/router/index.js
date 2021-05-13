@@ -5,7 +5,7 @@ import HotelView from '/src/components/pages/HotelView.vue'
 import RoomInfo from '../components/pages/HotelViewComponents/RoomInfo.vue'
 import Photos from '../components/pages/HotelViewComponents/Photos.vue'
 import OrderCompletedView from '../components/pages/OrderCompletedView.vue'
-
+import CheckoutView from '../components/pages/CheckoutView.vue'
 import { registerRuntimeCompiler } from '@vue/runtime-core'
 
 const routes = [
@@ -38,7 +38,12 @@ const routes = [
         path: '/orderCompleted',
         name: 'OrderCompleted',
         component: OrderCompletedView
-    }   
+    },
+    {
+        path: '/checkout',
+        name: 'Checkout',
+        component: CheckoutView
+    }
 ]
 const router = createRouter({
     history: createWebHistory(),

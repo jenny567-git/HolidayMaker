@@ -16,6 +16,26 @@ const store = createStore({
         },
         user: {
             loggedIn: false,
+        },
+        bookingDetails: {
+            hotelId: '',
+            rooms: [
+                {
+                    type: '1',
+                    nrOfRooms: ''
+                },
+                {
+                    type: '2',
+                    nrOfRooms: ''
+                },
+                {
+                    type: '3',
+                    nrOfRooms: ''
+                }
+            ],
+            serviceType: '',
+            extraBed: ''
+
         }
    },
    mutations:{

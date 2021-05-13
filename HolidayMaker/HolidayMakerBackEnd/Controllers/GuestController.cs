@@ -37,9 +37,22 @@ namespace HolidayMakerBackEnd.Controllers
             return result;
         }
         [HttpPost("addGuest")]
-        public ActionResult AddGuest([FromBody] GuestInputModel guest)
+        public ActionResult AddGuest([FromBody]GuestInputModel guest)
         {
             _guestService.AddGuest(guest);
+            return Ok();
+        }
+
+        [HttpPost("AddReview")]
+        public ActionResult AddReview([FromBody]ReviewModel model)
+        {
+            _guestService.AddReview(model);
+                return Ok();
+        }
+        [HttpPost("saveFavoriteHotel")]
+        public ActionResult SaveHotelToFavorites(SaveModel model)
+        {
+            _guestService.SaveHotel(model);
             return Ok();
         }
 

@@ -17,47 +17,48 @@ namespace HolidayMakerBackEnd.Services
             _db = new HolidayMakerContext();
         }
 
-        public IEnumerable<Hotel> GetAvailableRooms(int id, DateTime date1, DateTime date2)
-        {
-            //var summa = _db.ReservedRooms.Where(x => x.RoomId == id);
-            //var a = _db.ReservedRooms.Sum(x => x.RoomId);
-            //return summa;
+        //public IEnumerable<Hotel> GetAvailableRooms(int id, DateTime date1, DateTime date2)
+        //{
+        //    //var summa = _db.ReservedRooms.Where(x => x.RoomId == id);
+        //    //var a = _db.ReservedRooms.Sum(x => x.RoomId);
+        //    //return summa;
 
-            //var result = _db.Rooms.Where(x => x.HotelId == id).AsEnumerable();
-            //return result;
+        //    //var result = _db.Rooms.Where(x => x.HotelId == id).AsEnumerable();
+        //    //return result;
 
-            //var test = _db.Hotels.Where(r => r.Id == id).Select(r => r.Rooms).AsEnumerable();
-            //return test;
+        //    //var test = _db.Hotels.Where(r => r.Id == id).Select(r => r.Rooms).AsEnumerable();
+        //    //return test;
 
-            //funkar
-            //var reservations = _db.Reservations.Include(r => r.ReservedRooms).Where(r => r.HotelId == id && r.StartDate <= date1 && r.EndDate >= date2);
-            //return null;
+        //    //funkar
+        //    //var reservationsForASpecHotel = _db.Reservations.Include(r => r.ReservedRooms).Where(r => r.HotelId == id && r.StartDate <= date1 && r.EndDate >= date2);
+        //    var reservedRoomsIDs = reservationsForASpecHotel.Where(r => r.ReservedRooms
+        //return null;
 
-            // var aQuery = (from h in _db.Hotel
-            //                 join r in _db.Reservation
-            //                 on r.ReservationId equals h.HotelId
-            //                 join rr in ReservedRooms 
-
-
-            //using (var context = new Reservation)
-            //{
-            //    var reservation = _db.ReservedRooms
-            //          .join(
-            //          _db.Rooms,
-            //          Rooms => rooms.RoomsId,
-            //          
-            //          )
-            //}
+        //    // var aQuery = (from h in _db.Hotel
+        //    //                 join r in _db.Reservation
+        //    //                 on r.ReservationId equals h.HotelId
+        //    //                 join rr in ReservedRooms 
 
 
-            //addera ihop bokninagar, kolla hur många rumstyp
-            //
+        //    //using (var context = new Reservation)
+        //    //{
+        //    //    var reservation = _db.ReservedRooms
+        //    //          .join(
+        //    //          _db.Rooms,
+        //    //          Rooms => rooms.RoomsId,
+        //    //          
+        //    //          )
+        //    //}
+
+
+        //    //addera ihop bokninagar, kolla hur många rumstyp
+        //    //
 
 
 
-            //var rooms = _db.Rooms.Where(r => r.Hotel.Id == id).AsEnumerable();
-            //var availableRooms = rooms.Where(r => r.)
-        }
+        //    //var rooms = _db.Rooms.Where(r => r.Hotel.Id == id).AsEnumerable();
+        //    //var availableRooms = rooms.Where(r => r.)
+        //}
 
         public IEnumerable<Review> GetReviews(int id)
         {
@@ -65,6 +66,32 @@ namespace HolidayMakerBackEnd.Services
         }
 
        
+        public object FindHotelAndAvailableRooms(int id)
+        {
+
+            
+
+
+            var result = (from hotel in _db.Hotels
+                          join room in _db.Rooms on hotel.Id equals room.HotelId
+                          
+                          where hotel.Id == room.HotelId
+                          where hotel.Id == id
+                          select new
+                          {
+                              Name = hotel.Name,
+                              NoOfRooms = room.NoOfRooms,
+                              RoomType = room.Type
+
+
+                          }
+
+
+                          ).ToList();
+            return result;
+        }
+
+
 
     }
 }

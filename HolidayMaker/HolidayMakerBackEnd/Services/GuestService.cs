@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HolidayMakerBackEnd.Services
 {
@@ -33,6 +34,9 @@ namespace HolidayMakerBackEnd.Services
 
             var newGuest = new Guest()
             {
+
+
+               
                 FullName = guest.FullName,
                 Street = guest.Street,
                 ZipCode = guest.ZipCode,
@@ -59,6 +63,33 @@ namespace HolidayMakerBackEnd.Services
             _db.Guests.Remove(guest);
             _db.SaveChanges();
 
+        }
+
+        public void AddReview(ReviewModel model)
+        {
+            var newReview = new Review()
+            {
+                Rating = model.Rating,
+                Description = model.Description,
+                HotelId = model.HotelID,
+                GuestId = model.GuestID
+
+
+            };
+            _db.Reviews.Add(newReview);
+            _db.SaveChanges();
+        }
+
+        public void SaveHotel(SaveModel model)
+        {
+            var newSaveHotel = new SavedHotel()
+            {
+                HotelId = model.HotelID,
+                GuestId = model.GuestID,
+            };
+
+            _db.SavedHotels.Add(newSaveHotel);
+            _db.SaveChanges();
         }
     }
 }

@@ -17,9 +17,32 @@ namespace HolidayMakerBackEnd.Services
         }
 
 
-        public void AddReservation(BookingInputModel model)
-        {
+        //public void AddReservation(BookingInputModel model)
+        //{
             
+        //    var newBooking = new Reservation()
+        //    {
+        //        StartDate = model.StartDate,
+        //        EndDate = model.EndDate,
+        //        TotalPrice = model.TotalPrice,
+        //        DateCreated = DateTime.Now,
+        //        HotelId = model.HotelId,
+        //        GuestId = model.GuestId,
+                
+                             
+                
+        //    };
+
+            
+
+        //    _db.Reservations.Add(newBooking);
+        //    _db.SaveChanges();
+        //}
+
+        public void MakeBooking(SearchViewModel model)
+        {
+            ReservedRoom rr = new ReservedRoom();
+
             var newBooking = new Reservation()
             {
                 StartDate = model.StartDate,
@@ -28,16 +51,51 @@ namespace HolidayMakerBackEnd.Services
                 DateCreated = DateTime.Now,
                 HotelId = model.HotelId,
                 GuestId = model.GuestId,
-                
-                             
-                
+                FlightId = model.FlightId
+                              
+
             };
 
-            
+            var newReservedRooms = new ReservedRoom()
+            {
+                RoomId = model.RoomId,
+                BookedRooms = model.BookedRooms
+            };
 
-            _db.Reservations.Add(newBooking);
+            var newResDetails = new ReservationsDetail()
+            {
+                Adults = model.Adults,
+                Children = model.Children,
+                ExtraBed = model.ExtraBed,
+                CustomerMessage = model.CustomerMessage,
+                ReservationId = model.ReservationId,
+                Type = model.Type
+            };
+
+
+            AddToReservedRooms(model);
+            _db.ReservedRooms.Add(newReservedRooms);
+            //_db.ReservationsDetails.Add(newResDetails);
+            //_db.Reservations.Add(newBooking);
+            _db.SaveChanges();
+
+            
+        }
+
+        public void AddToReservedRooms(SearchViewModel model)
+        {
+            var newReservedRooms = new ReservedRoom()
+            {
+                RoomId = model.RoomId,
+                BookedRooms = model.BookedRooms
+            };
+
+            _db.ReservedRooms.Add(newReservedRooms);
             _db.SaveChanges();
         }
+
+
+
       
         public void CalculateCost(int id)
         {

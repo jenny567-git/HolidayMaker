@@ -172,7 +172,7 @@ export default {
             return this.$store.state.bookingDetails.extraBed ? 'Yes' : 'No';
         },
         price(){
-            return '$3445';
+            return '$343';
         }
     }
 }

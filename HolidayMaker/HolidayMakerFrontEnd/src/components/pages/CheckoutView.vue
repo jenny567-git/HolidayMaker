@@ -34,8 +34,5 @@ export default {
 </script>
 
 <style scoped>
-    #OrderDetailsList{
-        display: inline-block;
-        text-align: left;
-    }
+    
 </style>

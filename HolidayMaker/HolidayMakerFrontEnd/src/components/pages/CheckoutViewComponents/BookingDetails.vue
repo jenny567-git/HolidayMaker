@@ -1,7 +1,7 @@
 <template >
     <div>
         <h4 class="mb-3">Booking details</h4>
-        <ul class="list-unstyled" id="OrderDetailsList">
+        <ul class="list-unstyled" id="BookingDetailsList">
             <li class="list-item">
                 Rooms:
             </li>
@@ -41,6 +41,9 @@ export default {
     }
 }
 </script>
-<style >
-    
+<style scoped>
+    #BookingDetailsList{
+        display: inline-block;
+        text-align: left;
+    }
 </style>

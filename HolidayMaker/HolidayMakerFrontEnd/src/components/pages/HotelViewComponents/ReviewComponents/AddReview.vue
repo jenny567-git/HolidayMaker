@@ -2,7 +2,7 @@
     <div>
     <form @submit="onSubmit">
       <div class="pt-5">
-        <RatingSlider v-model="rating" @clicked="onClickChild"/>
+        <RatingSlider v-model="rating" @clicked="onClickChild" />
         </div>
         <div class="form-group">
         <label for="exampleFormControlInput1">Your name</label>
@@ -39,14 +39,18 @@ import RatingSlider from './RatingSlider.vue'
         // newReview: new Review()
       }
     },
-    created(){
+    beforecreated(){
       console.log('created');
       this.onClickChild();
     },
     methods:{
+      getRating(value){
+          this.rating = value
+          console.log(`getRating - ${this.rating}`)
+      },
       onClickChild(getValue){
         this.rating = getValue
-        console.log(this.rating)
+        console.log(`onclickChild - ${this.rating}`)
       },
       onSubmit(e){
         e.preventDefault()
@@ -55,13 +59,13 @@ import RatingSlider from './RatingSlider.vue'
           alert('Please fill in all fields')
           return
         }
-
-        const newReview = {
+        console.log(`in submit - ${this.rating}`)
+        let newReview = {
             //id: 5,
             message: this.message,
             name: this.name,
             email: this.email,
-            rating: this.rating
+            rating: `${this.rating}`
         }
 
         console.log(newReview)

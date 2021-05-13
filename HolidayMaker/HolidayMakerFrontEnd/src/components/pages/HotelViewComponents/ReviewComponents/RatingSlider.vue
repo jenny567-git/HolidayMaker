@@ -6,7 +6,7 @@
             <p>Rating (0-5)</p>
         </div>
         <div class="col-md-6">
-            <Slider v-model="ratingRange.value" v-bind="ratingRange" :format="format" :max="5" @change="emitToParent"></Slider>
+            <Slider v-model="ratingRange.value" v-bind="ratingRange" :format="format" :max="5" @change="emitToParent" ></Slider>
         </div>
         </div>
     </div>
@@ -25,7 +25,7 @@ export default {
       data() {
          return {
                 ratingRange: {
-                        value: [5]
+                        value: [0]
                         },
                 format: function(value){
                     if(value == 0){return `Very Bad - ${value}`

@@ -44,10 +44,7 @@ import RatingSlider from './RatingSlider.vue'
       this.onClickChild();
     },
     methods:{
-      getRating(value){
-          this.rating = value
-          console.log(`getRating - ${this.rating}`)
-      },
+      
       onClickChild(getValue){
         this.rating = getValue
         console.log(`onclickChild - ${this.rating}`)

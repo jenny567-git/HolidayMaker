@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -12,11 +10,9 @@ namespace HolidayMakerBackEnd.Models.Database
         public Guest()
         {
             Reservations = new HashSet<Reservation>();
-            Reviews = new HashSet<Review>();
             SavedHotels = new HashSet<SavedHotel>();
         }
 
-        [Key]
         public int Id { get; set; }
         public string FullName { get; set; }
         public string Street { get; set; }
@@ -26,14 +22,8 @@ namespace HolidayMakerBackEnd.Models.Database
         public string Phone { get; set; }
         public string Email { get; set; }
 
-        public List<ReservedRoom> reservedRooms { get; set; }
-
+        public virtual Review Review { get; set; }
         public virtual ICollection<Reservation> Reservations { get; set; }
-        public virtual ICollection<Review> Reviews { get; set; }
         public virtual ICollection<SavedHotel> SavedHotels { get; set; }
-
-
-
-
     }
 }

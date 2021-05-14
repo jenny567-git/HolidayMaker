@@ -16,7 +16,7 @@ namespace HolidayMakerBackEnd.Models.Database
             : base(options)
         {
         }
-        
+
         public virtual DbSet<Accomodation> Accomodations { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
@@ -35,7 +35,7 @@ namespace HolidayMakerBackEnd.Models.Database
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=tcp:holidaymaker.database.windows.net,1433;Initial Catalog=HolidayMaker;Persist Security Info=False;User ID=Grupp1;Password=Viärbäst!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+                optionsBuilder.UseSqlServer("Database=HolidayMaker;Server=tcp:holidaymaker.database.windows.net,1433;Initial Catalog=HolidayMaker;Persist Security Info=False;User ID=Grupp1;Password=Viärbäst!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             }
         }
 
@@ -95,9 +95,7 @@ namespace HolidayMakerBackEnd.Models.Database
 
             modelBuilder.Entity<Guest>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.City)
                     .IsRequired()
@@ -218,34 +216,24 @@ namespace HolidayMakerBackEnd.Models.Database
 
             modelBuilder.Entity<ReservationsDetail>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.ReservationId)
+                    .HasName("PK_ReservationsDetails_1");
+
+                entity.Property(e => e.ReservationId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("ReservationID");
 
                 entity.Property(e => e.CustomerMessage).IsUnicode(false);
-
-                entity.Property(e => e.ReservationId).HasColumnName("ReservationID");
 
                 entity.Property(e => e.Type)
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
-
-                entity.HasOne(d => d.Reservation)
-                    .WithMany()
-                    .HasForeignKey(d => d.ReservationId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Reservati__Reser__7D439ABD");
-
-                entity.HasOne(d => d.TypeNavigation)
-                    .WithMany()
-                    .HasForeignKey(d => d.Type)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Reservatio__Type__7E37BEF6");
             });
 
             modelBuilder.Entity<ReservedRoom>(entity =>
             {
-                entity.HasKey(e => new { e.ReservationId, e.RoomId })
-                    .HasName("PK__Reserved__34C63C95E356615E");
+                entity.HasKey(e => new { e.ReservationId, e.RoomId });
 
                 entity.Property(e => e.ReservationId).HasColumnName("ReservationID");
 
@@ -266,7 +254,9 @@ namespace HolidayMakerBackEnd.Models.Database
 
             modelBuilder.Entity<Review>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnName("ID");
+                entity.Property(e => e.Id)
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("ID");
 
                 entity.Property(e => e.Description)
                     .IsRequired()
@@ -276,17 +266,17 @@ namespace HolidayMakerBackEnd.Models.Database
 
                 entity.Property(e => e.HotelId).HasColumnName("HotelID");
 
-                entity.HasOne(d => d.Guest)
-                    .WithMany(p => p.Reviews)
-                    .HasForeignKey(d => d.GuestId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Reviews__GuestID__74AE54BC");
-
                 entity.HasOne(d => d.Hotel)
                     .WithMany(p => p.Reviews)
                     .HasForeignKey(d => d.HotelId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Reviews__HotelID__73BA3083");
+
+                entity.HasOne(d => d.IdNavigation)
+                    .WithOne(p => p.Review)
+                    .HasForeignKey<Review>(d => d.Id)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Reviews_Guests");
             });
 
             modelBuilder.Entity<Room>(entity =>
@@ -319,7 +309,7 @@ namespace HolidayMakerBackEnd.Models.Database
                     .WithMany(p => p.SavedHotels)
                     .HasForeignKey(d => d.GuestId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__SavedHote__Guest__778AC167");
+                    .HasConstraintName("FK_SavedHotels_SavedHotels");
 
                 entity.HasOne(d => d.Hotel)
                     .WithMany(p => p.SavedHotels)

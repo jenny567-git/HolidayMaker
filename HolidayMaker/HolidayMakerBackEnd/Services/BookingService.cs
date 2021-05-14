@@ -1,5 +1,6 @@
 ﻿using HolidayMakerBackEnd.Models.Database;
 using HolidayMakerBackEnd.Models.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,92 +18,117 @@ namespace HolidayMakerBackEnd.Services
         }
 
 
-        //public void AddReservation(BookingInputModel model)
-        //{
-            
-        //    var newBooking = new Reservation()
-        //    {
-        //        StartDate = model.StartDate,
-        //        EndDate = model.EndDate,
-        //        TotalPrice = model.TotalPrice,
-        //        DateCreated = DateTime.Now,
-        //        HotelId = model.HotelId,
-        //        GuestId = model.GuestId,
-                
-                             
-                
-        //    };
-
-            
-
-        //    _db.Reservations.Add(newBooking);
-        //    _db.SaveChanges();
-        //}
+        public int latestId;
+        public string latestType;
 
         public void MakeBooking(SearchViewModel model)
         {
-            ReservedRoom rr = new ReservedRoom();
 
-            var newBooking = new Reservation()
+            var newReservation = new Reservation()
             {
                 StartDate = model.StartDate,
                 EndDate = model.EndDate,
-                TotalPrice = model.TotalPrice,
                 DateCreated = DateTime.Now,
                 HotelId = model.HotelId,
                 GuestId = model.GuestId,
-                FlightId = model.FlightId
-                              
-
+                
+                
+                
             };
 
-            var newReservedRooms = new ReservedRoom()
-            {
-                RoomId = model.RoomId,
-                BookedRooms = model.BookedRooms
-            };
+            _db.Reservations.Add(newReservation);
+            _db.SaveChanges();
+            latestId = newReservation.Id;
 
+            var Acc = new Accomodation();
+           
+
+            latestType = Acc.Type = model.Type;
+
+
+            
             var newResDetails = new ReservationsDetail()
             {
                 Adults = model.Adults,
                 Children = model.Children,
                 ExtraBed = model.ExtraBed,
                 CustomerMessage = model.CustomerMessage,
-                ReservationId = model.ReservationId,
-                Type = model.Type
+                ReservationId = latestId,
+                Type = latestType,
+
             };
 
-
-            AddToReservedRooms(model);
-            _db.ReservedRooms.Add(newReservedRooms);
-            //_db.ReservationsDetails.Add(newResDetails);
-            //_db.Reservations.Add(newBooking);
+            _db.ReservationsDetails.Add(newResDetails);
             _db.SaveChanges();
 
-            
-        }
 
-        public void AddToReservedRooms(SearchViewModel model)
-        {
             var newReservedRooms = new ReservedRoom()
             {
+                ReservationId = latestId,
                 RoomId = model.RoomId,
-                BookedRooms = model.BookedRooms
+                BookedRooms = model.BookedRooms,
+
             };
 
             _db.ReservedRooms.Add(newReservedRooms);
             _db.SaveChanges();
+
+
+            var Cost = CalculateCost(newReservation, newReservedRooms, newResDetails);
+            
+            
         }
 
 
-
-      
-        public void CalculateCost(int id)
+        
+        public object CalculateCost(Reservation reservation, ReservedRoom reservedRoom, ReservationsDetail reservationsDetail)
         {
+            double totalprice = 0;
+            bool extrabed = (bool)reservationsDetail.ExtraBed;
+            var costPerNight = _db.Rooms.FirstOrDefault(x => x.Id == reservedRoom.RoomId).Price;
+            DateTime d1 = reservation.StartDate;
+            DateTime d2 = reservation.EndDate;
+            TimeSpan t = d2 - d1;
+            var accomodationTypePrice = _db.Accomodations.FirstOrDefault(x => x.Type == reservationsDetail.Type).Price;
+            int days = (int)t.Days;
+            int rooms = reservedRoom.BookedRooms;
+
+            var CostPerNightAndRoom = costPerNight * (days*rooms);
+
+            totalprice += CostPerNightAndRoom;
+
+            totalprice += accomodationTypePrice;
+
+
+            
             
 
 
+            if (extrabed==true)
+            {
+                totalprice += 200;
+            }
+
+
+            using (var db = new HolidayMakerContext())
+            {
+                var result = db.Reservations.SingleOrDefault(b => b.Id == latestId);
+                if (result != null)
+                {
+                    result.TotalPrice = totalprice;
+                    db.SaveChanges();
+                }
+            }
+
+
+            return totalprice;
+
+
+            
+         
         }
+      
+        
        
 
     }

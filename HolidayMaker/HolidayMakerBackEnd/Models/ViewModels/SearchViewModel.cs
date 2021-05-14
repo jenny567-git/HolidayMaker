@@ -31,7 +31,11 @@ namespace HolidayMakerBackEnd.Models.ViewModels
         
         public int RoomId { get; set; }
         public int BookedRooms { get; set; }
+    
 
+        
+
+        
 
 
 

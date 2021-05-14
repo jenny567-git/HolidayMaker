@@ -13,8 +13,5 @@ namespace HolidayMakerBackEnd.Models.Database
         public string CustomerMessage { get; set; }
         public int ReservationId { get; set; }
         public string Type { get; set; }
-
-        public virtual Reservation Reservation { get; set; }
-        public virtual Accomodation TypeNavigation { get; set; }
     }
 }

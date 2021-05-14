@@ -20,11 +20,17 @@
                 Price: {{price}}
             </li>
         </ul>
+        <BookingMessage></BookingMessage>
     </div>
 </template>
 
 <script>
+import BookingMessage from './BookingMessage.vue'
+
 export default {
+    components: {
+        BookingMessage
+    },
     computed:{
         rooms(){
             return this.$store.state.bookingDetails.rooms;

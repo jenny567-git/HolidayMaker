@@ -21,25 +21,19 @@ namespace HolidayMakerBackEnd.Controllers
             _hotelService = new HotelService();
         }
 
-        //[HttpGet("GetAvailableRooms/{id}")]
-        //public IEnumerable<ReservedRoom> GetAvailableRooms(int id, DateTime date1, DateTime date2)
-        //{
-        //    var result = _hotelService.GetAvailableRooms(id, date1, date2);
-        //    return result;
-        //}
+        [HttpGet("GetAvailableRooms/{id}")]
+        public HotelRoomsViewModel GetAvailableRooms(int id, DateTime date1, DateTime date2)
+        {
+            var result = _hotelService.GetAvailableRooms(id, date1, date2);
+
+            return result;
+        }
 
 
         [HttpGet("GetReviews/{id}")]
         public IEnumerable<Review> GetReviews(int id)
         {
             var result = _hotelService.GetReviews(id);
-            return result;
-        }
-
-        [HttpGet("GetRoomsAvailableByDate")]
-        public object GetRoomsAvailableByDate(int id)
-        {
-            var result = _hotelService.FindHotelAndAvailableRooms(id);
             return result;
         }
 

@@ -8,6 +8,14 @@ using System.Threading.Tasks;
 
 namespace HolidayMakerBackEnd.Services
 {
+
+    public class HotelRoomsViewModel
+    {
+        public int SingleRooms { get; set; }
+        public int DoubleRooms { get; set; }
+        public int FamilyRooms { get; set; }
+    }
+
     public class HotelService
     {
         private readonly HolidayMakerContext _db;
@@ -17,81 +25,48 @@ namespace HolidayMakerBackEnd.Services
             _db = new HolidayMakerContext();
         }
 
-        //public IEnumerable<Hotel> GetAvailableRooms(int id, DateTime date1, DateTime date2)
-        //{
-        //    //var summa = _db.ReservedRooms.Where(x => x.RoomId == id);
-        //    //var a = _db.ReservedRooms.Sum(x => x.RoomId);
-        //    //return summa;
+        public HotelRoomsViewModel GetAvailableRooms(int id, DateTime date1, DateTime date2)
+        {
+            var reservations = _db.Reservations.Where(r => r.HotelId == id && r.StartDate >= date1 && r.EndDate <= date2).Include(r => r.ReservedRooms).ThenInclude(r => r.Room);
 
-        //    //var result = _db.Rooms.Where(x => x.HotelId == id).AsEnumerable();
-        //    //return result;
+            var availableRooms = new Dictionary<string, int>();
 
-        //    //var test = _db.Hotels.Where(r => r.Id == id).Select(r => r.Rooms).AsEnumerable();
-        //    //return test;
+            availableRooms.Add("Single", 0);
+            availableRooms.Add("Double", 0);
+            availableRooms.Add("Family", 0);
 
-        //    //funkar
-        //    //var reservationsForASpecHotel = _db.Reservations.Include(r => r.ReservedRooms).Where(r => r.HotelId == id && r.StartDate <= date1 && r.EndDate >= date2);
-        //    var reservedRoomsIDs = reservationsForASpecHotel.Where(r => r.ReservedRooms
-        //return null;
+            foreach (var reservation in reservations)
+            {
+                foreach (var reservedRoom in reservation.ReservedRooms)
+                {
+                    if (reservedRoom.BookedRooms > 0)
+                    { // Get amount of bookings for each room type
+                        availableRooms[reservedRoom.Room.Type] += reservedRoom.BookedRooms;
+                    }
+                }
+            }
 
-        //    // var aQuery = (from h in _db.Hotel
-        //    //                 join r in _db.Reservation
-        //    //                 on r.ReservationId equals h.HotelId
-        //    //                 join rr in ReservedRooms 
+            var roomInfo = _db.Rooms.Where(h => h.HotelId == id).ToList();
 
+            foreach (var key in availableRooms.Keys)
+            {
+                for (int i = 0; i < roomInfo.Count; i++)
+                {
+                    if (roomInfo[i].Type == key)
+                    { // Get availability of the rooms
+                        availableRooms[key] = roomInfo[i].NoOfRooms - availableRooms[key];
+                    }
+                }
+            }
+            
+            HotelRoomsViewModel vm = new() { SingleRooms = availableRooms["Single"], DoubleRooms = availableRooms["Double"], FamilyRooms = availableRooms["Family"] };
 
-        //    //using (var context = new Reservation)
-        //    //{
-        //    //    var reservation = _db.ReservedRooms
-        //    //          .join(
-        //    //          _db.Rooms,
-        //    //          Rooms => rooms.RoomsId,
-        //    //          
-        //    //          )
-        //    //}
-
-
-        //    //addera ihop bokninagar, kolla hur många rumstyp
-        //    //
-
-
-
-        //    //var rooms = _db.Rooms.Where(r => r.Hotel.Id == id).AsEnumerable();
-        //    //var availableRooms = rooms.Where(r => r.)
-        //}
+            return vm;
+        }
 
         public IEnumerable<Review> GetReviews(int id)
         {
             return _db.Reviews.Where(r => r.Hotel.Id == id).AsEnumerable();
         }
-
-       
-        public object FindHotelAndAvailableRooms(int id)
-        {
-
-            
-
-
-            var result = (from hotel in _db.Hotels
-                          join room in _db.Rooms on hotel.Id equals room.HotelId
-                          
-                          where hotel.Id == room.HotelId
-                          where hotel.Id == id
-                          select new
-                          {
-                              Name = hotel.Name,
-                              NoOfRooms = room.NoOfRooms,
-                              RoomType = room.Type
-
-
-                          }
-
-
-                          ).ToList();
-            return result;
-        }
-
-
-
     }
 }

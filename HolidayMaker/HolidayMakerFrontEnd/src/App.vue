@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import ConfirmDate from './components/ConfirmDate.vue'
+import ConfirmDate from './components/pages/Datepicker/ConfirmDate.vue'
 
 export default {
   name: 'App',

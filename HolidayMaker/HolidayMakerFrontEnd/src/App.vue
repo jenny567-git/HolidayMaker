@@ -9,12 +9,17 @@
   </main>
 </template>
 
-<script setup>
-import HelloWorld from "./components/HelloWorld.vue";
+<script>
+import ConfirmDate from './components/pages/Datepicker/ConfirmDate.vue'
 
-//TEST!
-// This starter template is using Vue 3 experimental <script setup> SFCs
-// Check out https://github.com/vuejs/rfcs/blob/script-setup-2/active-rfcs/0000-script-setup.md
+export default {
+  name: 'App',
+  components: {
+    ConfirmDate
+  }
+}
+
+
 </script>
 
 <style>
@@ -26,4 +31,14 @@ import HelloWorld from "./components/HelloWorld.vue";
   color: #2c3e50;
   margin-top: 60px;
 }
+
+.input-group{
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    width: fit-content;
+    align-content: center;
+}
+
+
 </style>

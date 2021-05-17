@@ -1,12 +1,17 @@
-﻿using System;
+﻿using HolidayMakerBackEnd.Models.Database;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace HolidayMakerBackEnd.Models
+namespace HolidayMakerBackEnd.Models.ViewModels
 {
-    public class Guests
+    public class GuestInputModel
     {
+        //public int Id { get; set; }
+
         public string FullName { get; set; }
         public string Street { get; set; }
         public string ZipCode { get; set; }
@@ -14,6 +19,9 @@ namespace HolidayMakerBackEnd.Models
         public string Country { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
+
+
+        
 
     }
 }

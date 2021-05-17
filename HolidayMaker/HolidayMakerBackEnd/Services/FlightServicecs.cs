@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HolidayMakerBackEnd.Models
+namespace HolidayMakerBackEnd.Services
 {
-    public class Country
+    public class FlightServicecs
     {
-        public string CountryName { get; set; }
     }
 }

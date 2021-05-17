@@ -115,7 +115,7 @@
               <p>Total price: 1223 SEK</p>
           </div>
           <div class="col-md-6">
-              <button type="button" class="btn btn-primary">Book</button>
+              <router-link to="/checkout" class="btn btn-primary">Book</router-link>
           </div>
         </div>
       </div>

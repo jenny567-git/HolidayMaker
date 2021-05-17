@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HolidayMakerBackEnd.Models
+namespace HolidayMakerBackEnd.Services
 {
-    public class Hotels
+    public class PaymentService
     {
     }
 }

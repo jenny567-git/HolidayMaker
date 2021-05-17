@@ -12,7 +12,7 @@ namespace HolidayMakerBackEnd.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class SearchController : ControllerBase
-    {
+    {//test
         private readonly SearchService _searchService;
 
         public SearchController()

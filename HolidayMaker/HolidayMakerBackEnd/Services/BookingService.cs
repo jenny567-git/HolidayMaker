@@ -32,8 +32,6 @@ namespace HolidayMakerBackEnd.Services
                 HotelId = model.HotelId,
                 GuestId = model.GuestId,
                 
-                
-                
             };
 
             _db.Reservations.Add(newReservation);
@@ -44,6 +42,7 @@ namespace HolidayMakerBackEnd.Services
            
 
             latestType = Acc.Type = model.Type;
+            
 
 
             
@@ -54,6 +53,7 @@ namespace HolidayMakerBackEnd.Services
                 ExtraBed = model.ExtraBed,
                 CustomerMessage = model.CustomerMessage,
                 ReservationId = latestId,
+                
                 Type = latestType,
 
             };

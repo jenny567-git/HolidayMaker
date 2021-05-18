@@ -15,7 +15,7 @@
       Edit
       <code>components/HelloWorld.vue</code> to test hot module replacement.
     </p>
-
+    <Button type="button" icon="pi pi-search" class="p-button-rounded p-button-success p-d-none p-d-md-inline-flex" Test/>
     <router-link to="/home">test | </router-link>
     <router-link to="/hotels/1">Hotel 1 | </router-link>
     <router-link to="/hotels/2">Hotel 2 | </router-link>
@@ -26,9 +26,12 @@
 
 <script setup>
 import { defineProps, reactive } from 'vue'
-
+import Button from 'primevue/Button';
 defineProps({
-  msg: String
+  msg: String,
+  component:{
+    Button
+  }
 })
 
 const state = reactive({ count: 0 })

@@ -1,7 +1,7 @@
 <template>
 <input v-model="first" @click="() => TogglePopup('buttonTrigger')"/>
 <input v-model="second" @click="() => TogglePopup('buttonTrigger')"/>
-  <popup v-if="popupTriggers.buttonTrigger" 
+  <Popup v-if="popupTriggers.buttonTrigger" 
 			:TogglePopup="() => TogglePopup('buttonTrigger')">
   <div class="m-auto p-2">
     
@@ -42,12 +42,12 @@
       <button class="px-2 border rounded" @click="next">Next</button>
     </section>
   </div>
-  </popup>
+  </Popup>
 </template>
 
 <script>
 import { ref } from 'vue'
-import Popup from './Popup.vue';
+import Popup from './Popup.vue'
 
 export default {
   components: { Popup },

@@ -4,7 +4,7 @@
       <div>
         <h5>Search - temp</h5>
         <InputText v-model="searchString" class="p-mr-2 p-d-inline" />
-        <Button class="p-mx-auto" label="Search" @click="SearchButtonLoadingToggle" :loading="isLoading"/>
+        <Button class="p-mx-auto" label="Search" @click="Search" :loading="isLoading"/>
     </div>
       <ColorPicker v-model="color2" />
       <Dialog></Dialog>
@@ -35,7 +35,6 @@ export default {
   data() {
         return {
           searchString: '',
-          isLoading: false,
             color2: '1976D2',
             items: [
             {
@@ -69,12 +68,17 @@ export default {
       toggle(event) {
         this.$refs.menu.toggle(event);
       },
-      SearchButtonLoadingToggle(event){
-        this.isLoading = true;
+      Search(event){
+        this.$store.state.searchButtonLoading = true;
 
         this.$store.dispatch('searchHotels', this.searchString);
 
-        this.$router.push({name: 'result'})
+        
+      }
+    },
+    computed:{
+      isLoading(){
+        return this.$store.state.searchButtonLoading;
       }
     }
 }

@@ -1,7 +1,9 @@
 import { createStore } from "vuex" 
+import router from "../router/index"
 
 const store = createStore({
     state:{
+        searchButtonLoading: false,
         home: {title: "store name"},
         name: "Vue",
         addReview: {
@@ -53,6 +55,7 @@ const store = createStore({
         },
         setHotelSeachResultsList(store, value){
             store.seachResults = value;
+            store.searchButtonLoading = false;
         }
    },
    actions:{
@@ -61,7 +64,9 @@ const store = createStore({
             var result = await response.json();
             console.log(searchString, result)
             commit('setHotelSeachResultsList', result);
-            
+            if(result){
+                router.push({name: 'result'})
+            }
         },
    }
 })

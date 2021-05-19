@@ -29,27 +29,34 @@
       </div>
       <div class="col-md-4">
         <div class="p-fluid p-grid p-formgrid">
-        <Calendar
-          id="range"
-          v-model="dates"
-          selectionMode="range"
-          :manualInput="false"
-          :minDate="minDate"
-        />
-      </div>
+          <Calendar
+            id="range"
+            v-model="dates"
+            selectionMode="range"
+            :manualInput="false"
+            :minDate="minDate"
+          />
+        </div>
       </div>
       <div class="col-md-3">
         <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-            {{inputAdult}} Adult(s), {{inputChild}} Child(ren), {{inputRoom}} Room(s)
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="dropdownMenuClickableInside"
+            data-bs-toggle="dropdown"
+            data-bs-auto-close="outside"
+            aria-expanded="false"
+          >
+            {{ inputAdult }} Adult(s), {{ inputChild }} Child(ren),
+            {{ inputRoom }} Room(s)
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <div class="container text-start">
               <p>
-                 Adult(s)
+                Adult(s)
                 <InputNumber
-                  id="inputAdult"
-                  v-model="value"
+                  v-model="inputAdult"
                   showButtons
                   :min="0"
                   :max="100"
@@ -59,8 +66,7 @@
               <p>
                 Child(ren)
                 <InputNumber
-                id="inputChild"
-                  v-model="value"
+                  v-model="inputChild"
                   showButtons
                   :min="0"
                   :max="100"
@@ -70,8 +76,7 @@
               <p>
                 Room(s)
                 <InputNumber
-                id="inputRoom"
-                  v-model="value"
+                  v-model="inputRoom"
                   showButtons
                   :min="0"
                   :max="100"
@@ -83,11 +88,16 @@
         </div>
       </div>
       <div class="col-md-1">
-        <Button type="button" icon="pi pi-search" @click="onSubmit" class="p-button-rounded p-button-success p-d-none p-d-md-inline-flex " >  </Button>
+        <Button
+          type="button"
+          icon="pi pi-search"
+          @click="onSubmit"
+          class="p-button-rounded p-button-success p-d-none p-d-md-inline-flex"
+        >
+        </Button>
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -100,9 +110,6 @@ export default {
     Button,
     InputNumber,
     Calendar,
-  },
-  beforecreated(){
-      getInfo()
   },
   created() {
     let today = new Date();
@@ -118,15 +125,36 @@ export default {
     return {
       dates: null,
       minDate: null,
-      inputAdult: 2,
-      inputChild: 0,
-      inputRoom: 1,
     };
   },
-  methods:{
-      onSubmit(){
-        return
+  methods: {
+    onSubmit() {},
+  },
+  computed: {
+    inputAdult: {
+      get() {
+        return this.$store.state.searchString.inputAdult;
       },
-  }
-}
+      set(value) {
+        this.$store.dispatch("updateAdults", value);
+      },
+    },
+    inputChild: {
+      get() {
+        return this.$store.state.searchString.inputChild;
+      },
+      set(value) {
+        this.$store.dispatch("updateChild", value);
+      },
+    },
+    inputRoom: {
+      get() {
+        return this.$store.state.searchString.inputRooms;
+      },
+      set(value) {
+        this.$store.dispatch("updateRoom", value);
+      },
+    },
+  },
+};
 </script>

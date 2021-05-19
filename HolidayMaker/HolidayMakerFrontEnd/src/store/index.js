@@ -19,6 +19,11 @@ const store = createStore({
                 description: 'In varius, nisi quis blandit porta, dolor tortor aliquam odio, eget consectetur lectus leo a massa. Proin dignissim dignissim porttitor. Praesent sed risus id diam dapibus consectetur. Vivamus sollicitudin urna ut tincidunt varius. Morbi congue malesuada erat id luctus. Nunc.'
             },
         },
+        searchString:{
+            inputAdult: 2,
+            inputChild: 0,
+            inputRooms: 1
+        },
         user: {
             loggedIn: false,
         },
@@ -50,9 +55,26 @@ const store = createStore({
         setMessage(store, value){
             store.addReview.message = value
         },
+        updateAdults(state, value){
+            state.searchString.inputAdult = value
+        },
+        updateChild(state, value){
+            state.searchString.inputChild = value
+        },
+        updateRoom(state, value){
+            state.searchString.inputRooms = value
+        }
    },
    actions:{
-        
+    updateAdults({commit}, value){
+        commit('updateAdults', value)
+    },
+    updateChild({commit}, value){
+        commit('updateChild', value)
+    },
+    updateRoom({commit}, value){
+        commit('updateRoom', value)
+    }
    }
 })
 

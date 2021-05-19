@@ -18,14 +18,14 @@ import Body from "/src/components/pages/MainPage/Body.vue";
 export default {
   name: "App",
   components: {
-    ConfirmDate,
-    Dialog,
-    ColorPicker,
-    InputText,
-    Button,
+    // ConfirmDate,
+    // Dialog,
+    // ColorPicker,
+    // InputText,
+    // Button,
     Body,
 
-    Menu,
+    // Menu,
   },
   data() {
     return {

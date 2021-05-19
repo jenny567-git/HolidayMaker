@@ -68,7 +68,7 @@
           <div class="hover-overlay"></div>
           <div class="hover-2-content px-5 py-4">
             <p class="hover-2-description text-uppercase mb-0">
-              Copenhangen <br />See available hotels in Copenhange
+              Copenhange <br />See available hotels in Copenhange
             </p>
           </div>
         </div>

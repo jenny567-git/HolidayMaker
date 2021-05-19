@@ -41,13 +41,14 @@
       <div class="col-md-3">
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-            Guest, rooms
+            {{inputAdult}} Adult(s), {{inputChild}} Child(ren), {{inputRoom}} Room(s)
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <div class="container text-start">
               <p>
-                Adults
+                 Adult(s)
                 <InputNumber
+                  id="inputAdult"
                   v-model="value"
                   showButtons
                   :min="0"
@@ -56,8 +57,9 @@
                 />
               </p>
               <p>
-                Children
+                Child(ren)
                 <InputNumber
+                id="inputChild"
                   v-model="value"
                   showButtons
                   :min="0"
@@ -66,8 +68,9 @@
                 />
               </p>
               <p>
-                Room
+                Room(s)
                 <InputNumber
+                id="inputRoom"
                   v-model="value"
                   showButtons
                   :min="0"
@@ -80,7 +83,7 @@
         </div>
       </div>
       <div class="col-md-1">
-        <Button type="button" icon="pi pi-search" class="p-button-rounded p-button-success p-d-none p-d-md-inline-flex " >  </Button>
+        <Button type="button" icon="pi pi-search" @click="onSubmit" class="p-button-rounded p-button-success p-d-none p-d-md-inline-flex " >  </Button>
       </div>
     </div>
   </div>
@@ -98,6 +101,9 @@ export default {
     InputNumber,
     Calendar,
   },
+  beforecreated(){
+      getInfo()
+  },
   created() {
     let today = new Date();
     let month = today.getMonth();
@@ -112,7 +118,15 @@ export default {
     return {
       dates: null,
       minDate: null,
+      inputAdult: 2,
+      inputChild: 0,
+      inputRoom: 1,
     };
   },
+  methods:{
+      onSubmit(){
+        return
+      },
+  }
 }
 </script>

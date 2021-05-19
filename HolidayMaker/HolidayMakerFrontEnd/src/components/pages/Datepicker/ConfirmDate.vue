@@ -47,7 +47,7 @@
 
 <script>
 import { ref } from 'vue'
-import Popup from './Popup.vue'
+import Popup from './popup.vue';
 
 export default {
   components: { Popup },

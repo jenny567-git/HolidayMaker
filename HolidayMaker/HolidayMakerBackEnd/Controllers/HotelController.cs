@@ -37,6 +37,12 @@ namespace HolidayMakerBackEnd.Controllers
             return result;
         }
 
+        [HttpGet("GetById/{id}")]
+        public Hotel GetById(int id)
+        {
+            var result = _hotelService.GetById(id);
+            return result;
+        }
 
     }
 }

@@ -10,7 +10,7 @@
                 <p>Ratings: <span class="badge rounded-pill bg-secondary">{{hotel.averageRating}}</span></p>
                 
                 <router-link :to="'/hotels/' + hotel.id" class="nav-link"> 
-                    <label class="btn btn-outline-primary" for="btn-check-outlined">See details</label><br>
+                    <button class="btn btn-outline-primary" for="btn-check-outlined" @click="hotelDetailsClick">See details</button><br>
                 </router-link>
 
             </div>
@@ -30,6 +30,12 @@ components: {
   },
   props:{
       hotel:{}
+  },
+  methods:{
+      hotelDetailsClick(event){
+          console.log("Set hotel", this.hotel.id)
+          this.$store.dispatch('setHotel', this.hotel)
+      }
   }
 }
 </script>

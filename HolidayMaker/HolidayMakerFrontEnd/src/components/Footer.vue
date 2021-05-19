@@ -1,4 +1,5 @@
 <template>
+<hr>
     <footer class="page-footer font-small elegant-color">
 
     <div class="color-primary">
@@ -159,7 +160,7 @@
 <style scoped>
 footer {
     margin-top: 3vh;
-    background-color: #ffffff;
-    color:rgb(0, 0, 0);
+    background-color: #202a38;
+    color:rgb(238, 238, 238);
 }
 </style>

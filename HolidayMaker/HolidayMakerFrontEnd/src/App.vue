@@ -29,7 +29,7 @@
       <ColorPicker v-model="color2" />
       <Dialog></Dialog>
       <img alt="Vue logo" src="./assets/logo.png" />
-      <HelloWorld msg="Hello Vue 3 + Vite" />
+      <Searcher/>
       <router-view/>
     </div>
   </main>
@@ -42,6 +42,8 @@ import InputText from 'primevue/InputText';
 import Button from 'primevue/Button';
 import Menu from 'primevue/menu';
 import ColorPicker from 'primevue/colorpicker';
+import Searcher from './components/pages/SearchComponent/Search.vue'
+
 export default {
   name: 'App',
   components: {
@@ -50,7 +52,8 @@ export default {
     ColorPicker,
     InputText,
     Button,
-    Menu
+    Menu,
+    Searcher
   },
   data() {
         return {

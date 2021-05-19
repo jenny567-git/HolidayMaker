@@ -9,6 +9,7 @@ const store = createStore({
             email:'',
             message:''
         },
+        seachResults:[],
         hotels: {
             1:{
                 name: 'Hotel 1',
@@ -50,9 +51,17 @@ const store = createStore({
         setMessage(store, value){
             store.addReview.message = value
         },
+        setHotelSeachResultsList(store, value){
+            store.seachResults = value;
+        }
    },
    actions:{
-        
+        async searchHotels({commit}, searchString){
+            var response = await fetch('https://localhost:44356/api/Search/GetHotelByName?input=' + searchString); // Default is GET
+            var result = await response.json();
+            
+            commit('setHotelSeachResultsList', result);
+        },
    }
 })
 

@@ -13,75 +13,15 @@
     </div>
     <div class="row">
       <div class="col-md-4">
-        <input
-          class="form-control"
-          list="datalistOptions"
-          id="searchInput"
-          placeholder="Type to search..."
-        />
-        <datalist id="datalistOptions">
-          <option :value="hotel.name" v-for="hotel in hotels" :key="hotel.id"/>
-        </datalist>
+        <Searchfield/>
       </div>
       <div class="col-md-4">
         <div class="p-fluid p-grid p-formgrid">
-          <Calendar 
-            dateFormat="yy-mm-dd"
-            v-model="dates"
-            selectionMode="range"
-            :manualInput="false"
-            :minDate="minDate"
-          />
+          <Calendar />
         </div>
       </div>
       <div class="col-md-3">
-        <div class="dropdown">
-          <button
-            class="btn btn-secondary dropdown-toggle"
-            type="button"
-            id="dropdownMenuClickableInside"
-            data-bs-toggle="dropdown"
-            data-bs-auto-close="outside"
-            aria-expanded="false"
-          >
-            {{ inputAdult }} Adult(s), {{ inputChild }} Child(ren),
-            {{ inputRoom }} Room(s)
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <div class="container text-start">
-              <p>
-                Adult(s)
-                <InputNumber
-                  v-model="inputAdult"
-                  showButtons
-                  :min="0"
-                  :max="100"
-                  value="2"
-                />
-              </p>
-              <p>
-                Child(ren)
-                <InputNumber
-                  v-model="inputChild"
-                  showButtons
-                  :min="0"
-                  :max="100"
-                  value="0"
-                />
-              </p>
-              <p>
-                Room(s)
-                <InputNumber
-                  v-model="inputRoom"
-                  showButtons
-                  :min="0"
-                  :max="100"
-                  value="1"
-                />
-              </p>
-            </div>
-          </ul>
-        </div>
+          <SearchDropdown/>
       </div>
       <div class="col-md-1">
         <Button
@@ -98,62 +38,19 @@
 
 <script>
 import Button from "primevue/Button";
-import InputNumber from "primevue/inputnumber";
-import Calendar from "primevue/calendar";
+import Calendar from "./Datepicker.vue";
+import SearchDropdown from "./SearchDropdown.vue"
+import Searchfield from "./Searchfield.vue"
 
 export default {
   components: {
+    Searchfield,
     Button,
-    InputNumber,
     Calendar,
-  },
-  created() {
-    let today = new Date();
-    let month = today.getMonth();
-    let year = today.getFullYear();
-    let prevMonth = month === 0 ? 11 : month - 1;
-    let prevYear = prevMonth === 11 ? year - 1 : year;
-    let nextMonth = month === 11 ? 0 : month + 1;
-    let nextYear = nextMonth === 0 ? year + 1 : year;
-    this.minDate = today;
-  },
-  data() {
-    return {
-      dates: null,
-      minDate: null,
-    };
+    SearchDropdown
   },
   methods: {
     onSubmit() {},
-  },
-  computed: {
-    hotels(){
-      return this.$store.state.hotels;
-    },
-    inputAdult: {
-      get() {
-        return this.$store.state.searchString.inputAdult;
-      },
-      set(value) {
-        this.$store.dispatch("updateAdults", value);
-      },
-    },
-    inputChild: {
-      get() {
-        return this.$store.state.searchString.inputChild;
-      },
-      set(value) {
-        this.$store.dispatch("updateChild", value);
-      },
-    },
-    inputRoom: {
-      get() {
-        return this.$store.state.searchString.inputRooms;
-      },
-      set(value) {
-        this.$store.dispatch("updateRoom", value);
-      },
-    },
   },
 };
 </script>

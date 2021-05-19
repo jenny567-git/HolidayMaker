@@ -59,8 +59,9 @@ const store = createStore({
         async searchHotels({commit}, searchString){
             var response = await fetch('https://localhost:44356/api/Search/GetHotelByName?input=' + searchString); // Default is GET
             var result = await response.json();
-            
+            console.log(searchString, result)
             commit('setHotelSeachResultsList', result);
+            
         },
    }
 })

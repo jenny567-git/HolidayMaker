@@ -2,7 +2,7 @@
   <div class="container text-start">
     <div class="row">
       <div class="col-md-4">
-        <label for="searchInput">Location </label>
+        <label for="searchInput">Location/Hotel name </label>
       </div>
       <div class="col-md-4">
         <label for="range">Dates</label>
@@ -20,17 +20,13 @@
           placeholder="Type to search..."
         />
         <datalist id="datalistOptions">
-          <option value="San Francisco" />
-          <option value="New York" />
-          <option value="Seattle" />
-          <option value="Los Angeles" />
-          <option value="Chicago" />
+          <option :value="hotel.name" v-for="hotel in hotels" :key="hotel.id"/>
         </datalist>
       </div>
       <div class="col-md-4">
         <div class="p-fluid p-grid p-formgrid">
-          <Calendar
-            id="range"
+          <Calendar 
+            dateFormat="yy-mm-dd"
             v-model="dates"
             selectionMode="range"
             :manualInput="false"
@@ -131,6 +127,9 @@ export default {
     onSubmit() {},
   },
   computed: {
+    hotels(){
+      return this.$store.state.hotels;
+    },
     inputAdult: {
       get() {
         return this.$store.state.searchString.inputAdult;

@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@vueform/slider": "^1.0.5",
+    "jquery": "^3.6.0",
     "primeicons": "^4.1.0",
     "primevue": "^3.4.0",
     "vue": "^3.0.5",

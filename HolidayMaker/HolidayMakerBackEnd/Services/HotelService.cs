@@ -73,5 +73,16 @@ namespace HolidayMakerBackEnd.Services
         {
             return _db.Hotels.SingleOrDefault(h => h.Id == id);
         }
+
+
+        public IEnumerable<Hotel> GetHotelsByRandom()
+        {
+            Random rand = new Random();
+            int num1 = rand.Next(0, 5);
+            int num2 = rand.Next(0, 5);
+            int num3 = rand.Next(0, 5);
+
+            return _db.Hotels.Where(x => x.Id == num1);
+        }
     }
 }

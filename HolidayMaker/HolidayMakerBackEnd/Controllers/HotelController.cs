@@ -44,5 +44,12 @@ namespace HolidayMakerBackEnd.Controllers
             return result;
         }
 
+        [HttpGet("GetHotelsByRandom")]
+        public IEnumerable<Hotel> GetHotelsByRandom()
+        {
+            var result = _hotelService.GetHotelsByRandom();
+            return result;
+        }
+
     }
 }

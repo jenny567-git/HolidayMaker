@@ -2,29 +2,9 @@
   <main>
     <div class="container">
       <div>
-        <Menu ref="menu" :model="items" :popup="true" />
-        <Button type="button" label="Toggle" @click="toggle" />
-        <h5>Inline</h5>
-        <InputText class="p-mr-2 p-d-inline" />
-        <InputText class="p-d-inline" />
-
-        <h5>Block</h5>
-        <InputText class="p-mb-2 p-d-block" />
-        <InputText class="p-d-block" />
-
-        <h5>Visible on a Small Screen</h5>
-        <p>Resize to view.</p>
-        <Button type="button" icon="pi pi-search" class="p-button-rounded p-button-success p-d-none p-d-md-inline-flex " >  </Button>
-
-        <h5>Hidden on a Small Screen</h5>
-        <p>Resize to hide.</p>
-        <Button type="button" icon="pi pi-search" class="p-button-rounded p-button-success p-d-none p-d-md-inline-flex" />
-
-        <h5>Visible to Print, Invisible for Screen</h5>
-        <p class="p-d-none p-d-print-block">Only visible when printed.</p>
-
-        <h5>Visible to Screen, Invisible for Print</h5>
-        <p class="p-d-block p-d-print-none">Not available for printing.</p>
+        <h5>Search - temp</h5>
+        <InputText v-model="searchString" class="p-mr-2 p-d-inline" />
+        <Button class="p-mx-auto" label="Search" @click="Search" :loading="isLoading"/>
     </div>
       <ColorPicker v-model="color2" />
       <Dialog></Dialog>
@@ -54,6 +34,7 @@ export default {
   },
   data() {
         return {
+          searchString: '',
             color2: '1976D2',
             items: [
             {
@@ -86,6 +67,16 @@ export default {
     methods:{
       toggle(event) {
         this.$refs.menu.toggle(event);
+      },
+      Search(event){
+        this.$store.state.searchButtonLoading = true;
+
+        this.$store.dispatch('searchHotels', this.searchString);
+      }
+    },
+    computed:{
+      isLoading(){
+        return this.$store.state.searchButtonLoading;
       }
     }
 }

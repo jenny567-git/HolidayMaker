@@ -32,6 +32,8 @@ namespace HolidayMakerBackEnd
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HolidayMakerBackEnd", Version = "v1" });
             });
+
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +49,10 @@ namespace HolidayMakerBackEnd
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(options =>
+                options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+            );
 
             app.UseAuthorization();
 

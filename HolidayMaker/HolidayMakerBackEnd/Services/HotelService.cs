@@ -68,5 +68,10 @@ namespace HolidayMakerBackEnd.Services
         {
             return _db.Reviews.Where(r => r.Hotel.Id == id).AsEnumerable();
         }
+
+        public Hotel GetById(int id)
+        {
+            return _db.Hotels.SingleOrDefault(h => h.Id == id);
+        }
     }
 }

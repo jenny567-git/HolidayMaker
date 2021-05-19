@@ -6,7 +6,6 @@
             </div>
             <div class="col-md-8">
                 <b>{{hotel.name}}</b>
-                <b>{{hotel.id}}</b>
                 <p>(3535) SEK</p>
                 <p>Ratings: <span class="badge rounded-pill bg-secondary">{{hotel.averageRating}}</span></p>
                 

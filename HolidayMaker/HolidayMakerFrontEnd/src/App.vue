@@ -72,8 +72,6 @@ export default {
         this.$store.state.searchButtonLoading = true;
 
         this.$store.dispatch('searchHotels', this.searchString);
-
-        
       }
     },
     computed:{

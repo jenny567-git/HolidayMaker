@@ -56,7 +56,6 @@ a {
 
 header {
     margin-top: -60px;
-    margin-bottom: 30px;
     display: -webkit-flex;
     display: -moz-flex;
     display: -ms-flex;

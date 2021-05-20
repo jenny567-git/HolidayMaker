@@ -8,7 +8,7 @@
             <InputText v-model="searchString" class="p-mr-2 p-d-inline" />
             <Button class="p-mx-auto" label="Search" @click="Search" :loading="isLoading"/>
          </div>
-            <Searcher/>
+          <Searcher/>
           <router-view/>
         </div>
     </div>
@@ -40,7 +40,7 @@ export default {
     Menu,
     Navigator,
     Footer,
-    Body
+    Body,
     Searcher
   },
   data() {

@@ -1,17 +1,15 @@
 <template>
   <main>
+    <Navigator/>
     <div class="container">
       <div>
         <h5>Search - temp</h5>
         <InputText v-model="searchString" class="p-mr-2 p-d-inline" />
         <Button class="p-mx-auto" label="Search" @click="Search" :loading="isLoading"/>
-    </div>
-      <ColorPicker v-model="color2" />
-      <Dialog></Dialog>
-      <img alt="Vue logo" src="./assets/logo.png" />
-      <HelloWorld msg="Hello Vue 3 + Vite" />
+     </div>
       <router-view/>
     </div>
+    <Footer/>
   </main>
 </template>
 
@@ -22,6 +20,9 @@ import InputText from 'primevue/InputText';
 import Button from 'primevue/Button';
 import Menu from 'primevue/menu';
 import ColorPicker from 'primevue/colorpicker';
+import Navigator from '/src/components/Navigator.vue';
+import Footer from '/src/components/Footer.vue';
+
 export default {
   name: 'App',
   components: {
@@ -30,7 +31,9 @@ export default {
     ColorPicker,
     InputText,
     Button,
-    Menu
+    Menu,
+    Navigator,
+    Footer
   },
   data() {
         return {

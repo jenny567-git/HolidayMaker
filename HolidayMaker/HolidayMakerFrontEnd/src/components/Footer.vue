@@ -33,8 +33,8 @@
 <style scoped>
 .footer-basic {
   padding:40px 0;
-  background-color:#4e5a6b;
-  color:#4b4c4d;
+  background-color:#202a38;
+  color:#f3f3f3;
 }
 
 .footer-basic ul {

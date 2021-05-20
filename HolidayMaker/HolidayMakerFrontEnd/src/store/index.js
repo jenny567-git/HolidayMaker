@@ -84,7 +84,7 @@ const store = createStore({
         },
         setDates({ commit }, date) {
             console.log(date);
-            commit('setDates', dates)
+            commit('setDates', date)
         }
     }
 })

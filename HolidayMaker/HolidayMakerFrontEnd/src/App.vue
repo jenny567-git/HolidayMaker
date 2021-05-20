@@ -1,15 +1,16 @@
 <template>
   <main>
     <Navigator/>
-    <div class="container">
-      <div>
-        <h5>Search - temp</h5>
-        <InputText v-model="searchString" class="p-mr-2 p-d-inline" />
-        <Button class="p-mx-auto" label="Search" @click="Search" :loading="isLoading"/>
-     </div>
-   
-      <Searcher/>
-      <router-view/>
+      <div style="background: url(https://i.postimg.cc/ZnHTP71s/aircraft-airplane-boat-1575833.jpg);" class="page-holder bg-cover">
+        <div class="container">
+          <div>
+            <h5>Search - temp</h5>
+            <InputText v-model="searchString" class="p-mr-2 p-d-inline" />
+            <Button class="p-mx-auto" label="Search" @click="Search" :loading="isLoading"/>
+         </div>
+            <Searcher/>
+          <router-view/>
+        </div>
     </div>
     <Footer/>
   </main>
@@ -24,11 +25,12 @@ import Menu from 'primevue/menu';
 import ColorPicker from 'primevue/colorpicker';
 import Navigator from '/src/components/Navigator.vue';
 import Footer from '/src/components/Footer.vue';
+import Body from "/src/components/pages/MainPage/Body.vue";
 
 import Searcher from './components/pages/SearchComponent/Search.vue'
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     ConfirmDate,
     Dialog,
@@ -38,6 +40,7 @@ export default {
     Menu,
     Navigator,
     Footer,
+    Body
     Searcher
   },
   data() {
@@ -102,13 +105,11 @@ export default {
   margin-top: 60px;
 }
 
-.input-group{
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    width: fit-content;
-    align-content: center;
+.input-group {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  width: fit-content;
+  align-content: center;
 }
-
-
 </style>

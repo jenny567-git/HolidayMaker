@@ -5,17 +5,17 @@
     selectionMode="range"
     :manualInput="false"
     :minDate="minDate"
+    :monthNavigator="true" :yearNavigator="true" yearRange="2021:2050"
   />
 </template>
 
 <script>
-import Button from "primevue/Button";
 import Calendar from "primevue/calendar";
 
 export default {
   components: {
-    Calendar,
-    Button
+    Calendar
+    
   },
   created() {
     let today = new Date();

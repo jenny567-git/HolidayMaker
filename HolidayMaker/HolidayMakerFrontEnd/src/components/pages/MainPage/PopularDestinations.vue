@@ -1,7 +1,7 @@
 <template>
     <h3 class="font-weight-bold mb-0">Popular Destinations</h3>
 
-    <div class="row">
+    <div class="row" id="destinationRows">
       <!-- DEMO 2 Item-->
       <div class="col-lg-6 mb-3 mb-lg-0">
         <div class="hover hover-2 text-white rounded">
@@ -77,6 +77,10 @@
 </template>
 
 <style>
+#destinationRows{
+  margin-left: 100px;
+}
+
 .hover {
   overflow: hidden;
   position: relative;

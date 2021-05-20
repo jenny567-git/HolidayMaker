@@ -21,16 +21,19 @@
     <router-link to="/hotels/2">Hotel 2 | </router-link>
     <router-link to="/result">Search result view | </router-link>
     <router-link to="/addReview">Add review </router-link>
+    <Search/>
   </div>
 </template>
 
 <script setup>
+import Search from './pages/SearchComponent/Search.vue'
 import { defineProps, reactive } from 'vue'
 import Button from 'primevue/Button';
 defineProps({
   msg: String,
   component:{
-    Button
+    Button,
+    Search
   }
 })
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="py-5">
+  <div class="container py-5">
     <h3 class="font-weight-bold mb-0">Popular Destinations</h3>
 
     <div class="row">
@@ -68,7 +68,7 @@
           <div class="hover-overlay"></div>
           <div class="hover-2-content px-5 py-4">
             <p class="hover-2-description text-uppercase mb-0">
-              Copenhange <br />See available hotels in Copenhange
+              Copenhangen <br />See available hotels in Copenhangen
             </p>
           </div>
         </div>

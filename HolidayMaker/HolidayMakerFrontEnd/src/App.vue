@@ -1,7 +1,7 @@
 <template>
   <main>
     <Navigator/>
-      <div style="background: url(https://i.postimg.cc/ZnHTP71s/aircraft-airplane-boat-1575833.jpg);" class="page-holder bg-cover">
+      <div style="background: url(https://wallpaperaccess.com/full/118565.jpg);" class="page-holder bg-cover">
         <div class="container">
           <div>
             <h5>Search - temp</h5>

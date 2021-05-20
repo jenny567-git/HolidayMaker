@@ -1,8 +1,8 @@
 <template>
   <div class="container py-5">
     <div class="row">
-      <div class="col-lg-11 mx-auto">
-        <h1>Popular hotels</h1>
+      <div class="col-lg-12 mx-auto">
+        <h1>Popular Hotels</h1>
         <div class="row py-5">
           <div class="col-lg-4">
             <figure

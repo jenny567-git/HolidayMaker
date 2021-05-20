@@ -1,36 +1,40 @@
 <template>
   <main>
-  <Navigator/>
     <div class="container">
-        
-
-      
+      <div>
+        <h5>Search - temp</h5>
+        <InputText v-model="searchString" class="p-mr-2 p-d-inline" />
+        <Button class="p-mx-auto" label="Search" @click="Search" :loading="isLoading"/>
+    </div>
+      <ColorPicker v-model="color2" />
+      <Dialog></Dialog>
+      <img alt="Vue logo" src="./assets/logo.png" />
+      <HelloWorld msg="Hello Vue 3 + Vite" />
       <router-view/>
     </div>
   </main>
-    <div>
-      <Footer/>
-    </div>
 </template>
 
 <script>
-// import ConfirmDate from './components/pages/Datepicker/ConfirmDate.vue'
-// import Dialog from 'primevue/dialog';
-// import InputText from 'primevue/InputText';
-// import Button from 'primevue/Button';
-// import Menu from 'primevue/menu';
-// import ColorPicker from 'primevue/colorpicker';
-import Navigator from '/src/components/Navigator.vue'
-import Footer from '/src/components/Footer.vue'
-
+import ConfirmDate from './components/pages/Datepicker/ConfirmDate.vue'
+import Dialog from 'primevue/dialog';
+import InputText from 'primevue/InputText';
+import Button from 'primevue/Button';
+import Menu from 'primevue/menu';
+import ColorPicker from 'primevue/colorpicker';
 export default {
   name: 'App',
   components: {
-    Navigator,
-    Footer
+    ConfirmDate,
+    Dialog,
+    ColorPicker,
+    InputText,
+    Button,
+    Menu
   },
   data() {
         return {
+          searchString: '',
             color2: '1976D2',
             items: [
             {
@@ -63,6 +67,16 @@ export default {
     methods:{
       toggle(event) {
         this.$refs.menu.toggle(event);
+      },
+      Search(event){
+        this.$store.state.searchButtonLoading = true;
+
+        this.$store.dispatch('searchHotels', this.searchString);
+      }
+    },
+    computed:{
+      isLoading(){
+        return this.$store.state.searchButtonLoading;
       }
     }
 }
@@ -70,7 +84,6 @@ export default {
 
 </script>
 
-<style src="./assets/style.css"></style>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

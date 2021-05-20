@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div id="test2">
     <div class="p-grid">
       <div>
 
@@ -64,6 +64,13 @@ export default {
 </script>
 
 <style scoped>
+
+#test2{
+        border-radius: 30px;
+        background-color: rgba(248, 242, 210, 0.5);
+        padding-left: 25px;
+        padding-right: 25px;
+    }
 #searchBtn{
   align-self: center;
 }

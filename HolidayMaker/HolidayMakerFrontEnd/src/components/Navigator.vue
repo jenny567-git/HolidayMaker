@@ -65,7 +65,8 @@ header {
     align-items: center;
     padding: 30px 70px;
     background:#202a38;
-    border-style: solid;
+    background: rgb(32,42,56);
+    background: linear-gradient(180deg, rgb(158 180 188) 0%, rgba(255,178,0,1) 100%);
 }
 
 .nav-area {

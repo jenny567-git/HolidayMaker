@@ -1,5 +1,4 @@
 <template>
-<hr>
    <!DOCTYPE html>
 <html>
 

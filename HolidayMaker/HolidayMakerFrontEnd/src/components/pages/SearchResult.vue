@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="test2">
         <div class="row pt-5">
             <div class="col-md-6">
                 <h1>Search results: {{hotelsCount}} found</h1>
@@ -75,3 +75,13 @@ export default ({
     }
 })
 </script>
+
+<style scoped>
+    #test2{
+        border-radius: 30px;
+        background-color: rgba(248, 242, 210, 0.5);
+        padding-left: 25px;
+        padding-right: 25px;
+        margin-top: 20px;
+    }
+</style>

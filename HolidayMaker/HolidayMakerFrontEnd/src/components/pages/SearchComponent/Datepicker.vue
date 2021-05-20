@@ -5,7 +5,10 @@
     selectionMode="range"
     :manualInput="false"
     :minDate="minDate"
-    :monthNavigator="true" :yearNavigator="true" yearRange="2021:2050"
+    :monthNavigator="true"
+    :yearNavigator="true"
+    yearRange="2021:2050"
+    @date-select="getDate"
   />
 </template>
 
@@ -14,8 +17,7 @@ import Calendar from "primevue/calendar";
 
 export default {
   components: {
-    Calendar
-    
+    Calendar,
   },
   created() {
     let today = new Date();
@@ -32,6 +34,14 @@ export default {
       dates: null,
       minDate: null,
     };
+  },
+  methods:{
+    getDate(value){
+      this.$store.dispatch("setDates", this.dates);
+    }
+  },
+  computed: {
+
   },
 };
 </script>

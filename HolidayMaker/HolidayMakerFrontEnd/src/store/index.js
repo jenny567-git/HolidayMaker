@@ -9,24 +9,24 @@ const store = createStore({
             email: '',
             message: ''
         },
-        hotels: 
+        hotels:
             [
-            {
-                id: 1,
-                name: 'Hotel ajgipjdfjsjdfisdjfopia',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dapibus lacus a diam rhoncus suscipit. Nulla facilisi. Maecenas non metus faucibus, feugiat lectus non, elementum urna. Morbi viverra gravida diam, et tincidunt felis laoreet vitae. Suspendisse vel metus non ex tempus tincidunt. Proin egestas sapien nisi, eu elementum est aliquet.'
-            },
-            {
-                id: 2,
-                name: 'Hotel ijaefioeijfaiheouyfaehcaj',
-                description: 'In varius, nisi quis blandit porta, dolor tortor aliquam odio, eget consectetur lectus leo a massa. Proin dignissim dignissim porttitor. Praesent sed risus id diam dapibus consectetur. Vivamus sollicitudin urna ut tincidunt varius. Morbi congue malesuada erat id luctus. Nunc.'
-            }],
+                {
+                    id: 1,
+                    name: 'Hotel ajgipjdfjsjdfisdjfopia',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dapibus lacus a diam rhoncus suscipit. Nulla facilisi. Maecenas non metus faucibus, feugiat lectus non, elementum urna. Morbi viverra gravida diam, et tincidunt felis laoreet vitae. Suspendisse vel metus non ex tempus tincidunt. Proin egestas sapien nisi, eu elementum est aliquet.'
+                },
+                {
+                    id: 2,
+                    name: 'Hotel ijaefioeijfaiheouyfaehcaj',
+                    description: 'In varius, nisi quis blandit porta, dolor tortor aliquam odio, eget consectetur lectus leo a massa. Proin dignissim dignissim porttitor. Praesent sed risus id diam dapibus consectetur. Vivamus sollicitudin urna ut tincidunt varius. Morbi congue malesuada erat id luctus. Nunc.'
+                }],
         searchString: {
             string: '',
             inputAdult: 2,
             inputChild: 0,
             inputRooms: 1,
-            dates: null
+            dates: []
         },
         user: {
             loggedIn: false,
@@ -68,8 +68,8 @@ const store = createStore({
         updateRoom(state, value) {
             state.searchString.inputRooms = value
         },
-        setDates(state, dates) {
-            state.searchString.dates = dates
+        setDates(state, date) {
+            state.searchString.dates = date
         }
     },
     actions: {
@@ -82,7 +82,8 @@ const store = createStore({
         updateRoom({ commit }, value) {
             commit('updateRoom', value)
         },
-        setDates({ commit }, dates) {
+        setDates({ commit }, date) {
+            console.log(date);
             commit('setDates', dates)
         }
     }

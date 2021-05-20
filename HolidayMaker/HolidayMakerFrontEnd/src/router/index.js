@@ -15,8 +15,8 @@ import { registerRuntimeCompiler } from "@vue/runtime-core";
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: HelloWorld,
+    name: "Body",
+    component: Body,
   },
   {
     path: "/result",
@@ -63,11 +63,6 @@ const routes = [
     path: "/checkout",
     name: "Checkout",
     component: CheckoutView,
-  },
-  {
-    path: "/body",
-    name: "Body",
-    component: Body,
   },
 ];
 const router = createRouter({

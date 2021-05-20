@@ -1,5 +1,4 @@
 <template>
-  <div class="container py-5">
     <h3 class="font-weight-bold mb-0">Popular Destinations</h3>
 
     <div class="row">
@@ -10,7 +9,9 @@
             src="https://bilder.apollo.se/three-dolphins-1557016426-110210-ImageGalleryLightbox.jpg"
             alt=""
           />
-          <div class="hover-overlay"></div>
+          <div class="hover-overlay">
+            
+          </div>
           <div class="hover-2-content px-5 py-4">
             <p class="hover-2-description text-uppercase mb-0">
               Lefkos <br />See available hotels in Lefkos, Karpathos
@@ -18,9 +19,8 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
+   
       <!-- DEMO 2 Item-->
       <div class="col-lg-6 mb-3 mb-lg-0">
         <div class="hover hover-2 text-white rounded">
@@ -37,9 +37,9 @@
           </div>
         </div>
       </div>
-    </div>
+    
 
-    <div class="row">
+    
       <!-- DEMO 2 Item-->
       <div class="col-lg-6 mb-3 mb-lg-0">
         <div class="hover hover-2 text-white rounded">
@@ -55,9 +55,9 @@
           </div>
         </div>
       </div>
-    </div>
+    
 
-    <div class="row">
+    
       <!-- DEMO 2 Item-->
       <div class="col-lg-6 mb-3 mb-lg-0">
         <div class="hover hover-2 text-white rounded">
@@ -74,7 +74,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <style>

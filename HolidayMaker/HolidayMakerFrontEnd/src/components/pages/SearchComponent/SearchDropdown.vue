@@ -8,8 +8,9 @@
             data-bs-auto-close="outside"
             aria-expanded="false"
           >
-            {{ inputAdult }} Adult(s), {{ inputChild }} Child(ren),
-            {{ inputRoom }} Room(s)
+            <b>{{ inputAdult }} <i class="fas fa-user"></i></b>
+            <b>{{ inputChild }} <i class="fas fa-baby"></i></b>
+            <b>{{ inputRoom }} <i class="fas fa-bed"></i></b>
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <div class="container text-start">
@@ -85,6 +86,11 @@ components: {
 
 </script>
 
-<style>
-
+<style scoped>
+.dropdown-toggle{
+  background-color: #606c38;
+}
+b{
+  padding-left: 10px;
+}
 </style>

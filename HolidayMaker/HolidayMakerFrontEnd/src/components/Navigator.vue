@@ -12,7 +12,7 @@
                         <li><a href="#"><router-link to="/hotels/2">Hotel 2 | </router-link></a></li>
                         <li><a href="#"><router-link to="/result">Search result view | </router-link></a></li>
                         <li><a href="#"><router-link to="/addReview">Add review </router-link></a></li>
-                        <li><a href="#">Temp5</a></li>
+                        <li><a href="#"><router-link to="/checkout">Checkout</router-link></a></li>
                     </ul>
                 </nav>
                  <li class="nav-item dropdown">

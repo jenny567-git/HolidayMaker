@@ -1,30 +1,26 @@
 <template>
-  <div class="container text-start">
-    <div class="row">
-      <div class="col-md-4">
-        <label for="searchInput">Location/Hotel name </label>
-        <Searchfield />
+  <div class="container">
+    <div class="p-grid">
+      <div>
+
       </div>
-      <div class="col-md-4">
-        <div class="p-fluid p-grid p-formgrid">
-          <label for="range">Dates</label>
+      <div class="p-col-12 p-md-6 p-lg-4">
+        <label for="searchInput">Location/Hotel name </label>
+        <Searchfield @input-changed="setSearchText"/>
+      </div>
+      <div class="p-col-12 p-md-6 p-lg-4">
+        <label for="range" id="range">Dates</label>
+
+        <div class="p-fluid" id="calendar">
           <Calendar />
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="p-col-12 p-md-6 p-lg-2">
         <label for="guest">Guests & rooms </label>
         <SearchDropdown />
       </div>
-      <div class="col-md-1">
-        <div class="p-grid">
-            <Button
-              type="button"
-              icon="pi pi-search"
-              @click="onSubmit"
-              class="p-button-rounded p-button-success p-d-none p-d-md-inline-flex"
-            >
-            </Button>
-        </div>
+      <div class="p-col-12 p-md-6 p-lg-2" id="searchBtn">
+          <Button  class="p-mx-auto" label="Search" @click="Search" :loading="isLoading"/>
       </div>
     </div>
   </div>
@@ -37,6 +33,11 @@ import SearchDropdown from "./SearchDropdown.vue";
 import Searchfield from "./Searchfield.vue";
 
 export default {
+  data(){
+    return{
+      searchString: ''
+    }
+  },
   components: {
     Searchfield,
     Button,
@@ -45,11 +46,30 @@ export default {
   },
   methods: {
     onSubmit() {},
+    Search(event){
+        this.$store.state.searchButtonLoading = true;
+        console.log("The search string is ", this.searchString);
+        this.$store.dispatch('searchHotels', this.searchString);
+      },
+      setSearchText(value){
+          this.searchString = value;
+      }
   },
+  computed:{
+      isLoading(){
+        return this.$store.state.searchButtonLoading;
+      }
+    }
 };
 </script>
 
 <style scoped>
+#searchBtn{
+  align-self: center;
+}
+#range{
+  display: block;
+}
 .container {
   background-color: #97a97c;
   color: #283618;

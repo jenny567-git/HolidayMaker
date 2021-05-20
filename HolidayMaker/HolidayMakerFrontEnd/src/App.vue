@@ -3,11 +3,6 @@
     <Navigator/>
       <div style="background: url(https://wallpaperaccess.com/full/118565.jpg);" class="page-holder bg-cover">
         <div class="container">
-          <div>
-            <h5>Search - temp</h5>
-            <InputText v-model="searchString" class="p-mr-2 p-d-inline" />
-            <Button class="p-mx-auto" label="Search" @click="Search" :loading="isLoading"/>
-         </div>
           <Searcher/>
           <router-view/>
         </div>

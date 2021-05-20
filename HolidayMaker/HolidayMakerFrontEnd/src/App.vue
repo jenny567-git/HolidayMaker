@@ -1,6 +1,6 @@
 <template>
   <main>
-  <HomeHeader/>
+  <Navigator/>
     <div class="container">
         
 
@@ -20,13 +20,13 @@
 // import Button from 'primevue/Button';
 // import Menu from 'primevue/menu';
 // import ColorPicker from 'primevue/colorpicker';
-import HomeHeader from '/src/components/HomeHeader.vue'
+import Navigator from '/src/components/Navigator.vue'
 import Footer from '/src/components/Footer.vue'
 
 export default {
   name: 'App',
   components: {
-    HomeHeader,
+    Navigator,
     Footer
   },
   data() {

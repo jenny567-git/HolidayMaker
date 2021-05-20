@@ -7,10 +7,10 @@
       
       <router-view/>
     </div>
+  </main>
     <div>
       <Footer/>
     </div>
-  </main>
 </template>
 
 <script>

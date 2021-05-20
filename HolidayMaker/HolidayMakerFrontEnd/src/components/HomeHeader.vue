@@ -91,11 +91,11 @@ header {
 }
 
 .pi {
-    color: rgb(224, 224, 224);
+    color: rgb(224, 224, 224) !important;
     list-style-type: none;
 }
 
-.btn-area {
+/* .btn-area {
     cursor: pointer;
     color: #fff;
     font-size: 16px;
@@ -104,24 +104,7 @@ header {
     padding: 10px 30px;
     border-radius: 5px;
     background: #c7b09e;
-}
+}  */
 
-/* nav {
-    justify-content: space-around;
-    align-items: center;
-    min-height: 10vh;
-    background-color: #2f2f2f;
-    margin-bottom: 30px;
-    box-shadow: 0 6.8px 2.7px rgba(0, 0, 0, 0.072), 0 12.9px 6.9px rgba(0, 0, 0, 0.106), 0 19.2px 14.2px rgba(0, 0, 0, 0.123), 0 28.3px 29.2px rgba(0, 0, 0, 0.133), 0 61px 80px rgba(0, 0, 0, 0.15);
-    position: relative;
-}
-.nav .nav-item {
-    align-items:center;
-    display: flex;
-    list-style: none;
-}
-.nav-item .dropdown {
-
-} */
 
 </style>

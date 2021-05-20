@@ -1,166 +1,95 @@
 <template>
 <hr>
-    <footer class="page-footer font-small elegant-color">
+   <!DOCTYPE html>
+<html>
 
-    <div class="color-primary">
-        <div class="container">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
 
-            <!-- Grid row-->
-            <div class="row py-4 d-flex align-items-center">
-
-                <!-- Grid column -->
-                <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
-                    <h6 class="mb-0">Get connected with us on social networks!</h6>
-                </div>
-                <!-- Grid column -->
-                <!-- Grid column -->
-                <div class="col-md-6 col-lg-7 text-center text-md-right">
-
-                    <!-- Facebook -->
-                    <a class="fb-ic">
-                        <i class="fab fa-facebook-f white-text mr-4"> </i>
-                    </a>
-                    <!-- Twitter -->
-                    <a class="tw-ic">
-                        <i class="fab fa-twitter white-text mr-4"> </i>
-                    </a>
-                    <!-- Google +-->
-                    <a class="gplus-ic">
-                        <i class="fab fa-google-plus-g white-text mr-4"> </i>
-                    </a>
-                    <!--Linkedin -->
-                    <a class="li-ic">
-                        <i class="fab fa-linkedin-in white-text mr-4"> </i>
-                    </a>
-                    <!--Instagram-->
-                    <a class="ins-ic">
-                        <i class="fab fa-instagram white-text"> </i>
-                    </a>
-
-                </div>
-                <!-- Grid column -->
-
-            </div>
-            <!-- Grid row-->
-
-        </div>
+<body>
+    <div class="footer-basic">
+        <footer>
+            <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Home</a></li>
+                <li class="list-inline-item"><a href="#">Services</a></li>
+                <li class="list-inline-item"><a href="#">About</a></li>
+                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+            </ul>
+            <p class="copyright">Ukubhuka © 2021</p>
+        </footer>
     </div>
+</body>
 
-    <!-- Footer Links -->
-    <div class="container text-center text-md-left pt-4 pt-md-5">
-
-        <!-- Grid row -->
-        <div class="row mt-1 mt-md-0 mb-4 mb-md-0">
-
-            <!-- Grid column -->
-            <div class="col-md-3 mx-auto mt-3 mt-md-0 mb-0 mb-md-4">
-
-                <!-- Links -->
-                <h5>Some Footer Text</h5>
-                <hr class="color-primary mb-4 mt-0 d-inline-block mx-auto w-60">
-
-                <p class="foot-desc mb-0">
-                    Here is some random text, that has nothing to do with the site. Why are you still reading this?
-                </p>
-
-            </div>
-            <!-- Grid column -->
-
-            <hr class="clearfix w-100 d-md-none">
-
-            <!-- Grid column -->
-            <div class="col-md-3 mx-auto mt-3 mt-md-0 mb-0 mb-md-4">
-
-                <!-- Links -->
-                <h5>Sites</h5>
-                <hr class="color-primary mb-4 mt-0 d-inline-block mx-auto w-60">
-
-                <ul class="list-unstyled foot-desc">
-                    <li class="mb-2">
-                        <a href="#!">MDBootstrap</a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="#!">MDWordPress</a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="#!">BrandFlow</a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="#!">Bootstrap Angular</a>
-                    </li>
-                </ul>
-
-            </div>
-            <!-- Grid column -->
-
-            <hr class="clearfix w-100 d-md-none">
-
-            <!-- Grid column -->
-            <div class="col-md-3 mx-auto mt-3 mt-md-0 mb-0 mb-md-4">
-
-                <!-- Links -->
-                <h5>Useful links</h5>
-                <hr class="color-primary mb-4 mt-0 d-inline-block mx-auto w-60">
-
-                <ul class="list-unstyled foot-desc">
-                    <li class="mb-2">
-                        <a >News</a>
-                    </li>
-                    <li class="mb-2">
-                        <a >Careers</a>
-                    </li>
-                    <li class="mb-2">
-                        <a >Information</a>
-                    </li>
-                    <li class="mb-2">
-                        <a >FAQ</a>
-                    </li>
-                </ul>
-
-            </div>
-            <!-- Grid column -->
-
-            <hr class="clearfix w-100 d-md-none">
-
-            <!-- Grid column -->
-            <div class="col-md-3 mx-auto mt-3 mt-md-0 mb-0 mb-md-4">
-
-                <!-- Links -->
-                <h5>Contacts</h5>
-                <hr class="color-primary mb-4 mt-0 d-inline-block mx-auto w-60">
-
-                <ul class="fa-ul foot-desc ml-4">
-                    <li class="mb-2">
-                        <span class="fa-li"><i class="far fa-map"></i></span>Cape Town, 890 Heuvel St
-                    </li>
-                    <li class="mb-2"><span class="fa-li"><i class="fas fa-phone-alt"></i></span>042 876 836 908</li>
-                    <li class="mb-2"><span class="fa-li"><i class="far fa-envelope"></i></span>Ukubhuka@gmail.com</li>
-                    <li><span class="fa-li"><i class="far fa-clock"></i></span>Monday - Friday: 10-12</li>
-                </ul>
-
-            </div>
-            <!-- Grid column -->
-
-        </div>
-        <!-- Grid row -->
-
-    </div>
-    <!-- Footer Links -->
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">
-        © 2021 Copyright:
-        <a> Ukubhuka</a>
-    </div>
-    <!-- Copyright -->
-
-</footer>
-<!-- Footer -->
+</html>
 </template>
 
 <style scoped>
-footer {
-    margin-top: 3vh;
-    background-color: #202a38;
-    color:rgb(238, 238, 238);
+.footer-basic {
+  padding:40px 0;
+  background-color:#4e5a6b;
+  color:#4b4c4d;
 }
+
+.footer-basic ul {
+  padding:0;
+  list-style:none;
+  text-align:center;
+  font-size:18px;
+  line-height:1.6;
+  margin-bottom:0;
+}
+
+.footer-basic li {
+  padding:0 10px;
+}
+
+.footer-basic ul a {
+  color:inherit;
+  text-decoration:none;
+  opacity:0.8;
+}
+
+.footer-basic ul a:hover {
+  opacity:1;
+}
+
+.footer-basic .social {
+  text-align:center;
+  padding-bottom:25px;
+}
+
+.footer-basic .social > a {
+  font-size:24px;
+  width:40px;
+  height:40px;
+  line-height:40px;
+  display:inline-block;
+  text-align:center;
+  border-radius:50%;
+  border:1px solid #ccc;
+  margin:0 8px;
+  color:inherit;
+  opacity:0.75;
+}
+
+.footer-basic .social > a:hover {
+  opacity:0.9;
+}
+
+.footer-basic .copyright {
+  margin-top:15px;
+  text-align:center;
+  font-size:13px;
+  color:#aaa;
+  margin-bottom:0;
+}
+
 </style>

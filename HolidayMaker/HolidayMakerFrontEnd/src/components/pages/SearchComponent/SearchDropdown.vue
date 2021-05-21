@@ -21,7 +21,7 @@
                   showButtons
                   :min="0"
                   :max="100"
-                  value="2"
+                  value="0"
                 />
               </p>
               <p>
@@ -41,7 +41,7 @@
                   showButtons
                   :min="0"
                   :max="100"
-                  value="1"
+                  value="0"
                 />
               </p>
             </div>

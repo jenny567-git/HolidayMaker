@@ -1,72 +1,26 @@
 <template>
-  <div class="container">
-    <h1>Popular Destinations</h1>
-    <div class="row my-5">
-      <div class="col-lg-12 mx-auto">
-        <div class="row">
-          
-        <Destination v-for="destination in popularDestinations" :destination="destination" :key="destination.title"/>
-
+    <div class="col-lg-4 mb-3">
+        <div class="content">
+            <a href="https://unsplash.com/photos/HkTMcmlMOUQ" target="_blank">
+            <div class="content-overlay"></div>
+            <img class="content-image" :src="destination.img">
+            <div class="content-details fadeIn-bottom">
+                <h3 class="content-title">{{destination.title}}</h3>
+                <p class="content-text">{{destination.description}}</p>
+            </div>
+            </a>
         </div>
-      </div>
     </div>
-  </div>
 </template>
-
 <script>
-import Destination from './Destination.vue'
 export default {
-  components:{
-    Destination
-  },
-  data(){
-    return{
-      popularDestinations:[{
-        title: 'Lefkos',
-        description: 'See available hotels in Lefkos',
-        img: 'https://bilder.apollo.se/three-dolphins-1557016426-110210-ImageGalleryLightbox.jpg',
-        searchQuery: ''
-      },
-      {
-        title: 'London',
-        description: 'See available hotels in London',
-        img: 'https://blog.fly.deals/wp-content/uploads/2020/06/London_Tower_Bridge_City.jpg',
-        searchQuery: ''
-      },
-      {
-        title: 'Berlin',
-        description: 'See available hotels in Berlin',
-        img: 'https://media.radissonhotels.net/image/destination-pages/localattraction/16256-118729-f63244989_3xl.jpg?impolicy=HomeHero',
-        searchQuery: ''
-      },
-      {
-        title: 'Copenhangen',
-        description: 'See available hotels in Copenhangen',
-        img: 'https://www.flytap.com/-/media/Flytap/new-tap-pages/destinations/europe/denmark/copenhagen/destinations-copenhagen-banner-mobile-1024x553.jpg',
-        searchQuery: ''
-      },
-      {
-        title: '',
-        description: '',
-        img: '',
-        searchQuery: ''
-      },
-      {
-        title: '',
-        description: '',
-        img: '',
-        searchQuery: ''
-      },
-      ]
+    props:{
+        destination:{}
     }
-  }
 }
 </script>
-
-
-
-<style>
-*, *:before, *:after{
+<style >
+    *, *:before, *:after{
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
@@ -95,11 +49,6 @@ export default {
   }
 }
 
-.container .title{
-  color: #1a1a1a;
-  text-align: center;
-  margin-bottom: 10px;
-}
 
 .content {
   position: relative;

@@ -15,6 +15,20 @@
         <Slider v-model="cityRange.value" v-bind="cityRange" :max="5000"></Slider>
     </div>
     <hr />
+    <hr>
+        <h2>pricerange</h2>
+                <input v-model="price1" type="number" :placeholder="price1" v-if="price1 < pricerange.value[1]"/>
+                <input v-model="price2" type="number" :placeholder="price2" v-if="price2 < pricerange.value[1]"/>
+                <input v-model="price3" type="number" :placeholder="price3" v-if="price3 < pricerange.value[1]"/>
+
+        <h2>distancetobeach</h2>
+         <input v-model="distanceToBeach1" type="number" :placeholder="distanceToBeach1" v-if="distanceToBeach1 < beachRange.value"/>
+         <input v-model="distanceToBeach2" type="number" :placeholder="distanceToBeach2" v-if="distanceToBeach2 < beachRange.value"/>
+         <input v-model="distanceToBeach3" type="number" :placeholder="distanceToBeach3" v-if="distanceToBeach3 < beachRange.value"/>
+         <h2>hasPool1</h2>
+        <input v-model="pool" type="text" v-if="pool"/>
+
+    <hr />
     <div>
       <div class="accordion accordion-flush" id="accordionFlushExample">
         <div class="accordion-item">
@@ -26,6 +40,7 @@
               data-bs-target="#flush-collapseOne"
               aria-expanded="false"
               aria-controls="flush-collapseOne"
+              
             >
               More filter
             </button>
@@ -38,7 +53,7 @@
           >
             <div class="accordion-body text-start">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" @click="pool = !pool">
                     <label class="form-check-label" for="flexCheckDefault">
                         Pool
                     </label>
@@ -75,7 +90,8 @@ import Slider from '/node_modules/@vueform/slider'
 
 export default {
     components: { 
-        Slider 
+        Slider ,
+        
         },
       data() {
          return {
@@ -87,9 +103,27 @@ export default {
                         },
               cityRange: {
                         value: [800]
-                        }
+                        },
+
+                         price1: 20303,
+        price2: 17500,
+        price3: 35000,
+        pool: true,
+        distanceToBeach1: 200,
+        distanceToBeach2: 700, 
+        distanceToBeach3: 501,
         }
-      } 
+
+
+      }, 
+
+      methods: {
+        myFilter(){
+          
+          console.log('get out');
+        }
+      }
+      
 
 }
 </script>

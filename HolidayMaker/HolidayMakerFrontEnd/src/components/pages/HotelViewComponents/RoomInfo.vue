@@ -24,6 +24,7 @@
                     <input type="number" min="0" value="0" />
                 </p>
                 </div>
+               
               </div>
               <div class="row">
                     <div class="col-md-6">

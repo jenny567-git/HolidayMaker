@@ -1,32 +1,21 @@
 <template>
-
-    <div>
-        
-
-
-
-         <div class="row">
-           <div class="col-md-4">
-                <Images/>
+    <div id="test3">
+        <div class="row">
+            <div class="col-md-4">
+                <Images :id="hotel.id"/>
             </div>
             <div class="col-md-8">
-                
-                <b>(hotel name)</b>
+                <b>{{hotel.name}}</b>
                 <p>(3535) SEK</p>
-                <p>Ratings: <span class="badge rounded-pill bg-secondary">(AverageRating)</span></p>
+                <p>Ratings: <span class="badge rounded-pill bg-secondary">{{hotel.averageRating}}</span></p>
                 
-                <router-link :to="'/hotels/1'" class="nav-link"> 
-                    <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+                <router-link :to="'/hotels/' + hotel.id" class="nav-link"> 
+                    <button class="btn btn-outline-primary" for="btn-check-outlined" @click="hotelDetailsClick">See details</button><br>
                 </router-link>
-               
-                <label class="btn btn-outline-primary" for="btn-check-outlined">See details</label><br>
 
-                <!-- <div v-if="ShowInfo() == true">
-                    <Info/>   
-                </div> -->
-                <!-- <button type="button" class="btn btn-primary">See details</button> -->
             </div>
         </div>
+        <hr>
     </div>
 </template>
 
@@ -40,24 +29,22 @@ import Filter from './Filter.vue'
 export default {
 components: {
     Images,
-    Info,
-    Filter
+    Info
   },
-  
-data(){
-    return {
-        hasPool: true
-       
-    }
-},
-
-
+  props:{
+      hotel:{}
+  },
+  methods:{
+      hotelDetailsClick(event){
+          console.log("Set hotel", this.hotel.id)
+          this.$store.dispatch('setHotel', this.hotel)
+      }
+  }
 }
-
 </script>
 
-<style>
-.display{
-    display: none;
-}
+<style scoped>
+    #test3{
+        opacity: 100% !important;
+    }
 </style>

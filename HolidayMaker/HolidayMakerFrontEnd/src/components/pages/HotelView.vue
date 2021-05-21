@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>This is a hotel name {{hotel.name}}</h1>
+        <h1>{{hotel.name}}</h1>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-4"> <!-- Stacked images -->
@@ -50,10 +50,18 @@ export default ({
     components:{
         Info,
     },
-    computed:{
-        hotel(){
-            return this.$store.state.hotels[this.$route.params.id];
+    data(){
+        return{
+            hotelInfo:{}
         }
-    }
+    },
+    computed:{
+        hotel(){ 
+            return this.$store.state.hotel;
+        }
+    },
+    created() {
+        this.$store.dispatch('getHotelById', this.$route.params.id)
+  }
 })
 </script>

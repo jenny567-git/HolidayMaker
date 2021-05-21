@@ -1,18 +1,26 @@
 <template>
   <div>
     <div>
-        <p>Price range (SEK)</p>
-        <Slider v-model="pricerange.value" v-bind="pricerange" :max="50000"></Slider>
+      <p>Price range (SEK)</p>
+      <Slider
+        v-model="pricerange.value"
+        v-bind="pricerange"
+        :max="50000"
+      ></Slider>
     </div>
-    <hr>
+    <hr />
     <div>
-        <p>Distance to beach (km)</p>
-        <Slider v-model="beachRange.value" v-bind="beachRange" :max="5000"></Slider>
+      <p>Distance to beach (km)</p>
+      <Slider
+        v-model="beachRange.value"
+        v-bind="beachRange"
+        :max="5000"
+      ></Slider>
     </div>
-    <hr>
+    <hr />
     <div>
-        <p>Distance to city (km)</p>
-        <Slider v-model="cityRange.value" v-bind="cityRange" :max="5000"></Slider>
+      <p>Distance to city (km)</p>
+      <Slider v-model="cityRange.value" v-bind="cityRange" :max="5000"></Slider>
     </div>
     <hr />
     <hr>
@@ -52,30 +60,50 @@
             data-bs-parent="#accordionFlushExample"
           >
             <div class="accordion-body text-start">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" @click="pool = !pool">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Pool
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Night Entertainment
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Child club
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Restaurant
-                    </label>
-                </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckDefault"
+                />
+                <label class="form-check-label" for="flexCheckDefault">
+                  Pool
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckDefault"
+                />
+                <label class="form-check-label" for="flexCheckDefault">
+                  Night Entertainment
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckDefault"
+                />
+                <label class="form-check-label" for="flexCheckDefault">
+                  Child club
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckDefault"
+                />
+                <label class="form-check-label" for="flexCheckDefault">
+                  Restaurant
+                </label>
+              </div>
             </div>
           </div>
         </div>
@@ -86,50 +114,28 @@
 
 <script>
 // code: https://www.vuescript.com/custom-range-slider/
-import Slider from '/node_modules/@vueform/slider'
+import Slider from "/node_modules/@vueform/slider";
 
 export default {
-    components: { 
-        Slider ,
-        
-        },
-      data() {
-         return {
-              pricerange: {
-                        value: [0, 40000]
-                        },
-              beachRange: {
-                        value: [500]
-                        },
-              cityRange: {
-                        value: [800]
-                        },
-
-                         price1: 20303,
-        price2: 17500,
-        price3: 35000,
-        pool: true,
-        distanceToBeach1: 200,
-        distanceToBeach2: 700, 
-        distanceToBeach3: 501,
-        }
-
-
-      }, 
-
-      methods: {
-        myFilter(){
-          
-          console.log('get out');
-        }
-      }
-      
-
-}
+  components: {
+    Slider,
+  },
+  data() {
+    return {
+      pricerange: {
+        value: [0, 40000],
+      },
+      beachRange: {
+        value: [500],
+      },
+      cityRange: {
+        value: [800],
+      },
+    };
+  },
+};
 </script>
 
 <style src="@vueform/slider/themes/default.css"></style>
 
-<style scoped>
-
-</style>
+<style scoped></style>

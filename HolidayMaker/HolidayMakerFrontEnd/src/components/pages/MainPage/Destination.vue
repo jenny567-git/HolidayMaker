@@ -56,6 +56,7 @@ export default {
   max-width: 400px;
   margin: auto;
   overflow: hidden;
+  height: 100%;
 }
 
 .content .content-overlay {
@@ -79,6 +80,8 @@ export default {
 
 .content-image{
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .content-details {

@@ -31,6 +31,18 @@ namespace HolidayMakerBackEnd.Controllers
             return Ok();
         }
 
+        [HttpGet("Booking/{id}")]
+        public Reservation GetBookingById(int id)
+        {
+            var result = _bookingService.GetBookingById(id);
+            return result;
+        }
 
+        [HttpGet("Bookings/{id}")]
+        public IEnumerable<Reservation> GetAllBookingByGuestId(int id)
+        {
+            var result = _bookingService.GetAllBookingByGuestId(id);
+            return result;
+        }
     }
 }

@@ -21,6 +21,24 @@ namespace HolidayMakerBackEnd.Services
         public int latestId;
         public string latestType;
 
+
+        //removeBooking missing
+
+
+
+
+        public Reservation GetBookingById(int id)
+        {
+            var result = _db.Reservations.Include(r => r.Guest).Include(h => h.Hotel).Include(r => r.ReservedRooms).SingleOrDefault(r => r.Id == id);
+            return result;
+        }
+
+        public IEnumerable<Reservation> GetAllBookingByGuestId(int id)
+        {
+            var result = _db.Reservations.Where(b => b.GuestId == id);
+            return result;
+        }
+
         public void MakeBooking(SearchViewModel model)
         {
 
@@ -78,7 +96,6 @@ namespace HolidayMakerBackEnd.Services
             
             
         }
-
 
         
         public object CalculateCost(Reservation reservation, ReservedRoom reservedRoom, ReservationsDetail reservationsDetail)

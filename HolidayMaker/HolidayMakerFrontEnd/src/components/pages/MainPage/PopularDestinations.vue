@@ -46,15 +46,15 @@ export default {
         searchQuery: ''
       },
       {
-        title: '',
-        description: '',
-        img: '',
+        title: 'The Table Bay Hotel',
+        description: 'See available hotels in South Africa',
+        img: 'https://foto.hrsstatic.com/fotos/0/3/1090/700/80/000000/http%3A%2F%2Ffoto-origin.hrsstatic.com%2Ffoto%2F3%2F5%2F1%2F7%2F351788%2F351788_a_13291718.jpg/mB04g2nLq58aw%2FS0i36ycA%3D%3D/2896,2914/6/The_Table_Bay-Cape_Town-Exterior_view-3-351788.jpg',
         searchQuery: ''
       },
       {
-        title: '',
-        description: '',
-        img: '',
+        title: 'Fairmont Nile City',
+        description: 'See available hotels in Egypt',
+        img: 'https://i.middle-east-online.com/styles/home_special_coverage_1920xauto/s3/2020-08/fairmont%20hotel%20cairo.jpg?3DRH75K8aS2dza_mlE9YA0RsEo3L3l7k&itok=ARlc1LW6',
         searchQuery: ''
       },
       ]

@@ -133,7 +133,7 @@ namespace HolidayMakerBackEnd.Services
         }
 
 
-        //not working, exception: There is already an open DataReader associated with this Connection which must be closed 
+        //working
         public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithDates(DateTime startDate, DateTime endDate)
         {
             var hotels = _hs.GetAllHotels();

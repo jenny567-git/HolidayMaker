@@ -67,7 +67,7 @@ export default {
 
 #test2{
         border-radius: 30px;
-        background-color: rgba(248, 242, 210, 0.5);
+        background-color: rgba(107, 146, 83, 0.5);
         padding-left: 25px;
         padding-right: 25px;
     }
@@ -78,7 +78,7 @@ export default {
   display: block;
 }
 .container {
-  background-color: #97a97c;
+  background-color: #7e7e7e;
   color: #283618;
   border-radius: 25px;
   padding-left: 50px;

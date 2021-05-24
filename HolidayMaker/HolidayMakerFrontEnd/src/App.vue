@@ -1,10 +1,9 @@
 <template>
   <main>
     <Navigator/>
-      <div style="background: url(https://wallpaperaccess.com/full/118565.jpg);" class="page-holder bg-cover">
+      <div style="background: url(https://wallpaperaccess.com/full/1198002.jpg);" class="page-holder bg-cover">
         <div class="container">
           <Searcher/>
-          <a href="https://www.youtube.com/watch?v=FTQbiNvZqaY">CLICK ME</a>
           <router-view/>
         </div>
     </div>
@@ -113,5 +112,14 @@ export default {
   display: flex;
   width: fit-content;
   align-content: center;
+}
+
+
+.bg-cover {
+  padding: 40px;
+  width: auto;
+  height: auto;
+  border: 3px solid black;
+  justify-content: center;
 }
 </style>

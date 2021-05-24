@@ -5,7 +5,7 @@
             <title>Simple Navbar with flexbox</title>
         </head>
             <header>
-                <img class="" src="/src/assets/hotel_logo4_tempfix.png" alt="" height="120">
+                <img class="" src="/src/assets/Logo5_cropped.png" alt="" height="120">
                 <nav>
                     <ul class="nav-area">
                         <li><a href="#"><router-link to="/hotels/1">Hotel 1 | </router-link></a></li>
@@ -63,10 +63,9 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 70px;
+    padding: 12px 70px;
     background:#202a38;
-    background: rgb(32,42,56);
-    background: linear-gradient(180deg, rgb(158 180 188) 0%, rgba(255,178,0,1) 100%);
+    background: rgb(51, 57, 58);
 }
 
 .nav-area {

@@ -4,7 +4,7 @@
       <div class="col-lg-12 mx-auto">
         <h1>Popular Hotels</h1>
         <div class="row py-5">
-          <div class="col-lg-4">
+          <div class="col-lg-4 clickable" @click="searchHotel(hotels[0].title)">
             <figure
               class="caption-2 mb-0 shadow-sm border border-white border-md"
             >
@@ -15,7 +15,7 @@
               />
               <figcaption class="p-4 bg-white">
                 <h2 class="h5 font-weight-bold mb-2 font-italic">
-                  Crown Moran Hotel, London
+                  {{hotels[0].title}}, {{hotels[0].city}}
                 </h2>
                 <p class="mb-0 text-small font-italic text-muted">
                   The 4-star Clayton Crown Hotel London enjoys a great location
@@ -28,7 +28,7 @@
             </figure>
           </div>
 
-          <div class="col-lg-4">
+          <div class="col-lg-4 clickable" @click="searchHotel(hotels[1].title)">
             <figure
               class="caption-2 mb-0 shadow-sm border border-white border-md"
             >
@@ -39,7 +39,7 @@
               />
               <figcaption class="p-4 bg-white">
                 <h2 class="h5 font-weight-bold mb-2 font-italic">
-                  Three Dolphins, Lefkos
+                  {{hotels[1].title}}, {{hotels[1].city}}
                 </h2>
                 <p class="mb-0 text-small font-italic text-muted">
                   Family hotel in the heart of Lefkos. Only 100 meter from the
@@ -49,7 +49,7 @@
             </figure>
           </div>
 
-          <div class="col-lg-4">
+          <div class="col-lg-4 clickable" @click="searchHotel(hotels[2].title)">
             <figure
               class="caption-2 mb-0 shadow-sm border border-white border-md"
             >
@@ -60,7 +60,7 @@
               />
               <figcaption class="p-4 bg-white">
                 <h2 class="h5 font-weight-bold mb-2 font-italic">
-                  Hotel Riviers Strand, Båstad
+                  {{hotels[2].title}}, {{hotels[2].city}}
                 </h2>
                 <p class="mb-0 text-small font-italic text-muted">
                   This accommodation is located on the island of Bjärehalf, just
@@ -77,6 +77,37 @@
   </div>
 </template>
 
+<script>
+export default {
+  data(){
+    return{
+      hotels:[
+        {
+          title: 'Crown Morahn Hotel',
+          city: 'London',
+        },
+        {
+          title: 'Three Dolphins',
+          city: 'Lefkos',
+        },
+        {
+          title: 'Hotel Riviers Strand',
+          city: 'Båstad',
+        },
+      ]
+    }
+  },
+  methods:{
+    searchHotel(hotel){
+        //console.log("search hotel");
+        this.$store.dispatch('searchSpecific', {type: null, searchString: hotel});
+      }
+  }
+}
+</script>
 
 
-<style></style>
+<style>
+.clickable{
+   cursor: pointer;
+}</style>

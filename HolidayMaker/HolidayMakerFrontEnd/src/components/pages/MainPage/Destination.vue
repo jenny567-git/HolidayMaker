@@ -1,14 +1,17 @@
 <template>
     <div class="col-lg-4 mb-3">
         <div class="content">
-            <a href="https://unsplash.com/photos/HkTMcmlMOUQ" target="_blank">
-            <div class="content-overlay"></div>
-            <img class="content-image" :src="destination.img">
-            <div class="content-details fadeIn-bottom">
-                <h3 class="content-title">{{destination.title}}</h3>
-                <p class="content-text">{{destination.description}}</p>
+            <!-- <a href="https://unsplash.com/photos/HkTMcmlMOUQ" target="_blank"> -->
+            <div class="clickable" @click="searchDestination">
+
+              <div class="content-overlay"></div>
+              <img class="content-image" :src="destination.img">
+              <div class="content-details fadeIn-bottom">
+                  <h3 class="content-title">{{destination.title}}</h3>
+                  <p class="content-text">{{destination.description}}</p>
+              </div>
             </div>
-            </a>
+            <!--</a>-->
         </div>
     </div>
 </template>
@@ -16,6 +19,12 @@
 export default {
     props:{
         destination:{}
+    },
+    methods:{
+      searchDestination(){
+        //console.log("search destination");
+        this.$store.dispatch('searchSpecific', {type: 'city', searchString: this.destination.title});
+      }
     }
 }
 </script>
@@ -28,6 +37,9 @@ export default {
   box-sizing: border-box;
 }
 
+.clickable{
+   cursor: pointer;
+}
 
 .main-title{
   color: #2d2d2d;

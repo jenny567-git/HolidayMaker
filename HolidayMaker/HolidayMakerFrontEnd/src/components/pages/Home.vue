@@ -19,4 +19,7 @@ export default {
     #homeDiv{
         margin-top: 500px;
     }
+    h1{
+        font-family: 'Frijole', cursive;;
+    }
 </style>

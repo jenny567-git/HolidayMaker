@@ -39,6 +39,7 @@ export default {
 
 .clickable{
    cursor: pointer;
+   height: 100%;
 }
 
 .main-title{

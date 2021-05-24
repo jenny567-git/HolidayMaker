@@ -112,7 +112,8 @@ namespace HolidayMakerBackEnd.Services
 
         public IEnumerable<Hotel> GetAllHotels()
         {
-            return _db.Hotels.AsEnumerable();
+            var result = _db.Hotels.AsEnumerable();
+            return result;
         }
 
         public IEnumerable<Hotel> GetHotelsByRandom()

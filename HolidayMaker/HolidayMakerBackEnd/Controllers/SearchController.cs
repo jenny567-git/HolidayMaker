@@ -87,12 +87,12 @@ namespace HolidayMakerBackEnd.Controllers
             return result;
         }
         
-        //[HttpGet("searchdates")]
-        //public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithDates(DateTime startDate, DateTime endDate)
-        //{
-        //    var result = _searchService.GetAvailableHotelsWithDates(startDate, endDate);
-        //    return result;
-        //}
+        [HttpGet("searchdates")]
+        public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithDates(DateTime startDate, DateTime endDate)
+        {
+            var result = _searchService.GetAvailableHotelsWithDates(startDate, endDate);
+            return result;
+        }
         
         [HttpGet("searchpeople")]
         public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithStringDatesRoomsPeople(string input, DateTime startDate, DateTime endDate, int rooms, int people)

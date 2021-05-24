@@ -99,7 +99,7 @@ namespace HolidayMakerBackEnd.Services
                 var hotelrooms = _hs.GetAvailableRooms(h.Id, startDate, endDate);
                 int availableRooms = hotelrooms.SingleRooms + hotelrooms.DoubleRooms + hotelrooms.FamilyRooms;
                 //if (hotelrooms.SingleRooms > rooms || hotelrooms.DoubleRooms > rooms || hotelrooms.FamilyRooms > rooms)
-                if (availableRooms > rooms)
+                if (availableRooms >= rooms)
                 {
                     hotelList.Add(new AvailableHotelViewModel(hotelrooms, h));
                 }
@@ -119,9 +119,9 @@ namespace HolidayMakerBackEnd.Services
                 var hotelrooms = _hs.GetAvailableRooms(h.Id, startDate, endDate);
                 int availableRooms = hotelrooms.SingleRooms + hotelrooms.DoubleRooms + hotelrooms.FamilyRooms;
                 
-                if (_hs.GetMaxCapacityAvailableForHotel(h.Id, startDate, endDate) > people)
+                if (_hs.GetMaxCapacityAvailableForHotel(h.Id, startDate, endDate) >= people)
                 {
-                    if (availableRooms > rooms)
+                    if (availableRooms >= rooms)
                     {
                         hotelList.Add(new AvailableHotelViewModel(hotelrooms, h));
 
@@ -133,18 +133,18 @@ namespace HolidayMakerBackEnd.Services
         }
 
 
-        ////not working, exception: There is already an open DataReader associated with this Connection which must be closed 
-        //public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithDates(DateTime startDate, DateTime endDate)
-        //{
-        //    var hotels = _hs.GetAllHotels();
-        //    HashSet<AvailableHotelViewModel> hotelList = new HashSet<AvailableHotelViewModel>();
+        //not working, exception: There is already an open DataReader associated with this Connection which must be closed 
+        public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithDates(DateTime startDate, DateTime endDate)
+        {
+            var hotels = _hs.GetAllHotels();
+            HashSet<AvailableHotelViewModel> hotelList = new HashSet<AvailableHotelViewModel>();
 
-        //    foreach (var h in hotels)
-        //    {
-        //        hotelList.Add(new AvailableHotelViewModel((_hs.GetAvailableRooms(h.Id, startDate, endDate)), h));
-        //    }
+            foreach (var h in hotels)
+            {
+                hotelList.Add(new AvailableHotelViewModel((_hs.GetAvailableRooms(h.Id, startDate, endDate)), h));
+            }
 
-        //    return hotelList;
-        //}
+            return hotelList;
+        }
     }
 }

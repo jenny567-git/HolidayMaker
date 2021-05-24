@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HolidayMakerBackEnd.Services;
 using HolidayMakerBackEnd.Models.Database;
+using HolidayMakerBackEnd.Models.ViewModels;
 
 namespace HolidayMakerBackEnd.Controllers
 {
@@ -71,6 +72,36 @@ namespace HolidayMakerBackEnd.Controllers
             var result = _searchService.GetSearchResultByName(input);
             return result;
         }
+        
+        [HttpGet("searchstring")]
+        public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithStringDates(string input, DateTime startDate, DateTime endDate)
+        {
+            var result = _searchService.GetAvailableHotelsWithStringDates(input, startDate, endDate);
+            return result;
+        }
+        
+        [HttpGet("search")]
+        public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithStringDatesRooms(string input, DateTime startDate, DateTime endDate, int rooms)
+        {
+            var result = _searchService.GetAvailableHotelsWithStringDatesRooms(input, startDate, endDate, rooms);
+            return result;
+        }
+        
+        //[HttpGet("searchdates")]
+        //public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithDates(DateTime startDate, DateTime endDate)
+        //{
+        //    var result = _searchService.GetAvailableHotelsWithDates(startDate, endDate);
+        //    return result;
+        //}
+        
+        [HttpGet("searchpeople")]
+        public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithStringDatesRoomsPeople(string input, DateTime startDate, DateTime endDate, int rooms, int people)
+        {
+            var result = _searchService.GetAvailableHotelsWithStringDatesRoomsPeople(input, startDate, endDate, rooms, people);
+            return result;
+        }
+
+
 
     }
 }

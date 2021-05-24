@@ -8,19 +8,37 @@ namespace HolidayMakerBackEnd.Models.ViewModels
 {
     public class BookingViewModel
     {
-
-        public Guest Guest { get; set; }
-        public Reservation Reservations { get; set; }
-        public IEnumerable<ReservedRoom> ReservedRooms { get; set; }
-        public IEnumerable<ReservationsDetail> ReservationsDetails { get; set; }
-
-        public BookingViewModel(Reservation reservation)
-        {
-            Reservations = reservation;
-        }
-
+        //Guest
+        public string FullName { get; set; }
         
-       
+
+        //reservation
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public double TotalPrice { get; set; }
+        public DateTime DateCreated { get; set; }
+        
+        public int HotelId { get; set; }
+        
+
+        //ReservationDetails
+        public int Adults { get; set; }
+        public int? Children { get; set; }
+        public bool? ExtraBed { get; set; }
+        public string CustomerMessage { get; set; }
+        public int ReservationId { get; set; }
+        public string Type { get; set; }
+
+
+        //ReservedRRoms
+        public IEnumerable<ReservedRoom> ReservedRooms = new List<ReservedRoom>();
+
+
+        public BookingViewModel()
+        {
+           
+
+        }
 
     }
 }

@@ -29,10 +29,28 @@ namespace HolidayMakerBackEnd.Services
 
         public Reservation GetBookingById(int id)
         {
-            var result = _db.Reservations.Include(r => r.Guest).Include(h => h.Hotel).Include(r => r.ReservedRooms).SingleOrDefault(r => r.Id == id);
+            var result = _db.Reservations.Include(r => r.Guest).Include(h => h.Hotel).SingleOrDefault(r => r.Id == id);
+           
+
+            return result;
+        }
+        public ReservedRoom GetReservedRoom(int id)
+        {
+            var result = _db.ReservedRooms.FirstOrDefault(x => x.ReservationId == id);
             return result;
         }
 
+        public ReservationsDetail GetReservationsDetail(int id)
+        {
+            var res = _db.ReservationsDetails.FirstOrDefault(r => r.ReservationId == id);
+            return res;
+
+        }
+        public IEnumerable<ReservedRoom> GetReservedRooms(int id)
+        {
+            return _db.ReservedRooms.Where(x => x.ReservationId == id).ToList();
+
+        }
         public IEnumerable<Reservation> GetAllBookingByGuestId(int id)
         {
             var result = _db.Reservations.Where(b => b.GuestId == id);

@@ -100,15 +100,7 @@ namespace HolidayMakerBackEnd.Services
         }
 
         
-        public BookingViewModel FindReservation(int id)
-        {
-            var reservation = _db.Reservations.FirstOrDefault(x => x.Id == id);
-            var reservedRoom = _db.ReservedRooms.Where(x => x.ReservationId == id).AsEnumerable();
-            reservedRoom = reservation.ReservedRooms;
-
-            BookingViewModel vm = new BookingViewModel(reservation);
-            return vm;
-        }
+        
 
         
     }

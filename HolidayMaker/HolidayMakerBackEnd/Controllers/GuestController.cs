@@ -62,12 +62,7 @@ namespace HolidayMakerBackEnd.Controllers
         //    var result = _guestService.GetGuestReservation(id);
         //    return result;
         //}
-        [HttpGet("findReservation/{id}")]
-        public BookingViewModel FindReservation(int id)
-        {
-            var result = _guestService.FindReservation(id);
-            return result;
-        }
+       
 
         
 

@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
+using HolidayMakerBackEnd.Services;
 
 namespace HolidayMakerBackEnd.Services
 {
@@ -36,7 +38,7 @@ namespace HolidayMakerBackEnd.Services
             {
 
 
-               
+
                 FullName = guest.FullName,
                 Street = guest.Street,
                 ZipCode = guest.ZipCode,
@@ -46,7 +48,7 @@ namespace HolidayMakerBackEnd.Services
                 Email = guest.Email
 
             };
-                       
+
             _db.Guests.Add(newGuest);
             _db.SaveChanges();
         }
@@ -91,5 +93,30 @@ namespace HolidayMakerBackEnd.Services
             _db.SavedHotels.Add(newSaveHotel);
             _db.SaveChanges();
         }
+
+        public Guest FindGuestById(int id)
+        {
+            return _db.Guests.FirstOrDefault(x => x.Id == id);
+        }
+
+        
+        public BookingViewModel FindReservation(int id)
+        {
+            var reservation = _db.Reservations.FirstOrDefault(x => x.Id == id);
+            var reservedRoom = _db.ReservedRooms.Where(x => x.ReservationId == id).AsEnumerable();
+            reservedRoom = reservation.ReservedRooms;
+
+            BookingViewModel vm = new BookingViewModel(reservation);
+            return vm;
+        }
+
+        
     }
+
+    
+    public class InputData
+    {
+        public int Id { get; set; }
+    }   
 }
+

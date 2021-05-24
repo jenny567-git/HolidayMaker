@@ -1,79 +1,100 @@
 <template>
   <main>
-    <Body />
-    <div class="container">
-      <router-view />
+    <Navigator/>
+      <div style="background: url(https://wallpaperaccess.com/full/118565.jpg);" class="page-holder bg-cover">
+        <div class="container">
+          <Searcher/>
+          <a href="https://www.youtube.com/watch?v=FTQbiNvZqaY">CLICK ME</a>
+          <router-view/>
+        </div>
     </div>
+        <Body v-if="showBody"/>
+    <Footer/>
   </main>
 </template>
 
 <script>
-// import ConfirmDate from "./components/pages/Datepicker/ConfirmDate.vue";
-// import Dialog from "primevue/dialog";
-// import InputText from "primevue/InputText";
-// import Button from "primevue/Button";
-// import Menu from "primevue/menu";
-// import ColorPicker from "primevue/colorpicker";
+import ConfirmDate from './components/pages/Datepicker/ConfirmDate.vue'
+import Dialog from 'primevue/dialog';
+import InputText from 'primevue/InputText';
+import Button from 'primevue/Button';
+import Menu from 'primevue/menu';
+import ColorPicker from 'primevue/colorpicker';
+import Navigator from '/src/components/Navigator.vue';
+import Footer from '/src/components/Footer.vue';
 import Body from "/src/components/pages/MainPage/Body.vue";
+
+
+import Searcher from './components/pages/SearchComponent/Search.vue'
+
 export default {
   name: "App",
   components: {
-    // ConfirmDate,
-    // Dialog,
-    // ColorPicker,
-    // InputText,
-    // Button,
+    ConfirmDate,
+    Dialog,
+    ColorPicker,
+    InputText,
+    Button,
+    Menu,
+    Navigator,
+    Footer,
     Body,
-
-    // Menu,
+    Searcher,
   },
   data() {
-    return {
-      color2: "1976D2",
-      items: [
-        {
-          label: "Update",
-          icon: "pi pi-refresh",
-          command: () => {
-            this.$toast.add({
-              severity: "success",
-              summary: "Updated",
-              detail: "Data Updated",
-              life: 3000,
-            });
-          },
-        },
-        {
-          label: "Delete",
-          icon: "pi pi-times",
-          command: () => {
-            this.$toast.add({
-              severity: "warn",
-              summary: "Delete",
-              detail: "Data Deleted",
-              life: 3000,
-            });
-          },
-        },
-        {
-          label: "Vue Website",
-          icon: "pi pi-external-link",
-          url: "https://vuejs.org/",
-        },
-        {
-          label: "Router",
-          icon: "pi pi-upload",
-          to: "/fileupload",
-        },
-      ],
-    };
-  },
-  methods: {
-    toggle(event) {
-      this.$refs.menu.toggle(event);
+        return {
+          searchString: '',
+          showBody: true,
+            color2: '1976D2',
+            items: [
+            {
+              label: 'Update',
+              icon: 'pi pi-refresh',
+              command: () => {
+                this.$toast.add({severity:'success', summary:'Updated', detail:'Data Updated', life: 3000});
+              }
+            },
+            {
+              label: 'Delete',
+              icon: 'pi pi-times',
+              command: () => {
+                this.$toast.add({ severity: 'warn', summary: 'Delete', detail: 'Data Deleted', life: 3000});
+              }
+            },
+            {
+              label: 'Vue Website',
+              icon: 'pi pi-external-link',
+              url: 'https://vuejs.org/'
+            },
+            {
+              label: 'Router',
+              icon: 'pi pi-upload',
+              to: '/fileupload'
+            }
+			    ]
+        }
     },
-  },
-};
+    methods:{
+      toggle(event) {
+        this.$refs.menu.toggle(event);
+      },
+      Search(event){
+        this.$store.state.searchButtonLoading = true;
+
+        this.$store.dispatch('searchHotels', this.searchString);
+      }
+    },
+    computed:{
+      isLoading(){
+        return this.$store.state.searchButtonLoading;
+      },
+      showBody(){
+        return this.$route.path == '/' ? true : false;
+      }
+    }
+}
+
+
 </script>
 
 <style>

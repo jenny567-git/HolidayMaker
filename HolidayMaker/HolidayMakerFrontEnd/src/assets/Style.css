@@ -1,0 +1,14 @@
+@import url(https://use.fontawesome.com/releases/v5.5.0/css/all.css);
+
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+footer {
+    margin-top: 3vh;
+    background-color: #2f2f2f;
+    color:white;
+}

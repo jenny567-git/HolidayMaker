@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div id="test2">
         <div class="row pt-5">
             <div class="col-md-6">
-                <h1>Search result: (X) found</h1>
+                <h1>Search results: {{hotelsCount}} found</h1>
             </div>
             <div class="col-md-6">
                 <div class="dropdown">
@@ -48,13 +48,8 @@
                 <Filter/>
             </div>
             <div class="col-md-8">
-                <Result/>
-                <hr>
-                <Result/>
-                <hr>
-                <Result/>
-                <hr>
-                <Result/>
+                <Result v-for="hotel in hotels" :hotel="hotel" :key="hotel.id"/>
+
             </div>
         </div>
     </div>
@@ -68,6 +63,25 @@ export default ({
     components:{
         Filter,
         Result
+    },
+    
+    computed:{
+        hotels(){
+            return this.$store.state.seachResults;
+        },
+        hotelsCount(){
+            return this.$store.state.seachResults.length;
+        }
     }
 })
 </script>
+
+<style scoped>
+    #test2{
+        border-radius: 30px;
+        background-color: rgba(248, 242, 210, 0.5);
+        padding-left: 25px;
+        padding-right: 25px;
+        margin-top: 20px;
+    }
+</style>

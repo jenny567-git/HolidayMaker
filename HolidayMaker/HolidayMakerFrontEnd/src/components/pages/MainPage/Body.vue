@@ -1,10 +1,5 @@
 <template>
-  <div
-    style="
-      background: url(https://i.postimg.cc/ZnHTP71s/aircraft-airplane-boat-1575833.jpg);
-    "
-    class="page-holder bg-cover"
-  >
+  <div>
     <PopularDestinations />
     <SelectedHotels />
   </div>

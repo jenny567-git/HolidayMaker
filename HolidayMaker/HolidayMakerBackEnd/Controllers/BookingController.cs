@@ -55,7 +55,9 @@ namespace HolidayMakerBackEnd.Controllers
             model.Type = res.Type;
             model.ExtraBed = res.ExtraBed;
             model.HotelId = result.HotelId;
-            model.ReservedRooms = reservedRooms.ToList();
+            //model.ReservedRooms = reservedRooms.ToList();
+            model.NumberOfRooms = reservedRoom.BookedRooms;
+            
 
 
             return model;

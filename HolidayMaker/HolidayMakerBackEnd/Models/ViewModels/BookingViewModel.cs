@@ -31,7 +31,8 @@ namespace HolidayMakerBackEnd.Models.ViewModels
 
 
         //ReservedRRoms
-        public List<ReservedRoom> ReservedRooms = new List<ReservedRoom>();
+        //public List<ReservedRoom> ReservedRooms = new List<ReservedRoom>();
+        public int NumberOfRooms { get; set; }
 
 
         public BookingViewModel()

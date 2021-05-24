@@ -22,11 +22,11 @@ namespace HolidayMakerBackEnd.Models.Database
         public int HotelId { get; set; }
         public int GuestId { get; set; }
         
-        [JsonIgnore]
+        
         public virtual Guest Guest { get; set; }
-        [JsonIgnore]
+        
         public virtual Hotel Hotel { get; set; }
-        [JsonIgnore]
+        
         public virtual ICollection<ReservedRoom> ReservedRooms { get; set; }
     }
 }

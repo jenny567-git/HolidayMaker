@@ -82,6 +82,11 @@ export default {
   padding: 0.7em 0;
 }
 
+.h1, h1{
+  padding-top: 30px;
+  color:white;
+}
+
 @media screen and (max-width: 640px){
   .container{
     display: block;

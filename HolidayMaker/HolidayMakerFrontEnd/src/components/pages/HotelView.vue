@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="test2">
         <h1>{{hotel.name}}</h1>
         <div class="container-fluid">
             <div class="row">
@@ -43,6 +43,17 @@
     </div>
 </template>
 
+<style>
+    #test2{
+            border-radius: 30px;
+            background-color: rgba(107, 146, 83, 0.5);
+            padding-left: 25px;
+            padding-right: 25px;
+            padding-bottom: 40px;
+            margin-top: 20px;
+            color:white;
+        }
+</style>
 
 <script>
 import Info from './HotelViewComponents/Info.vue'

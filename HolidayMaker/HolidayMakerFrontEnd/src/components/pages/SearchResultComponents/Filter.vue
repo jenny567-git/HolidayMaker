@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="sliders">
     <div>
       <p>Price range (SEK)</p>
       <Slider
@@ -111,10 +111,10 @@ export default {
         value: [0, 40000],
       },
       beachRange: {
-        value: [500],
+        value: [0],
       },
       cityRange: {
-        value: [800],
+        value: [0],
       },
     };
   },
@@ -123,4 +123,18 @@ export default {
 
 <style src="@vueform/slider/themes/default.css"></style>
 
-<style scoped></style>
+<style scoped>
+  #sliders{
+    color:rgb(255, 255, 255);
+    
+  }
+
+  .accordion {
+    color:black;
+  }
+  .slider-connect {
+    background: #5a3ff5;
+    cursor: pointer;
+}
+
+</style>

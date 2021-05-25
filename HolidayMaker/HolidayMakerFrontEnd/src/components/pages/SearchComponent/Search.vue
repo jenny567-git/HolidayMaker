@@ -1,11 +1,8 @@
 <template>
   <div id="test2">
     <div class="p-grid">
-      <div>
-
-      </div>
       <div class="p-col-12 p-md-6 p-lg-4">
-        <label for="searchInput">Location/Hotel name </label>
+        <label for="searchInput" id="searchField">Location/Hotel name </label>
         <Searchfield @input-changed="setSearchText"/>
       </div>
       <div class="p-col-12 p-md-6 p-lg-4">
@@ -15,7 +12,7 @@
           <Calendar />
         </div>
       </div>
-      <div class="p-col-12 p-md-6 p-lg-2">
+      <div class="p-col-12 p-md-6 p-lg-2" id="guestsBtn">
         <label for="guest">Guests & rooms </label>
         <SearchDropdown />
       </div>
@@ -67,18 +64,33 @@ export default {
 
 #test2{
         border-radius: 30px;
-        background-color: rgba(248, 242, 210, 0.5);
+        background-color: rgba(107, 146, 83, 0.5);
         padding-left: 25px;
         padding-right: 25px;
     }
+    
 #searchBtn{
-  align-self: center;
+  margin-top: 48px;
 }
 #range{
   display: block;
 }
+
+#guestsBtn{
+  align-self: center;
+}
+
+#searchField {
+  margin-top: 3px;
+}
+
+#calender {
+ margin-top: 5px;
+}
+
+
 .container {
-  background-color: #97a97c;
+  background-color: #7e7e7e;
   color: #283618;
   border-radius: 25px;
   padding-left: 50px;

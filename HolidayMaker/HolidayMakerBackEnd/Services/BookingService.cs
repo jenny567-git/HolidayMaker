@@ -57,7 +57,7 @@ namespace HolidayMakerBackEnd.Services
             return result;
         }
 
-        public void MakeBooking(SearchViewModel model)
+        public void MakeBooking(BookingViewModel model)
         {
 
             var newReservation = new Reservation()

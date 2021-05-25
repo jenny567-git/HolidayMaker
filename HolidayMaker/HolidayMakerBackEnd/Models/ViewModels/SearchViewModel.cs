@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HolidayMakerBackEnd.Models.ViewModels
 {
-    public class SearchViewModel
+    public class BookingViewModel
     {
         
         //Reservation

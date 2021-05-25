@@ -51,9 +51,7 @@ namespace HolidayMakerBackEnd.Controllers
             model.EndDate = result.EndDate;
             model.DateCreated = result.DateCreated;
             model.TotalPrice = result.TotalPrice;
-                       
-                model.Adults = 0;
-                     model.Adults = res.Adults;
+            model.Adults = res.Adults;
             model.Children = res.Children;
             model.CustomerMessage = res.CustomerMessage;
             model.ReservationId = result.Id;

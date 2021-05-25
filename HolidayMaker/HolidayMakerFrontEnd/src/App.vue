@@ -119,7 +119,9 @@ export default {
   padding: 40px;
   width: auto;
   height: auto;
-  border: 3px solid black;
+  border-color: black;
+  border-style: solid;
+  border-width: 2px 0px 2px 0px;
   justify-content: center;
 }
 </style>

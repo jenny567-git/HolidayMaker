@@ -92,12 +92,16 @@ const store = createStore({
    actions:{
         async searchHotels({commit}, searchString){
             console.log(this.state.searchString.dates);
-            let date1 = this.state.searchString.dates[1].toDateString().split(" ");
-            console.log(date1);
-            //console.log(moment(this.state.searchString.dates[1]).format('YYYY-MM-DD'));
-            //var response = await fetch('https://localhost:44356/api/Search/searchpeople?input=' + searchString.string + '&startDate=' + this.state.searchString.dates[0] + '&endDate=' + this.state.searchString.dates[1] + '&rooms=' + this.state.searchString.inputRooms + '&people=' + (this.state.searchString.inputAdult + this.state.searchString.inputChild))
-            //var result = await response.json();
-            //console.log(response);
+            let startDate = this.state.searchString.dates[0].toISOString().slice(0,10);
+            let endDate = this.state.searchString.dates[1].toISOString().slice(0,10);
+
+            var response = await fetch('https://localhost:44356/api/Search/searchpeople?input=' + searchString + '&startDate=' + startDate + '&endDate=' + endDate + '&rooms=' + this.state.searchString.inputRooms + '&people=' + (this.state.searchString.inputAdult + this.state.searchString.inputChild))
+            console.log(response);
+            var result = await response.json();
+            commit('setHotelSeachResultsList', result);
+            if(result){
+                router.push({name: 'result'})
+            }
         },
         // async searchHotels({commit}, searchString){
         //     var response = await fetch('https://localhost:44356/api/Search/GetSearchResultByName?input=' + searchString); // Default is GET

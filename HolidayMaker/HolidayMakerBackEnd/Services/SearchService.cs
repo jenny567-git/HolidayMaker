@@ -73,7 +73,7 @@ namespace HolidayMakerBackEnd.Services
             return result.AsEnumerable();
         }
 
-        //working
+        //working: searchstring + dates
         public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithStringDates(string input, DateTime startDate, DateTime endDate)
         {
             var hotelsByInput = GetSearchResultByName(input);
@@ -87,7 +87,7 @@ namespace HolidayMakerBackEnd.Services
             return hotelList;
         }
 
-        //working
+        //working: searchstring + dates + rooms
         public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithStringDatesRooms(string input, DateTime startDate, DateTime endDate, int rooms)
         {
             var hotelsByInput = GetSearchResultByName(input);
@@ -108,7 +108,7 @@ namespace HolidayMakerBackEnd.Services
             return hotelList;
         }
 
-        //working
+        //working: searchstring + dates + rooms + people
         public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithStringDatesRoomsPeople(string input, DateTime startDate, DateTime endDate, int rooms, int people)
         {
             var hotelsByInput = GetSearchResultByName(input);
@@ -133,7 +133,7 @@ namespace HolidayMakerBackEnd.Services
         }
 
 
-        //working
+        //working: no searchstring, only dates
         public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithDates(DateTime startDate, DateTime endDate)
         {
             var hotels = _hs.GetAllHotels();

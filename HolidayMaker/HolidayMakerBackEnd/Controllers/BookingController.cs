@@ -16,11 +16,13 @@ namespace HolidayMakerBackEnd.Controllers
     {
 
         private readonly BookingService _bookingService;
+        private readonly GuestService _guestService;
         private readonly HolidayMakerContext _db;
 
         public BookingController()
         {
            _bookingService = new BookingService();
+            _guestService = new GuestService();
             _db = new HolidayMakerContext();
         }
 
@@ -36,7 +38,7 @@ namespace HolidayMakerBackEnd.Controllers
         {
             var result = _bookingService.GetBookingById(id);
             var res = _bookingService.GetReservationsDetail(result.Id);
-            var reservedRoom = _bookingService.GetReservedRoom(result.Id);
+            //var reservedRoom = _bookingService.GetReservedRoom(result.Id);
             var reservedRooms = _bookingService.GetReservedRooms(result.Id);
             var test = result.ReservedRooms;
             
@@ -56,19 +58,50 @@ namespace HolidayMakerBackEnd.Controllers
             model.ExtraBed = res.ExtraBed;
             model.HotelId = result.HotelId;
             //model.ReservedRooms = reservedRooms.ToList();
-            model.NumberOfRooms = reservedRoom.BookedRooms;
-            
 
+            foreach (var item in reservedRooms)
+            {
+                model.NumberOfRooms += item.BookedRooms;
+                if (item.Room.Type=="Single")
+                {
+                    model.hotelRoomsViewModel.SingleRooms = item.BookedRooms;
+                }
+                else if (item.Room.Type =="Double")
+                {
+                    model.hotelRoomsViewModel.DoubleRooms = item.BookedRooms;
+                }else if (item.Room.Type == "Family")
+                {
+                    model.hotelRoomsViewModel.FamilyRooms =item.BookedRooms;
+                }
+                
+            }
+            
 
             return model;
 
         }
 
-        [HttpGet("Bookings/{id}")]
-        public IEnumerable<Reservation> GetAllBookingByGuestId(int id)
-        {
-            var result = _bookingService.GetAllBookingByGuestId(id);
-            return result;
-        }
+        //[HttpGet("Bookings/{id}")]
+        //public GuestAllBookingsViewModel GetAllBookingByGuestId(int id)
+        //{
+        //    GuestAllBookingsViewModel model = new GuestAllBookingsViewModel();
+        //    //hämta en gäst
+        //    //hämta ut gästens alla bokningar
+        //    //hämta ut tillhörande detaljer
+        //    //hämta ut tillhörande bokade rum
+
+        //    var guest = _guestService.FindGuestById(id);
+        //    var result = _bookingService.GetAllBookingByGuestId(guest.Id);
+        //    var nummer = new List<int>();
+        //    foreach (var item in result)
+        //    {
+        //        nummer.Add(item.Id);
+        //    }
+        //    var reservationsDetails = _bookingService.GetAllReservationsDetails(nummer);
+        //    return model;
+
+
+
+        //}
     }
 }

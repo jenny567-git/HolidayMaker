@@ -26,8 +26,4 @@ export default {
         padding-top: 20px;
         text-shadow: 2px 2px black;
     }
-
-    a{
-
-    }
 </style>

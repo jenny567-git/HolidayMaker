@@ -80,6 +80,7 @@
 
 .h1, h1{
   padding-top: 30px;
+  color:white;
 }
 
 @media screen and (max-width: 640px){

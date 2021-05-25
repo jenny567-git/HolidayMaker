@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="test2">
     <form @submit="onSubmit">
       <div class="pt-5">
         <RatingSlider v-model="rating" @clicked="onClickChild" />
@@ -75,3 +75,15 @@ import RatingSlider from './RatingSlider.vue'
     }
   }
 </script>
+
+
+<style scoped>
+  #test2{
+        border-radius: 30px;
+        background-color: rgba(107, 146, 83, 0.5);
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-bottom: 40px;
+        margin-top: 20px;
+    }
+</style>

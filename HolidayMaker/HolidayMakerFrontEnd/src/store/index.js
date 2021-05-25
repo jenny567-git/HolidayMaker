@@ -63,6 +63,9 @@ const store = createStore({
         setMessage(store, value) {
             store.addReview.message = value
         },
+        setSearchButtonLoadingTrue(store, value){
+            store.searchButtonLoading = true;
+        },
         setHotelSeachResultsList(store, value){
             store.seachResults = value;
             store.searchButtonLoading = false;
@@ -81,6 +84,9 @@ const store = createStore({
         },
         setDates(state, date) {
             state.searchString.dates = date
+        },
+        setSearchString(state, value){
+            state.searchString.string = value;
         }
    },
    actions:{
@@ -102,6 +108,28 @@ const store = createStore({
             console.log("set hotel action")
             console.log(hotel)
             commit('setHotel', hotel)
+        },
+        async searchSpecific({commit}, payload){
+            window.scrollTo(0, 0)
+            commit('setSearchString', payload.searchString);
+            commit('setSearchButtonLoadingTrue', null);
+            if(payload.type === 'city'){
+                var response = await fetch('https://localhost:44356/api/Search/GetHotelByCity?input=' + payload.searchString); // Default is GET
+                var result = await response.json();
+                //console.log("searching for city: ",payload.type, payload.searchString, result)
+                commit('setHotelSeachResultsList', result);
+
+                setTimeout(function(){ // Timeout resolves inconsistent scroll behaviour between scrollTo and router.push
+                    if(result){
+                        router.push({name: 'result'})
+                    }
+                }, 500);
+            }
+            else{
+                setTimeout(function(that){ 
+                    that.dispatch('searchHotels', payload.searchString);
+                }, 500, this); 
+            }
         },
     
         updateAdults({ commit }, value) {

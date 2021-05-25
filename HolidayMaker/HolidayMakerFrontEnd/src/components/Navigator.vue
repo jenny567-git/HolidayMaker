@@ -5,7 +5,7 @@
             <title>Simple Navbar with flexbox</title>
         </head>
             <header>
-                <img class="" src="/src/assets/Logo5_cropped.png" alt="" height="120">
+                <img class="" src="/src/assets/Logo5_cropped.png" alt="" height="80">
                 <nav>
                     <ul class="nav-area">
                         <li><a href="#"><router-link to="/hotels/1">Hotel 1 | </router-link></a></li>

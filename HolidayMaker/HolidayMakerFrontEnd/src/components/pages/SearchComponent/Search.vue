@@ -70,7 +70,7 @@ export default {
     }
     
 #searchBtn{
-  margin-top: 45px;
+  margin-top: 48px;
 }
 #range{
   display: block;

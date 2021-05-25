@@ -111,10 +111,10 @@ export default {
         value: [0, 40000],
       },
       beachRange: {
-        value: [500],
+        value: [0],
       },
       cityRange: {
-        value: [800],
+        value: [0],
       },
     };
   },

@@ -30,7 +30,7 @@ export default {
                 format: function(value){
                     if(value == 0){return `Very Bad - ${value}`
                     } else if(value == 1){return `Bad - ${value}`
-                    } else if(value == 2 ){return `OK - ${value}`
+                    } else if(value == 2){return `OK - ${value}`
                     } else if(value == 3){return `Good - ${value}`
                     } else if(value == 4){return `Very Good - ${value}`
                     } else { return `Excellent - ${value}`}  

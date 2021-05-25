@@ -21,6 +21,58 @@ namespace HolidayMakerBackEnd.Services
         public int latestId;
         public string latestType;
 
+
+        //removeBooking missing
+
+
+
+
+        public Reservation GetBookingById(int id)
+        {
+            var result = _db.Reservations.Include(r => r.Guest).Include(h => h.Hotel).ThenInclude(r => r.Rooms).SingleOrDefault(r => r.Id == id);
+
+
+            return result;
+        }
+        public ReservedRoom GetReservedRoom(int id)
+        {
+            var result = _db.ReservedRooms.FirstOrDefault(x => x.ReservationId == id);
+            return result;
+        }
+
+        public ReservationsDetail GetReservationsDetail(int id)
+        {
+            var res = _db.ReservationsDetails.FirstOrDefault(r => r.ReservationId == id);
+            return res;
+
+        }
+
+        //public List<ReservationsDetail> GetAllReservationsDetails(List<int>nummer)
+        //{
+        //    var test = new List<ReservationsDetail>();
+        //    var testa = new List<ReservationsDetail>();
+        //    foreach (var item in nummer)
+        //    {
+        //        testa = _db.ReservationsDetails.Where(x => x.ReservationId == item).ToList();
+        //        foreach (var itema in testa)
+        //        {
+        //            test.Add(item);
+        //        }
+
+        //    }
+        //    return test;
+        //}
+        public IEnumerable<ReservedRoom> GetReservedRooms(int id)
+        {
+            return _db.ReservedRooms.Where(x => x.ReservationId == id).Include(r => r.Room).ToList();
+
+        }
+        public IEnumerable<Reservation> GetAllBookingByGuestId(int id)
+        {
+            var result = _db.Reservations.Where(b => b.GuestId == id).AsEnumerable();
+            return result;
+        }
+
         public void MakeBooking(SearchViewModel model)
         {
 
@@ -31,7 +83,7 @@ namespace HolidayMakerBackEnd.Services
                 DateCreated = DateTime.Now,
                 HotelId = model.HotelId,
                 GuestId = model.GuestId,
-                
+
             };
 
             _db.Reservations.Add(newReservation);
@@ -39,13 +91,13 @@ namespace HolidayMakerBackEnd.Services
             latestId = newReservation.Id;
 
             var Acc = new Accomodation();
-           
+
 
             latestType = Acc.Type = model.Type;
-            
 
 
-            
+
+
             var newResDetails = new ReservationsDetail()
             {
                 Adults = model.Adults,
@@ -53,7 +105,7 @@ namespace HolidayMakerBackEnd.Services
                 ExtraBed = model.ExtraBed,
                 CustomerMessage = model.CustomerMessage,
                 ReservationId = latestId,
-                
+
                 Type = latestType,
 
             };
@@ -75,12 +127,11 @@ namespace HolidayMakerBackEnd.Services
 
 
             var Cost = CalculateCost(newReservation, newReservedRooms, newResDetails);
-            
-            
+
+
         }
 
 
-        
         public object CalculateCost(Reservation reservation, ReservedRoom reservedRoom, ReservationsDetail reservationsDetail)
         {
             double totalprice = 0;
@@ -93,18 +144,18 @@ namespace HolidayMakerBackEnd.Services
             int days = (int)t.Days;
             int rooms = reservedRoom.BookedRooms;
 
-            var CostPerNightAndRoom = costPerNight * (days*rooms);
+            var CostPerNightAndRoom = costPerNight * (days * rooms);
 
             totalprice += CostPerNightAndRoom;
 
             totalprice += accomodationTypePrice;
 
 
-            
-            
 
 
-            if (extrabed==true)
+
+
+            if (extrabed == true)
             {
                 totalprice += 200;
             }
@@ -124,12 +175,12 @@ namespace HolidayMakerBackEnd.Services
             return totalprice;
 
 
-            
-         
+
+
         }
-      
-        
-       
+
+
+
 
     }
 }

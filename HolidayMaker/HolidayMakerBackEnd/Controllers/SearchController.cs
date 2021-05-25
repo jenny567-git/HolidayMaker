@@ -95,7 +95,7 @@ namespace HolidayMakerBackEnd.Controllers
         //}
         
         [HttpGet("search")]
-        public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithStringDatesRoomsPeople(string? input=null, DateTime? startDate=null, DateTime? endDate=null, int? rooms=null, int? people=null)
+        public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithStringDatesRoomsPeople(DateTime? startDate=null, DateTime? endDate=null, int? rooms=null, int? people=null, string? input = null)
         {
             IEnumerable<AvailableHotelViewModel> result = null;
             

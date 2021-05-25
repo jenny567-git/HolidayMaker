@@ -94,10 +94,11 @@ const store = createStore({
             let startDate = this.state.searchString.dates[0].toISOString().slice(0,10);
             console.log(startDate);
             let endDate = this.state.searchString.dates[1].toISOString().slice(0,10);
+            
             if(searchString === null || searchString == ''){
-                var response = await fetch('https://localhost:44356/api/Search/searchWithNoString?startDate' + startDate + '&endDate=' + endDate + '&rooms=' + this.state.searchString.inputRooms + '&people=' + (this.state.searchString.inputAdult + this.state.searchString.inputChild));
+                var response = await fetch('https://localhost:44356/api/Search/search?startDate=' + startDate + '&endDate=' + endDate + '&rooms=' + this.state.searchString.inputRooms + '&people=' + (this.state.searchString.inputAdult + this.state.searchString.inputChild));
             } else {
-                var response = await fetch('https://localhost:44356/api/Search/searchpeople?input=' + searchString + '&startDate=' + startDate + '&endDate=' + endDate + '&rooms=' + this.state.searchString.inputRooms + '&people=' + (this.state.searchString.inputAdult + this.state.searchString.inputChild))
+                var response = await fetch('https://localhost:44356/api/Search/search?startDate=' + startDate + '&endDate=' + endDate + '&rooms=' + this.state.searchString.inputRooms + '&people=' + (this.state.searchString.inputAdult + this.state.searchString.inputChild) + '&input=' + searchString)
             }
             
             console.log(response);
@@ -108,7 +109,7 @@ const store = createStore({
             }
         },
         async searchHotelByName({commit}, searchString){
-            var response = await fetch('https://localhost:44356/api/Search/GetAllHotelByInput?input=' + searchString); // Default is GET
+            var response = await fetch('https://localhost:44356/api/Search/search?input=' + searchString); // Default is GET
             var result = await response.json();
             console.log(searchString, result)
             commit('setHotelSeachResultsList', result);

@@ -91,12 +91,20 @@ const store = createStore({
    },
    actions:{
         async searchHotels({commit}, searchString){
-            let startDate = this.state.searchString.dates[0].toISOString().slice(0,10);
-            console.log(startDate);
-            let endDate = this.state.searchString.dates[1].toISOString().slice(0,10);
-            
+            let startDate;
+            let endDate;
+            console.log(this.state.searchString.dates);
+            if(this.state.searchString.dates.length){
+                startDate = this.state.searchString.dates[0].toISOString().slice(0,10);
+                endDate = this.state.searchString.dates[1].toISOString().slice(0,10);
+            }
+            //search with all values but no string
             if(searchString === null || searchString == ''){
                 var response = await fetch('https://localhost:44356/api/Search/search?startDate=' + startDate + '&endDate=' + endDate + '&rooms=' + this.state.searchString.inputRooms + '&people=' + (this.state.searchString.inputAdult + this.state.searchString.inputChild));
+            //search with only string
+            } else if(!this.state.searchString.dates.length){
+                var response = await fetch('https://localhost:44356/api/Search/search?input=' + searchString);
+            //search with all values
             } else {
                 var response = await fetch('https://localhost:44356/api/Search/search?startDate=' + startDate + '&endDate=' + endDate + '&rooms=' + this.state.searchString.inputRooms + '&people=' + (this.state.searchString.inputAdult + this.state.searchString.inputChild) + '&input=' + searchString)
             }

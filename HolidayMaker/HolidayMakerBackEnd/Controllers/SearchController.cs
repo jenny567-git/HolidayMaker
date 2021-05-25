@@ -73,40 +73,63 @@ namespace HolidayMakerBackEnd.Controllers
             return result;
         }
         
-        [HttpGet("searchstring")]
-        public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithStringDates(string input, DateTime startDate, DateTime endDate)
-        {
-            var result = _searchService.GetAvailableHotelsWithStringDates(input, startDate, endDate);
-            return result;
-        }
+        //[HttpGet("searchstring")]
+        //public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithStringDates(string input, DateTime startDate, DateTime endDate)
+        //{
+        //    var result = _searchService.GetAvailableHotelsWithStringDates(input, startDate, endDate);
+        //    return result;
+        //}
+        
+        //[HttpGet("search")]
+        //public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithStringDatesRooms(string input, DateTime startDate, DateTime endDate, int rooms)
+        //{
+        //    var result = _searchService.GetAvailableHotelsWithStringDatesRooms(input, startDate, endDate, rooms);
+        //    return result;
+        //}
+        
+        //[HttpGet("searchdates")]
+        //public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithDates(DateTime startDate, DateTime endDate)
+        //{
+        //    var result = _searchService.GetAvailableHotelsWithDates(startDate, endDate);
+        //    return result;
+        //}
         
         [HttpGet("search")]
-        public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithStringDatesRooms(string input, DateTime startDate, DateTime endDate, int rooms)
+        public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithStringDatesRoomsPeople(string? input=null, DateTime? startDate=null, DateTime? endDate=null, int? rooms=null, int? people=null)
         {
-            var result = _searchService.GetAvailableHotelsWithStringDatesRooms(input, startDate, endDate, rooms);
+            IEnumerable<AvailableHotelViewModel> result = null;
+            
+
+            if (rooms.HasValue && people.HasValue && (input == null || input == ""))
+            {
+                //all fields except string has value
+                result = _searchService.GetAvailableHotelsWithDatesPeopleRooms(startDate.Value, endDate.Value, rooms.Value, people.Value);
+            }else if(startDate == null && endDate == null)
+            {
+                IEnumerable<Hotel> searchresult = _searchService.GetSearchResultByName(input);
+                
+                List<AvailableHotelViewModel> viewModelList = new List<AvailableHotelViewModel>();
+
+                foreach (var hotel in searchresult)
+                {
+                    viewModelList.Add(new AvailableHotelViewModel { Hotel = hotel});    
+                }
+                result = viewModelList.AsEnumerable();
+            } else
+            {
+                //all fields has value
+                result = _searchService.GetAvailableHotelsWithStringDatesRoomsPeople(input, startDate.Value, endDate.Value, rooms.Value, people.Value);
+            }
+            
             return result;
         }
         
-        [HttpGet("searchdates")]
-        public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithDates(DateTime startDate, DateTime endDate)
-        {
-            var result = _searchService.GetAvailableHotelsWithDates(startDate, endDate);
-            return result;
-        }
-        
-        [HttpGet("searchpeople")]
-        public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithStringDatesRoomsPeople(string input, DateTime startDate, DateTime endDate, int rooms, int people)
-        {
-            var result = _searchService.GetAvailableHotelsWithStringDatesRoomsPeople(input, startDate, endDate, rooms, people);
-            return result;
-        }
-        
-        [HttpGet("searchWithNoString")]
-        public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithDatesPeopleRooms(DateTime startDate, DateTime endDate, int rooms, int people)
-        {
-            var result = _searchService.GetAvailableHotelsWithDatesPeopleRooms(startDate, endDate, rooms, people);
-            return result;
-        }
+        //[HttpGet("searchWithNoString")]
+        //public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithDatesPeopleRooms(DateTime startDate, DateTime endDate, int rooms, int people)
+        //{
+        //    var result = _searchService.GetAvailableHotelsWithDatesPeopleRooms(startDate, endDate, rooms, people);
+        //    return result;
+        //}
 
 
 

@@ -107,15 +107,15 @@ const store = createStore({
                 router.push({name: 'result'})
             }
         },
-        // async searchHotels({commit}, searchString){
-        //     var response = await fetch('https://localhost:44356/api/Search/GetSearchResultByName?input=' + searchString); // Default is GET
-        //     var result = await response.json();
-        //     console.log(searchString, result)
-        //     commit('setHotelSeachResultsList', result);
-        //     if(result){
-        //         router.push({name: 'result'})
-        //     }
-        // },
+        async searchHotelByName({commit}, searchString){
+            var response = await fetch('https://localhost:44356/api/Search/GetSearchResultByName?input=' + searchString); // Default is GET
+            var result = await response.json();
+            console.log(searchString, result)
+            commit('setHotelSeachResultsList', result);
+            if(result){
+                router.push({name: 'result'})
+            }
+        },
         async getHotelById({commit}, hotelId){
             var response = await fetch('https://localhost:44356/api/Hotel/GetById/' + hotelId); // Default is GET
             var result = await response.json();
@@ -144,7 +144,7 @@ const store = createStore({
             }
             else{
                 setTimeout(function(that){ 
-                    that.dispatch('searchHotels', payload.searchString);
+                    that.dispatch('searchHotelByName', payload.searchString);
                 }, 500, this); 
             }
         },

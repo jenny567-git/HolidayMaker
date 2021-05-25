@@ -66,10 +66,10 @@ namespace HolidayMakerBackEnd.Controllers
 
 
 
-        [HttpGet("GetSearchResultByName")]
-        public IEnumerable<Hotel> GetSearchResultByName(string input)
+        [HttpGet("GetAllHotelByInput")]
+        public IEnumerable<Hotel> GetAllHotelByInput(string input)
         {
-            var result = _searchService.GetSearchResultByName(input);
+            var result = _searchService.GetAllHotelByInput(input);
             return result;
         }
         
@@ -103,10 +103,10 @@ namespace HolidayMakerBackEnd.Controllers
             if (rooms.HasValue && people.HasValue && (input == null || input == ""))
             {
                 //all fields except string has value
-                result = _searchService.GetAvailableHotelsWithDatesPeopleRooms(startDate.Value, endDate.Value, rooms.Value, people.Value);
+                result = _searchService.GetAvailableHotels(startDate.Value, endDate.Value, rooms.Value, people.Value);
             }else if(startDate == null && endDate == null)
             {
-                IEnumerable<Hotel> searchresult = _searchService.GetSearchResultByName(input);
+                IEnumerable<Hotel> searchresult = _searchService.GetAllHotelByInput(input);
                 
                 List<AvailableHotelViewModel> viewModelList = new List<AvailableHotelViewModel>();
 
@@ -118,7 +118,7 @@ namespace HolidayMakerBackEnd.Controllers
             } else
             {
                 //all fields has value
-                result = _searchService.GetAvailableHotelsWithStringDatesRoomsPeople(input, startDate.Value, endDate.Value, rooms.Value, people.Value);
+                result = _searchService.GetAvailableHotels(startDate.Value, endDate.Value, rooms.Value, people.Value, input);
             }
             
             return result;

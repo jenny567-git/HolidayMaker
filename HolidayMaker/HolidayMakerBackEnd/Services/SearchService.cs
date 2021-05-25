@@ -54,7 +54,7 @@ namespace HolidayMakerBackEnd.Services
         }
 
         //includes hotel name, city name and country name
-        public IEnumerable<Hotel> GetSearchResultByName(string input)
+        public IEnumerable<Hotel> GetAllHotelByInput(string input)
         {
             var result = GetHotelByCity(input).ToHashSet();
             var hotelCountry = GetHotelByCountry(input);
@@ -76,7 +76,7 @@ namespace HolidayMakerBackEnd.Services
         //working: searchstring + dates
         //public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithStringDates(string input, DateTime startDate, DateTime endDate)
         //{
-        //    var hotelsByInput = GetSearchResultByName(input);
+        //    var hotelsByInput = GetAllHotelByInput(input);
         //    HashSet<AvailableHotelViewModel> hotelList = new HashSet<AvailableHotelViewModel>();
 
         //    foreach (var h in hotelsByInput)
@@ -90,7 +90,7 @@ namespace HolidayMakerBackEnd.Services
         ////working: searchstring + dates + rooms
         //public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithStringDatesRooms(string input, DateTime startDate, DateTime endDate, int rooms)
         //{
-        //    var hotelsByInput = GetSearchResultByName(input);
+        //    var hotelsByInput = GetAllHotelByInput(input);
         //    HashSet<AvailableHotelViewModel> hotelList = new HashSet<AvailableHotelViewModel>();
 
 
@@ -109,16 +109,38 @@ namespace HolidayMakerBackEnd.Services
         //}
 
         //working: searchstring + dates + rooms + people
-        public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithStringDatesRoomsPeople(string input, DateTime startDate, DateTime endDate, int rooms, int people)
+        public IEnumerable<AvailableHotelViewModel> GetAvailableHotels(DateTime startDate, DateTime endDate, int rooms, int people, string input= null)
         {
-            var hotelsByInput = GetSearchResultByName(input);
+            IEnumerable<Hotel> hotels;
+            if (input == null || input=="")
+            {
+                hotels = _hs.GetAllHotels();
+            }
+            else
+            {
+                hotels = GetAllHotelByInput(input);
+            }
+            
             HashSet<AvailableHotelViewModel> hotelList = new HashSet<AvailableHotelViewModel>();
-            SearchAvailableRoomsDependingOnPeople(startDate, endDate, rooms, people, hotelsByInput, hotelList);
+            SearchAvailableRoomsDependingOnPeople(startDate, endDate, rooms, people, hotels, hotelList);
 
             return hotelList;
         }
 
+       
         
+        //no searchstring, only dates + people + rooms
+        //public IEnumerable<AvailableHotelViewModel> GetAvailableHotels(DateTime startDate, DateTime endDate, int rooms, int people)
+        //{
+        //    var hotels = _hs.GetAllHotels();
+        //    HashSet<AvailableHotelViewModel> hotelList = new HashSet<AvailableHotelViewModel>();
+
+        //    SearchAvailableRoomsDependingOnPeople(startDate, endDate, rooms, people, hotels, hotelList);
+
+        //    return hotelList;
+        //}
+
+
         //working: no searchstring, only dates
         //public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithDates(DateTime startDate, DateTime endDate)
         //{
@@ -132,19 +154,6 @@ namespace HolidayMakerBackEnd.Services
 
         //    return hotelList;
         //}
-        
-        //no searchstring, only dates + people + rooms
-        public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithDatesPeopleRooms(DateTime startDate, DateTime endDate, int rooms, int people)
-        {
-            var hotels = _hs.GetAllHotels();
-            HashSet<AvailableHotelViewModel> hotelList = new HashSet<AvailableHotelViewModel>();
-
-            SearchAvailableRoomsDependingOnPeople(startDate, endDate, rooms, people, hotels, hotelList);
-
-            return hotelList;
-        }
-
-
 
 
 

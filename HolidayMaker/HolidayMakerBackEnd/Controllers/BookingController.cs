@@ -16,11 +16,13 @@ namespace HolidayMakerBackEnd.Controllers
     {
 
         private readonly BookingService _bookingService;
+        private readonly GuestService _guestService;
         private readonly HolidayMakerContext _db;
 
         public BookingController()
         {
-           _bookingService = new BookingService();
+            _bookingService = new BookingService();
+            _guestService = new GuestService();
             _db = new HolidayMakerContext();
         }
 
@@ -30,7 +32,6 @@ namespace HolidayMakerBackEnd.Controllers
             _bookingService.MakeBooking(model);
             return Ok();
         }
-
 
         [HttpGet("Booking/{id}")]
         public BookingViewModel GetBookingById(int id)
@@ -80,5 +81,28 @@ namespace HolidayMakerBackEnd.Controllers
             return model;
 
         }
+
+        //[HttpGet("Bookings/{id}")]
+        //public GuestAllBookingsViewModel GetAllBookingByGuestId(int id)
+        //{
+        //    GuestAllBookingsViewModel model = new GuestAllBookingsViewModel();
+        //    //hämta en gäst
+        //    //hämta ut gästens alla bokningar
+        //    //hämta ut tillhörande detaljer
+        //    //hämta ut tillhörande bokade rum
+
+        //    var guest = _guestService.FindGuestById(id);
+        //    var result = _bookingService.GetAllBookingByGuestId(guest.Id);
+        //    var nummer = new List<int>();
+        //    foreach (var item in result)
+        //    {
+        //        nummer.Add(item.Id);
+        //    }
+        //    var reservationsDetails = _bookingService.GetAllReservationsDetails(nummer);
+        //    return model;
+
+
+
+        //}
     }
 }

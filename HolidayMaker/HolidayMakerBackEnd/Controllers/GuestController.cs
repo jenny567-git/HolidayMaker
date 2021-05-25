@@ -27,6 +27,7 @@ namespace HolidayMakerBackEnd.Controllers
         [HttpGet("GetGuestById/{id}")]
         public IEnumerable<Guest> GetGuestById(int id)
         {
+            
             var result = _guestService.GetGuestById(id);
             return result;
         }

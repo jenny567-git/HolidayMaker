@@ -20,7 +20,8 @@ namespace HolidayMakerBackEnd.Models.ViewModels
         public DateTime DateCreated { get; set; }
         
         public int HotelId { get; set; }
-        
+        public string HotelName { get; set; }
+
 
         //ReservationDetails
         public int Adults { get; set; }

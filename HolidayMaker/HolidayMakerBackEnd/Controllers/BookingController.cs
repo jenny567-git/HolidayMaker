@@ -36,6 +36,7 @@ namespace HolidayMakerBackEnd.Controllers
         [HttpGet("Booking/{id}")]
         public BookingViewModel GetBookingById(int id)
         {
+            
             var result = _bookingService.GetBookingById(id);
             var res = _bookingService.GetReservationsDetail(result.Id);
             //var reservedRoom = _bookingService.GetReservedRoom(result.Id);
@@ -44,13 +45,15 @@ namespace HolidayMakerBackEnd.Controllers
             
             BookingViewModel model = new BookingViewModel();
             model.FullName = result.Guest.FullName;
+            model.HotelName = result.Hotel.Name;
             model.HotelId = result.HotelId;
             model.StartDate = result.StartDate;
             model.EndDate = result.EndDate;
             model.DateCreated = result.DateCreated;
             model.TotalPrice = result.TotalPrice;
-
-            model.Adults = res.Adults;
+                       
+                model.Adults = 0;
+                     model.Adults = res.Adults;
             model.Children = res.Children;
             model.CustomerMessage = res.CustomerMessage;
             model.ReservationId = result.Id;

@@ -29,6 +29,7 @@ namespace HolidayMakerBackEnd.Services
 
         public Reservation GetBookingById(int id)
         {
+            
             var result = _db.Reservations.Include(r => r.Guest).Include(h => h.Hotel).ThenInclude(r=>r.Rooms).SingleOrDefault(r => r.Id == id);
 
 

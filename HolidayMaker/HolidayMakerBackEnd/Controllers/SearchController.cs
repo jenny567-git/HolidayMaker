@@ -49,10 +49,19 @@ namespace HolidayMakerBackEnd.Controllers
         }
 
         [HttpGet("GetHotelByCity")]
-        public IEnumerable<Hotel> GetHotelByCity(string input)
+        public IEnumerable<AvailableHotelViewModel> GetHotelByCity(string input)
         {
-             
-            var result = _searchService.GetHotelByCity(input);
+            IEnumerable<Hotel> searchresult = _searchService.GetHotelByCity(input);
+
+            List<AvailableHotelViewModel> viewModelList = new List<AvailableHotelViewModel>();
+
+            foreach (var hotel in searchresult)
+            {
+                viewModelList.Add(new AvailableHotelViewModel { Hotel = hotel });
+            }
+            
+            var result = viewModelList.AsEnumerable();
+
             return result;
           
         }

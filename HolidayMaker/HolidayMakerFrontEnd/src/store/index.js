@@ -91,11 +91,15 @@ const store = createStore({
    },
    actions:{
         async searchHotels({commit}, searchString){
-            console.log(this.state.searchString.dates);
             let startDate = this.state.searchString.dates[0].toISOString().slice(0,10);
+            console.log(startDate);
             let endDate = this.state.searchString.dates[1].toISOString().slice(0,10);
-
-            var response = await fetch('https://localhost:44356/api/Search/searchpeople?input=' + searchString + '&startDate=' + startDate + '&endDate=' + endDate + '&rooms=' + this.state.searchString.inputRooms + '&people=' + (this.state.searchString.inputAdult + this.state.searchString.inputChild))
+            if(searchString === null || searchString == ''){
+                var response = await fetch('https://localhost:44356/api/Search/searchWithNoString?startDate' + startDate + '&endDate=' + endDate + '&rooms=' + this.state.searchString.inputRooms + '&people=' + (this.state.searchString.inputAdult + this.state.searchString.inputChild));
+            } else {
+                var response = await fetch('https://localhost:44356/api/Search/searchpeople?input=' + searchString + '&startDate=' + startDate + '&endDate=' + endDate + '&rooms=' + this.state.searchString.inputRooms + '&people=' + (this.state.searchString.inputAdult + this.state.searchString.inputChild))
+            }
+            
             console.log(response);
             var result = await response.json();
             commit('setHotelSeachResultsList', result);

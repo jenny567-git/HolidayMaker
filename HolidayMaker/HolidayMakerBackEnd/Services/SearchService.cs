@@ -113,26 +113,12 @@ namespace HolidayMakerBackEnd.Services
         {
             var hotelsByInput = GetSearchResultByName(input);
             HashSet<AvailableHotelViewModel> hotelList = new HashSet<AvailableHotelViewModel>();
-
-            foreach (var h in hotelsByInput)
-            {
-                var hotelrooms = _hs.GetAvailableRooms(h.Id, startDate, endDate);
-                int availableRooms = hotelrooms.SingleRooms + hotelrooms.DoubleRooms + hotelrooms.FamilyRooms;
-                
-                if (_hs.GetMaxCapacityAvailableForHotel(h.Id, startDate, endDate) >= people)
-                {
-                    if (availableRooms >= rooms)
-                    {
-                        hotelList.Add(new AvailableHotelViewModel(hotelrooms, h));
-
-                    }
-                }
-            }
+            SearchAvailableRoomsDependingOnPeople(startDate, endDate, rooms, people, hotelsByInput, hotelList);
 
             return hotelList;
         }
 
-
+        
         //working: no searchstring, only dates
         public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithDates(DateTime startDate, DateTime endDate)
         {
@@ -145,6 +131,40 @@ namespace HolidayMakerBackEnd.Services
             }
 
             return hotelList;
+        }
+        
+        //no searchstring, only dates + people + rooms
+        public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithDatesPeopleRooms(DateTime startDate, DateTime endDate, int rooms, int people)
+        {
+            var hotels = _hs.GetAllHotels();
+            HashSet<AvailableHotelViewModel> hotelList = new HashSet<AvailableHotelViewModel>();
+
+            SearchAvailableRoomsDependingOnPeople(startDate, endDate, rooms, people, hotels, hotelList);
+
+            return hotelList;
+        }
+
+
+
+
+
+        //method to get available rooms and checks if hotel has capacity for selected people
+        private void SearchAvailableRoomsDependingOnPeople(DateTime startDate, DateTime endDate, int rooms, int people, IEnumerable<Hotel> hotelsByInput, HashSet<AvailableHotelViewModel> hotelList)
+        {
+            foreach (var h in hotelsByInput)
+            {
+                var hotelrooms = _hs.GetAvailableRooms(h.Id, startDate, endDate);
+                int availableRooms = hotelrooms.SingleRooms + hotelrooms.DoubleRooms + hotelrooms.FamilyRooms;
+
+                if (_hs.GetMaxCapacityAvailableForHotel(h.Id, startDate, endDate) >= people)
+                {
+                    if (availableRooms >= rooms)
+                    {
+                        hotelList.Add(new AvailableHotelViewModel(hotelrooms, h));
+
+                    }
+                }
+            }
         }
     }
 }

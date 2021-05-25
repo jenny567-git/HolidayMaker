@@ -126,12 +126,15 @@ export default {
 <style scoped>
   #sliders{
     color:rgb(255, 255, 255);
-    text-shadow: 2px 2px black;
+    
   }
 
-  .slider-connect{
-    background: rgb(134, 122, 88) !important;
+  .accordion {
+    color:black;
   }
-  
+  .slider-connect {
+    background: #5a3ff5;
+    cursor: pointer;
+}
 
 </style>

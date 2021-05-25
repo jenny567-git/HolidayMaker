@@ -44,8 +44,8 @@ export default {
         padding-right: 25px;
         padding-bottom: 40px;
         margin-top: 20px;
-        color:rgb(115, 255, 201);
-        text-shadow: 2px 2px black;
+        color:rgb(255, 255, 255);
+        /* text-shadow: 2px 2px black; */
     }
 
 </style>

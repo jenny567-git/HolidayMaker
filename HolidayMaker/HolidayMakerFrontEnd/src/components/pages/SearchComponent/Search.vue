@@ -2,7 +2,7 @@
   <div id="test2">
     <div class="p-grid">
       <div class="p-col-12 p-md-6 p-lg-4">
-        <label for="searchInput">Location/Hotel name </label>
+        <label for="searchInput" id="searchField">Location/Hotel name </label>
         <Searchfield @input-changed="setSearchText"/>
       </div>
       <div class="p-col-12 p-md-6 p-lg-4">
@@ -78,6 +78,14 @@ export default {
 
 #guestsBtn{
   align-self: center;
+}
+
+#searchField {
+  margin-top: 3px;
+}
+
+#calender {
+ margin-top: 5px;
 }
 
 

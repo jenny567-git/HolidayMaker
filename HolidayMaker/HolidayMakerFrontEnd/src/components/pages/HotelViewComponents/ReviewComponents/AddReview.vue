@@ -86,6 +86,6 @@ import RatingSlider from './RatingSlider.vue'
         padding-bottom: 40px;
         margin-top: 20px;
         color:white;
-        text-shadow: 2px 2px black;
+        /* text-shadow: 2px 2px black; */
     }
 </style>

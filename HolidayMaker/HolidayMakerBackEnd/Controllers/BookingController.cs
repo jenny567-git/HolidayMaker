@@ -25,7 +25,7 @@ namespace HolidayMakerBackEnd.Controllers
         }
 
         [HttpPost("AddBooking")]
-        public ActionResult AddBooking(BookingViewModel model)
+        public ActionResult AddBooking(SearchViewModel model)
         {
             _bookingService.MakeBooking(model);
             return Ok();

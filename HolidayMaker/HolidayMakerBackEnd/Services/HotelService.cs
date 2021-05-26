@@ -12,9 +12,6 @@ namespace HolidayMakerBackEnd.Services
     public class HotelService
     {
         private readonly HolidayMakerContext _db;
-        //public bool availableSingle { get; set; }
-        //public bool availableDouble { get; set; }
-        //public bool availableFamily { get; set; }
 
         public HotelService()
         {
@@ -81,11 +78,6 @@ namespace HolidayMakerBackEnd.Services
             }
 
             HotelRoomsViewModel vm = new() { SingleRooms = availableRooms["Single"], DoubleRooms = availableRooms["Double"], FamilyRooms = availableRooms["Family"] };
-
-            //new added
-            //availableSingle = (availableRooms["Single"] > 0) ? true : false;
-            //availableDouble = (availableRooms["Double"] > 0) ? true : false;
-            //availableFamily = (availableRooms["Family"] > 0) ? true : false;
 
             return vm;
         }

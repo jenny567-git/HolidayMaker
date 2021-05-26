@@ -45,8 +45,6 @@ namespace HolidayMakerBackEnd.Controllers
                 throw new ArgumentException("Named Hotel not found");
             }
 
-            //var result = _searchService.GetHotelByName(input);
-            //return result;
         }
 
         [HttpGet("GetHotelByCity")]
@@ -83,27 +81,6 @@ namespace HolidayMakerBackEnd.Controllers
             return result;
         }
         
-        //[HttpGet("searchstring")]
-        //public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithStringDates(string input, DateTime startDate, DateTime endDate)
-        //{
-        //    var result = _searchService.GetAvailableHotelsWithStringDates(input, startDate, endDate);
-        //    return result;
-        //}
-        
-        //[HttpGet("search")]
-        //public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithStringDatesRooms(string input, DateTime startDate, DateTime endDate, int rooms)
-        //{
-        //    var result = _searchService.GetAvailableHotelsWithStringDatesRooms(input, startDate, endDate, rooms);
-        //    return result;
-        //}
-        
-        //[HttpGet("searchdates")]
-        //public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithDates(DateTime startDate, DateTime endDate)
-        //{
-        //    var result = _searchService.GetAvailableHotelsWithDates(startDate, endDate);
-        //    return result;
-        //}
-        
         [HttpGet("search")]
         public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithStringDatesRoomsPeople(DateTime? startDate=null, DateTime? endDate=null, int? rooms=null, int? people=null, string input = null)
         {
@@ -133,13 +110,6 @@ namespace HolidayMakerBackEnd.Controllers
             
             return result;
         }
-
-        //[HttpGet("searchWithNoString")]
-        //public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithDatesPeopleRooms(DateTime startDate, DateTime endDate, int rooms, int people)
-        //{
-        //    var result = _searchService.GetAvailableHotelsWithDatesPeopleRooms(startDate, endDate, rooms, people);
-        //    return result;
-        //}
 
         [HttpGet("GetSearchAutoComplete")]
         public IEnumerable<string> GetSearchAutoComplete()

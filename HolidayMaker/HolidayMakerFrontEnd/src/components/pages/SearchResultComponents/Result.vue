@@ -9,7 +9,7 @@
                 <p>{{hotel.city.cityName}}, {{hotel.country.countryName}}</p>
                 <p>(3535) SEK</p>
                 <p>Ratings: <span class="badge rounded-pill bg-secondary">{{hotel.averageRating}}</span></p>
-                <p>Beach distance: <span class="badge rounded-pill bg-secondary">{{hotel.beachDistance}} km </span></p>
+                <p>Beach distance: <span class="badge rounded-pill bg-secondary">{{hotel.beachDistance}} m </span></p>
                 <p>Centrum distance: <span class="badge rounded-pill bg-secondary">{{hotel.centrumDistance}} km </span></p>
                 <p v-if="hotel.pool"> <i class="fas fa-check"></i> Pool</p>
                 <p v-if="hotel.nightEntertainment"> <i class="fas fa-check"></i> Night Entertainment</p>

@@ -10,7 +10,7 @@
     </div>
     <hr />
     <div>
-      <p>Distance to beach (km)</p>
+      <p>Distance to beach (m)</p>
       <Slider
         v-model="beachRange.value"
         v-bind="beachRange"

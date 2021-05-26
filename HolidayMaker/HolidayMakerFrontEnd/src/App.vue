@@ -1,17 +1,15 @@
 <template>
   <main>
-    <div class="container">
-      <div>
-        <h5>Search - temp</h5>
-        <InputText v-model="searchString" class="p-mr-2 p-d-inline" />
-        <Button class="p-mx-auto" label="Search" @click="Search" :loading="isLoading"/>
+    <Navigator/>
+      <div style="background: url(https://wallpaperaccess.com/full/118565.jpg);" class="page-holder bg-cover">
+        <div class="container">
+          <Searcher/>
+          <a href="https://www.youtube.com/watch?v=FTQbiNvZqaY">CLICK ME</a>
+          <router-view/>
+        </div>
     </div>
-      <ColorPicker v-model="color2" />
-      <Dialog></Dialog>
-      <img alt="Vue logo" src="./assets/logo.png" />
-      <HelloWorld msg="Hello Vue 3 + Vite" />
-      <router-view/>
-    </div>
+        <Body v-if="showBody"/>
+    <Footer/>
   </main>
 </template>
 
@@ -22,19 +20,31 @@ import InputText from 'primevue/InputText';
 import Button from 'primevue/Button';
 import Menu from 'primevue/menu';
 import ColorPicker from 'primevue/colorpicker';
+import Navigator from '/src/components/Navigator.vue';
+import Footer from '/src/components/Footer.vue';
+import Body from "/src/components/pages/MainPage/Body.vue";
+
+
+import Searcher from './components/pages/SearchComponent/Search.vue'
+
 export default {
-  name: 'App',
+  name: "App",
   components: {
     ConfirmDate,
     Dialog,
     ColorPicker,
     InputText,
     Button,
-    Menu
+    Menu,
+    Navigator,
+    Footer,
+    Body,
+    Searcher,
   },
   data() {
         return {
           searchString: '',
+          showBody: true,
             color2: '1976D2',
             items: [
             {
@@ -77,6 +87,9 @@ export default {
     computed:{
       isLoading(){
         return this.$store.state.searchButtonLoading;
+      },
+      showBody(){
+        return this.$route.path == '/' ? true : false;
       }
     }
 }
@@ -94,13 +107,11 @@ export default {
   margin-top: 60px;
 }
 
-.input-group{
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    width: fit-content;
-    align-content: center;
+.input-group {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  width: fit-content;
+  align-content: center;
 }
-
-
 </style>

@@ -11,11 +11,18 @@ namespace HolidayMakerBackEnd.Services
     public class SearchService
     {
         private readonly HolidayMakerContext _db;
+        private readonly HotelService _hs;
+        
 
         public SearchService()
         {
             _db = new HolidayMakerContext();
+            _hs = new HotelService();
+            
         }
+
+        //search by string, dates, rooms
+        //search by string + filter(s)
 
         public IEnumerable<Hotel> GetAllHotels()
         {
@@ -46,8 +53,49 @@ namespace HolidayMakerBackEnd.Services
            
         }
 
-        
-        
+        //includes hotel name, city name and country name
+        public IEnumerable<Hotel> GetSearchResultByName(string input)
+        {
+            var result = GetHotelByCity(input).ToHashSet();
+            var hotelCountry = GetHotelByCountry(input);
 
+            foreach(var h in hotelCountry)
+            {
+                result.Add(h);
+            }
+
+            var hotelName = GetHotelByName(input);
+            foreach (var item in hotelName)
+            {
+                result.Add(item);
+            }
+            
+            return result.AsEnumerable();
+        }
+
+        //public IEnumerable<Hotel> GetAvailableHotelsWithDates(string input, DateTime startDate, DateTime endDate)
+        //{
+        //    var hotelsByInput = GetSearchResultByName(input);
+        //    List<Reservation> bookedHotel = new List<Reservation>();
+        //    foreach (var h in hotelsByInput)
+        //    {
+        //        bookedHotel.Add(_db.Reservations.Where(r => r.HotelId == h.Id).ToList());
+        //    }
+
+        //    return null;
+        //}
+
+        //public IEnumerable<Hotel> GetAvailableHotelsWithDatesRooms(string input, DateTime startDate, DateTime endDate, int rooms)
+        //{
+        //    var hotelsByInput = GetSearchResultByName(input);
+        //    foreach (var h in hotelsByInput)
+        //    {
+        //        _hs.GetAvailableRooms(h.Id, startDate, endDate);
+        //    }
+
+
+
+        //    throw new NotImplementedException();
+        //}
     }
 }

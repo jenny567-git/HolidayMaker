@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 #nullable disable
 
@@ -20,9 +21,12 @@ namespace HolidayMakerBackEnd.Models.Database
         public int? FlightId { get; set; }
         public int HotelId { get; set; }
         public int GuestId { get; set; }
-
+        
+        
         public virtual Guest Guest { get; set; }
+        
         public virtual Hotel Hotel { get; set; }
+        
         public virtual ICollection<ReservedRoom> ReservedRooms { get; set; }
     }
 }

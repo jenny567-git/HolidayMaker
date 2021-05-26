@@ -61,8 +61,16 @@ namespace HolidayMakerBackEnd.Controllers
         {
             var result = _searchService.GetHotelByCountry(input);
             return result;
-        } 
+        }
 
-        
+
+
+        [HttpGet("GetSearchResultByName")]
+        public IEnumerable<Hotel> GetSearchResultByName(string input)
+        {
+            var result = _searchService.GetSearchResultByName(input);
+            return result;
+        }
+
     }
 }

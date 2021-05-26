@@ -1,0 +1,89 @@
+<template>
+  <div id="test2">
+    <div class="p-grid">
+      <div>
+
+      </div>
+      <div class="p-col-12 p-md-6 p-lg-4">
+        <label for="searchInput">Location/Hotel name </label>
+        <Searchfield @input-changed="setSearchText"/>
+      </div>
+      <div class="p-col-12 p-md-6 p-lg-4">
+        <label for="range" id="range">Dates</label>
+
+        <div class="p-fluid" id="calendar">
+          <Calendar />
+        </div>
+      </div>
+      <div class="p-col-12 p-md-6 p-lg-2">
+        <label for="guest">Guests & rooms </label>
+        <SearchDropdown />
+      </div>
+      <div class="p-col-12 p-md-6 p-lg-2" id="searchBtn">
+          <Button  class="p-mx-auto" label="Search" @click="Search" :loading="isLoading"/>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import Button from "primevue/Button";
+import Calendar from "./Datepicker.vue";
+import SearchDropdown from "./SearchDropdown.vue";
+import Searchfield from "./Searchfield.vue";
+
+export default {
+  data(){
+    return{
+      searchString: ''
+    }
+  },
+  components: {
+    Searchfield,
+    Button,
+    Calendar,
+    SearchDropdown,
+  },
+  methods: {
+    onSubmit() {},
+    Search(event){
+        this.$store.state.searchButtonLoading = true;
+        console.log("The search string is ", this.searchString);
+        this.$store.dispatch('searchHotels', this.searchString);
+      },
+      setSearchText(value){
+          this.searchString = value;
+      }
+  },
+  computed:{
+      isLoading(){
+        return this.$store.state.searchButtonLoading;
+      }
+    }
+};
+</script>
+
+<style scoped>
+
+#test2{
+        border-radius: 30px;
+        background-color: rgba(248, 242, 210, 0.5);
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+#searchBtn{
+  align-self: center;
+}
+#range{
+  display: block;
+}
+.container {
+  background-color: #97a97c;
+  color: #283618;
+  border-radius: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+</style>

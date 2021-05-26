@@ -29,7 +29,8 @@ namespace HolidayMakerBackEnd.Services
 
         public Reservation GetBookingById(int id)
         {
-            var result = _db.Reservations.Include(r => r.Guest).Include(h => h.Hotel).ThenInclude(r => r.Rooms).SingleOrDefault(r => r.Id == id);
+            
+            var result = _db.Reservations.Include(r => r.Guest).Include(h => h.Hotel).ThenInclude(r=>r.Rooms).SingleOrDefault(r => r.Id == id);
 
 
             return result;
@@ -64,7 +65,7 @@ namespace HolidayMakerBackEnd.Services
         //}
         public IEnumerable<ReservedRoom> GetReservedRooms(int id)
         {
-            return _db.ReservedRooms.Where(x => x.ReservationId == id).Include(r => r.Room).ToList();
+            return _db.ReservedRooms.Where(x => x.ReservationId == id).Include(r=>r.Room).AsEnumerable();
 
         }
         public IEnumerable<Reservation> GetAllBookingByGuestId(int id)
@@ -83,7 +84,7 @@ namespace HolidayMakerBackEnd.Services
                 DateCreated = DateTime.Now,
                 HotelId = model.HotelId,
                 GuestId = model.GuestId,
-
+                
             };
 
             _db.Reservations.Add(newReservation);
@@ -91,13 +92,13 @@ namespace HolidayMakerBackEnd.Services
             latestId = newReservation.Id;
 
             var Acc = new Accomodation();
-
+           
 
             latestType = Acc.Type = model.Type;
+            
 
 
-
-
+            
             var newResDetails = new ReservationsDetail()
             {
                 Adults = model.Adults,
@@ -105,7 +106,7 @@ namespace HolidayMakerBackEnd.Services
                 ExtraBed = model.ExtraBed,
                 CustomerMessage = model.CustomerMessage,
                 ReservationId = latestId,
-
+                
                 Type = latestType,
 
             };
@@ -127,11 +128,11 @@ namespace HolidayMakerBackEnd.Services
 
 
             var Cost = CalculateCost(newReservation, newReservedRooms, newResDetails);
-
-
+            
+            
         }
 
-
+        
         public object CalculateCost(Reservation reservation, ReservedRoom reservedRoom, ReservationsDetail reservationsDetail)
         {
             double totalprice = 0;
@@ -144,18 +145,18 @@ namespace HolidayMakerBackEnd.Services
             int days = (int)t.Days;
             int rooms = reservedRoom.BookedRooms;
 
-            var CostPerNightAndRoom = costPerNight * (days * rooms);
+            var CostPerNightAndRoom = costPerNight * (days*rooms);
 
             totalprice += CostPerNightAndRoom;
 
             totalprice += accomodationTypePrice;
 
 
+            
+            
 
 
-
-
-            if (extrabed == true)
+            if (extrabed==true)
             {
                 totalprice += 200;
             }
@@ -175,12 +176,12 @@ namespace HolidayMakerBackEnd.Services
             return totalprice;
 
 
-
-
+            
+         
         }
-
-
-
+      
+        
+       
 
     }
 }

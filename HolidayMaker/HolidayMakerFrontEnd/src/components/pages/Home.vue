@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h1 id="welcome"><a href="https://www.youtube.com/watch?v=FTQbiNvZqaY">Welcome to Africa Motherfucker!</a></h1>
         <div id="homeDiv">
 
             

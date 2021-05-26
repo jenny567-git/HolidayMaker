@@ -5,7 +5,8 @@
             <title>Simple Navbar with flexbox</title>
         </head>
             <header>
-                <img class="" src="/src/assets/Logo5_cropped.png" alt="" height="80">
+                <a href="">Hello</a>
+                <!-- <img class="" src="/src/assets/Logo5_cropped.png" alt="" height="80"> -->
                 <nav>
                     <ul class="nav-area">
                         <li><a href="#"><router-link to="/hotels/1">Hotel 1 | </router-link></a></li>
@@ -43,56 +44,6 @@ defineProps({
 
 <style scoped>
 
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box
-}
-
-a {
-    text-decoration: none;
-}
-
-header {
-    margin-top: -60px;
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: -o-flex;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 70px;
-    background:#202a38;
-    background: rgb(51, 57, 58);
-}
-
-.nav-area {
-    list-style: none;
-}
-
-.nav-area li {
-    display: inline-block;
-    padding: 0 15px;
-}
-
-.nav-area li a {
-    color: rgb(224, 224, 224);
-}
-
-.nav-area li a:hover {
-    color: #ffffff;
-}
-
-.nav-item {
- list-style-type: none;
-}
-
-.pi {
-    color: rgb(224, 224, 224) !important;
-    list-style-type: none;
-}
 
 /* .btn-area {
     cursor: pointer;

@@ -1,7 +1,7 @@
 <template>
   <main>
     <Navigator/>
-      <div style="background: url(https://wallpaperaccess.com/full/1198002.jpg);" class="page-holder bg-cover">
+      <div style="background: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.3Dtx1R__vN7LI3SFEHhODAHaHa%26pid%3DApi&f=1);" class="page-holder bg-cover">
         <div class="container">
           <Searcher/>
           <router-view/>

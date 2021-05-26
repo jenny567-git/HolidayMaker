@@ -25,9 +25,9 @@ const store = createStore({
                 }],
         searchString: {
             string: '',
-            inputAdult: 2,
+            inputAdult: 0,
             inputChild: 0,
-            inputRooms: 1,
+            inputRooms: 0,
             dates: []
         },
         seachResults:[],

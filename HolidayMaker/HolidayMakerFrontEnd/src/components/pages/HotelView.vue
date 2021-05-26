@@ -53,6 +53,10 @@
             margin-top: 20px;
             color:white;
         }
+
+        .nav-link{
+            color:white;
+        }
 </style>
 
 <script>

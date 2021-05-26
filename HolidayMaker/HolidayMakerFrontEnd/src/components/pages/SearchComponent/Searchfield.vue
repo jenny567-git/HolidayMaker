@@ -26,7 +26,18 @@ export default {
       return this.$store.state.searchAutoComplete;
     },
   },
+  created(){
+      console.log('created');
+      this.GetAutoComplete();
+      //this.emitToParent('getAutoComplete');
+    },
   methods:{
+    GetAutoComplete(){
+      this.$store.dispatch('getAutoComplete')
+    },
+    // emitToParent(){
+    //         this.$emit('getAutoComplete')
+    //     },
     searchFieldChange(){
       this.$emit('input-changed', this.searchString)
     }

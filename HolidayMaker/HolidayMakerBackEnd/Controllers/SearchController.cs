@@ -132,7 +132,7 @@ namespace HolidayMakerBackEnd.Controllers
             
             return result;
         }
-        
+
         //[HttpGet("searchWithNoString")]
         //public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithDatesPeopleRooms(DateTime startDate, DateTime endDate, int rooms, int people)
         //{
@@ -140,7 +140,11 @@ namespace HolidayMakerBackEnd.Controllers
         //    return result;
         //}
 
-
+        [HttpGet("GetSearchAutoComplete")]
+        public IEnumerable<string> GetSearchAutoComplete()
+        {
+            return _searchService.GetSearchAutoComplete();
+        }
 
     }
 }

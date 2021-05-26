@@ -109,10 +109,10 @@ namespace HolidayMakerBackEnd.Services
         //}
 
         //working: searchstring + dates + rooms + people
-        public IEnumerable<AvailableHotelViewModel> GetAvailableHotels(DateTime startDate, DateTime endDate, int rooms, int people, string input= null)
+        public IEnumerable<AvailableHotelViewModel> GetAvailableHotels(DateTime startDate, DateTime endDate, int rooms, int people, string input = null)
         {
             IEnumerable<Hotel> hotels;
-            if (input == null || input=="")
+            if (input == null || input == "")
             {
                 hotels = _hs.GetAllHotels();
             }
@@ -120,15 +120,15 @@ namespace HolidayMakerBackEnd.Services
             {
                 hotels = GetAllHotelByInput(input);
             }
-            
+
             HashSet<AvailableHotelViewModel> hotelList = new HashSet<AvailableHotelViewModel>();
             SearchAvailableRoomsDependingOnPeople(startDate, endDate, rooms, people, hotels, hotelList);
 
             return hotelList;
         }
 
-       
-        
+
+
         //no searchstring, only dates + people + rooms
         //public IEnumerable<AvailableHotelViewModel> GetAvailableHotels(DateTime startDate, DateTime endDate, int rooms, int people)
         //{
@@ -155,7 +155,30 @@ namespace HolidayMakerBackEnd.Services
         //    return hotelList;
         //}
 
+        public IEnumerable<string> GetSearchAutoComplete()
+        {
+            List<string> list = new List<string>();
 
+            var countries = _db.Countries;
+            foreach (var country in countries)
+            {
+                list.Add(country.CountryName);
+            }
+
+            var cities = _db.Cities;
+            foreach (var city in cities)
+            {
+                list.Add($"{city.CityName}, {city.Country.CountryName}");
+            }
+
+            var hotels = _db.Hotels;
+            foreach (var hotel in hotels)
+            {
+                list.Add(hotel.Name);
+            }
+
+            return list.AsEnumerable();
+        }
 
         //method to get available rooms and checks if hotel has capacity for selected people
         private void SearchAvailableRoomsDependingOnPeople(DateTime startDate, DateTime endDate, int rooms, int people, IEnumerable<Hotel> hotelsByInput, HashSet<AvailableHotelViewModel> hotelList)

@@ -41,7 +41,14 @@ export default {
     Calendar,
     SearchDropdown,
   },
+  beforecreated(){
+    console.log('ccccc');
+    // this.GetAutoComplete();
+  },
   methods: {
+    // GetAutoComplete(){
+    //   this.$store.dispatch('getAutoComplete')
+    // },
     onSubmit() {},
     Search(event){
         this.$store.state.searchButtonLoading = true;

@@ -1,7 +1,7 @@
 <template>
   <main>
     <Navigator/>
-      <div style="background: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.3Dtx1R__vN7LI3SFEHhODAHaHa%26pid%3DApi&f=1);" class="page-holder bg-cover">
+      <div style="background: url(https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.worldfortravel.com%2Fwp-content%2Fuploads%2F2015%2F08%2FItaly.jpg&f=1&nofb=1);" class="page-holder bg-cover">
         <div class="container">
           <Searcher/>
           <router-view/>

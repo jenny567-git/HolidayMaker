@@ -1,5 +1,5 @@
 <template>
-    <div >
+    <div id="test2">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -39,7 +39,7 @@ export default {
     }
     #test2{
         border-radius: 30px;
-        background-color: rgba(107, 146, 83, 0.5);
+        background-color: rgba(76, 170, 247, 0.5);
         padding-left: 25px;
         padding-right: 25px;
         padding-bottom: 40px;

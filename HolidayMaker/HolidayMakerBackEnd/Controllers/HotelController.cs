@@ -43,6 +43,18 @@ namespace HolidayMakerBackEnd.Controllers
             var result = _hotelService.GetById(id);
             return result;
         }
+        
+        [HttpGet("GetAllHotels")]
+        public IEnumerable<Hotel> GetAllHotels()
+        {
+            return _hotelService.GetAllHotels();
+        }
+        
+        [HttpGet("GetMaxCap")]
+        public int GetMaxCapacityForHotel(int id, DateTime d1, DateTime d2)
+        {
+            return _hotelService.GetMaxCapacityAvailableForHotel(id, d1, d2);
+        }
 
         [HttpGet("GetHotelsByRandom")]
         public IEnumerable<Hotel> GetHotelsByRandom()

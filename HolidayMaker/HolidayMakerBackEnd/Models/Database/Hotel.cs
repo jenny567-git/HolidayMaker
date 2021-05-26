@@ -28,6 +28,7 @@ namespace HolidayMakerBackEnd.Models.Database
         public int CentrumDistance { get; set; }
         public int CityId { get; set; }
         public int CountryId { get; set; }
+        public int? ExtraBedFee { get; set; }
 
         public virtual City City { get; set; }
         public virtual Country Country { get; set; }

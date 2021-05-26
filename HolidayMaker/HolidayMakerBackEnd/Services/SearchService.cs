@@ -12,33 +12,27 @@ namespace HolidayMakerBackEnd.Services
     {
         private readonly HolidayMakerContext _db;
         private readonly HotelService _hs;
-        
+
 
         public SearchService()
         {
             _db = new HolidayMakerContext();
             _hs = new HotelService();
-            
+
         }
 
         //search by string, dates, rooms
         //search by string + filter(s)
 
-        public IEnumerable<Hotel> GetAllHotels()
-        {
-            return _db.Hotels.AsEnumerable();
-
-        }
-
         public IEnumerable<Hotel> GetHotelByName(string input)
         {
-            return _db.Hotels.Where(n => n.Name.Contains(input)).AsEnumerable();
+            return _db.Hotels.Where(n => n.Name.Contains(input)).Include(n => n.Country).Include(n => n.City).AsEnumerable();
         }
 
         public IEnumerable<Hotel> GetHotelByCity(string input)
         {
 
-            var result = _db.Hotels.Where(n => n.City.CityName == input).AsEnumerable();
+            var result = _db.Hotels.Where(n => n.City.CityName == input).Include(n => n.Country).Include(n => n.City).AsEnumerable();
 
             return result;
 
@@ -47,19 +41,19 @@ namespace HolidayMakerBackEnd.Services
         public IEnumerable<Hotel> GetHotelByCountry(string input)
         {
 
-            var result = _db.Hotels.Where(n => n.Country.CountryName == input).AsEnumerable();
+            var result = _db.Hotels.Where(n => n.Country.CountryName == input).Include(n => n.Country).Include(n=> n.City).AsEnumerable();
 
             return result;
-           
+
         }
 
         //includes hotel name, city name and country name
-        public IEnumerable<Hotel> GetSearchResultByName(string input)
+        public IEnumerable<Hotel> GetAllHotelByInput(string input)
         {
             var result = GetHotelByCity(input).ToHashSet();
             var hotelCountry = GetHotelByCountry(input);
 
-            foreach(var h in hotelCountry)
+            foreach (var h in hotelCountry)
             {
                 result.Add(h);
             }
@@ -69,33 +63,72 @@ namespace HolidayMakerBackEnd.Services
             {
                 result.Add(item);
             }
-            
+
             return result.AsEnumerable();
         }
 
-        //public IEnumerable<Hotel> GetAvailableHotelsWithDates(string input, DateTime startDate, DateTime endDate)
-        //{
-        //    var hotelsByInput = GetSearchResultByName(input);
-        //    List<Reservation> bookedHotel = new List<Reservation>();
-        //    foreach (var h in hotelsByInput)
-        //    {
-        //        bookedHotel.Add(_db.Reservations.Where(r => r.HotelId == h.Id).ToList());
-        //    }
 
-        //    return null;
-        //}
+        //working: searchstring + dates + rooms + people
+        public IEnumerable<AvailableHotelViewModel> GetAvailableHotels(DateTime startDate, DateTime endDate, int rooms, int people, string input = null)
+        {
+            IEnumerable<Hotel> hotels;
+            if (input == null || input == "")
+            {
+                hotels = _hs.GetAllHotels();
+            }
+            else
+            {
+                hotels = GetAllHotelByInput(input);
+            }
 
-        //public IEnumerable<Hotel> GetAvailableHotelsWithDatesRooms(string input, DateTime startDate, DateTime endDate, int rooms)
-        //{
-        //    var hotelsByInput = GetSearchResultByName(input);
-        //    foreach (var h in hotelsByInput)
-        //    {
-        //        _hs.GetAvailableRooms(h.Id, startDate, endDate);
-        //    }
+            HashSet<AvailableHotelViewModel> hotelList = new HashSet<AvailableHotelViewModel>();
+            SearchAvailableRoomsDependingOnPeople(startDate, endDate, rooms, people, hotels, hotelList);
 
+            return hotelList;
+        }
 
+        public IEnumerable<string> GetSearchAutoComplete()
+        {
+            List<string> list = new List<string>();
 
-        //    throw new NotImplementedException();
-        //}
+            var countries = _db.Countries;
+            foreach (var country in countries)
+            {
+                list.Add(country.CountryName);
+            }
+
+            var cities = _db.Cities;
+            foreach (var city in cities)
+            {
+                list.Add(city.CityName);
+            }
+
+            var hotels = _db.Hotels;
+            foreach (var hotel in hotels)
+            {
+                list.Add(hotel.Name);
+            }
+
+            return list.AsEnumerable();
+        }
+
+        //method to get available rooms and checks if hotel has capacity for selected people
+        private void SearchAvailableRoomsDependingOnPeople(DateTime startDate, DateTime endDate, int rooms, int people, IEnumerable<Hotel> hotelsByInput, HashSet<AvailableHotelViewModel> hotelList)
+        {
+            foreach (var h in hotelsByInput)
+            {
+                var hotelrooms = _hs.GetAvailableRooms(h.Id, startDate, endDate);
+                int availableRooms = hotelrooms.SingleRooms + hotelrooms.DoubleRooms + hotelrooms.FamilyRooms;
+
+                if (_hs.GetMaxCapacityAvailableForHotel(h.Id, startDate, endDate) >= people)
+                {
+                    if (availableRooms >= rooms)
+                    {
+                        hotelList.Add(new AvailableHotelViewModel(hotelrooms, h));
+
+                    }
+                }
+            }
+        }
     }
 }

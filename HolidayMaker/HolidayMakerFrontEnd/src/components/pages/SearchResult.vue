@@ -48,7 +48,7 @@
                 <Filter/>
             </div>
             <div class="col-md-8">
-                <Result v-for="hotel in hotels" :hotel="hotel" :key="hotel.id"/>
+                <Result v-for="result in searchResults" :hotel="result.hotel" :key="result.hotel.id"/>
 
             </div>
         </div>
@@ -66,7 +66,7 @@ export default ({
     },
     
     computed:{
-        hotels(){
+        searchResults(){
             return this.$store.state.seachResults;
         },
         hotelsCount(){
@@ -79,9 +79,10 @@ export default ({
 <style scoped>
     #test2{
         border-radius: 30px;
-        background-color: rgba(248, 242, 210, 0.5);
+        background-color: rgba(107, 146, 83, 0.5);
         padding-left: 25px;
         padding-right: 25px;
+        padding-bottom: 40px;
         margin-top: 20px;
     }
 </style>

@@ -4,62 +4,66 @@
     <div class="row my-5">
       <div class="col-lg-12 mx-auto">
         <div class="row">
-          <div class="col-lg-4 mb-3">
-            <div class="content">
-              <a href="https://unsplash.com/photos/HkTMcmlMOUQ" target="_blank">
-                <div class="content-overlay"></div>
-                <img class="content-image" src="https://bilder.apollo.se/three-dolphins-1557016426-110210-ImageGalleryLightbox.jpg">
-                <div class="content-details fadeIn-bottom">
-                  <h3 class="content-title">Lefkos</h3>
-                  <p class="content-text">See available hotels in Lefkos, Karpathos</p>
-                </div>
-              </a>
-            </div>
-          </div>
+          
+        <Destination v-for="destination in popularDestinations" :destination="destination" :key="destination.title"/>
 
-          <div class="col-lg-4 mb-3">
-            <div class="content">
-              <a href="https://unsplash.com/photos/HkTMcmlMOUQ" target="_blank">
-                <div class="content-overlay"></div>
-                <img class="content-image" src="https://blog.fly.deals/wp-content/uploads/2020/06/London_Tower_Bridge_City.jpg">
-                <div class="content-details fadeIn-bottom">
-                  <h3 class="content-title">London</h3>
-                  <p class="content-text">See available hotels in London</p>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 mb-3">
-            <div class="content">
-              <a href="https://unsplash.com/photos/HkTMcmlMOUQ" target="_blank">
-                <div class="content-overlay"></div>
-                <img class="content-image" src="https://media.radissonhotels.net/image/destination-pages/localattraction/16256-118729-f63244989_3xl.jpg?impolicy=HomeHero">
-                <div class="content-details fadeIn-bottom">
-                  <h3 class="content-title">Berlin</h3>
-                  <p class="content-text">See available hotels in Berlin</p>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 mb-3">
-            <div class="content">
-              <a href="https://unsplash.com/photos/HkTMcmlMOUQ" target="_blank">
-                <div class="content-overlay"></div>
-                <img class="content-image" src="https://www.flytap.com/-/media/Flytap/new-tap-pages/destinations/europe/denmark/copenhagen/destinations-copenhagen-banner-mobile-1024x553.jpg">
-                <div class="content-details fadeIn-bottom">
-                  <h3 class="content-title">Copenhangen</h3>
-                  <p class="content-text">See available hotels in Copenhangen</p>
-                </div>
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import Destination from './Destination.vue'
+export default {
+  components:{
+    Destination
+  },
+  data(){
+    return{
+      popularDestinations:[{
+        title: 'Lefkos',
+        description: 'See available hotels in Lefkos',
+        img: 'https://bilder.apollo.se/three-dolphins-1557016426-110210-ImageGalleryLightbox.jpg',
+        searchQuery: ''
+      },
+      {
+        title: 'London',
+        description: 'See available hotels in London',
+        img: 'https://blog.fly.deals/wp-content/uploads/2020/06/London_Tower_Bridge_City.jpg',
+        searchQuery: ''
+      },
+      {
+        title: 'Berlin',
+        description: 'See available hotels in Berlin',
+        img: 'https://media.radissonhotels.net/image/destination-pages/localattraction/16256-118729-f63244989_3xl.jpg?impolicy=HomeHero',
+        searchQuery: ''
+      },
+      {
+        title: 'Copenhangen',
+        description: 'See available hotels in Copenhangen',
+        img: 'https://www.flytap.com/-/media/Flytap/new-tap-pages/destinations/europe/denmark/copenhagen/destinations-copenhagen-banner-mobile-1024x553.jpg',
+        searchQuery: ''
+      },
+      {
+        title: 'The Table Bay Hotel',
+        description: 'See available hotels in South Africa',
+        img: 'https://foto.hrsstatic.com/fotos/0/3/1090/700/80/000000/http%3A%2F%2Ffoto-origin.hrsstatic.com%2Ffoto%2F3%2F5%2F1%2F7%2F351788%2F351788_a_13291718.jpg/mB04g2nLq58aw%2FS0i36ycA%3D%3D/2896,2914/6/The_Table_Bay-Cape_Town-Exterior_view-3-351788.jpg',
+        searchQuery: ''
+      },
+      {
+        title: 'Fairmont Nile City',
+        description: 'See available hotels in Egypt',
+        img: 'https://i.middle-east-online.com/styles/home_special_coverage_1920xauto/s3/2020-08/fairmont%20hotel%20cairo.jpg?3DRH75K8aS2dza_mlE9YA0RsEo3L3l7k&itok=ARlc1LW6',
+        searchQuery: ''
+      },
+      ]
+    }
+  }
+}
+</script>
+
+
 
 <style>
 *, *:before, *:after{
@@ -76,6 +80,11 @@
   text-align: center;
   text-transform: capitalize;
   padding: 0.7em 0;
+}
+
+.h1, h1{
+  padding-top: 30px;
+  color:white;
 }
 
 @media screen and (max-width: 640px){

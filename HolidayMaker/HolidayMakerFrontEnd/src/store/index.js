@@ -91,6 +91,7 @@ const store = createStore({
         },
         setAutoComplete(store, value){
             store.searchAutoComplete = value;
+            console.log(store.searchAutoComplete);
         }
    },
    actions:{
@@ -162,8 +163,10 @@ const store = createStore({
             }
         },
         async getAutoComplete({commit}){
+            console.log('action')
             var response = await fetch('https://localhost:44356/api/Search/GetSearchAutoComplete');
             var result = await response.json();
+            console.log('result: ' + result)
             commit('setAutoComplete', result);
         },
         updateAdults({ commit }, value) {

@@ -15,6 +15,7 @@ namespace HolidayMakerBackEnd.Controllers
     public class SearchController : ControllerBase
     {//test
         private readonly SearchService _searchService;
+        private readonly HotelService _hotelService;
 
         public SearchController()
         {
@@ -25,7 +26,7 @@ namespace HolidayMakerBackEnd.Controllers
         public IEnumerable<Hotel> GetAllHotel()
         {
             
-                var result = _searchService.GetAllHotels();
+                var result = _hotelService.GetAllHotels();
                 return result;
 
         }
@@ -104,7 +105,7 @@ namespace HolidayMakerBackEnd.Controllers
         //}
         
         [HttpGet("search")]
-        public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithStringDatesRoomsPeople(DateTime? startDate=null, DateTime? endDate=null, int? rooms=null, int? people=null, string? input = null)
+        public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithStringDatesRoomsPeople(DateTime? startDate=null, DateTime? endDate=null, int? rooms=null, int? people=null, string input = null)
         {
             IEnumerable<AvailableHotelViewModel> result = null;
             

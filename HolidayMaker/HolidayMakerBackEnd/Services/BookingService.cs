@@ -65,7 +65,7 @@ namespace HolidayMakerBackEnd.Services
         //}
         public IEnumerable<ReservedRoom> GetReservedRooms(int id)
         {
-            return _db.ReservedRooms.Where(x => x.ReservationId == id).Include(r=>r.Room).ToList();
+            return _db.ReservedRooms.Where(x => x.ReservationId == id).Include(r=>r.Room).AsEnumerable();
 
         }
         public IEnumerable<Reservation> GetAllBookingByGuestId(int id)

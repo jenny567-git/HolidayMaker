@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HolidayMakerBackEnd.Models.ViewModels
 {
-    public class BookingViewModel
+    public class ReservationViewModel
     {
         //Guest
         public string FullName { get; set; }
@@ -40,7 +40,7 @@ namespace HolidayMakerBackEnd.Models.ViewModels
         public HotelRoomsViewModel hotelRoomsViewModel = new HotelRoomsViewModel();
         //public RoomTypeViewModel RoomTypeViewModel = new RoomTypeViewModel();
 
-        public BookingViewModel()
+        public ReservationViewModel()
         {
            
 

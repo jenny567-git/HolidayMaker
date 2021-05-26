@@ -54,9 +54,10 @@ const store = createStore({
             serviceType: '',
             extraBed: ''
 
-        }
+        },
+      
          reservation: {},
-    
+      
     },
     mutations: {
         setEmail(store, value) {

@@ -1,5 +1,5 @@
-import { createStore } from "vuex" 
-import router from "../router/index"
+import { createStore } from "vuex";
+import router from "../router/index";
 
 const store = createStore({
     state:{
@@ -11,24 +11,23 @@ const store = createStore({
             email: '',
             message: ''
         },
-        searchAutoComplete:
+        hotels:
             [
-                // {
-                //     id: 1,
-                //     name: 'Hotel ajgipjdfjsjdfisdjfopia',
-                //     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dapibus lacus a diam rhoncus suscipit. Nulla facilisi. Maecenas non metus faucibus, feugiat lectus non, elementum urna. Morbi viverra gravida diam, et tincidunt felis laoreet vitae. Suspendisse vel metus non ex tempus tincidunt. Proin egestas sapien nisi, eu elementum est aliquet.'
-                // },
-                // {
-                //     id: 2,
-                //     name: 'Hotel ijaefioeijfaiheouyfaehcaj',
-                //     description: 'In varius, nisi quis blandit porta, dolor tortor aliquam odio, eget consectetur lectus leo a massa. Proin dignissim dignissim porttitor. Praesent sed risus id diam dapibus consectetur. Vivamus sollicitudin urna ut tincidunt varius. Morbi congue malesuada erat id luctus. Nunc.'
-                // }
-            ],
+                {
+                    id: 1,
+                    name: 'Hotel ajgipjdfjsjdfisdjfopia',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dapibus lacus a diam rhoncus suscipit. Nulla facilisi. Maecenas non metus faucibus, feugiat lectus non, elementum urna. Morbi viverra gravida diam, et tincidunt felis laoreet vitae. Suspendisse vel metus non ex tempus tincidunt. Proin egestas sapien nisi, eu elementum est aliquet.'
+                },
+                {
+                    id: 2,
+                    name: 'Hotel ijaefioeijfaiheouyfaehcaj',
+                    description: 'In varius, nisi quis blandit porta, dolor tortor aliquam odio, eget consectetur lectus leo a massa. Proin dignissim dignissim porttitor. Praesent sed risus id diam dapibus consectetur. Vivamus sollicitudin urna ut tincidunt varius. Morbi congue malesuada erat id luctus. Nunc.'
+                }],
         searchString: {
             string: '',
-            inputAdult: 0,
+            inputAdult: 2,
             inputChild: 0,
-            inputRooms: 0,
+            inputRooms: 1,
             dates: []
         },
         seachResults:[],
@@ -55,7 +54,10 @@ const store = createStore({
             serviceType: '',
             extraBed: ''
 
-        }
+        },
+      
+         reservation: {},
+      
     },
     mutations: {
         setEmail(store, value) {
@@ -92,7 +94,10 @@ const store = createStore({
         setAutoComplete(store, value){
             store.searchAutoComplete = value;
             console.log(store.searchAutoComplete);
-        }
+        },
+        setReservationDetails(state, data) {
+            state.reservation = data;
+        },
    },
    actions:{
         async searchHotels({commit}, searchString){
@@ -139,7 +144,15 @@ const store = createStore({
             console.log("set hotel action")
             console.log(hotel)
             commit('setHotel', hotel)
-        },
+       },
+       async getReservationById({ commit }, reservationId) {
+           var response = await fetch(
+               "https://localhost:44356/api/Booking/Booking/" + reservationId
+           );
+           var result = await response.json();
+
+           commit("setReservationDetails", result);
+       },
         async searchSpecific({commit}, payload){
             window.scrollTo(0, 0)
             commit('setSearchString', payload.searchString);
@@ -185,4 +198,4 @@ const store = createStore({
     }
 })
 
-export default store
+export default store;

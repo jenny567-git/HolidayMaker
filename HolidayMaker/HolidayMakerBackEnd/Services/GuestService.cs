@@ -99,10 +99,18 @@ namespace HolidayMakerBackEnd.Services
             return _db.Guests.FirstOrDefault(x => x.Id == id);
         }
 
-        
-        
+        public IEnumerable<Reservation> GetReservationsByID(int id)
+        {
+            var result = _db.Reservations.Include(r => r.Guest).Include(h => h.Hotel).Where(r => r.Id == id).AsEnumerable();
 
-        
+            var test = _db.Reservations.Where(r => r.GuestId == id).Include(r => r.Hotel).ThenInclude(r => r.Rooms).AsEnumerable();
+
+            return test;
+        }
+
+
+
+
     }
 
     

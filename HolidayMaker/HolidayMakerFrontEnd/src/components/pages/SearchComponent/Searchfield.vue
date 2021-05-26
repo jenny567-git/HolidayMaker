@@ -9,7 +9,7 @@
       v-model="searchString"
     />
     <datalist id="datalistOptions">
-      <option :value="hotel.name" v-for="hotel in hotels" :key="hotel.id" />
+      <option :value="item.name" v-for="item in autoComplete" :key="item.id" />
     </datalist>
   </div>
 </template>
@@ -22,8 +22,8 @@ export default {
     }
   },
   computed: {
-    hotels() {
-      return this.$store.state.hotels;
+    autoComplete() {
+      return this.$store.state.searchAutoComplete;
     },
   },
   methods:{

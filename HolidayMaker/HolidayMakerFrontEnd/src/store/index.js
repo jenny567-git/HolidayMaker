@@ -11,7 +11,7 @@ const store = createStore({
             email: '',
             message: ''
         },
-        hotels:
+        searchAutoComplete:
             [
                 {
                     id: 1,

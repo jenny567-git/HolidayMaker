@@ -12,6 +12,7 @@ namespace HolidayMakerBackEnd.Models.Database
         public string Description { get; set; }
         public int HotelId { get; set; }
         public int GuestId { get; set; }
+        public DateTime? CreationDate { get; set; }
 
         public virtual Hotel Hotel { get; set; }
         public virtual Guest IdNavigation { get; set; }

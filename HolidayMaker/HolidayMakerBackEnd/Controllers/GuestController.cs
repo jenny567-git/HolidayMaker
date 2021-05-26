@@ -3,6 +3,7 @@ using HolidayMakerBackEnd.Models.ViewModels;
 using HolidayMakerBackEnd.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace HolidayMakerBackEnd.Controllers
     [ApiController]
     public class GuestController : ControllerBase
     {
-
+        private readonly HolidayMakerContext _db = new HolidayMakerContext();
         private readonly GuestService _guestService;
 
         public GuestController()
@@ -55,6 +56,15 @@ namespace HolidayMakerBackEnd.Controllers
             _guestService.SaveHotel(model);
             return Ok();
         }
+        //[HttpGet("getAllReservationForGuest/{id}")]
+        //public BookingViewModel GetGuestReservation(int id)
+        //{
+        //    var result = _guestService.GetGuestReservation(id);
+        //    return result;
+        //}
+       
+
+        
 
     }
 }

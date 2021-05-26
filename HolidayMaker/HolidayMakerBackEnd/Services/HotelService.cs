@@ -9,13 +9,6 @@ using System.Threading.Tasks;
 namespace HolidayMakerBackEnd.Services
 {
 
-    public class HotelRoomsViewModel
-    {
-        public int SingleRooms { get; set; }
-        public int DoubleRooms { get; set; }
-        public int FamilyRooms { get; set; }
-    }
-
     public class HotelService
     {
         private readonly HolidayMakerContext _db;
@@ -25,6 +18,31 @@ namespace HolidayMakerBackEnd.Services
             _db = new HolidayMakerContext();
         }
 
+        public int GetMaxCapacityAvailableForHotel(int id, DateTime date1, DateTime date2)
+        {
+            var roomsList = GetAvailableRooms(id, date1, date2);
+            var maxPeople = 0;
+
+            if (GetRoomByHotelId_Type(id, "Single") != null)
+            {
+                var maxsingle = roomsList.SingleRooms * GetRoomByHotelId_Type(id, "Single").MaxCapacity;
+                maxPeople += maxsingle;
+            }
+
+            if (GetRoomByHotelId_Type(id, "Double") != null)
+            {
+                var maxdouble = roomsList.DoubleRooms * GetRoomByHotelId_Type(id, "Double").MaxCapacity;
+                maxPeople += maxdouble;
+            }
+
+            if (GetRoomByHotelId_Type(id, "Family") != null)
+            {
+                var maxfamily = roomsList.FamilyRooms * GetRoomByHotelId_Type(id, "Family").MaxCapacity;
+                maxPeople += maxfamily;
+            }
+
+            return maxPeople;
+        }
         public HotelRoomsViewModel GetAvailableRooms(int id, DateTime date1, DateTime date2)
         {
             var reservations = _db.Reservations.Where(r => r.HotelId == id && r.StartDate >= date1 && r.EndDate <= date2).Include(r => r.ReservedRooms).ThenInclude(r => r.Room);
@@ -58,7 +76,7 @@ namespace HolidayMakerBackEnd.Services
                     }
                 }
             }
-            
+
             HotelRoomsViewModel vm = new() { SingleRooms = availableRooms["Single"], DoubleRooms = availableRooms["Double"], FamilyRooms = availableRooms["Family"] };
 
             return vm;
@@ -74,6 +92,22 @@ namespace HolidayMakerBackEnd.Services
             return _db.Hotels.SingleOrDefault(h => h.Id == id);
         }
 
+        public Room GetRoomByRoomId(int id)
+        {
+            return _db.Rooms.SingleOrDefault(r => r.Id == id);
+        }
+
+        public Room GetRoomByHotelId_Type(int id, string type)
+        {
+            return _db.Rooms.SingleOrDefault(r => r.HotelId == id && r.Type == type);
+        }
+
+        public IEnumerable<Hotel> GetAllHotels()
+        {
+            
+            var result = _db.Hotels.Include(n => n.Country).Include(n => n.City).AsEnumerable();
+            return result;
+        }
 
         public IEnumerable<Hotel> GetHotelsByRandom()
         {
@@ -84,5 +118,6 @@ namespace HolidayMakerBackEnd.Services
 
             return _db.Hotels.Where(x => x.Id == num1);
         }
+
     }
 }

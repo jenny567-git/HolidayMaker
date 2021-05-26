@@ -6,9 +6,15 @@
             </div>
             <div class="col-md-8">
                 <b>{{hotel.name}}</b>
+                <p>{{hotel.city.cityName}}, {{hotel.country.countryName}}</p>
                 <p>(3535) SEK</p>
                 <p>Ratings: <span class="badge rounded-pill bg-secondary">{{hotel.averageRating}}</span></p>
-                
+                <p>Beach distance: <span class="badge rounded-pill bg-secondary">{{hotel.beachDistance}} km </span></p>
+                <p>Centrum distance: <span class="badge rounded-pill bg-secondary">{{hotel.centrumDistance}} km </span></p>
+                <p v-if="hotel.pool"> <i class="fas fa-check"></i> Pool</p>
+                <p v-if="hotel.nightEntertainment"> <i class="fas fa-check"></i> Night Entertainment</p>
+                <p v-if="hotel.childClub"> <i class="fas fa-check"></i> Kids club</p>
+                <p v-if="hotel.restaurant"> <i class="fas fa-check"></i> Restaurant</p>
                 <router-link :to="'/hotels/' + hotel.id" class="nav-link"> 
                     <button class="btn btn-outline-primary" for="btn-check-outlined" @click="hotelDetailsClick">See details</button><br>
                 </router-link>

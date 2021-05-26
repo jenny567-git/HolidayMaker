@@ -11,18 +11,19 @@ const store = createStore({
             email: '',
             message: ''
         },
-        hotels:
+        searchAutoComplete:
             [
-                {
-                    id: 1,
-                    name: 'Hotel ajgipjdfjsjdfisdjfopia',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dapibus lacus a diam rhoncus suscipit. Nulla facilisi. Maecenas non metus faucibus, feugiat lectus non, elementum urna. Morbi viverra gravida diam, et tincidunt felis laoreet vitae. Suspendisse vel metus non ex tempus tincidunt. Proin egestas sapien nisi, eu elementum est aliquet.'
-                },
-                {
-                    id: 2,
-                    name: 'Hotel ijaefioeijfaiheouyfaehcaj',
-                    description: 'In varius, nisi quis blandit porta, dolor tortor aliquam odio, eget consectetur lectus leo a massa. Proin dignissim dignissim porttitor. Praesent sed risus id diam dapibus consectetur. Vivamus sollicitudin urna ut tincidunt varius. Morbi congue malesuada erat id luctus. Nunc.'
-                }],
+                // {
+                //     id: 1,
+                //     name: 'Hotel ajgipjdfjsjdfisdjfopia',
+                //     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dapibus lacus a diam rhoncus suscipit. Nulla facilisi. Maecenas non metus faucibus, feugiat lectus non, elementum urna. Morbi viverra gravida diam, et tincidunt felis laoreet vitae. Suspendisse vel metus non ex tempus tincidunt. Proin egestas sapien nisi, eu elementum est aliquet.'
+                // },
+                // {
+                //     id: 2,
+                //     name: 'Hotel ijaefioeijfaiheouyfaehcaj',
+                //     description: 'In varius, nisi quis blandit porta, dolor tortor aliquam odio, eget consectetur lectus leo a massa. Proin dignissim dignissim porttitor. Praesent sed risus id diam dapibus consectetur. Vivamus sollicitudin urna ut tincidunt varius. Morbi congue malesuada erat id luctus. Nunc.'
+                // }
+            ],
         searchString: {
             string: '',
             inputAdult: 0,
@@ -87,11 +88,41 @@ const store = createStore({
         },
         setSearchString(state, value){
             state.searchString.string = value;
+        },
+        setAutoComplete(store, value){
+            store.searchAutoComplete = value;
+            console.log(store.searchAutoComplete);
         }
    },
    actions:{
         async searchHotels({commit}, searchString){
-            var response = await fetch('https://localhost:44356/api/Search/GetHotelByName?input=' + searchString); // Default is GET
+            let startDate;
+            let endDate;
+            console.log(this.state.searchString.dates);
+            if(this.state.searchString.dates.length){
+                startDate = this.state.searchString.dates[0].toISOString().slice(0,10);
+                endDate = this.state.searchString.dates[1].toISOString().slice(0,10);
+            }
+            //search with all values but no string
+            if(searchString === null || searchString == ''){
+                var response = await fetch('https://localhost:44356/api/Search/search?startDate=' + startDate + '&endDate=' + endDate + '&rooms=' + this.state.searchString.inputRooms + '&people=' + (this.state.searchString.inputAdult + this.state.searchString.inputChild));
+            //search with only string
+            } else if(!this.state.searchString.dates.length){
+                var response = await fetch('https://localhost:44356/api/Search/search?input=' + searchString);
+            //search with all values
+            } else {
+                var response = await fetch('https://localhost:44356/api/Search/search?startDate=' + startDate + '&endDate=' + endDate + '&rooms=' + this.state.searchString.inputRooms + '&people=' + (this.state.searchString.inputAdult + this.state.searchString.inputChild) + '&input=' + searchString)
+            }
+            
+            console.log(response);
+            var result = await response.json();
+            commit('setHotelSeachResultsList', result);
+            if(result){
+                router.push({name: 'result'})
+            }
+        },
+        async searchHotelByName({commit}, searchString){
+            var response = await fetch('https://localhost:44356/api/Search/search?input=' + searchString); // Default is GET
             var result = await response.json();
             console.log(searchString, result)
             commit('setHotelSeachResultsList', result);
@@ -127,11 +158,17 @@ const store = createStore({
             }
             else{
                 setTimeout(function(that){ 
-                    that.dispatch('searchHotels', payload.searchString);
+                    that.dispatch('searchHotelByName', payload.searchString);
                 }, 500, this); 
             }
         },
-    
+        async getAutoComplete({commit}){
+            console.log('action')
+            var response = await fetch('https://localhost:44356/api/Search/GetSearchAutoComplete');
+            var result = await response.json();
+            console.log('result: ' + result)
+            commit('setAutoComplete', result);
+        },
         updateAdults({ commit }, value) {
             commit('updateAdults', value)
         },

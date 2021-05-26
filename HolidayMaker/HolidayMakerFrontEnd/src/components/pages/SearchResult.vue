@@ -48,7 +48,7 @@
                 <Filter/>
             </div>
             <div class="col-md-8">
-                <Result v-for="hotel in hotels" :hotel="hotel" :key="hotel.id"/>
+                <Result v-for="result in searchResults" :hotel="result.hotel" :key="result.hotel.id"/>
 
             </div>
         </div>
@@ -66,7 +66,7 @@ export default ({
     },
     
     computed:{
-        hotels(){
+        searchResults(){
             return this.$store.state.seachResults;
         },
         hotelsCount(){

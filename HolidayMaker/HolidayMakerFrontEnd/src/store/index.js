@@ -130,8 +130,8 @@ const store = createStore({
             var response = await fetch('https://localhost:44356/api/Search/search?input=' + searchString); // Default is GET
             var result = await response.json();
             console.log(searchString, result)
-            commit('setHotelSeachResultsList', result);
             if(result){
+                commit('setHotelSeachResultsList', result);
                 router.push({name: 'result'})
             }
         },
@@ -153,27 +153,27 @@ const store = createStore({
 
            commit("setReservationDetails", result);
        },
+       async searchHotelByCity({commit}, searchString){
+            var response = await fetch('https://localhost:44356/api/Search/GetHotelByCity?input=' + searchString); // Default is GET
+            var result = await response.json();
+            console.log(searchString, result)
+            if(result){
+                commit('setHotelSeachResultsList', result);
+                router.push({name: 'result'})
+            }
+       },
         async searchSpecific({commit}, payload){
             window.scrollTo(0, 0)
             commit('setSearchString', payload.searchString);
             commit('setSearchButtonLoadingTrue', null);
-            if(payload.type === 'city'){
-                var response = await fetch('https://localhost:44356/api/Search/GetHotelByCity?input=' + payload.searchString); // Default is GET
-                var result = await response.json();
-                //console.log("searching for city: ",payload.type, payload.searchString, result)
-                commit('setHotelSeachResultsList', result);
-
-                setTimeout(function(){ // Timeout resolves inconsistent scroll behaviour between scrollTo and router.push
-                    if(result){
-                        router.push({name: 'result'})
-                    }
-                }, 500);
-            }
-            else{
-                setTimeout(function(that){ 
+            setTimeout(function(that){ // Timeout resolves inconsistent scroll behaviour between scrollTo and router.push
+                if(payload.type === 'city'){
+                    that.dispatch('searchHotelByCity', payload.searchString);
+                }
+                else{
                     that.dispatch('searchHotelByName', payload.searchString);
-                }, 500, this); 
-            }
+                }
+            }, 500, this);
         },
         async getAutoComplete({commit}){
             console.log('action')

@@ -57,6 +57,7 @@ const store = createStore({
         },
       
          reservation: {},
+         customerDetailsCheckout: {}
       
     },
     mutations: {
@@ -98,6 +99,9 @@ const store = createStore({
         setReservationDetails(state, data) {
             state.reservation = data;
         },
+        setCustomerDetailsCheckout(state, data){
+            state.customerDetailsCheckout = data;
+        }
    },
    actions:{
         async searchHotels({commit}, searchString){
@@ -194,6 +198,10 @@ const store = createStore({
         setDates({ commit }, date) {
             console.log(date);
             commit('setDates', date)
+        },
+        saveCustomerDetailsCheckout({ commit }, value){
+            console.log("Updating customer details checkout")
+            commit('setCustomerDetailsCheckout', value);
         }
     }
 })

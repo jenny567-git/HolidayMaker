@@ -30,7 +30,7 @@
 
 <script>
 import { defineProps, reactive } from 'vue'
-import Button from 'primevue/Button';
+import Button from 'primevue/button';
 
 defineProps({
   msg: String,

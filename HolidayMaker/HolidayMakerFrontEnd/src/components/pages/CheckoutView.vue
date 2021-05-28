@@ -12,8 +12,8 @@
                 <Steps :model="items" />
             </div>
             <router-view />
-            <button class="btn btn-primary" v-if="notAtStart" @click="prevPage">Prev</button>
-            <button class="btn btn-primary" v-if="notAtEnd" @click="nextPage">Next</button>
+            <Button v-if="notAtStart" @click="prevPage" label="Prev" class="p-button-raised p-button-rounded" />
+            <Button v-if="notAtEnd" @click="nextPage" label="Next" class="p-button-raised p-button-rounded" />
         </div>
     </div>
 </template>
@@ -22,11 +22,13 @@
 import CustomerDetails from './CheckoutViewComponents/CustomerDetails.vue'
 import BookingDetails from './CheckoutViewComponents/BookingDetails.vue'
 import Steps from 'primevue/steps';
+import Button from 'primevue/button';
 export default {
     components:{
         CustomerDetails,
         BookingDetails,
         Steps,
+        Button
     },
     computed:{
         notAtStart(){

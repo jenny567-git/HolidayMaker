@@ -8,15 +8,12 @@
                     </h3>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-7">
-                    <CustomerDetails> </CustomerDetails>
-                </div>
-
-                <div class="col-md-5"> 
-                    <BookingDetails> </BookingDetails>
-                </div>
+            <div class="card">
+                <Steps :model="items" />
             </div>
+            <router-view />
+            <Button v-if="notAtStart" @click="prevPage">Prev</Button>
+            <Button v-if="notAtEnd" @click="nextPage">Next</Button>
         </div>
     </div>
 </template>
@@ -24,11 +21,59 @@
 <script>
 import CustomerDetails from './CheckoutViewComponents/CustomerDetails.vue'
 import BookingDetails from './CheckoutViewComponents/BookingDetails.vue'
+import Steps from 'primevue/steps';
+import Button from 'primevue/button';
 export default {
     components:{
         CustomerDetails,
-        BookingDetails
+        BookingDetails,
+        Steps,
+        Button
     },
+    computed:{
+        notAtStart(){
+            return this.page > 0 ? true : false;
+        },
+        notAtEnd(){
+            return this.page < this.items.length - 1 ? true : false;
+        },
+    },
+    data() {
+		return {
+			items: [{
+                label: 'Customer Information',
+                to: '/checkout'
+            },
+            {
+                label: 'Order Details',
+                to: '/checkout/orderDetails'
+            },
+            {
+                label: 'Payment',
+                to: '/checkout/payment'
+            },
+            {
+                label: 'Confirmation',
+                to: '/checkout/orderCompleted'
+            },
+            ],
+            page: 0
+		}
+	},
+    methods:{
+        nextPage() {
+            if(this.page <= this.items.length - 2){
+                this.page++;
+                this.$router.push(this.items[this.page].to);
+            }
+        },
+        prevPage() {
+            if(this.page >= 1){
+                this.page--;
+                this.$router.push(this.items[this.page].to);
+            }
+        },
+    }
     
 }
 </script>

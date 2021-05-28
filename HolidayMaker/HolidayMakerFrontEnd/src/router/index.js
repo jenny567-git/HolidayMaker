@@ -13,6 +13,9 @@ import Body from "../components/pages/MainPage/Body.vue";
 import { registerRuntimeCompiler } from "@vue/runtime-core";
 import Home from "/src/components/pages/Home.vue";
 import ReservationDetails from "/src/components/pages/ReservationDetails.vue";
+import CustomerDetails from '/src/components/pages/CheckoutViewComponents/CustomerDetails.vue'
+import OrderDetails from '/src/components/pages/CheckoutViewComponents/OrderDetails.vue'
+import StripePayment from '/src/components/pages/CheckoutViewComponents/StripePayment.vue'
 
 const routes = [
   {
@@ -65,6 +68,28 @@ const routes = [
     path: "/checkout",
     name: "Checkout",
     component: CheckoutView,
+    children: [
+      {
+        path: "",
+        name: "customerDetails",
+        component: CustomerDetails,
+      },
+      {
+        path: "orderDetails",
+        name: "OrderDetails",
+        component: OrderDetails,
+      },
+      {
+        path: "payment",
+        name: "Payment",
+        component: StripePayment,
+      },
+      {
+        path: "orderCompleted",
+        name: "OrderCompleted",
+        component: OrderCompletedView,
+      }
+    ]
   },
   {
     path: "/reservationdetails/:id",

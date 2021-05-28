@@ -12,7 +12,7 @@
                 <Steps :model="items" />
             </div>
             <router-view />
-            <button class="btn btn-primary" v-if="notAtStart" @click="prevPage">Prev</Button>
+            <button class="btn btn-primary" v-if="notAtStart" @click="prevPage">Prev</button>
             <button class="btn btn-primary" v-if="notAtEnd" @click="nextPage">Next</button>
         </div>
     </div>

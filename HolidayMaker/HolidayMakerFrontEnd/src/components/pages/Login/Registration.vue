@@ -45,7 +45,7 @@
         .main {
             background-color: #ffffff;
             width: 400px;
-            height: 500px;
+            height: 520px;
             margin: 7em auto;
             border-radius: 1.5em;
             box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);

@@ -124,6 +124,7 @@
 
         .ul {
             list-style: none;
+            padding-right:40px;
         }
 
         .forgot {

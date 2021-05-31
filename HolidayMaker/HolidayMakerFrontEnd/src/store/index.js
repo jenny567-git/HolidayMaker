@@ -30,6 +30,7 @@ const store = createStore({
             inputRooms: 0,
             dates: []
         },
+        searchAutoComplete: [],
         seachResults:[],
         hotel: {},
         user: {

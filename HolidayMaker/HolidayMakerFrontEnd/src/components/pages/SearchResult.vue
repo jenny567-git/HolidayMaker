@@ -2,7 +2,7 @@
     <div id="test2">
         <div class="row pt-5">
             <div class="col-md-6">
-                <h1>Search results: {{hotelsCount}} found</h1>
+                
             </div>
             <div class="col-md-6">
                 <div class="dropdown">
@@ -17,6 +17,7 @@
             </div>
             </div>
             <hr>
+            
             <!-- <div class="col"> -->
 
                 <!-- OPTION 1: CHECKBOX -->
@@ -43,36 +44,25 @@
                 </div> -->
                 
             <!-- </div> -->
-        <div class="row">
+        
             <div class="col-md-4">
-                <Filter/>
+                <Filter/> 
+               
             </div>
-            <div class="col-md-8">
-                <Result v-for="hotel in hotels" :hotel="hotel" :key="hotel.id"/>
-
-            </div>
-        </div>
+            
+        
     </div>
 </template>
 
 <script>
 import Filter from './SearchResultComponents/Filter.vue'
-import Result from './SearchResultComponents/Result.vue'
 
 export default ({
     components:{
         Filter,
-        Result
     },
     
-    computed:{
-        hotels(){
-            return this.$store.state.seachResults;
-        },
-        hotelsCount(){
-            return this.$store.state.seachResults.length;
-        }
-    }
+   
 })
 </script>
 

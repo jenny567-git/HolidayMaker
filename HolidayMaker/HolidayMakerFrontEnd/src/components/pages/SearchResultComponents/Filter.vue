@@ -1,5 +1,11 @@
 <template>
+
+  
+  
   <div>
+    <h1>Search results: {{hotelsCount}} found</h1>
+    <Result v-for="hotel in hotels" :hotel="hotel" :key="hotel.id" :filteredHotels="filteredHotels"/>
+    <div>
     <div>
       <p>Price range (SEK)</p>
       <Slider
@@ -23,20 +29,7 @@
       <Slider v-model="cityRange.value" v-bind="cityRange" :max="5000"></Slider>
     </div>
     <hr />
-    <hr>
-        <h2>pricerange</h2>
-                <input v-model="price1" type="number" :placeholder="price1" v-if="price1 < pricerange.value[1]"/>
-                <input v-model="price2" type="number" :placeholder="price2" v-if="price2 < pricerange.value[1]"/>
-                <input v-model="price3" type="number" :placeholder="price3" v-if="price3 < pricerange.value[1]"/>
-
-        <h2>distancetobeach</h2>
-         <input v-model="distanceToBeach1" type="number" :placeholder="distanceToBeach1" v-if="distanceToBeach1 < beachRange.value"/>
-         <input v-model="distanceToBeach2" type="number" :placeholder="distanceToBeach2" v-if="distanceToBeach2 < beachRange.value"/>
-         <input v-model="distanceToBeach3" type="number" :placeholder="distanceToBeach3" v-if="distanceToBeach3 < beachRange.value"/>
-         <h2>hasPool1</h2>
-        <input v-model="pool" type="text" v-if="pool"/>
-
-    <hr />
+    
     <div>
       <div class="accordion accordion-flush" id="accordionFlushExample">
         <div class="accordion-item">
@@ -110,15 +103,26 @@
       </div>
     </div>
   </div>
+  </div>
+ 
+   
+  
 </template>
 
 <script>
 // code: https://www.vuescript.com/custom-range-slider/
 import Slider from "/node_modules/@vueform/slider";
+import Images from '../HotelViewComponents/RoomPhotoSlider.vue'
+import Info from '../HotelViewComponents/Info.vue'
+import Result from './Result.vue'
+
 
 export default {
   components: {
     Slider,
+    Images,
+    Info,
+    Result
   },
   data() {
     return {
@@ -133,6 +137,15 @@ export default {
       },
     };
   },
+  computed:{
+        hotels(){
+            return this.$store.state.seachResults;
+        },
+        hotelsCount(){
+            return this.$store.state.seachResults.length;
+        }
+    }
+ 
 };
 </script>
 

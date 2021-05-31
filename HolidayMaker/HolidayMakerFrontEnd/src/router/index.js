@@ -11,7 +11,8 @@ import OrderCompletedView from "../components/pages/OrderCompletedView.vue";
 import CheckoutView from "../components/pages/CheckoutView.vue";
 import Body from "../components/pages/MainPage/Body.vue";
 import { registerRuntimeCompiler } from "@vue/runtime-core";
-import Home from '/src/components/pages/Home.vue'
+import Home from '/src/components/pages/Home.vue';
+
 
 
 const routes = [

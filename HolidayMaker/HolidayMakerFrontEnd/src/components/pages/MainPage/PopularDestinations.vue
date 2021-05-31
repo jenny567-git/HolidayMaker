@@ -40,7 +40,7 @@ export default {
         searchQuery: ''
       },
       {
-        title: 'Copenhangen',
+        title: 'Copenhagen',
         description: 'See available hotels in Copenhangen',
         img: 'https://www.flytap.com/-/media/Flytap/new-tap-pages/destinations/europe/denmark/copenhagen/destinations-copenhagen-banner-mobile-1024x553.jpg',
         searchQuery: ''

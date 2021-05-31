@@ -70,7 +70,7 @@ export default {
         }
     },
     created(){
-        document.querySelector("button").disabled = true;
+        // document.querySelector("button").disabled = true;
         var ref = this;
         fetch("https://localhost:44356/api/create-payment-intent", {
         method: "POST",
@@ -84,8 +84,8 @@ export default {
             
             card.on("change", function (event) {
                 // Disable the Pay button if there are no card details in the Element
-                document.querySelector("button").disabled = event.empty;
-                document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
+                // document.querySelector("button").disabled = event.empty;
+                // document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
             });
             var form = document.getElementById("payment-form");
             form.addEventListener("submit", function(event) {

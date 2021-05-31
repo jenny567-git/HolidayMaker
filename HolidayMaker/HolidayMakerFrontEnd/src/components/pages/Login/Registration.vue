@@ -7,7 +7,7 @@
         <title>Log in</title>
         </head>
         
-        <body>
+        
             <div class="main">
                     <p class="sign" align="center">Registration</p>
                         <form class="form1" @submit.prevent="addGuest">
@@ -31,7 +31,7 @@
                         </ul>
                 </form>
             </div>
-        </body>
+     
     </html>
 </template>
 
@@ -72,15 +72,12 @@ export default {
 
 
 <style scoped>
-    body {
-            background-color: #F3EBF6;
-            font-family: 'Ubuntu', sans-serif;
-        }
+    
         
         .main {
             background-color: #ffffff;
             width: 400px;
-            height: 920px;
+            height: 850px;
             margin: 7em auto;
             border-radius: 1.5em;
             box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);

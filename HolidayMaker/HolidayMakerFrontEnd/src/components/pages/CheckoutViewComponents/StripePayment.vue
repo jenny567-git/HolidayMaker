@@ -50,8 +50,11 @@ export default {
         payWithCard(stripe, card, clientSecret){
             loading(true);
             var ref = this;
+            var email = this.$store.state.customerDetailsCheckout.Email;
+            console.log(email);
             stripe
                 .confirmCardPayment(clientSecret, {
+                receipt_email: email,
                 payment_method: {
                     card: card
                 }

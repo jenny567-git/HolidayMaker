@@ -7,24 +7,57 @@
         <title>Log in</title>
         </head>
         
-        <body>
+        
             <div class="main">
                 <p class="sign" align="center">Log in</p>
-                <form class ="form1">
-                    <input class="un " type="text" align="center" placeholder="Username" required>
-                    <input class="pass" type="password" align="center" placeholder="Password" required>
+                <form  class ="form1" @submit.prevent="guestLogin">
+                    <input class="un " type="text" align="center" placeholder="Email" required v-model="Email">
+                    <input class="pass" type="password" align="center" placeholder="Password" required v-model="Password">
                     <button class="submit" >Sign in</button>
+
                     <p class="forgot" align="center"><a href="#">Sign up?</a></p>
                     <p class="forgot" align="center"><a href="#">Forgot password</a></p>
+                   
                 </form>
+
+                 
             </div>
-        </body>
+        
     </html>
 </template>
 
-<script>
 
+
+
+<script>
+export default {
+  data(){
+    return{
+    //    login:{
+    //     Email: "",
+    //     Password:""
+    //  }
+    }
+  },
+  async mounted(){
+
+  },
+  methods:{
+    async guestLogin(){
+            
+            let credentials = {Email: this.Email, Password:this.Password}
+             this.$store.dispatch('login', credentials);
+            
+        }
+  },
+    
+    logout(){
+            this.$store.dispatch('logout')
+    },
+    
+}
 </script>
+
 
 
 <style scoped>

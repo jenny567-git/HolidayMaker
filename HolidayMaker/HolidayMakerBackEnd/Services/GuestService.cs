@@ -108,8 +108,18 @@ namespace HolidayMakerBackEnd.Services
             return test;
         }
 
+        public Guest Login(LoginRequestViewModel model)
+        {
+            var user = _db.Guests.FirstOrDefault(x => x.Email == model.Email);
+            bool isValid = BCrypt.Net.BCrypt.Verify(model.Password, user.Password);
 
+            if (isValid)
+            {
+                return user;
+            }
+            return null;
 
+        }
 
     }
 

@@ -50,7 +50,7 @@ namespace HolidayMakerBackEnd.Controllers
                 Country = model.Country,
                 Phone = model.Phone,
                 Email = model.Email,
-                Password = model.Password
+                Password = BCrypt.Net.BCrypt.HashPassword(model.Password)
                 
                 
 
@@ -81,6 +81,12 @@ namespace HolidayMakerBackEnd.Controllers
         //    return result;
         //}
        
+        [HttpPost("login")]
+        public Guest Login(LoginRequestViewModel model)
+        {
+
+            return _guestService.Login(model);
+        }
 
         
 

@@ -39,10 +39,23 @@ namespace HolidayMakerBackEnd.Controllers
             return result;
         }
         [HttpPost("addGuest")]
-        public ActionResult AddGuest([FromBody]GuestInputModel guest)
+        public async Task<Guest> AddGuest(AddGuestViewModel guest)
         {
-            _guestService.AddGuest(guest);
-            return Ok();
+            var newGuest = new Guest()
+            {
+                FullName = guest.FullName,
+                Street = guest.Street,
+                ZipCode = guest.ZipCode,
+                City = guest.City,
+                Country = guest.Country,
+                Phone = guest.Phone,
+                Email = guest.Email
+
+            };
+
+            _db.Guests.Add(newGuest);
+            await _db.SaveChangesAsync();
+            return newGuest;
         }
 
         [HttpPost("AddReview")]

@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HolidayMakerBackEnd.Models.ViewModels
 {
-    public class GuestInputModel
+    public class AddGuestViewModel
     {
         //public int Id { get; set; }
 

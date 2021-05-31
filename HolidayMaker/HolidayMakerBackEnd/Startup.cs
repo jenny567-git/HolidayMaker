@@ -55,7 +55,13 @@ namespace HolidayMakerBackEnd
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors(builder =>
+            {
+                builder
+                    .WithOrigins("http://localhost:3002")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            });
             app.UseRouting();
 
             app.UseCors(options =>

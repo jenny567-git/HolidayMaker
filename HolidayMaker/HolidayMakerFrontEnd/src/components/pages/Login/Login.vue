@@ -6,8 +6,6 @@
         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
         <title>Log in</title>
         </head>
-        
-        <body>
             <div class="main">
                 <p class="sign" align="center">Log in</p>
                 <form class ="form1">
@@ -18,7 +16,6 @@
                     <p class="forgot" align="center"><a href="#">Forgot password</a></p>
                 </form>
             </div>
-        </body>
     </html>
 </template>
 
@@ -28,11 +25,7 @@
 
 
 <style scoped>
-    body {
-            background-color: #F3EBF6;
-            font-family: 'Ubuntu', sans-serif;
-        }
-        
+
         .main {
             background-color: #ffffff;
             width: 400px;

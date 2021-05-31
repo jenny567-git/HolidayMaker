@@ -6,14 +6,17 @@
         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
         <title>Log in</title>
         </head>
-        
-        <body>
             <div class="main">
                     <p class="sign" align="center">Registration</p>
                         <form class="form1">
                         <input class="un" type="text" align="center" placeholder="Fullname" required>
                         <input class="un" type="text" align="center" placeholder="Email" required>
                         <input class="pass" type="password" align="center" placeholder="Password" required>
+                        <input class="pass" type="password" align="center" placeholder="Repeat-Password" required>
+                        <input class="pass" type="password" align="center" placeholder="Repeat-Password" required>
+                        <input class="pass" type="password" align="center" placeholder="Repeat-Password" required>
+                        <input class="pass" type="password" align="center" placeholder="Repeat-Password" required>
+                        <input class="pass" type="password" align="center" placeholder="Repeat-Password" required>
                         <input class="pass" type="password" align="center" placeholder="Repeat-Password" required>
                         <ul class="ul">
                             <li>
@@ -26,7 +29,6 @@
                         </ul>
                 </form>
             </div>
-        </body>
     </html>
 </template>
 
@@ -37,15 +39,11 @@
 
 
 <style scoped>
-    body {
-            background-color: #F3EBF6;
-            font-family: 'Ubuntu', sans-serif;
-        }
-        
+    
         .main {
             background-color: #ffffff;
             width: 400px;
-            height: 520px;
+            height: 920px;
             margin: 7em auto;
             border-radius: 1.5em;
             box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);

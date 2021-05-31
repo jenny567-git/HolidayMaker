@@ -23,9 +23,8 @@
             <p>Total price: 1223 SEK</p>
           </div>
           <div class="col-md-6">
-            <router-link to="/checkout" class="btn btn-primary"
-              >Book</router-link
-            >
+            <router-link to="/checkout" class="btn btn-primary" @click="Book"
+              >Book</router-link>
           </div>
         </div>
       </div>
@@ -50,6 +49,11 @@ export default {
     hotelInfo() {
       return this.$store.state.hotel;
     },
+    methods:{
+      Book(){
+        // this.$store.dispatch('book', this.);
+      }
+    }
   },
 };
 </script>

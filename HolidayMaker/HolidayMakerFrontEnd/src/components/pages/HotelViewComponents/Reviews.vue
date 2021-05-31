@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import ReviewSubComp from "./ReviewComponents/ReviewSubComponent.vue";
+import ReviewSubComp from "./ReviewComponents/Review.vue";
 export default {
   components: {
     ReviewSubComp,

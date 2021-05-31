@@ -56,7 +56,7 @@ export default {
   },
   mounted(){
     console.log('in room mounted');
-    if(this.$store.state.seachResults){
+    if(this.$store.state.seachResults.length){
       let array = this.$store.state.seachResults;
       let arrayIndex = array.findIndex(i => i.hotel.id == this.$route.params.id);
       this.singleRooms = array[arrayIndex].roomList.singleRooms;

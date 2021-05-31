@@ -17,8 +17,10 @@
         <div class="col-md-6">
           <p>
             Rooms:
-            <input type="number" min="0" value="0" />
+            <input v-if="$store.state.searchString.dates.length" type="number" min="0" value="0" max=""/> 
+                                                                            <!-- bind max to availableRooms -->
           </p>
+          <p v-if="!$store.state.searchString.dates.length">Fill in dates to see available rooms</p>
         </div>
       </div>
       <div class="row">
@@ -35,7 +37,7 @@
 </template>
 
 <script>
-import Images from "./RoomPhotoSlider.vue";
+import Images from "../RoomPhotoSlider.vue";
 
 export default {
   components: {

@@ -17,7 +17,9 @@
         <div class="col-md-6">
           <p> Rooms:</p>
             <div v-if="$store.state.searchString.dates.length">
-                <input type="number" min="0" value="0" max=""/> 
+                <input v-if="room.type == 'Single'" type="number" min="0" value="0" :max="singleRooms"/> 
+                <input v-if="room.type == 'Double'" type="number" min="0" value="0" :max="doubleRooms"/> 
+                <input v-if="room.type == 'Family'" type="number" min="0" value="0" :max="familyRooms"/> 
             </div>
           <p v-else>Fill in dates to see available rooms</p>
         </div>

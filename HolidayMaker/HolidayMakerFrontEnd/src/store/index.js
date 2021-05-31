@@ -62,6 +62,8 @@ const store = createStore({
         },
         setHotelSeachResultsList(store, value){
             store.seachResults = value;
+            console.log('set search result');
+            console.log(store.seachResults);
             store.searchButtonLoading = false;
         },
         setHotel(store, value){
@@ -112,8 +114,8 @@ const store = createStore({
                 var response = await fetch('https://localhost:44356/api/Search/search?startDate=' + startDate + '&endDate=' + endDate + '&rooms=' + this.state.searchString.inputRooms + '&people=' + (this.state.searchString.inputAdult + this.state.searchString.inputChild) + '&input=' + searchString)
             }
             var result = await response.json();
-            console.log('search hotel');
-            console.log(result);
+            // console.log('search hotel');
+            // console.log(result);
             commit('setHotelSeachResultsList', result);
             if(result){
                 router.push({name: 'result'})

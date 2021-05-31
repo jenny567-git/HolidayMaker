@@ -32,7 +32,7 @@ namespace HolidayMakerBackEnd.Services
         public IEnumerable<Hotel> GetHotelByCity(string input)
         {
 
-            var result = _db.Hotels.Where(n => n.City.CityName == input).Include(n => n.Country).Include(n => n.City).Include(r => r.Rooms).AsEnumerable();
+            var result = _db.Hotels.Where(n => n.City.CityName.Contains(input)).Include(n => n.Country).Include(n => n.City).Include(r => r.Rooms).AsEnumerable();
 
             return result;
 
@@ -41,7 +41,7 @@ namespace HolidayMakerBackEnd.Services
         public IEnumerable<Hotel> GetHotelByCountry(string input)
         {
 
-            var result = _db.Hotels.Where(n => n.Country.CountryName == input).Include(n => n.Country).Include(n=> n.City).Include(r => r.Rooms).AsEnumerable();
+            var result = _db.Hotels.Where(n => n.Country.CountryName.Contains(input)).Include(n => n.Country).Include(n=> n.City).Include(r => r.Rooms).AsEnumerable();
 
             return result;
 

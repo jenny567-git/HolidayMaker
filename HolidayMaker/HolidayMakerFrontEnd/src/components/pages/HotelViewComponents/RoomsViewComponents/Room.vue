@@ -15,12 +15,11 @@
           </p>
         </div>
         <div class="col-md-6">
-          <p>
-            Rooms:
-            <input v-if="$store.state.searchString.dates.length" type="number" min="0" value="0" max=""/> 
-                                                                            <!-- bind max to availableRooms -->
-          </p>
-          <p v-if="!$store.state.searchString.dates.length">Fill in dates to see available rooms</p>
+          <p> Rooms:</p>
+            <div v-if="$store.state.searchString.dates.length">
+                <input type="number" min="0" value="0" max=""/> 
+            </div>
+          <p v-else>Fill in dates to see available rooms</p>
         </div>
       </div>
       <div class="row">
@@ -43,9 +42,30 @@ export default {
   components: {
     Images,
   },
+  data(){
+    return{
+    singleRooms:null,
+    doubleRooms:null,
+    familyRooms:null,
+    }
+  },
   props: {
     room: {},
   },
+  mounted(){
+    console.log('in room mounted');
+    if(this.$store.state.seachResults){
+      let array = this.$store.state.seachResults;
+      let arrayIndex = array.findIndex(i => i.hotel.id == this.$route.params.id);
+      this.singleRooms = array[arrayIndex].roomList.singleRooms;
+      this.doubleRooms = array[arrayIndex].roomList.doubleRooms;
+      this.familyRooms = array[arrayIndex].roomList.familyRooms;
+      console.log('single rooms' + this.singleRooms);
+      console.log('double rooms' + this.doubleRooms);
+      console.log('family rooms' + this.familyRooms);
+
+    }
+  }
 };
 </script>
 

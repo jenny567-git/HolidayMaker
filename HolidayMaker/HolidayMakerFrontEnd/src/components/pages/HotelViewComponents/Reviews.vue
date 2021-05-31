@@ -56,12 +56,6 @@
         :review="review"
         :key="review.id"
       />
-      <!-- <hr>
-            <ReviewSubComp/>
-            <hr>
-            <ReviewSubComp/>
-            <hr>
-            <ReviewSubComp/> -->
     </div>
     <div class="row">
       <b>Pagination not working yet, only visual</b>
@@ -88,7 +82,6 @@ export default {
     console.log(this.$route.params.id);
     this.getReviews();
   },
-  data() {},
   computed: {
     reviews: {
       get() {

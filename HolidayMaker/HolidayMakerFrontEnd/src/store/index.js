@@ -65,7 +65,6 @@ const store = createStore({
             store.searchButtonLoading = false;
         },
         setHotel(store, value){
-            console.log('set hotel in mutation');
             console.log(value);
             store.hotel = value;
         },
@@ -136,8 +135,6 @@ const store = createStore({
             commit('setHotel', result);
         },
         async setHotel({commit}, hotel){
-            console.log("set hotel action")
-            console.log(hotel)
             commit('setHotel', hotel)
        },
        async getReservationById({ commit }, reservationId) {

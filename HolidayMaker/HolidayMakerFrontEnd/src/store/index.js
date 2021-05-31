@@ -11,6 +11,7 @@ const store = createStore({
             email: '',
             message: ''
         },
+        getReviews: [],
         hotels:[],
         searchString: {
             string: '',
@@ -89,6 +90,9 @@ const store = createStore({
         setReservationDetails(state, data) {
             state.reservation = data;
         },
+        getReviews(state, data){
+            state.getReviews = data;
+        }
    },
    actions:{
         async searchHotels({commit}, searchString){
@@ -182,6 +186,11 @@ const store = createStore({
         },
         setDates({ commit }, date) {
             commit('setDates', date)
+        },
+        async getReviews({commit}, hotelId){
+            var response = await fetch('https://localhost:44356/api/Hotel/GetReviews/' + hotelId);
+            var result = await response.json();
+            commit('getReviews', result);
         }
     }
 })

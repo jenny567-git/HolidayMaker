@@ -35,7 +35,7 @@
 
 <script>
 import Images from "./RoomPhotoSlider.vue";
-import Room from "./RoomsViewComponents/RoomViewComponent.vue";
+import Room from "./RoomsViewComponents/Room.vue";
 import ServiceType from "./RoomsViewComponents/ServiceType.vue";
 import Options from "./RoomsViewComponents/Option.vue";
 

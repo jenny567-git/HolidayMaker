@@ -2,7 +2,7 @@
   <div id="test3">
     <div class="row">
       <div class="col">
-        <Images />
+        <Images :id="room.id"/>
       </div>
       <div class="col">
         <h3>{{ room.type }}</h3>

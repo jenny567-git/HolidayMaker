@@ -54,7 +54,8 @@ export default {
             },
             {
                 label: 'Confirmation',
-                to: '/checkout/orderCompleted'
+                to: '/checkout/reservationComplete',
+                api: true
             },
             ],
             page: 0
@@ -64,6 +65,13 @@ export default {
         nextPage() {
             if(this.page <= this.items.length - 2){
                 this.page++;
+                var orderId;
+                if(this.items[this.page].api){
+                    this.getOrder();
+                    orderId = this.$route.params.id; //get id after successful order creation
+                    this.$router.push(this.items[this.page].to + '/' + orderId);
+                    return;
+                }
                 this.$router.push(this.items[this.page].to);
             }
         },
@@ -73,6 +81,9 @@ export default {
                 this.$router.push(this.items[this.page].to);
             }
         },
+        getOrder(){
+            //this.$store.dispatch("getReservationById", this.$route.params.id);
+        }
     }
 }
 </script>

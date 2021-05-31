@@ -85,9 +85,9 @@ const routes = [
         component: StripePayment,
       },
       {
-        path: "orderCompleted",
-        name: "OrderCompleted",
-        component: OrderCompletedView,
+        path: "reservationComplete:id",
+        name: "ReservationDetails",
+        component: ReservationDetails,
       }
     ]
   },

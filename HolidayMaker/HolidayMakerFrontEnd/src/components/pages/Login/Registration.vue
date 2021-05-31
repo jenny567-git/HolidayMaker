@@ -10,10 +10,15 @@
         <body>
             <div class="main">
                     <p class="sign" align="center">Registration</p>
-                        <form class="form1">
-                        <input class="un" type="text" align="center" placeholder="Fullname" required>
-                        <input class="un" type="text" align="center" placeholder="Email" required>
-                        <input class="pass" type="password" align="center" placeholder="Password" required>
+                        <form class="form1" @submit.prevent="addGuest">
+                        <input class="un" type="text" align="center" placeholder="Fullname" required v-model="guest.Fullname">
+                        <input class="un" type="text" align="center" placeholder="Street" required v-model="guest.Street">
+                        <input class="un" type="text" align="center" placeholder="Zipcode" required v-model="guest.Zipcode">
+                        <input class="un" type="text" align="center" placeholder="City" required v-model="guest.City">
+                        <input class="un" type="text" align="center" placeholder="Country" required v-model="guest.Country">
+                        <input class="un" type="text" align="center" placeholder="Phone" required v-model="guest.Phone">
+                        <input class="un" type="email" align="center" placeholder="Email" required v-model="guest.Email">
+                        <input class="pass" type="password" align="center" placeholder="Password" required v-model="guest.Password">
                         <input class="pass" type="password" align="center" placeholder="Repeat-Password" required>
                         <ul class="ul">
                             <li>
@@ -30,9 +35,39 @@
     </html>
 </template>
 
-
 <script>
+export default {
+  data(){
+    return{
+      guest:{
+        Fullname: "",
+        Street: "",
+        Zipcode: "",
+        City:"",
+        Country:"",
+        Phone:"",
+        Email: "",
+        Password: ""
+      }
+    }
+  },
+  async mounted(){
 
+  },
+  methods:{
+    async addGuest(){
+      await fetch('https://localhost:44356/api/Guest/addGuest', {
+        method:'Post',
+        headers:{
+          'Accept': 'application/json',
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({Fullname:this.guest.Fullname, Street:this.guest.Street, Zipcode:this.guest.Zipcode, City:this.guest.City, Country:this.guest.Country, Phone:this.guest.Phone, Email:this.guest.Email, Password:this.guest.Password})
+      
+      })
+    }
+  }
+}
 </script>
 
 
@@ -45,7 +80,7 @@
         .main {
             background-color: #ffffff;
             width: 400px;
-            height: 520px;
+            height: 920px;
             margin: 7em auto;
             border-radius: 1.5em;
             box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);

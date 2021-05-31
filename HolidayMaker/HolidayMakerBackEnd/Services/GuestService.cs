@@ -31,7 +31,7 @@ namespace HolidayMakerBackEnd.Services
             return _db.Guests.Where(g => g.Id == id);
         }
 
-        public void AddGuest(GuestInputModel guest)
+        public void AddGuest(AddGuestViewModel guest)
         {
 
             var newGuest = new Guest()

@@ -56,7 +56,22 @@ const store = createStore({
 
         },
       
-         reservation: {},
+        reservation: {
+            fullName: 'sadas',
+            hotelName: 'sds',
+            startDate: '',
+            endDate: '',
+            adults: '',
+            children: '',
+            customerMessage: '',
+            type: '',
+            totalPrice: '',
+            hotelRoomsViewModel:{
+              singleRooms: '2',
+              doubleRooms: '2',
+              familyRooms: '2'
+            }
+          },
          customerDetailsCheckout: {}
       
     },

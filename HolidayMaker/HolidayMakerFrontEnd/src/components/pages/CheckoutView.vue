@@ -4,14 +4,14 @@
             <div class="row">
                 <div class="col-md-12">
                     <h3>
-                        Checkout details
+                        Checkout
                     </h3>
                 </div>
             </div>
             <div class="card">
                 <Steps :model="items" />
             </div>
-            <router-view />
+            <router-view @payment-confirmed="confirmed"/>
             <Button v-if="notAtStart" @click="prevPage" label="Prev" class="p-button-raised p-button-rounded" />
             <Button v-if="notAtEnd" @click="nextPage" label="Next" class="p-button-raised p-button-rounded" />
         </div>
@@ -53,9 +53,8 @@ export default {
                 to: '/checkout/payment'
             },
             {
-                label: 'Confirmation',
-                to: '/checkout/reservationComplete',
-                api: true
+                label: 'Order Confirmed',
+                to: '/checkout/OrderConfirmed'
             },
             ],
             page: 0
@@ -66,12 +65,6 @@ export default {
             if(this.page <= this.items.length - 2){
                 this.page++;
                 var orderId;
-                if(this.items[this.page].api){
-                    this.getOrder();
-                    orderId = this.$route.params.id; //get id after successful order creation
-                    this.$router.push(this.items[this.page].to + '/' + orderId);
-                    return;
-                }
                 this.$router.push(this.items[this.page].to);
             }
         },
@@ -81,8 +74,9 @@ export default {
                 this.$router.push(this.items[this.page].to);
             }
         },
-        getOrder(){
-            //this.$store.dispatch("getReservationById", this.$route.params.id);
+        confirmed(id){
+            // Set id in vuex
+            this.$router.push('/reservationdetails/' + id);
         }
     }
 }

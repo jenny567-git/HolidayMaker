@@ -16,6 +16,7 @@ import ReservationDetails from "/src/components/pages/ReservationDetails.vue";
 import CustomerDetails from '/src/components/pages/CheckoutViewComponents/CustomerDetails.vue'
 import OrderDetails from '/src/components/pages/CheckoutViewComponents/OrderDetails.vue'
 import StripePayment from '/src/components/pages/CheckoutViewComponents/StripePayment.vue'
+import OrderConfirmed from '/src/components/pages/CheckoutViewComponents/OrderConfirmed.vue'
 
 const routes = [
   {
@@ -85,9 +86,9 @@ const routes = [
         component: StripePayment,
       },
       {
-        path: "reservationComplete:id",
-        name: "ReservationDetails",
-        component: ReservationDetails,
+        path: "orderConfirmed",
+        name: "OrderConfirmed",
+        component: OrderConfirmed,
       }
     ]
   },

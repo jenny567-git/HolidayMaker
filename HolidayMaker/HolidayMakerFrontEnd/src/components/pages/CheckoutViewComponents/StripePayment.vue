@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <h1>Stripe payment</h1>
+    <div id="center">
         <form id="payment-form">
         <div id="card-element"><!--Stripe.js injects the Card Element--></div>
         <button id="submit" class="btn btn-primary">
@@ -42,14 +41,37 @@ var purchase = {
 
 export default {
     mounted(){
-        card = elements.create('card', {style: style});
+        if(card === undefined){
+            card = elements.create('card', {style: style});
+        }
         card.mount('#card-element');
-
-       
+    },
+    methods:{
+        payWithCard(stripe, card, clientSecret){
+            loading(true);
+            var ref = this;
+            stripe
+                .confirmCardPayment(clientSecret, {
+                payment_method: {
+                    card: card
+                }
+                })
+                .then(function(result) {
+                    if (result.error) {
+                        // Show error to your customer
+                        showError(result.error.message);
+                    } else {
+                        // The payment succeeded!
+                        orderComplete(result.paymentIntent.id);
+                        console.log("Order has completed!");
+                        ref.$emit('payment-confirmed', result.paymentIntent.id);
+                    }
+                });
+        }
     },
     created(){
         document.querySelector("button").disabled = true;
-        
+        var ref = this;
         fetch("https://localhost:44356/api/create-payment-intent", {
         method: "POST",
         headers: {
@@ -68,37 +90,16 @@ export default {
             var form = document.getElementById("payment-form");
             form.addEventListener("submit", function(event) {
                 event.preventDefault();
+                // Create the order here. Make sure it is completed!
+
                 // Complete payment when the submit button is clicked
-                payWithCard(stripe, card, data.clientSecret);
+                ref.payWithCard(stripe, card, data.clientSecret);
             });
 
         });
-    }
+    },
+    
 }
-
-
-var payWithCard = function(stripe, card, clientSecret) {
-  loading(true);
-  stripe
-    .confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: card
-      }
-    })
-    .then(function(result) {
-      if (result.error) {
-        // Show error to your customer
-        showError(result.error.message);
-      } else {
-        // The payment succeeded!
-        orderComplete(result.paymentIntent.id);
-        console.log("Order has completed!");
-      }
-    });
-};
-
-
-
 
 // UI stuff
 // Shows a success message when the payment is complete
@@ -142,6 +143,13 @@ var loading = function(isLoading) {
     * {
   box-sizing: border-box;
 }
+
+#center{
+    margin: auto;
+    width: 50%;
+    margin-top: 50px;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
@@ -159,7 +167,6 @@ form {
   box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
     0px 2px 5px 0px rgba(50, 50, 93, 0.1), 0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);
   border-radius: 7px;
-  padding: 40px;
 }
 input {
   border-radius: 6px;

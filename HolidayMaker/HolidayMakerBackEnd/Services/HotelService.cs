@@ -89,7 +89,7 @@ namespace HolidayMakerBackEnd.Services
 
         public Hotel GetById(int id)
         {
-            return _db.Hotels.SingleOrDefault(h => h.Id == id);
+            return _db.Hotels.Include(r => r.Rooms).SingleOrDefault(h => h.Id == id);
         }
 
         public Room GetRoomByRoomId(int id)
@@ -105,7 +105,7 @@ namespace HolidayMakerBackEnd.Services
         public IEnumerable<Hotel> GetAllHotels()
         {
             
-            var result = _db.Hotels.Include(n => n.Country).Include(n => n.City).AsEnumerable();
+            var result = _db.Hotels.Include(n => n.Country).Include(n => n.City).Include(r => r.Rooms).AsEnumerable();
             return result;
         }
 

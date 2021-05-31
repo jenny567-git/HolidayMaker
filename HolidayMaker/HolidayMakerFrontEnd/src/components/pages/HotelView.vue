@@ -76,7 +76,10 @@ export default ({
         }
     },
     created() {
-        this.$store.dispatch('getHotelById', this.$route.params.id)
+        if(!this.$store.state.seachResults.length){
+            this.$store.dispatch('getHotelById', this.$route.params.id)
+        }
+        
   }
 })
 </script>

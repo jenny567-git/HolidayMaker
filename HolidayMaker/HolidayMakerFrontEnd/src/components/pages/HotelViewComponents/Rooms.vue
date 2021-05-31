@@ -3,7 +3,7 @@
     <div class="row">
       <!-- left column -->
       <div class="col-md-6">
-        <Room />
+        <Room v-for="room in hotelInfo.rooms"  :room="room" :key="room.id"/>
       </div>
 
       <!-- right column -->
@@ -107,6 +107,11 @@ export default {
   components: {
     Images,
     Room,
+  },
+  computed: {
+    hotelInfo() {
+      return this.$store.state.hotel;
+    },
   },
 };
 </script>

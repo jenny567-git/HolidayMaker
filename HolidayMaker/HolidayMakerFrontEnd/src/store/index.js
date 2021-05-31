@@ -21,7 +21,7 @@ const store = createStore({
         },
         searchAutoComplete: [],
         seachResults:[],
-        hotel: {},
+        hotel: [],
         user: {
             loggedIn: false,
         },
@@ -64,6 +64,8 @@ const store = createStore({
             store.searchButtonLoading = false;
         },
         setHotel(store, value){
+            console.log('set hotel in mutation');
+            console.log(value);
             store.hotel = value;
         },
         updateAdults(state, value) {
@@ -83,7 +85,6 @@ const store = createStore({
         },
         setAutoComplete(store, value){
             store.searchAutoComplete = value;
-            console.log(store.searchAutoComplete);
         },
         setReservationDetails(state, data) {
             state.reservation = data;
@@ -93,7 +94,6 @@ const store = createStore({
         async searchHotels({commit}, searchString){
             let startDate;
             let endDate;
-            console.log(this.state.searchString.dates);
             if(this.state.searchString.dates.length){
                 startDate = this.state.searchString.dates[0].toISOString().slice(0,10);
                 endDate = this.state.searchString.dates[1].toISOString().slice(0,10);
@@ -108,9 +108,9 @@ const store = createStore({
             } else {
                 var response = await fetch('https://localhost:44356/api/Search/search?startDate=' + startDate + '&endDate=' + endDate + '&rooms=' + this.state.searchString.inputRooms + '&people=' + (this.state.searchString.inputAdult + this.state.searchString.inputChild) + '&input=' + searchString)
             }
-            
-            console.log(response);
             var result = await response.json();
+            console.log('search hotel');
+            console.log(result);
             commit('setHotelSeachResultsList', result);
             if(result){
                 router.push({name: 'result'})
@@ -128,6 +128,7 @@ const store = createStore({
         async getHotelById({commit}, hotelId){
             var response = await fetch('https://localhost:44356/api/Hotel/GetById/' + hotelId); // Default is GET
             var result = await response.json();
+            console.log('getHotelById action');
             commit('setHotel', result);
         },
         async setHotel({commit}, hotel){
@@ -166,10 +167,8 @@ const store = createStore({
             }, 500, this);
         },
         async getAutoComplete({commit}){
-            console.log('action')
             var response = await fetch('https://localhost:44356/api/Search/GetSearchAutoComplete');
             var result = await response.json();
-            console.log('result: ' + result)
             commit('setAutoComplete', result);
         },
         updateAdults({ commit }, value) {
@@ -182,7 +181,6 @@ const store = createStore({
             commit('updateRoom', value)
         },
         setDates({ commit }, date) {
-            console.log(date);
             commit('setDates', date)
         }
     }

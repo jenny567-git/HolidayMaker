@@ -5,12 +5,12 @@
         <Images />
       </div>
       <div class="col">
-        <h3>(room type 1)</h3>
+        <h3>{{ room.type }}</h3>
       </div>
       <div class="row">
         <div class="col-md-6">
           <p>
-            Max Capacity: (room.maxCapatiy)
+            Max Capacity: {{(room.maxCapacity)}}
             <i class="fas fa-user-alt"></i>
           </p>
         </div>
@@ -26,7 +26,7 @@
           <p>Price/unit:</p>
         </div>
         <div class="col-md-6">
-          <p style="color: red">214 SEK</p>
+          <p style="color: red">{{room.price}} SEK</p>
         </div>
       </div>
     </div>
@@ -35,13 +35,16 @@
 </template>
 
 <script>
-import Images from './RoomPhotoSlider.vue'
+import Images from "./RoomPhotoSlider.vue";
 
 export default {
-components: {
-    Images
-  }
-}
+  components: {
+    Images,
+  },
+  props: {
+    room: {},
+  },
+};
 </script>
 
 <style>

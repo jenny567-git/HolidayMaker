@@ -4,6 +4,7 @@ import router from "../router/index";
 const store = createStore({
     state:{
         searchButtonLoading: false,
+        guestId: 33, // hard coded
         home: {title: "store name"},
         name: "Vue",
         addReview: {
@@ -47,6 +48,7 @@ const store = createStore({
         },
       
          reservation: {},
+         savedHotels:[],
       
     },
     mutations: {
@@ -87,6 +89,9 @@ const store = createStore({
         },
         setReservationDetails(state, data) {
             state.reservation = data;
+        },
+        setSavedHotels(state, data){
+            state.savedHotels = data;
         },
    },
    actions:{
@@ -171,6 +176,15 @@ const store = createStore({
             var result = await response.json();
             console.log('result: ' + result)
             commit('setAutoComplete', result);
+        },
+        async getSavedHotels({commit}){
+            console.log('Getting saved hotels for guest id ', this.state.guestId)
+            var response = await fetch('https://localhost:44356/api/Hotel/SavedHotels?id=' + this.state.guestId);
+            var result = await response.json();
+            if(result){
+                console.log(result);
+                commit('setSavedHotels', result);
+            }
         },
         updateAdults({ commit }, value) {
             commit('updateAdults', value)

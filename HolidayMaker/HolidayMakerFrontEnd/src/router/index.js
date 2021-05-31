@@ -13,7 +13,7 @@ import Body from "../components/pages/MainPage/Body.vue";
 import { registerRuntimeCompiler } from "@vue/runtime-core";
 import Home from "/src/components/pages/Home.vue";
 import ReservationDetails from "/src/components/pages/ReservationDetails.vue";
-
+import SavedHotels from '/src/components/pages/UserPages/SavedHotels.vue';
 const routes = [
   {
     path: "/",
@@ -71,6 +71,12 @@ const routes = [
     name: "reservationdetails",
     component: ReservationDetails,
   },
+  {
+    path: "/savedHotels",
+    name: "SavedHotels",
+    component: SavedHotels,
+  },
+  
 ];
 const router = createRouter({
   history: createWebHistory(),

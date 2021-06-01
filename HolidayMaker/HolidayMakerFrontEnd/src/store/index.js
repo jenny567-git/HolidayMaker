@@ -34,7 +34,7 @@ const store = createStore({
             unitPriceSingleRoom: 0,
             unitPriceDoubleRoom: 0,
             unitPriceFamilyRoom: 0,
-            serviceType: '',
+            serviceType: 'Self service',
             extraBed: false,
             extraBedFee: 0,
             totalprice:''
@@ -113,8 +113,11 @@ const store = createStore({
         updateExtraBed(state) {
             state.bookingDetails.extraBed = (state.bookingDetails.extraBed != true) ? true : false;
         },
-        setExtraBedFee(state, fee) {
-            state.bookingDetails.extraBedFee = fee;
+        setExtraBedFee(state, value) {
+            state.bookingDetails.extraBedFee = value;
+        },
+        setServiceType(state, value) {
+            state.bookingDetails.serviceType = value;
         },
    },
    actions:{
@@ -228,8 +231,11 @@ const store = createStore({
         updateExtraBed({ commit }) {
             commit('updateExtraBed')
         },
-        setExtraBedFee({ commit }, fee) {
-            commit('setExtraBedFee', fee)
+        setExtraBedFee({ commit }, value) {
+            commit('setExtraBedFee', value)
+        },
+        setServiceType({ commit }, value) {
+            commit('setServiceType', value)
         },
     }
 })

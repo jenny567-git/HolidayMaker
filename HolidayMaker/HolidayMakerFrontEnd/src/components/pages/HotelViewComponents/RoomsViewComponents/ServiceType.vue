@@ -10,11 +10,13 @@
         type="radio"
         class="btn-check"
         name="btnradio"
-        id="btnradio1"
+        id="btnSelfService"
+       
         autocomplete="off"
         checked
+        @click="emitToParent('Self service')"
       />
-      <label class="btn btn-outline-primary" for="btnradio1">
+      <label class="btn btn-outline-primary" for="btnSelfService">
         Self service
       </label>
 
@@ -22,10 +24,12 @@
         type="radio"
         class="btn-check"
         name="btnradio"
-        id="btnradio2"
+        
+        id="btnHalfBoard"
         autocomplete="off"
+        @click="emitToParent('Half board')"
       />
-      <label class="btn btn-outline-primary" for="btnradio2">
+      <label class="btn btn-outline-primary" for="btnHalfBoard">
         Half board
       </label>
 
@@ -33,11 +37,13 @@
         type="radio"
         class="btn-check"
         name="btnradio"
-        id="btnradio3"
+        
+        id="btnFullBoard"
         autocomplete="off"
+        @click="emitToParent('Full board')"
       />
 
-      <label class="btn btn-outline-primary" for="btnradio3">
+      <label class="btn btn-outline-primary" for="btnFullBoard">
         Full board
       </label>
 
@@ -45,10 +51,12 @@
         type="radio"
         class="btn-check"
         name="btnradio"
-        id="btnradio4"
+        
+        id="btnAllInclusive"
         autocomplete="off"
+        @click="emitToParent('All inclusive')"
       />
-      <label class="btn btn-outline-primary" for="btnradio4">
+      <label class="btn btn-outline-primary" for="btnAllInclusive">
         All inclusive
       </label>
     </div>
@@ -56,7 +64,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods:{
+    emitToParent(value){
+      this.$emit('serviceType', value);
+    }
+  }
+};
 </script>
 
 <style>

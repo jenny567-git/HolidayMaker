@@ -14,7 +14,7 @@
 
         <!-- Pension type -->
         <div class="row">
-          <ServiceType v-bind="serviceType" @click="getServiceType" />
+          <ServiceType v-bind="serviceType" @serviceType="getServicetype" />
         </div>
 
         <div class="row pt-5">
@@ -70,7 +70,9 @@ export default {
     setExtraBedFee(){
       this.$store.dispatch('setExtraBedFee', this.hotelInfo.extraBedFee)
     },
-    getServicetype() {},
+    getServicetype(value) {
+      this.$store.dispatch('setServiceType', value );
+    },
     Book() {
       // this.$store.dispatch('book', this.);
     },

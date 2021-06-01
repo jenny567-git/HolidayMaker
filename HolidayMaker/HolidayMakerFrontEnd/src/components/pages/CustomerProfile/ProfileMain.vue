@@ -41,7 +41,7 @@
                                 Bookings </a>
                             </li>
                             <li>
-                                <a href="#" target="_blank">
+                                <a href="#"> <!--target="_blank" -->
                                 <i class="fas fa-hotel"></i>
                                 Saved Hotels </a>
                             </li>
@@ -57,7 +57,7 @@
             </div>
             <div class="col-md-9">
                 <div class="profile-content">
-                    
+                    <router-view></router-view>
                 </div>
             </div>
         </div>

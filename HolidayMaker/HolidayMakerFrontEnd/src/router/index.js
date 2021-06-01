@@ -25,6 +25,27 @@ const routes = [
     path: "/Profile",
     name: "Profile",
     component: ProfileMain,
+    // children: [
+    //   {
+    //     path: "Home",
+    //     component: Profile,
+    //   },
+    //   {
+    //     path: "Booking",
+    //     name: "booking",
+    //     component: Booking,
+    //   },
+    //   {
+    //     path: "Favorite",
+    //     name: "favorite",
+    //     component: SavedHotels,
+    //   },
+    //   {
+    //     path: "ProfileSetting",
+    //     name: "profileSetting",
+    //     component: ProfileSettings,
+    //   },
+    // ],
   },
   {
     path: "/result",

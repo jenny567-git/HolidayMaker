@@ -21,7 +21,7 @@
                 <div class="col-md-12">
                     <ul class="nav nav-pills">
                         <li class="nav-item">
-                            <router-link :to="'/hotels/' + this.$route.params.id + '/'" class="nav-link active"> Info </router-link>
+                            <router-link :to="'/hotels/' + this.$route.params.id + '/'" class="nav-link"> Info </router-link>
                         </li>
                         <li class="nav-item">
                             <router-link :to="'/hotels/' + this.$route.params.id + '/photos'" class="nav-link"> Photos </router-link>

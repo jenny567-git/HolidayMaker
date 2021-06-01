@@ -21,6 +21,7 @@ namespace HolidayMakerBackEnd.Models.Database
         public string Country { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
+        public string Password { get; set; }
 
         public virtual Review Review { get; set; }
         public virtual ICollection<Reservation> Reservations { get; set; }

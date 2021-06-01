@@ -202,7 +202,19 @@ const store = createStore({
             });
         },
         async removeFavouriteHotel({commit}, hotelId){
-
+            fetch('https://localhost:44356/api/Guest/removeFavoriteHotel',
+            {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json'},
+                body: JSON.stringify({hotelID: hotelId, guestID: this.state.guestId})
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            }); 
         },
         updateAdults({ commit }, value) {
             commit('updateAdults', value)

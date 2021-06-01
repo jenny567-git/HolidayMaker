@@ -57,15 +57,12 @@ namespace HolidayMakerBackEnd.Controllers
             int result = _guestService.SaveHotel(model);
             return Ok(result);
         }
-        //[HttpGet("getAllReservationForGuest/{id}")]
-        //public BookingViewModel GetGuestReservation(int id)
-        //{
-        //    var result = _guestService.GetGuestReservation(id);
-        //    return result;
-        //}
-       
 
-        
-
+        [HttpDelete("removeFavoriteHotel")]
+        public ActionResult RemoveHotelFromFavorites(SaveModel model)
+        {
+            int result = _guestService.RemoveSavedHotel(model);
+            return Ok(result);
+        }
     }
 }

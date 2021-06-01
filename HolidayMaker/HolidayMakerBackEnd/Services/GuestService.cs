@@ -94,6 +94,18 @@ namespace HolidayMakerBackEnd.Services
             return _db.SaveChanges();
         }
 
+        public int RemoveSavedHotel(SaveModel model)
+        {
+            var newRemoveHotel = new SavedHotel()
+            {
+                HotelId = model.HotelID,
+                GuestId = model.GuestID,
+            };
+
+            _db.SavedHotels.Remove(newRemoveHotel);
+            return _db.SaveChanges();
+        }
+
         public Guest FindGuestById(int id)
         {
             return _db.Guests.FirstOrDefault(x => x.Id == id);

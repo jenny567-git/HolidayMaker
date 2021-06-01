@@ -83,6 +83,13 @@ namespace HolidayMakerBackEnd.Controllers
             var result = _hotelService.GetHotelsByRandom();
             return result;
         }
+        
+        [HttpGet("GetAccomodationFee")]
+        public double GetAccomodationFee(int id, string type)
+        {
+            var result = _hotelService.GetAccomodationFee(id, type);
+            return result;
+        }
 
     }
 }

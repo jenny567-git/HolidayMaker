@@ -105,9 +105,16 @@ const store = createStore({
             let doubleRoomsTotalPrice = state.bookingDetails.noOfDoubleRooms * state.bookingDetails.unitPriceDoubleRoom;
             let familyRoomsTotalPrice = state.bookingDetails.noOfFamilyRooms * state.bookingDetails.unitPriceFamilyRoom;
             state.bookingDetails.totalprice = singleRoomsTotalPrice + doubleRoomsTotalPrice + familyRoomsTotalPrice;
+
+            if(state.bookingDetails.extraBed){
+                state.bookingDetails.totalprice += state.bookingDetails.extraBedFee;
+            }
         },
         updateExtraBed(state) {
             state.bookingDetails.extraBed = (state.bookingDetails.extraBed != true) ? true : false;
+        },
+        setExtraBedFee(state, fee) {
+            state.bookingDetails.extraBedFee = fee;
         },
    },
    actions:{
@@ -220,6 +227,9 @@ const store = createStore({
         },
         updateExtraBed({ commit }) {
             commit('updateExtraBed')
+        },
+        setExtraBedFee({ commit }, fee) {
+            commit('setExtraBedFee', fee)
         },
     }
 })

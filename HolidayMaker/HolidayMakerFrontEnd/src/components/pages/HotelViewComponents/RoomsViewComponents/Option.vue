@@ -2,7 +2,7 @@
   <div>
     <h3>Extra bed</h3>
     <div class="p-field-checkbox">
-          <Checkbox id="option" v-model="extraBed" :binary="true"/>
+          <Checkbox id="option" v-model="extraBed" :binary="true" @change="emitToParent"/>
           <label for="option">{{ extraBed }}</label>
         </div>
 
@@ -66,6 +66,11 @@ export default {
       }
     }
   },
+  methods:{
+    emitToParent(e){
+      this.$emit('checked');
+    }
+  }
 };
 </script>
 

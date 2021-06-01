@@ -8,7 +8,7 @@
 
       <!-- right column -->
       <div class="col-md-6">
-        <Options />
+        <Options @checked="setExtraBedFee"/>
         <!-- Amount
           <input type="number" min="1" value="1" /> -->
 
@@ -60,15 +60,15 @@ export default {
     totalprice() {
         this.$store.dispatch('getTotalPrice');
         return this.$store.state.bookingDetails.totalprice;
-      // },
-      // set(){
-      //   this.$store.dispatch('getTotalPrice');
-      // }
-    }
+    },
+    
   },
   methods: {
     getTotalPrice(){
       this.$store.dispatch('getTotalPrice');
+    },
+    setExtraBedFee(){
+      this.$store.dispatch('setExtraBedFee', this.hotelInfo.extraBedFee)
     },
     getServicetype() {},
     Book() {

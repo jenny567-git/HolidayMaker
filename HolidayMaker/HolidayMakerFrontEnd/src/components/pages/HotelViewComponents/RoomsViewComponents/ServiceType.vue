@@ -13,7 +13,7 @@
         id="btnSelfService"
        
         autocomplete="off"
-        checked
+        
         @click="emitToParent('SelfService')"
       />
       <label class="btn btn-outline-primary" for="btnSelfService">

@@ -34,7 +34,7 @@
                         </li>
                         <li class="nav-item">
                             <button class="btn" @click="ToggleStar" id="starBtn">
-                                <i :class="star ? 'fas fa-star' : 'far fa-star'" style="color: yellow;"></i>
+                                <i :class="star ? 'fas fa-heart' : 'far fa-heart'" style="color: red;"></i>
                             </button>
                         </li>
                         
@@ -99,21 +99,45 @@ export default ({
                 this.$store.dispatch('removeFavouriteHotel', this.hotel.id)
                 this.star = !this.star;
             }
+        },
+        getSavedHotels(){ 
+            fetch('https://localhost:44356/api/Guest/GetSavedHotels/' + this.$store.state.guestId)
+                .then(response => response.json())
+                .then(result => {
+                    if(result){
+                        console.log("result",result);
+                        console.log(this.hotel, this.hotelInfo);
+                        for (let i = 0; i < result.length; i++) {
+                            console.log(result[i].hotelId, this.hotelInfo )
+                            if(result[i].hotelId === this.hotel.id){
+                                this.star = true;
+                            }
+                        }
+                    }
+            });
+        }
+    },
+    watch:{
+        hotelInfo: {
+            handler: function(oldVal, newVal){
+                console.log("Hotel info changed", this.hotelInfo);
+                setTimeout(function(that){ 
+                    console.log("call getsavedhotels");
+                    that.getSavedHotels();
+                }, 500, this);
+            },
         }
     },
     created() {
         this.$store.dispatch('getHotelById', this.$route.params.id)
-        fetch('https://localhost:44356/api/Guest/GetSavedHotels/' + this.$store.state.guestId)
-        .then(response => response.json())
-        .then(result => {
-            if(result){
-                for (let i = 0; i < result.length; i++) {
-                    if(result[i].hotelId === this.hotel.id){
-                        this.star = true;
-                    }                
-                }
-            }
+        .then(() =>{
+            console.log("Test somethng");
+            this.getSavedHotels();
         });
+
+        // setTimeout(function(that){ 
+        //     that.getSavedHotels();
+        // }, 1500, this);
     }
 })
 </script>

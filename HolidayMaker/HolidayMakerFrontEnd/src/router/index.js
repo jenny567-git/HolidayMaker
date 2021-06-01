@@ -13,6 +13,9 @@ import Body from "../components/pages/MainPage/Body.vue";
 import { registerRuntimeCompiler } from "@vue/runtime-core";
 import Home from "/src/components/pages/Home.vue";
 import ReservationDetails from "/src/components/pages/ReservationDetails.vue";
+import Login from "../components/pages/Login/Login.vue"
+import Registration from "../components/pages/Login/Registration.vue";
+
 import SavedHotels from '/src/components/pages/UserPages/SavedHotels.vue';
 const routes = [
   {
@@ -24,6 +27,16 @@ const routes = [
     path: "/result",
     name: "result",
     component: SearchResult,
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: Login,
+  },
+  {
+    path: "/registration",
+    name: "registration",
+    component: Registration,
   },
   {
     path: "/addReview",

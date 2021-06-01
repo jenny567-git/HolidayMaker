@@ -39,10 +39,27 @@ namespace HolidayMakerBackEnd.Controllers
             return result;
         }
         [HttpPost("addGuest")]
-        public ActionResult AddGuest([FromBody]GuestInputModel guest)
+        public async Task<Guest> AddGuest(AddGuestViewModel model)
         {
-            _guestService.AddGuest(guest);
-            return Ok();
+            var newGuest = new Guest()
+            {
+                FullName = model.FullName,
+                Street = model.Street,
+                ZipCode = model.ZipCode,
+                City = model.ZipCode,
+                Country = model.Country,
+                Phone = model.Phone,
+                Email = model.Email,
+                Password = BCrypt.Net.BCrypt.HashPassword(model.Password)
+                
+                
+
+            };
+
+            _db.Guests.Add(newGuest);
+            await _db.SaveChangesAsync();
+
+            return newGuest;
         }
 
         [HttpPost("AddReview")]
@@ -57,6 +74,16 @@ namespace HolidayMakerBackEnd.Controllers
             int result = _guestService.SaveHotel(model);
             return Ok(result);
         }
+        
+       
+        [HttpPost("login")]
+        public Guest Login(LoginRequestViewModel model)
+        {
+
+            return _guestService.Login(model);
+        }
+
+        
 
         [HttpDelete("removeFavoriteHotel")]
         public ActionResult RemoveHotelFromFavorites(SaveModel model)

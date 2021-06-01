@@ -31,7 +31,7 @@ namespace HolidayMakerBackEnd.Services
             return _db.Guests.Where(g => g.Id == id);
         }
 
-        public void AddGuest(GuestInputModel guest)
+        public void AddGuest(AddGuestViewModel guest)
         {
 
             var newGuest = new Guest()
@@ -120,8 +120,18 @@ namespace HolidayMakerBackEnd.Services
             return test;
         }
 
+        public Guest Login(LoginRequestViewModel model)
+        {
+            var user = _db.Guests.FirstOrDefault(x => x.Email == model.Email);
+            bool isValid = BCrypt.Net.BCrypt.Verify(model.Password, user.Password);
 
+            if (isValid)
+            {
+                return user;
+            }
+            return null;
 
+        }
 
     }
 

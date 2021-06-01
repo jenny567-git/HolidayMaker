@@ -48,9 +48,13 @@ const store = createStore({
         },
       
          reservation: {},
+         user: {
+            loggedIn: false,
+          },
          savedHotels:[],
-      
     },
+      
+    
     mutations: {
         setEmail(store, value) {
             store.addReview.email = value
@@ -89,6 +93,15 @@ const store = createStore({
         },
         setReservationDetails(state, data) {
             state.reservation = data;
+        },
+        setLoggedInUser(state, user) {
+            state.user = user;
+          },
+        setEmail(state, value){
+            state.user.Email = value; 
+        },
+        setPassword(state, value){
+            state.user.Password = value;
         },
         setSavedHotels(state, data){
             state.savedHotels = data;
@@ -177,6 +190,32 @@ const store = createStore({
             console.log('result: ' + result)
             commit('setAutoComplete', result);
         },
+        async login({ dispatch }, credentials) {
+            let response = await fetch("https://localhost:44356/api/Guest/login", {
+              method: "post",
+              headers: { "Content-type": "application/json" },
+              body: JSON.stringify(credentials),
+            });
+            let result = await response.json();
+            await dispatch("getLoggedInUser", result);
+          },
+
+          async getLoggedInUser({ commit }) {
+            let response = await fetch("https://localhost:44356/api/Guest/GetGuestById/");
+            let result = await response.json();
+            if (response.status == 401) {
+              result.loggedIn = false;
+            }
+            commit("setLoggedInUser", result);
+    
+          },
+          
+
+          async logout({ dispatch }) {
+            let response = await fetch("https://localhost:44356/api/Guest/login", { method: "delete" });
+            //kolla response status etc
+            await dispatch("getLoggedInUser");
+          },
         async getSavedHotelsInfo({commit}){
             console.log('Getting saved hotels for guest id ', this.state.guestId)
             var response = await fetch('https://localhost:44356/api/Hotel/SavedHotelsInfo?id=' + this.state.guestId);

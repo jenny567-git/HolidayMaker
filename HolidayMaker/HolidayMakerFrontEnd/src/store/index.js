@@ -83,7 +83,8 @@ const store = createStore({
         },
         setDates(state, date) {
             state.searchString.dates = date
-        }
+        },
+        
    },
    actions:{
         async searchHotels({commit}, searchString){
@@ -118,8 +119,11 @@ const store = createStore({
         setDates({ commit }, date) {
             console.log(date);
             commit('setDates', date)
-        }
-    }
+        },
+       
+    },
+  
+  
 })
 
 export default store

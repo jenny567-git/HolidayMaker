@@ -4,7 +4,7 @@
   
   <div>
     <h1>Search results: {{hotelsCount}} found</h1>
-    <Result v-for="hotel in hotels" :hotel="hotel" :key="hotel.id" :filteredHotels="filteredHotels"/>
+    <Result :filteredHotels="filteredHotels"/>
     <div>
     <div>
       <p>Price range (SEK)</p>
@@ -18,15 +18,15 @@
     <div>
       <p>Distance to beach (km)</p>
       <Slider
-        v-model="beachRange.value"
-        v-bind="beachRange"
+        v-model="beachDistance.value"
+        v-bind="beachDistance"
         :max="5000"
       ></Slider>
     </div>
     <hr />
     <div>
       <p>Distance to city (km)</p>
-      <Slider v-model="cityRange.value" v-bind="cityRange" :max="5000"></Slider>
+      <Slider v-model="centrumDistance.value" v-bind="centrumDistance" :max="5000"></Slider>
     </div>
     <hr />
     
@@ -124,15 +124,16 @@ export default {
     Info,
     Result
   },
+
   data() {
     return {
       pricerange: {
         value: [0, 40000],
       },
-      beachRange: {
+      beachDistance: {
         value: [500],
       },
-      cityRange: {
+      centrumDistance: {
         value: [800],
       },
     };
@@ -142,8 +143,19 @@ export default {
             return this.$store.state.seachResults;
         },
         hotelsCount(){
-            return this.$store.state.seachResults.length;
-        }
+            return this.filteredHotels.length;
+        },
+       
+    filteredHotels() {
+      let result = this.hotels.filter(
+        (hotel) => hotel.beachDistance <= this.beachDistance.value
+      );
+      result = result.filter(
+        (hotel) => hotel.centrumDistance <= this.centrumDistance.value
+      );
+      
+      return result
+    }
     }
  
 };

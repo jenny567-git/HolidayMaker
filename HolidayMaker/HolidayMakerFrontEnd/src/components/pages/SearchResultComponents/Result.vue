@@ -1,7 +1,7 @@
 <template>
 
     <div id="test3">
-        <div class="row">
+        <div class="row" v-for="hotel in filteredHotels" :hotel="hotel" :key="hotel.id">
             <Images :id="hotel.id"/>
                 <b>{{hotel.name}}</b>
                 <p>Distance to beach: {{hotel.beachDistance}}</p>
@@ -29,23 +29,8 @@ components: {
     Info
   },
   
-  props:{
-    hotel: {}
-  },
+  props:['filteredHotels'],
 
-  computed:{
-    myHotels(){
-      return this.$store.state.hotels  
-    },
-    filteredHotels() {
-      
-      let result = this.hotel.filter(
-        (hotel) => hotel.beachDistance <= this.beachRange.value
-      );
-      return result
-    }
-     
-  },
   methods:{
       hotelDetailsClick(event){
           console.log("Set hotel", this.hotel.id)

@@ -46,7 +46,7 @@
             <!-- </div> -->
         
             <div class="col-md-4">
-                <Filter/> 
+                <Filter /> 
                
             </div>
             

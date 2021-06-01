@@ -89,9 +89,12 @@ export default {
       this.arrayIndex = this.array.findIndex(
         (i) => i.hotel.id == this.$route.params.id
       );
-      this.singleRooms = this.array[this.arrayIndex].roomList.singleRooms;
-      this.doubleRooms = this.array[this.arrayIndex].roomList.doubleRooms;
-      this.familyRooms = this.array[this.arrayIndex].roomList.familyRooms;
+      if (this.array[this.arrayIndex].roomList) {
+        this.singleRooms = this.array[this.arrayIndex].roomList.singleRooms;
+        this.doubleRooms = this.array[this.arrayIndex].roomList.doubleRooms;
+        this.familyRooms = this.array[this.arrayIndex].roomList.familyRooms;
+      }
+
       // console.log("single rooms" + this.singleRooms);
       // console.log("double rooms" + this.doubleRooms);
       // console.log("family rooms" + this.familyRooms);
@@ -103,10 +106,10 @@ export default {
         return this.$store.state.bookingDetails.noOfSingleRooms;
       },
       set(noOfUnit) {
-        console.log('single input: ' + noOfUnit);
-        if(this.room.type == 'Single'){
+        console.log("single input: " + noOfUnit);
+        if (this.room.type == "Single") {
           let unitPrice = this.room.price;
-          this.$store.dispatch("setSingleRooms", {noOfUnit, unitPrice});
+          this.$store.dispatch("setSingleRooms", { noOfUnit, unitPrice });
         }
       },
     },
@@ -115,12 +118,11 @@ export default {
         return this.$store.state.bookingDetails.noOfDoubleRooms;
       },
       set(noOfUnit) {
-        console.log('double input: ' + noOfUnit);
-        if(this.room.type == 'Double'){
-          let unitPrice = this.room.price
-          this.$store.dispatch("setDoubleRooms", {noOfUnit, unitPrice});
+        console.log("double input: " + noOfUnit);
+        if (this.room.type == "Double") {
+          let unitPrice = this.room.price;
+          this.$store.dispatch("setDoubleRooms", { noOfUnit, unitPrice });
         }
-        
       },
     },
     inputFamilyRooms: {
@@ -128,10 +130,10 @@ export default {
         return this.$store.state.bookingDetails.noOfFamilyRooms;
       },
       set(noOfUnit) {
-        console.log('family input: ' + noOfUnit);
-        if(this.room.type == 'Family'){
-          let unitPrice = this.room.price
-          this.$store.dispatch("setFamilyRooms", {noOfUnit, unitPrice});
+        console.log("family input: " + noOfUnit);
+        if (this.room.type == "Family") {
+          let unitPrice = this.room.price;
+          this.$store.dispatch("setFamilyRooms", { noOfUnit, unitPrice });
         }
       },
     },

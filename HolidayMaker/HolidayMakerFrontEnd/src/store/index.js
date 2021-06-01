@@ -47,7 +47,9 @@ const store = createStore({
         },
       
          reservation: {},
-      
+         user: {
+            loggedIn: false,
+          },
     },
     mutations: {
         setEmail(store, value) {
@@ -88,6 +90,15 @@ const store = createStore({
         setReservationDetails(state, data) {
             state.reservation = data;
         },
+        setLoggedInUser(state, user) {
+            state.user = user;
+          },
+        setEmail(state, value){
+            state.user.Email = value; 
+        },
+        setPassword(state, value){
+            state.user.Password = value;
+        }
    },
    actions:{
         async searchHotels({commit}, searchString){
@@ -172,6 +183,32 @@ const store = createStore({
             console.log('result: ' + result)
             commit('setAutoComplete', result);
         },
+        async login({ dispatch }, credentials) {
+            let response = await fetch("https://localhost:44356/api/Guest/login", {
+              method: "post",
+              headers: { "Content-type": "application/json" },
+              body: JSON.stringify(credentials),
+            });
+            let result = await response.json();
+            await dispatch("getLoggedInUser", result);
+          },
+
+          async getLoggedInUser({ commit }) {
+            let response = await fetch("https://localhost:44356/api/Guest/GetGuestById/");
+            let result = await response.json();
+            if (response.status == 401) {
+              result.loggedIn = false;
+            }
+            commit("setLoggedInUser", result);
+    
+          },
+          
+
+          async logout({ dispatch }) {
+            let response = await fetch("https://localhost:44356/api/Guest/login", { method: "delete" });
+            //kolla response status etc
+            await dispatch("getLoggedInUser");
+          },
         updateAdults({ commit }, value) {
             commit('updateAdults', value)
         },

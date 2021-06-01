@@ -13,12 +13,18 @@ import Body from "../components/pages/MainPage/Body.vue";
 import { registerRuntimeCompiler } from "@vue/runtime-core";
 import Home from "/src/components/pages/Home.vue";
 import ReservationDetails from "/src/components/pages/ReservationDetails.vue";
+import ProfileMain from "../components/pages/CustomerProfile/ProfileMain.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/Profile",
+    name: "Profile",
+    component: ProfileMain,
   },
   {
     path: "/result",

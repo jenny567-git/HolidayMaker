@@ -36,18 +36,17 @@ namespace HolidayMakerBackEnd.Controllers
 
             List<SavedHotelViewModel> model = new();
 
-            //foreach (var item in result)
-            //{
-            for (int i = 0; i < 4; i++)
+            foreach (var item in result)
             {
+
                 SavedHotelViewModel tmp = new();
-                //tmp.HotelName = item.Hotel.Name;
-                //tmp.HotelDescription = item.Hotel.Description;
-                tmp.HotelName = "Dummy name";
-                tmp.HotelDescription = "Dummy desc. (change in hotelController)";
+                tmp.HotelName = item.Hotel.Name;
+                tmp.HotelDescription = item.Hotel.Description;
+                //tmp.HotelName = "Dummy name";
+                //tmp.HotelDescription = "Dummy desc. (change in hotelController)";
                 model.Add(tmp);
-            } // remove for loop after testing, use foreach
-            //}
+                // remove for loop after testing, use foreach
+            }
 
             return model;
         }

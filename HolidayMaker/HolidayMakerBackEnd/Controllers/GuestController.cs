@@ -54,8 +54,8 @@ namespace HolidayMakerBackEnd.Controllers
         [HttpPost("saveFavoriteHotel")]
         public ActionResult SaveHotelToFavorites(SaveModel model)
         {
-            _guestService.SaveHotel(model);
-            return Ok();
+            int result = _guestService.SaveHotel(model);
+            return Ok(result);
         }
         //[HttpGet("getAllReservationForGuest/{id}")]
         //public BookingViewModel GetGuestReservation(int id)

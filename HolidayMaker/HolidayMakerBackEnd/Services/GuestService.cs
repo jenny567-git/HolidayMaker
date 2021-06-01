@@ -82,7 +82,7 @@ namespace HolidayMakerBackEnd.Services
             _db.SaveChanges();
         }
 
-        public void SaveHotel(SaveModel model)
+        public int SaveHotel(SaveModel model)
         {
             var newSaveHotel = new SavedHotel()
             {
@@ -91,7 +91,7 @@ namespace HolidayMakerBackEnd.Services
             };
 
             _db.SavedHotels.Add(newSaveHotel);
-            _db.SaveChanges();
+            return _db.SaveChanges();
         }
 
         public Guest FindGuestById(int id)

@@ -121,7 +121,7 @@ namespace HolidayMakerBackEnd.Services
 
         public List<SavedHotel> GetSavedHotels(int id)
         {
-            return _db.SavedHotels.Where(u => u.GuestId == id).ToList();
+            return _db.SavedHotels.Where(u => u.GuestId == id).Include(h => h.Hotel).ToList();
         }
 
     }

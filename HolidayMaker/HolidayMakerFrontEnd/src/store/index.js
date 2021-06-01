@@ -93,7 +93,16 @@ const store = createStore({
         },
         getReviews(state, data){
             state.getReviews = data;
-        }
+        },
+        setSingleRooms(state, value) {
+            state.bookingDetails.inputSingleRooms = value
+        },
+        setDoubleRooms(state, value) {
+            state.bookingDetails.inputDoubleRooms = value
+        },
+        setFamilyRooms(state, value) {
+            state.bookingDetails.inputFamilyRooms = value
+        },
    },
    actions:{
         async searchHotels({commit}, searchString){
@@ -190,7 +199,16 @@ const store = createStore({
             var response = await fetch('https://localhost:44356/api/Hotel/GetReviews/' + hotelId);
             var result = await response.json();
             commit('getReviews', result);
-        }
+        },
+        setSingleRooms({ commit }, value) {
+            commit('setSingleRooms', value)
+        },
+        setDoubleRooms({ commit }, value) {
+            commit('setDoubleRooms', value)
+        },
+        setFamilyRooms({ commit }, value) {
+            commit('setFamilyRooms', value)
+        },
     }
 })
 

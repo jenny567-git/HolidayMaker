@@ -57,7 +57,7 @@
             </div>
             <div class="col-md-9">
                 <div class="profile-content">
-                Add content here...
+                    
                 </div>
             </div>
         </div>
@@ -69,6 +69,10 @@
 </script>
 
 <style scoped>
+
+    .nav {
+        display: block;
+    }
     /* Profile container */
     .profile {
         margin: 20px 0;

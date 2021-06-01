@@ -124,5 +124,10 @@ namespace HolidayMakerBackEnd.Services
             var result = _db.Accomodations.SingleOrDefault(h => h.HotelId == hotelId && h.Type.ToLower() == type.ToLower());
             return result.Price;
         }
+        public List<SavedHotel> GetSavedHotels(int id)
+        {
+            return _db.SavedHotels.Where(u => u.GuestId == id).Include(h => h.Hotel).ToList();
+        }
+
     }
 }

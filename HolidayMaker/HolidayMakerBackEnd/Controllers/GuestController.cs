@@ -71,15 +71,10 @@ namespace HolidayMakerBackEnd.Controllers
         [HttpPost("saveFavoriteHotel")]
         public ActionResult SaveHotelToFavorites(SaveModel model)
         {
-            _guestService.SaveHotel(model);
-            return Ok();
+            int result = _guestService.SaveHotel(model);
+            return Ok(result);
         }
-        //[HttpGet("getAllReservationForGuest/{id}")]
-        //public BookingViewModel GetGuestReservation(int id)
-        //{
-        //    var result = _guestService.GetGuestReservation(id);
-        //    return result;
-        //}
+        
        
         [HttpPost("login")]
         public Guest Login(LoginRequestViewModel model)
@@ -90,5 +85,11 @@ namespace HolidayMakerBackEnd.Controllers
 
         
 
+        [HttpDelete("removeFavoriteHotel")]
+        public ActionResult RemoveHotelFromFavorites(SaveModel model)
+        {
+            int result = _guestService.RemoveSavedHotel(model);
+            return Ok(result);
+        }
     }
 }

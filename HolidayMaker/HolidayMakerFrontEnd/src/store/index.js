@@ -4,7 +4,8 @@ import router from "../router/index";
 const store = createStore({
     state: {
         searchButtonLoading: false,
-        home: { title: "store name" },
+        guestId: 33, // hard coded
+        home: {title: "store name"},
         name: "Vue",
         addReview: {
             name: '',
@@ -46,7 +47,10 @@ const store = createStore({
          user: {
             loggedIn: false,
           },
+         savedHotels:[],
     },
+      
+    
     mutations: {
         setEmail(store, value) {
             store.addReview.email = value
@@ -131,9 +135,16 @@ const store = createStore({
             console.log('value' + value);
             state.bookingDetails.serviceFee = value;
         },
-    },
-    actions: {
-        async searchHotels({ commit }, searchString) {
+   
+        setPassword(state, value){
+            state.user.Password = value;
+        },
+        setSavedHotels(state, data){
+            state.savedHotels = data;
+        },
+   },
+   actions:{
+        async searchHotels({commit}, searchString){
             let startDate;
             let endDate;
             if (this.state.searchString.dates.length) {
@@ -219,24 +230,59 @@ const store = createStore({
             });
             let result = await response.json();
             await dispatch("getLoggedInUser", result);
-          },
-
-          async getLoggedInUser({ commit }) {
+        },
+        async getLoggedInUser({ commit }) {
             let response = await fetch("https://localhost:44356/api/Guest/GetGuestById/");
             let result = await response.json();
             if (response.status == 401) {
-              result.loggedIn = false;
+                result.loggedIn = false;
             }
             commit("setLoggedInUser", result);
-    
-          },
-          
-
-          async logout({ dispatch }) {
+        },
+        async logout({ dispatch }) {
             let response = await fetch("https://localhost:44356/api/Guest/login", { method: "delete" });
             //kolla response status etc
             await dispatch("getLoggedInUser");
-          },
+        },
+        async getSavedHotelsInfo({commit}){
+            console.log('Getting saved hotels for guest id ', this.state.guestId)
+            var response = await fetch('https://localhost:44356/api/Hotel/SavedHotelsInfo?id=' + this.state.guestId);
+            var result = await response.json();
+            if(result){
+                console.log(result);
+                commit('setSavedHotels', result);
+            }
+        },
+        async addFavouriteHotel({commit}, hotelId){
+            fetch('https://localhost:44356/api/Guest/saveFavoriteHotel',
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json'},
+                body: JSON.stringify({hotelID: hotelId, guestID: this.state.guestId})
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        },
+        async removeFavouriteHotel({commit}, hotelId){
+            fetch('https://localhost:44356/api/Guest/removeFavoriteHotel',
+            {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json'},
+                body: JSON.stringify({hotelID: hotelId, guestID: this.state.guestId})
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            }); 
+        },
         updateAdults({ commit }, value) {
             commit('updateAdults', value)
         },

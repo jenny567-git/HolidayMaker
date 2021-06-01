@@ -94,12 +94,15 @@ const store = createStore({
         getReviews(state, data){
             state.getReviews = data;
         },
+        //prop not available in state yet
         setSingleRooms(state, value) {
             state.bookingDetails.inputSingleRooms = value
         },
+        //prop not available in state yet
         setDoubleRooms(state, value) {
             state.bookingDetails.inputDoubleRooms = value
         },
+        //prop not available in state yet
         setFamilyRooms(state, value) {
             state.bookingDetails.inputFamilyRooms = value
         },

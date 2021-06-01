@@ -17,9 +17,12 @@
         <div class="col-md-6">
           <p> Rooms:</p>
             <div v-if="$store.state.searchString.dates.length">
-                <input v-if="room.type == 'Single'" type="number" min="0" value="0" :max="singleRooms"/> 
+              <InputNumber v-if="room.type == 'Single'" v-model="inputSingleRooms" showButtons :min="0" :max="singleRooms" value="0"/>
+              <InputNumber v-if="room.type == 'Double'" v-model="inputDoubleRooms" showButtons :min="0" :max="doubleRooms" value="0"/>
+              <InputNumber v-if="room.type == 'Family'" v-model="inputFamilyRooms" showButtons :min="0" :max="familyRooms" value="0"/>
+                <!-- <input v-if="room.type == 'Single'" type="number" min="0" value="0" :max="singleRooms"/> 
                 <input v-if="room.type == 'Double'" type="number" min="0" value="0" :max="doubleRooms"/> 
-                <input v-if="room.type == 'Family'" type="number" min="0" value="0" :max="familyRooms"/> 
+                <input v-if="room.type == 'Family'" type="number" min="0" value="0" :max="familyRooms"/>  -->
             </div>
           <p v-else>Fill in dates to see available rooms</p>
         </div>
@@ -39,10 +42,12 @@
 
 <script>
 import Images from "../RoomPhotoSlider.vue";
+import InputNumber from "primevue/inputnumber";
 
 export default {
   components: {
     Images,
+    InputNumber
   },
   data(){
     return{
@@ -56,6 +61,7 @@ export default {
   },
   mounted(){
     console.log('in room mounted');
+    //move to parent component?
     if(this.$store.state.seachResults.length){
       let array = this.$store.state.seachResults;
       let arrayIndex = array.findIndex(i => i.hotel.id == this.$route.params.id);

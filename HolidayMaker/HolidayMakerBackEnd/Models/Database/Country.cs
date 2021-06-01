@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 #nullable disable
@@ -16,7 +17,10 @@ namespace HolidayMakerBackEnd.Models.Database
         public int Id { get; set; }
         public string CountryName { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<City> Cities { get; set; }
+        
+        [JsonIgnore]
         public virtual ICollection<Hotel> Hotels { get; set; }
     }
 }

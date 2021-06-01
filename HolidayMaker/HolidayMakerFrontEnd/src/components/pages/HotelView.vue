@@ -32,6 +32,11 @@
                         <li class="nav-item">
                             <router-link :to="'/hotels/' + this.$route.params.id + '/rooms'" class="nav-link"> Rooms </router-link>
                         </li>
+                        <li class="nav-item">
+                            <button class="btn" @click="ToggleStar" id="starBtn">
+                                <i :class="star ? 'fas fa-star' : 'far fa-star'" style="color: yellow;"></i>
+                            </button>
+                        </li>
                         
                     </ul>
                 </div>
@@ -57,26 +62,58 @@
         .nav-link{
             color:white;
         }
+        #starBtn{
+            outline: none;
+            box-shadow: none;
+        }
 </style>
 
 <script>
 import Info from './HotelViewComponents/Info.vue'
+
 export default ({
     components:{
         Info,
     },
     data(){
         return{
-            hotelInfo:{}
+            hotelInfo:{},
+            star: false
         }
     },
     computed:{
         hotel(){ 
             return this.$store.state.hotel;
+        },
+    },
+    methods:{
+        ToggleStar(){
+            if(this.star === false){
+                // Set fav
+                this.$store.dispatch('addFavouriteHotel', this.hotel.id)
+                console.log(this.hotel.id)
+                this.star = !this.star;
+            }
+            else{
+                // Remove fav
+                this.$store.dispatch('removeFavouriteHotel', this.hotel.id)
+                this.star = !this.star;
+            }
         }
     },
     created() {
         this.$store.dispatch('getHotelById', this.$route.params.id)
-  }
+        fetch('https://localhost:44356/api/Guest/GetSavedHotels/' + this.$store.state.guestId)
+        .then(response => response.json())
+        .then(result => {
+            if(result){
+                for (let i = 0; i < result.length; i++) {
+                    if(result[i].hotelId === this.hotel.id){
+                        this.star = true;
+                    }                
+                }
+            }
+        });
+    }
 })
 </script>

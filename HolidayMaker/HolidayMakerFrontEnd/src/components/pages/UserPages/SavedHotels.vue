@@ -13,7 +13,7 @@ export default {
     },
     created(){
         // Get hotels
-        this.$store.dispatch('getSavedHotels');
+        this.$store.dispatch('getSavedHotelsInfo');
         this.SavedHotels = this.$store.state.savedHotels
     },
     computed:{

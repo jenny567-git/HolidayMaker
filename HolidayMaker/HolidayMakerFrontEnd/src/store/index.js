@@ -177,14 +177,32 @@ const store = createStore({
             console.log('result: ' + result)
             commit('setAutoComplete', result);
         },
-        async getSavedHotels({commit}){
+        async getSavedHotelsInfo({commit}){
             console.log('Getting saved hotels for guest id ', this.state.guestId)
-            var response = await fetch('https://localhost:44356/api/Hotel/SavedHotels?id=' + this.state.guestId);
+            var response = await fetch('https://localhost:44356/api/Hotel/SavedHotelsInfo?id=' + this.state.guestId);
             var result = await response.json();
             if(result){
                 console.log(result);
                 commit('setSavedHotels', result);
             }
+        },
+        async addFavouriteHotel({commit}, hotelId){
+            fetch('https://localhost:44356/api/Guest/saveFavoriteHotel',
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json'},
+                body: JSON.stringify({hotelID: hotelId, guestID: this.state.guestId})
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        },
+        async removeFavouriteHotel({commit}, hotelId){
+
         },
         updateAdults({ commit }, value) {
             commit('updateAdults', value)

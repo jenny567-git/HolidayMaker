@@ -29,8 +29,8 @@ namespace HolidayMakerBackEnd.Controllers
             return result;
         }
 
-        [HttpGet("SavedHotels")]
-        public List<SavedHotelViewModel> GetSavedHotels(int id)
+        [HttpGet("SavedHotelsInfo")]
+        public List<SavedHotelViewModel> GetSavedHotelsInfo(int id)
         {
             var result = _hotelService.GetSavedHotels(id);
 

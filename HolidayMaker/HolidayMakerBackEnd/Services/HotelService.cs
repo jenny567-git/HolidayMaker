@@ -119,5 +119,10 @@ namespace HolidayMakerBackEnd.Services
             return _db.Hotels.Where(x => x.Id == num1);
         }
 
+        public double GetAccomodationFee(int hotelId, string type)
+        {
+            var result = _db.Accomodations.SingleOrDefault(h => h.HotelId == hotelId && h.Type.ToLower() == type.ToLower());
+            return result.Price;
+        }
     }
 }

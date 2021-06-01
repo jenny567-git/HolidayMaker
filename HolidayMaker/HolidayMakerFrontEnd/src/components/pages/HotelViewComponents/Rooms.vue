@@ -8,18 +8,18 @@
 
       <!-- right column -->
       <div class="col-md-6">
-        <Options @checked="setExtraBedFee"/>
+        <Options @checked="setExtraBedFee" />
         <!-- Amount
           <input type="number" min="1" value="1" /> -->
 
         <!-- Pension type -->
         <div class="row">
-          <ServiceType v-bind="serviceType" @serviceType="getServicetype" />
+          <ServiceType @serviceType="getServicetype" />
         </div>
 
         <div class="row pt-5">
           <div class="col-md-6">
-            <p>Total price: {{totalprice}} SEK </p>
+            <p>Total price: {{ totalprice }} SEK</p>
           </div>
           <div class="col-md-6">
             <router-link to="/checkout" class="btn btn-primary" @click="Book"
@@ -45,37 +45,50 @@ export default {
     ServiceType,
     Options,
   },
-  mounted(){
+  mounted() {
     this.getTotalPrice();
   },
-  data() {
-    return {
-      serviceType: null,
-    };
-  },
+  // data() {
+  //   return {
+  //     serviceType: null,
+  //   };
+  // },
   computed: {
     hotelInfo() {
       return this.$store.state.hotel;
     },
     totalprice() {
-        this.$store.dispatch('getTotalPrice');
-        return this.$store.state.bookingDetails.totalprice;
+      this.$store.dispatch('getTotalPrice');
+      return this.$store.state.bookingDetails.totalprice;
     },
-    
   },
   methods: {
-    getTotalPrice(){
+    getTotalPrice() {
       this.$store.dispatch('getTotalPrice');
     },
-    setExtraBedFee(){
-      this.$store.dispatch('setExtraBedFee', this.hotelInfo.extraBedFee)
+    setExtraBedFee() {
+      this.$store.dispatch('setExtraBedFee', this.hotelInfo.extraBedFee);
     },
     getServicetype(value) {
-      this.$store.dispatch('setServiceType', value );
+      // console.log("in service method");
+      // console.log("type:" + value);
+      this.serviceType = value;
+      this.$store.dispatch('setServiceType', value);
+
+      console.log("set fee");
+      let id = this.$route.params.id;
+      // let type = this.serviceType;
+      // console.log("hotel id: " + id);
+      // console.log("service type: " + type);
+      this.$store.dispatch('setServiceFee', { id: id, type: value });
     },
-    Book() {
-      // this.$store.dispatch('book', this.);
-    },
+    // setServiceFee(){
+    //   let hotelID = this.$route.params.id;
+    //   this.$store.dispatch('setServiceFee', {hotelInfo, serviceType})
+    // },
+    // Book() {
+    //   // this.$store.dispatch('book', this.);
+    // },
   },
 };
 </script>

@@ -2,9 +2,9 @@ import { createStore } from "vuex";
 import router from "../router/index";
 
 const store = createStore({
-    state:{
+    state: {
         searchButtonLoading: false,
-        home: {title: "store name"},
+        home: { title: "store name" },
         name: "Vue",
         addReview: {
             name: '',
@@ -12,7 +12,7 @@ const store = createStore({
             message: ''
         },
         getReviews: [],
-        hotels:[],
+        hotels: [],
         searchString: {
             string: '',
             inputAdult: 0,
@@ -21,7 +21,7 @@ const store = createStore({
             dates: []
         },
         searchAutoComplete: [],
-        seachResults:[],
+        seachResults: [],
         hotel: [],
         user: {
             loggedIn: false,
@@ -34,15 +34,16 @@ const store = createStore({
             unitPriceSingleRoom: 0,
             unitPriceDoubleRoom: 0,
             unitPriceFamilyRoom: 0,
-            serviceType: 'Self service',
+            serviceType: 'SelfService',
+            serviceFee: 0,
             extraBed: false,
             extraBedFee: 0,
-            totalprice:''
+            totalprice: ''
 
         },
-      
-         reservation: {},
-      
+
+        reservation: {},
+
     },
     mutations: {
         setEmail(store, value) {
@@ -51,16 +52,16 @@ const store = createStore({
         setMessage(store, value) {
             store.addReview.message = value
         },
-        setSearchButtonLoadingTrue(store, value){
+        setSearchButtonLoadingTrue(store, value) {
             store.searchButtonLoading = true;
         },
-        setHotelSeachResultsList(store, value){
+        setHotelSeachResultsList(store, value) {
             store.seachResults = value;
             console.log('set search result');
             console.log(store.seachResults);
             store.searchButtonLoading = false;
         },
-        setHotel(store, value){
+        setHotel(store, value) {
             console.log(value);
             store.hotel = value;
         },
@@ -76,27 +77,27 @@ const store = createStore({
         setDates(state, date) {
             state.searchString.dates = date
         },
-        setSearchString(state, value){
+        setSearchString(state, value) {
             state.searchString.string = value;
         },
-        setAutoComplete(store, value){
+        setAutoComplete(store, value) {
             store.searchAutoComplete = value;
         },
         setReservationDetails(state, data) {
             state.reservation = data;
         },
-        getReviews(state, data){
+        getReviews(state, data) {
             state.getReviews = data;
         },
-        setSingleRooms(state, {noOfUnit, unitPrice}) {
+        setSingleRooms(state, { noOfUnit, unitPrice }) {
             state.bookingDetails.noOfSingleRooms = noOfUnit
             state.bookingDetails.unitPriceSingleRoom = unitPrice
         },
-        setDoubleRooms(state, {noOfUnit, unitPrice}) {
+        setDoubleRooms(state, { noOfUnit, unitPrice }) {
             state.bookingDetails.noOfDoubleRooms = noOfUnit
             state.bookingDetails.unitPriceDoubleRoom = unitPrice
         },
-        setFamilyRooms(state, {noOfUnit, unitPrice}) {
+        setFamilyRooms(state, { noOfUnit, unitPrice }) {
             state.bookingDetails.noOfFamilyRooms = noOfUnit
             state.bookingDetails.unitPriceFamilyRoom = unitPrice
         },
@@ -104,11 +105,15 @@ const store = createStore({
             let singleRoomsTotalPrice = state.bookingDetails.noOfSingleRooms * state.bookingDetails.unitPriceSingleRoom;
             let doubleRoomsTotalPrice = state.bookingDetails.noOfDoubleRooms * state.bookingDetails.unitPriceDoubleRoom;
             let familyRoomsTotalPrice = state.bookingDetails.noOfFamilyRooms * state.bookingDetails.unitPriceFamilyRoom;
-            state.bookingDetails.totalprice = singleRoomsTotalPrice + doubleRoomsTotalPrice + familyRoomsTotalPrice;
 
-            if(state.bookingDetails.extraBed){
+            let servicePrice = state.bookingDetails.serviceFee;
+
+            state.bookingDetails.totalprice = singleRoomsTotalPrice + doubleRoomsTotalPrice + familyRoomsTotalPrice + servicePrice;
+
+            if (state.bookingDetails.extraBed) {
                 state.bookingDetails.totalprice += state.bookingDetails.extraBedFee;
             }
+
         },
         updateExtraBed(state) {
             state.bookingDetails.extraBed = (state.bookingDetails.extraBed != true) ? true : false;
@@ -119,22 +124,27 @@ const store = createStore({
         setServiceType(state, value) {
             state.bookingDetails.serviceType = value;
         },
-   },
-   actions:{
-        async searchHotels({commit}, searchString){
+        setServiceFee(state, value) {
+            console.log('in mutation set service');
+            console.log('value' + value);
+            state.bookingDetails.serviceFee = value;
+        },
+    },
+    actions: {
+        async searchHotels({ commit }, searchString) {
             let startDate;
             let endDate;
-            if(this.state.searchString.dates.length){
-                startDate = this.state.searchString.dates[0].toISOString().slice(0,10);
-                endDate = this.state.searchString.dates[1].toISOString().slice(0,10);
+            if (this.state.searchString.dates.length) {
+                startDate = this.state.searchString.dates[0].toISOString().slice(0, 10);
+                endDate = this.state.searchString.dates[1].toISOString().slice(0, 10);
             }
             //search with all values but no string
-            if(searchString === null || searchString == ''){
+            if (searchString === null || searchString == '') {
                 var response = await fetch('https://localhost:44356/api/Search/search?startDate=' + startDate + '&endDate=' + endDate + '&rooms=' + this.state.searchString.inputRooms + '&people=' + (this.state.searchString.inputAdult + this.state.searchString.inputChild));
-            //search with only string
-            } else if(!this.state.searchString.dates.length){
+                //search with only string
+            } else if (!this.state.searchString.dates.length) {
                 var response = await fetch('https://localhost:44356/api/Search/search?input=' + searchString);
-            //search with all values
+                //search with all values
             } else {
                 var response = await fetch('https://localhost:44356/api/Search/search?startDate=' + startDate + '&endDate=' + endDate + '&rooms=' + this.state.searchString.inputRooms + '&people=' + (this.state.searchString.inputAdult + this.state.searchString.inputChild) + '&input=' + searchString)
             }
@@ -142,59 +152,59 @@ const store = createStore({
             // console.log('search hotel');
             // console.log(result);
             commit('setHotelSeachResultsList', result);
-            if(result){
-                router.push({name: 'result'})
+            if (result) {
+                router.push({ name: 'result' })
             }
         },
-        async searchHotelByName({commit}, searchString){
+        async searchHotelByName({ commit }, searchString) {
             var response = await fetch('https://localhost:44356/api/Search/search?input=' + searchString); // Default is GET
             var result = await response.json();
             console.log(searchString, result)
-            if(result){
+            if (result) {
                 commit('setHotelSeachResultsList', result);
-                router.push({name: 'result'})
+                router.push({ name: 'result' })
             }
         },
-        async getHotelById({commit}, hotelId){
+        async getHotelById({ commit }, hotelId) {
             var response = await fetch('https://localhost:44356/api/Hotel/GetById/' + hotelId); // Default is GET
             var result = await response.json();
             console.log('getHotelById action');
             commit('setHotel', result);
         },
-        async setHotel({commit}, hotel){
+        async setHotel({ commit }, hotel) {
             commit('setHotel', hotel)
-       },
-       async getReservationById({ commit }, reservationId) {
-           var response = await fetch(
-               "https://localhost:44356/api/Booking/Booking/" + reservationId
-           );
-           var result = await response.json();
+        },
+        async getReservationById({ commit }, reservationId) {
+            var response = await fetch(
+                "https://localhost:44356/api/Booking/Booking/" + reservationId
+            );
+            var result = await response.json();
 
-           commit("setReservationDetails", result);
-       },
-       async searchHotelByCity({commit}, searchString){
+            commit("setReservationDetails", result);
+        },
+        async searchHotelByCity({ commit }, searchString) {
             var response = await fetch('https://localhost:44356/api/Search/GetHotelByCity?input=' + searchString); // Default is GET
             var result = await response.json();
             console.log(searchString, result)
-            if(result){
+            if (result) {
                 commit('setHotelSeachResultsList', result);
-                router.push({name: 'result'})
+                router.push({ name: 'result' })
             }
-       },
-        async searchSpecific({commit}, payload){
+        },
+        async searchSpecific({ commit }, payload) {
             window.scrollTo(0, 0)
             commit('setSearchString', payload.searchString);
             commit('setSearchButtonLoadingTrue', null);
-            setTimeout(function(that){ // Timeout resolves inconsistent scroll behaviour between scrollTo and router.push
-                if(payload.type === 'city'){
+            setTimeout(function (that) { // Timeout resolves inconsistent scroll behaviour between scrollTo and router.push
+                if (payload.type === 'city') {
                     that.dispatch('searchHotelByCity', payload.searchString);
                 }
-                else{
+                else {
                     that.dispatch('searchHotelByName', payload.searchString);
                 }
             }, 500, this);
         },
-        async getAutoComplete({commit}){
+        async getAutoComplete({ commit }) {
             var response = await fetch('https://localhost:44356/api/Search/GetSearchAutoComplete');
             var result = await response.json();
             commit('setAutoComplete', result);
@@ -211,19 +221,19 @@ const store = createStore({
         setDates({ commit }, date) {
             commit('setDates', date)
         },
-        async getReviews({commit}, hotelId){
+        async getReviews({ commit }, hotelId) {
             var response = await fetch('https://localhost:44356/api/Hotel/GetReviews/' + hotelId);
             var result = await response.json();
             commit('getReviews', result);
         },
-        setSingleRooms({ commit }, {noOfUnit, unitPrice}) {
-            commit('setSingleRooms', {noOfUnit, unitPrice})
+        setSingleRooms({ commit }, { noOfUnit, unitPrice }) {
+            commit('setSingleRooms', { noOfUnit, unitPrice })
         },
-        setDoubleRooms({ commit }, {noOfUnit, unitPrice}) {
-            commit('setDoubleRooms', {noOfUnit, unitPrice})
+        setDoubleRooms({ commit }, { noOfUnit, unitPrice }) {
+            commit('setDoubleRooms', { noOfUnit, unitPrice })
         },
-        setFamilyRooms({ commit }, {noOfUnit, unitPrice}) {
-            commit('setFamilyRooms', {noOfUnit, unitPrice})
+        setFamilyRooms({ commit }, { noOfUnit, unitPrice }) {
+            commit('setFamilyRooms', { noOfUnit, unitPrice })
         },
         getTotalPrice({ commit }) {
             commit('getTotalPrice')
@@ -236,6 +246,12 @@ const store = createStore({
         },
         setServiceType({ commit }, value) {
             commit('setServiceType', value)
+        },
+        async setServiceFee({ commit }, payload) {
+            console.log('in action set service');
+            var response = await fetch('https://localhost:44356/api/Hotel/GetAccomodationFee?id=' + payload.id + '&type=' + payload.type);
+            var result = await response.json();
+            commit('setServiceFee', result)
         },
     }
 })

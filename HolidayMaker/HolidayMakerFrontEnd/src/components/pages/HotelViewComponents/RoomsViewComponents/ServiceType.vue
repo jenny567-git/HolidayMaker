@@ -14,7 +14,7 @@
        
         autocomplete="off"
         checked
-        @click="emitToParent('Self service')"
+        @click="emitToParent('SelfService')"
       />
       <label class="btn btn-outline-primary" for="btnSelfService">
         Self service
@@ -27,7 +27,7 @@
         
         id="btnHalfBoard"
         autocomplete="off"
-        @click="emitToParent('Half board')"
+        @click="emitToParent('HalfBoard')"
       />
       <label class="btn btn-outline-primary" for="btnHalfBoard">
         Half board
@@ -40,7 +40,7 @@
         
         id="btnFullBoard"
         autocomplete="off"
-        @click="emitToParent('Full board')"
+        @click="emitToParent('FullBoard')"
       />
 
       <label class="btn btn-outline-primary" for="btnFullBoard">
@@ -54,7 +54,7 @@
         
         id="btnAllInclusive"
         autocomplete="off"
-        @click="emitToParent('All inclusive')"
+        @click="emitToParent('AllInclusive')"
       />
       <label class="btn btn-outline-primary" for="btnAllInclusive">
         All inclusive

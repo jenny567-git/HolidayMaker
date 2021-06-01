@@ -198,24 +198,20 @@ const store = createStore({
             });
             let result = await response.json();
             await dispatch("getLoggedInUser", result);
-          },
-
-          async getLoggedInUser({ commit }) {
+        },
+        async getLoggedInUser({ commit }) {
             let response = await fetch("https://localhost:44356/api/Guest/GetGuestById/");
             let result = await response.json();
             if (response.status == 401) {
-              result.loggedIn = false;
+                result.loggedIn = false;
             }
             commit("setLoggedInUser", result);
-    
-          },
-          
-
-          async logout({ dispatch }) {
+        },
+        async logout({ dispatch }) {
             let response = await fetch("https://localhost:44356/api/Guest/login", { method: "delete" });
             //kolla response status etc
             await dispatch("getLoggedInUser");
-          },
+        },
         async getSavedHotelsInfo({commit}){
             console.log('Getting saved hotels for guest id ', this.state.guestId)
             var response = await fetch('https://localhost:44356/api/Hotel/SavedHotelsInfo?id=' + this.state.guestId);

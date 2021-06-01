@@ -63,8 +63,8 @@
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
-                                            <label for="sTate">Password</label>
-                                            <input type="text" class="form-control" id="sTate" placeholder="Enter Password">
+                                            <label for="sTate"> New Password</label>
+                                            <input type="text" class="form-control" id="sTate" placeholder="Enter New Password">
                                         </div>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">

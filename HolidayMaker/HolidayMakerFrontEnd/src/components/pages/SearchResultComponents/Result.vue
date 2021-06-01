@@ -5,6 +5,8 @@
             <Images :id="hotel.id"/>
                 <b>{{hotel.name}}</b>
                 <p>Distance to beach: {{hotel.beachDistance}}</p>
+                <p>Distance to city: {{hotel.centrumDistance}}</p>
+                <p>Pool: {{hotel.pool}}</p>
                 
                 <p>Ratings: <span class="badge rounded-pill bg-secondary">{{hotel.averageRating}}</span></p>
 

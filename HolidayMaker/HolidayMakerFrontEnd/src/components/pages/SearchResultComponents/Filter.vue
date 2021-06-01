@@ -2,10 +2,13 @@
 
   
   
-  <div>
-    <h1>Search results: {{hotelsCount}} found</h1>
+  <div class="myContainer">
+    <div class="hotelResults">
+      <h1>Search results: {{hotelsCount}} found</h1>
     <Result :filteredHotels="filteredHotels"/>
-    <div>
+    </div>
+    
+    <div class="myFilter">
     <div>
       <p>Price range (SEK)</p>
       <Slider
@@ -20,7 +23,7 @@
       <Slider
         v-model="beachDistance.value"
         v-bind="beachDistance"
-        :max="5000"
+        :max="8000"
       ></Slider>
     </div>
     <hr />
@@ -56,9 +59,11 @@
               <div class="form-check">
                 <input
                   class="form-check-input"
+                  v-model="pool"
                   type="checkbox"
                   value=""
                   id="flexCheckDefault"
+                  @click="pool = !pool"
                 />
                 <label class="form-check-label" for="flexCheckDefault">
                   Pool
@@ -131,11 +136,14 @@ export default {
         value: [0, 40000],
       },
       beachDistance: {
-        value: [500],
+        value: [8000],
       },
       centrumDistance: {
         value: [800],
       },
+      pool: true,
+
+           
     };
   },
   computed:{
@@ -154,13 +162,43 @@ export default {
         (hotel) => hotel.centrumDistance <= this.centrumDistance.value
       );
       
+      if(this.pool){
+
+        result = result.filter(
+          (hotel) => hotel.pool == this.pool
+        );
+      }
+      
       return result
-    }
+    },
+  
+   
     }
  
 };
 </script>
 
-<style src="@vueform/slider/themes/default.css"></style>
+<style src="@vueform/slider/themes/default.css">
 
-<style scoped></style>
+</style>
+
+<style scoped>
+.myContainer{
+    width: 300%;
+    height: auto;
+    margin: 10px;
+    padding: 10px;
+    display: grid;
+}
+.hotelResults{
+  width: 30%;
+    height: fit-content;
+    margin: auto;
+    margin-right: 5px;
+}
+.myFilter{
+    width: 101%;
+    margin-left: 5px;
+    position: absolute;
+}
+</style>

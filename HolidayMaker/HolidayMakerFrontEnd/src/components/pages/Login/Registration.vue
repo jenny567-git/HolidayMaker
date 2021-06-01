@@ -10,7 +10,8 @@
         
             <div class="main">
                     <p class="sign" align="center">Registration</p>
-                        <form class="form1" @submit.prevent="addGuest">
+                   
+                        <form class="form1" @submit.prevent="checkPasswords">
                         <input class="un" type="text" align="center" placeholder="Fullname" required v-model="guest.Fullname">
                         <input class="un" type="text" align="center" placeholder="Street" required v-model="guest.Street">
                         <input class="un" type="text" align="center" placeholder="Zipcode" required v-model="guest.Zipcode">
@@ -18,8 +19,12 @@
                         <input class="un" type="text" align="center" placeholder="Country" required v-model="guest.Country">
                         <input class="un" type="text" align="center" placeholder="Phone" required v-model="guest.Phone">
                         <input class="un" type="email" align="center" placeholder="Email" required v-model="guest.Email">
-                        <input class="pass" type="password" align="center" placeholder="Password" required v-model="guest.Password">
-                        <input class="pass" type="password" align="center" placeholder="Repeat-Password" required>
+
+
+                        <input  class="password"  type="password"  align="center" placeholder="Password" required v-model="guest.Password">
+                        <input class="confirmPassword" type="password" align="center" placeholder="Repeat-Password" required v-model="guest.confirmPassword">
+                        <p class="text"></p>
+
                         <ul class="ul">
                             <li>
                             <button class="submit" align="center">Confirm</button>
@@ -30,13 +35,22 @@
                             </li>
                         </ul>
                 </form>
+              
             </div>
      
     </html>
 </template>
 
+
+
+
+
 <script>
+
 export default {
+
+  components:{
+  },
   data(){
     return{
       guest:{
@@ -47,7 +61,8 @@ export default {
         Country:"",
         Phone:"",
         Email: "",
-        Password: ""
+        Password: "",
+        confirmPassword:""
       }
     }
   },
@@ -55,7 +70,23 @@ export default {
 
   },
   methods:{
+    checkPasswords(){
+        var password = document.querySelector('.password').value;
+        var confirmPassword = document.querySelector('.confirmPassword').value;
+        console.log(password)
+        console.log(confirmPassword)
+        if(confirmPassword !=password){
+          document.querySelector('.text').innerHTML = "Passwords dont match"
+          
+          
+        }else if(password ===confirmPassword){
+          document.querySelector('.text').innerHTML="";
+          this.addGuest()
+        }
+    },
+    
     async addGuest(){
+      
       await fetch('https://localhost:44356/api/Guest/addGuest', {
         method:'Post',
         headers:{
@@ -109,6 +140,43 @@ export default {
         margin-bottom: 27px;
         font-family: 'Ubuntu', sans-serif;
         }
+
+         .password {
+        width: 76%;
+        color: rgb(38, 50, 56);
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 1px;
+        background: rgba(136, 126, 126, 0.04);
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        outline: none;
+        box-sizing: border-box;
+        border: 2px solid rgba(0, 0, 0, 0.02);
+        margin-bottom: 50px;
+        text-align: center;
+        margin-bottom: 27px;
+        font-family: 'Ubuntu', sans-serif;
+        }
+         .confirmPassword {
+        width: 76%;
+        color: rgb(38, 50, 56);
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 1px;
+        background: rgba(136, 126, 126, 0.04);
+        /* padding: 10px 20px; */
+        border: none;
+        border-radius: 20px;
+        outline: none;
+        box-sizing: border-box;
+        border: 2px solid rgba(0, 0, 0, 0.02);
+        margin-bottom: 50px;
+        text-align: center;
+        margin-bottom: 27px;
+        font-family: 'Ubuntu', sans-serif;
+        }
         
         form.form1 {
             padding-top: 40px;
@@ -132,7 +200,14 @@ export default {
         margin-bottom: 27px;
         font-family: 'Ubuntu', sans-serif;
         }
-        
+        .text{
+          color:red;
+          font-size: 12px;
+                
+          
+        }
+       
+      
     
         .un:focus, .pass:focus {
             border: 2px solid rgba(0, 0, 0, 0.18) !important;
@@ -152,6 +227,7 @@ export default {
             font-family: 'Ubuntu', sans-serif;
             font-size: 13px;
             box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+            
         }
 
         .ul {

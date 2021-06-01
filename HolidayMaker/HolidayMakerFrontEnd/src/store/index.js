@@ -202,6 +202,7 @@ const store = createStore({
             commit("setLoggedInUser", result);
     
           },
+          
 
           async logout({ dispatch }) {
             let response = await fetch("https://localhost:44356/api/Guest/login", { method: "delete" });

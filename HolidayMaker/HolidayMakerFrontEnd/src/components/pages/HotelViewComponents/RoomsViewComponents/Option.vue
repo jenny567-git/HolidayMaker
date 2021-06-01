@@ -2,8 +2,8 @@
   <div>
     <h3>Extra bed</h3>
     <div class="p-field-checkbox">
-          <Checkbox id="option" v-model="checked" :binary="true" />
-          <label for="option">{{ checked }}</label>
+          <Checkbox id="option" v-model="extraBed" :binary="true"/>
+          <label for="option">{{ extraBed }}</label>
         </div>
 
 
@@ -56,10 +56,15 @@ export default {
     Checkbox,
     Card
   },
-  data() {
-    return {
-      checked: false,
-    };
+  computed:{
+    extraBed:{
+      get(){
+        return this.$store.state.bookingDetails.extraBed;
+      },
+      set(){
+        this.$store.dispatch('updateExtraBed');
+      }
+    }
   },
 };
 </script>

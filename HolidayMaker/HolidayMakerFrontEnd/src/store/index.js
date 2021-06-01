@@ -43,7 +43,8 @@ const store = createStore({
                 }
             ],
             serviceType: '',
-            extraBed: ''
+            extraBed: '',
+            totalprice:''
 
         },
       
@@ -105,6 +106,12 @@ const store = createStore({
         //prop not available in state yet
         setFamilyRooms(state, value) {
             state.bookingDetails.inputFamilyRooms = value
+        },
+        setTotalPrice(state) {
+            let singleRooms = state.bookingDetails.inputSingleRooms;
+            let doubleRooms = state.bookingDetails.inputDoubleRooms;
+            let familyRooms = state.bookingDetails.inputFamilyRooms;
+            state.bookingDetails.totalprice = 0;
         },
    },
    actions:{
@@ -211,6 +218,9 @@ const store = createStore({
         },
         setFamilyRooms({ commit }, value) {
             commit('setFamilyRooms', value)
+        },
+        setTotalPrice({ commit }) {
+            commit('setTotalPrice')
         },
     }
 })

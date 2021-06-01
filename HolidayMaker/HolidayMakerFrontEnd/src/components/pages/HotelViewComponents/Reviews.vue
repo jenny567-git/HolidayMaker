@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="col-md-8">
-        <div class="dropdown text-end">
+        <!-- <div class="dropdown text-end">
           <button
             class="btn btn-secondary dropdown-toggle"
             type="button"
@@ -47,7 +47,7 @@
             <li><a class="dropdown-item" href="#">English</a></li>
             <li><a class="dropdown-item" href="#">Swedish</a></li>
           </ul>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="row">

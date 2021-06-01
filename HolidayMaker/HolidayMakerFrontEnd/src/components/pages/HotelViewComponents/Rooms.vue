@@ -3,28 +3,28 @@
     <div class="row">
       <!-- left column -->
       <div class="col-md-6">
-        <Room v-for="room in hotelInfo.rooms"  :room="room" :key="room.id"/>
+        <Room v-for="room in hotelInfo.rooms" :room="room" :key="room.id" />
       </div>
 
       <!-- right column -->
       <div class="col-md-6">
-        <Options/>
-          <!-- Amount
+        <Options />
+        <!-- Amount
           <input type="number" min="1" value="1" /> -->
-        
 
         <!-- Pension type -->
         <div class="row">
-          <ServiceType/>
+          <ServiceType v-bind="serviceType" @click="getServiceType" />
         </div>
 
         <div class="row pt-5">
           <div class="col-md-6">
-            <p>Total price: 1223 SEK</p>
+            <p>Total price: 1223 SEK {{totalprice}}</p>
           </div>
           <div class="col-md-6">
             <router-link to="/checkout" class="btn btn-primary" @click="Book"
-              >Book</router-link>
+              >Book</router-link
+            >
           </div>
         </div>
       </div>
@@ -43,17 +43,34 @@ export default {
     Images,
     Room,
     ServiceType,
-    Options
+    Options,
+  },
+  // mounted(){
+  //   getTotalPrice();
+  // },
+  data() {
+    return {
+      serviceType: null,
+    };
   },
   computed: {
     hotelInfo() {
       return this.$store.state.hotel;
     },
-    methods:{
-      Book(){
-        // this.$store.dispatch('book', this.);
-      }
+    totalprice: {
+      get(){
+        return this.$store.state.bookingDetails.totalprice;
+      },
     }
+  },
+  methods: {
+    getTotalPrice(){
+      this.$store.dispatch('setTotalPrice');
+    },
+    getServicetype() {},
+    Book() {
+      // this.$store.dispatch('book', this.);
+    },
   },
 };
 </script>

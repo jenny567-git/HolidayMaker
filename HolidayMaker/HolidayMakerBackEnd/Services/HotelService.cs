@@ -84,7 +84,7 @@ namespace HolidayMakerBackEnd.Services
 
         public IEnumerable<Review> GetReviews(int id)
         {
-            return _db.Reviews.Where(r => r.Hotel.Id == id).AsEnumerable();
+            return _db.Reviews.Where(r => r.Hotel.Id == id).Include(c => c.IdNavigation).AsEnumerable();
         }
 
         public Hotel GetById(int id)

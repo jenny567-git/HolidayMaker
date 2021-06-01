@@ -28,20 +28,12 @@ const store = createStore({
         },
         bookingDetails: {
             hotelId: '',
-            rooms: [
-                {
-                    type: '1',
-                    nrOfRooms: ''
-                },
-                {
-                    type: '2',
-                    nrOfRooms: ''
-                },
-                {
-                    type: '3',
-                    nrOfRooms: ''
-                }
-            ],
+            noOfSingleRooms: 0,
+            noOfDoubleRooms: 0,
+            noOfFamilyRooms: 0,
+            unitPriceSingleRoom: 0,
+            unitPriceDoubleRoom: 0,
+            unitPriceFamilyRoom: 0,
             serviceType: '',
             extraBed: '',
             totalprice:''
@@ -95,23 +87,23 @@ const store = createStore({
         getReviews(state, data){
             state.getReviews = data;
         },
-        //prop not available in state yet
-        setSingleRooms(state, value) {
-            state.bookingDetails.inputSingleRooms = value
+        setSingleRooms(state, {noOfUnit, unitPrice}) {
+            state.bookingDetails.noOfSingleRooms = noOfUnit
+            state.bookingDetails.unitPriceSingleRoom = unitPrice
         },
-        //prop not available in state yet
-        setDoubleRooms(state, value) {
-            state.bookingDetails.inputDoubleRooms = value
+        setDoubleRooms(state, {noOfUnit, unitPrice}) {
+            state.bookingDetails.noOfDoubleRooms = noOfUnit
+            state.bookingDetails.unitPriceDoubleRoom = unitPrice
         },
-        //prop not available in state yet
-        setFamilyRooms(state, value) {
-            state.bookingDetails.inputFamilyRooms = value
+        setFamilyRooms(state, {noOfUnit, unitPrice}) {
+            state.bookingDetails.noOfFamilyRooms = noOfUnit
+            state.bookingDetails.unitPriceFamilyRoom = unitPrice
         },
-        setTotalPrice(state) {
-            let singleRooms = state.bookingDetails.inputSingleRooms;
-            let doubleRooms = state.bookingDetails.inputDoubleRooms;
-            let familyRooms = state.bookingDetails.inputFamilyRooms;
-            state.bookingDetails.totalprice = 0;
+        getTotalPrice(state) {
+            let singleRoomsTotalPrice = state.bookingDetails.noOfSingleRooms * state.bookingDetails.unitPriceSingleRoom;
+            let doubleRoomsTotalPrice = state.bookingDetails.noOfDoubleRooms * state.bookingDetails.unitPriceDoubleRoom;
+            let familyRoomsTotalPrice = state.bookingDetails.noOfFamilyRooms * state.bookingDetails.unitPriceFamilyRoom;
+            state.bookingDetails.totalprice = singleRoomsTotalPrice + doubleRoomsTotalPrice + familyRoomsTotalPrice;
         },
    },
    actions:{
@@ -210,17 +202,17 @@ const store = createStore({
             var result = await response.json();
             commit('getReviews', result);
         },
-        setSingleRooms({ commit }, value) {
-            commit('setSingleRooms', value)
+        setSingleRooms({ commit }, {noOfUnit, unitPrice}) {
+            commit('setSingleRooms', {noOfUnit, unitPrice})
         },
-        setDoubleRooms({ commit }, value) {
-            commit('setDoubleRooms', value)
+        setDoubleRooms({ commit }, {noOfUnit, unitPrice}) {
+            commit('setDoubleRooms', {noOfUnit, unitPrice})
         },
-        setFamilyRooms({ commit }, value) {
-            commit('setFamilyRooms', value)
+        setFamilyRooms({ commit }, {noOfUnit, unitPrice}) {
+            commit('setFamilyRooms', {noOfUnit, unitPrice})
         },
-        setTotalPrice({ commit }) {
-            commit('setTotalPrice')
+        getTotalPrice({ commit }) {
+            commit('getTotalPrice')
         },
     }
 })

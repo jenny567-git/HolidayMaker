@@ -23,7 +23,7 @@
               showButtons
               :min="0"
               :max="singleRooms"
-              value="0"
+              :value="inputSingleRooms"
             />
             <InputNumber
               v-if="room.type == 'Double'"
@@ -31,7 +31,7 @@
               showButtons
               :min="0"
               :max="doubleRooms"
-              value="0"
+              :value="inputDoubleRooms"
             />
             <InputNumber
               v-if="room.type == 'Family'"
@@ -39,7 +39,7 @@
               showButtons
               :min="0"
               :max="familyRooms"
-              value="0"
+              :value="inputFamilyRooms"
             />
             <!-- <input v-if="room.type == 'Single'" type="number" min="0" value="0" :max="singleRooms"/> 
                 <input v-if="room.type == 'Double'" type="number" min="0" value="0" :max="doubleRooms"/> 
@@ -83,8 +83,7 @@ export default {
     room: {},
   },
   mounted() {
-    console.log("in room mounted");
-    //move to parent component?
+    // console.log("in room mounted");
     if (this.$store.state.seachResults.length) {
       this.array = this.$store.state.seachResults;
       this.arrayIndex = this.array.findIndex(
@@ -93,28 +92,47 @@ export default {
       this.singleRooms = this.array[this.arrayIndex].roomList.singleRooms;
       this.doubleRooms = this.array[this.arrayIndex].roomList.doubleRooms;
       this.familyRooms = this.array[this.arrayIndex].roomList.familyRooms;
-      console.log("single rooms" + this.singleRooms);
-      console.log("double rooms" + this.doubleRooms);
-      console.log("family rooms" + this.familyRooms);
+      // console.log("single rooms" + this.singleRooms);
+      // console.log("double rooms" + this.doubleRooms);
+      // console.log("family rooms" + this.familyRooms);
     }
   },
   computed: {
     inputSingleRooms: {
-      set(value) {
-        console.log('single input: ' + value);
-        this.$store.dispatch("setSingleRooms", value);
+      get() {
+        return this.$store.state.bookingDetails.noOfSingleRooms;
+      },
+      set(noOfUnit) {
+        console.log('single input: ' + noOfUnit);
+        if(this.room.type == 'Single'){
+          let unitPrice = this.room.price;
+          this.$store.dispatch("setSingleRooms", {noOfUnit, unitPrice});
+        }
       },
     },
     inputDoubleRooms: {
-      set(value) {
-        console.log('double input: ' + value);
-        this.$store.dispatch("setDoubleRooms", value);
+      get() {
+        return this.$store.state.bookingDetails.noOfDoubleRooms;
+      },
+      set(noOfUnit) {
+        console.log('double input: ' + noOfUnit);
+        if(this.room.type == 'Double'){
+          let unitPrice = this.room.price
+          this.$store.dispatch("setDoubleRooms", {noOfUnit, unitPrice});
+        }
+        
       },
     },
     inputFamilyRooms: {
-      set(value) {
-        console.log('family input: ' + value);
-        this.$store.dispatch("setFamilyRooms", value);
+      get() {
+        return this.$store.state.bookingDetails.noOfFamilyRooms;
+      },
+      set(noOfUnit) {
+        console.log('family input: ' + noOfUnit);
+        if(this.room.type == 'Family'){
+          let unitPrice = this.room.price
+          this.$store.dispatch("setFamilyRooms", {noOfUnit, unitPrice});
+        }
       },
     },
   },

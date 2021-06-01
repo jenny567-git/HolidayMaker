@@ -19,7 +19,7 @@
 
         <div class="row pt-5">
           <div class="col-md-6">
-            <p>Total price: 1223 SEK {{totalprice}}</p>
+            <p>Total price: {{totalprice}} SEK </p>
           </div>
           <div class="col-md-6">
             <router-link to="/checkout" class="btn btn-primary" @click="Book"
@@ -45,9 +45,9 @@ export default {
     ServiceType,
     Options,
   },
-  // mounted(){
-  //   getTotalPrice();
-  // },
+  mounted(){
+    this.getTotalPrice();
+  },
   data() {
     return {
       serviceType: null,
@@ -57,15 +57,18 @@ export default {
     hotelInfo() {
       return this.$store.state.hotel;
     },
-    totalprice: {
-      get(){
+    totalprice() {
+        this.$store.dispatch('getTotalPrice');
         return this.$store.state.bookingDetails.totalprice;
-      },
+      // },
+      // set(){
+      //   this.$store.dispatch('getTotalPrice');
+      // }
     }
   },
   methods: {
     getTotalPrice(){
-      this.$store.dispatch('setTotalPrice');
+      this.$store.dispatch('getTotalPrice');
     },
     getServicetype() {},
     Book() {

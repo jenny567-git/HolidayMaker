@@ -9,8 +9,6 @@
       <!-- right column -->
       <div class="col-md-6">
         <Options @checked="setExtraBedFee" />
-        <!-- Amount
-          <input type="number" min="1" value="1" /> -->
 
         <!-- Pension type -->
         <div class="row">
@@ -48,11 +46,6 @@ export default {
   mounted() {
     this.getTotalPrice();
   },
-  // data() {
-  //   return {
-  //     serviceType: null,
-  //   };
-  // },
   computed: {
     hotelInfo() {
       return this.$store.state.hotel;
@@ -70,22 +63,13 @@ export default {
       this.$store.dispatch('setExtraBedFee', this.hotelInfo.extraBedFee);
     },
     getServicetype(value) {
-      // console.log("in service method");
-      // console.log("type:" + value);
       this.serviceType = value;
       this.$store.dispatch('setServiceType', value);
 
       console.log("set fee");
       let id = this.$route.params.id;
-      // let type = this.serviceType;
-      // console.log("hotel id: " + id);
-      // console.log("service type: " + type);
       this.$store.dispatch('setServiceFee', { id: id, type: value });
     },
-    // setServiceFee(){
-    //   let hotelID = this.$route.params.id;
-    //   this.$store.dispatch('setServiceFee', {hotelInfo, serviceType})
-    // },
     // Book() {
     //   // this.$store.dispatch('book', this.);
     // },

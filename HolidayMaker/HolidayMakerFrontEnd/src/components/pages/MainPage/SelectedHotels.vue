@@ -91,7 +91,7 @@ export default {
           city: 'Lefkos',
         },
         {
-          title: 'Hotel Riviers Strand',
+          title: 'Hotel Riviera Strand',
           city: 'Båstad',
         },
       ]

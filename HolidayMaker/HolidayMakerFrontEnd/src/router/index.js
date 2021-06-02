@@ -17,6 +17,8 @@ import CustomerDetails from '/src/components/pages/CheckoutViewComponents/Custom
 import OrderDetails from '/src/components/pages/CheckoutViewComponents/OrderDetails.vue'
 import StripePayment from '/src/components/pages/CheckoutViewComponents/StripePayment.vue'
 import OrderConfirmed from '/src/components/pages/CheckoutViewComponents/OrderConfirmed.vue'
+import Login from "../components/pages/Login/Login.vue"
+import Registration from "../components/pages/Login/Registration.vue";
 
 const routes = [
   {
@@ -28,6 +30,16 @@ const routes = [
     path: "/result",
     name: "result",
     component: SearchResult,
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: Login,
+  },
+  {
+    path: "/registration",
+    name: "registration",
+    component: Registration,
   },
   {
     path: "/addReview",

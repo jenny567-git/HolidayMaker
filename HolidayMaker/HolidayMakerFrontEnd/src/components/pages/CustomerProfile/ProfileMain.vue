@@ -21,10 +21,16 @@
                     </div>
                     <!-- END SIDEBAR USER TITLE -->
                     <!-- SIDEBAR BUTTONS -->
-                    <!-- <div class="profile-userbuttons">
-                        <button type="button" class="btn btn-success btn-sm">Follow</button>
-                        <button type="button" class="btn btn-danger btn-sm">Message</button>
-                    </div> -->
+                    <ul class="profile-userbuttons">
+                        <a class="btn btn-primary" style="background-color: #3b5998;" href="#!" role="button"
+                        ><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-primary" style="background-color: #55acee;" href="#!" role="button"
+                        ><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-primary" style="background-color: #dd4b39;" href="#!" role="button"
+                        ><i class="fab fa-google"></i></a>
+                        <a class="btn btn-primary" style="background-color: #ac2bac;" href="#!" role="button"
+                        ><i class="fab fa-instagram"></i></a>
+                    </ul>
                     <!-- END SIDEBAR BUTTONS -->
                     <!-- SIDEBAR MENU -->
                     <div class="profile-usermenu">
@@ -63,6 +69,14 @@
 </template>
 
 <script>
+export default {
+    data() {
+        return {
+            fullName: "",
+            eMail: "",
+        };
+    }
+}
 
 </script>
 
@@ -78,7 +92,7 @@
     
     /* Profile sidebar */
     .profile-sidebar {
-        padding: 20px 0 10px 0;
+        padding: 20px 0 20px 0;
         background: #fff;
         border-radius: 30px;
         position:relative;
@@ -120,15 +134,14 @@
     }
     
     .profile-userbuttons {
-        text-align: center;
+        position: relative;
+        right: 15px;
         margin-top: 10px;
     }
     
     .profile-userbuttons .btn {
-        text-transform: uppercase;
-        font-size: 11px;
-        font-weight: 600;
-        padding: 6px 15px;
+        font-size: 14px;
+        padding: 6px 12px;
         margin-right: 5px;
     }
     
@@ -145,12 +158,13 @@
     }
     
     .profile-usermenu ul li {
-        border-top: 2px solid #f0f4f7;
-        border-bottom: 2px solid #f0f4f7;
+        border:  1px solid #f0f4f7;
+        /* border-top: 2px solid #f0f4f7;
+        border-bottom: 2px solid #f0f4f7; */
     }
     
     .profile-usermenu ul li:last-child {
-        border-bottom: none;
+        /* border-bottom: none; */
     }
     
     .profile-usermenu ul li a {
@@ -187,8 +201,9 @@
         padding: 20px;
         background: #fff;
         min-height: 800px;
-        width: 217mm;
+        min-width: 217mm;
         border-radius: 30px;
+        display:flex;
     }
 </style>
 

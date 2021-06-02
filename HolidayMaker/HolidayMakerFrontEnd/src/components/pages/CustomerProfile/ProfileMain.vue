@@ -1,5 +1,4 @@
 <template>
-    <div class="container">
         <div class="row profile">
             <div class="col-md-3">
                 <div class="profile-sidebar">
@@ -8,11 +7,9 @@
                         <div class="text-center">
                             <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
                           </div>
-                            <br>
+                          <br>
                             <h6>Upload a different photo...</h6>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="file" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                            </div>
+                            <input type="file" class="text-center center-block file-upload" aria-label="Sizing example input">
                     </div>
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->
@@ -59,11 +56,10 @@
             </div>
             <div class="col-md-9">
                 <div class="profile-content">
-          
+                    <router-view></router-view>
                 </div>
             </div>
         </div>
-    </div>
 </template>
 
 <script>
@@ -84,13 +80,16 @@
     .profile-sidebar {
         padding: 20px 0 10px 0;
         background: #fff;
+        border-radius: 30px;
+        position:relative;
+        right: 15px;
     }
     
     .profile-userpic img {
         float: none;
         margin: 0 auto;
-        /* width: 50%;
-        height: 50%; */
+        width: 70%;
+        height: 70%;
         -webkit-border-radius: 50% !important;
         -moz-border-radius: 50% !important;
         border-radius: 50% !important;
@@ -146,7 +145,8 @@
     }
     
     .profile-usermenu ul li {
-        border-bottom: 1px solid #f0f4f7;
+        border-top: 2px solid #f0f4f7;
+        border-bottom: 2px solid #f0f4f7;
     }
     
     .profile-usermenu ul li:last-child {
@@ -187,6 +187,8 @@
         padding: 20px;
         background: #fff;
         min-height: 800px;
+        width: 217mm;
+        border-radius: 30px;
     }
 </style>
 

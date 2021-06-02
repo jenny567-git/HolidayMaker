@@ -1,13 +1,27 @@
 <template >
     <div>
-        <h1>Order confirmed</h1>
+        
+        <Card style="margin-top: 30px;">
+            <template #title>
+            Order successful!
+            </template>
+            <template #content>
+                <img alt="Bootstrap Image Preview" src="https://raw.githubusercontent.com/PKief/vscode-markdown-checkbox/master/logo.png" class="rounded-circle" id="orderPic"/>
+            </template>
+        </Card>
     </div>
 </template>
 <script>
+import Card from 'primevue/card';
 export default {
-    
+    components:{
+        Card,
+    }
 }
 </script>
-<style lang="">
-    
+<style scoped>
+    #orderPic {
+        width: 100px;
+        height: 100px;
+    }
 </style>

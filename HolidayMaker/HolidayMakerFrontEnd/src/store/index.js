@@ -28,6 +28,7 @@ const store = createStore({
         },
         bookingDetails: {
             hotelId: '',
+            hotelName: '',
             noOfSingleRooms: 0,
             noOfDoubleRooms: 0,
             noOfFamilyRooms: 0,
@@ -101,6 +102,9 @@ const store = createStore({
         },
         setReservationDetails(state, data) {
             state.reservation = data;
+        },
+        setHotelName(state, data){
+            state.bookingDetails.hotelName = data;
         },
         getReviews(state, data) {
             state.getReviews = data;
@@ -240,6 +244,10 @@ const store = createStore({
         setDates({ commit }, date) {
             commit('setDates', date)
         },
+        saveCustomerDetailsCheckout({ commit }, value){
+            console.log("Updating customer details checkout")
+            commit('setCustomerDetailsCheckout', value);
+        },
         async getReviews({ commit }, hotelId) {
             var response = await fetch('https://localhost:44356/api/Hotel/GetReviews/' + hotelId);
             var result = await response.json();
@@ -265,6 +273,9 @@ const store = createStore({
         },
         setServiceType({ commit }, value) {
             commit('setServiceType', value)
+        },
+        setHotelName({ commit }, value){
+            commit('setHotelName', value);
         },
         async setServiceFee({ commit }, payload) {
             console.log('in action set service');

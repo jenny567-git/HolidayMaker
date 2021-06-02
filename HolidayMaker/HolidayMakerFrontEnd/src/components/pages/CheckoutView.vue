@@ -76,7 +76,7 @@ export default {
         },
         confirmed(id){
             // Set id in vuex
-            this.$router.push('/reservationdetails/' + id);
+            this.nextPage();
         }
     }
 }

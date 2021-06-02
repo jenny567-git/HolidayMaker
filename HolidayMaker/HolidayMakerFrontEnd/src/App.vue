@@ -20,6 +20,15 @@
                 </div>
             </div>
         </div>
+        <figure>
+            <figcaption></figcaption>
+                <audio
+                    controls
+                    src="/src/assets/Media/Toto.mp3">
+                        Your browser does not support the
+                        <code>audio</code> element.
+                </audio>
+            </figure> 
     </div>
       <!-- <div style="background: url(https://wallpaperaccess.com/full/1198002.jpg);" class="page-holder bg-cover">
         <div class="container">

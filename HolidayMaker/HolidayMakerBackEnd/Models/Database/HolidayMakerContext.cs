@@ -45,8 +45,7 @@ namespace HolidayMakerBackEnd.Models.Database
 
             modelBuilder.Entity<Accomodation>(entity =>
             {
-                entity.HasKey(e => e.Type)
-                    .HasName("PK__Accomoda__F9B8A48AB777315F");
+                entity.HasKey(e => new { e.Type, e.HotelId });
 
                 entity.ToTable("Accomodation");
 
@@ -258,9 +257,7 @@ namespace HolidayMakerBackEnd.Models.Database
 
             modelBuilder.Entity<Review>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.CreationDate).HasColumnType("datetime");
 
@@ -272,17 +269,17 @@ namespace HolidayMakerBackEnd.Models.Database
 
                 entity.Property(e => e.HotelId).HasColumnName("HotelID");
 
+                entity.HasOne(d => d.Guest)
+                    .WithMany(p => p.Reviews)
+                    .HasForeignKey(d => d.GuestId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Reviews_Guests");
+
                 entity.HasOne(d => d.Hotel)
                     .WithMany(p => p.Reviews)
                     .HasForeignKey(d => d.HotelId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Reviews__HotelID__73BA3083");
-
-                entity.HasOne(d => d.IdNavigation)
-                    .WithOne(p => p.Review)
-                    .HasForeignKey<Review>(d => d.Id)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Reviews_Guests");
             });
 
             modelBuilder.Entity<Room>(entity =>

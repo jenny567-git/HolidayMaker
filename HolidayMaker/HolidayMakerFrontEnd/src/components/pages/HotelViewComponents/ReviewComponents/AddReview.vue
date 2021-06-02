@@ -49,19 +49,25 @@ export default {
     onSubmit(e) {
       e.preventDefault();
 
-      if (!this.message || !this.name || !this.email) {
+      if (!this.message || !this.name || !this.email || !this.rating) {
         alert("Please fill in all fields");
         return;
       }
+      
       console.log("in submit - " + this.rating);
       let newReview = {
-        message: this.message,
-        name: this.name,
-        email: this.email,
         rating: this.rating,
+        message: this.message,
+        hotelID: this.$route.params.id,
+        //connect to real guest
+        guestID: 1,
+        // name: this.name,
+        // email: this.email,
+        
       };
 
       console.log(newReview);
+      this.$store.dispatch('addReview', newReview);
 
       this.message = "";
       this.name = "";

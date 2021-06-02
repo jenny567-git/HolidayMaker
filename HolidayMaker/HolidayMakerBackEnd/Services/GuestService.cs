@@ -67,19 +67,19 @@ namespace HolidayMakerBackEnd.Services
 
         }
 
-        public void AddReview(ReviewModel model)
+        public int AddReview(ReviewModel model)
         {
             var newReview = new Review()
             {
                 Rating = model.Rating,
                 Description = model.Description,
                 HotelId = model.HotelID,
-                GuestId = model.GuestID
-
-
+                GuestId = model.GuestID,
+                CreationDate = DateTime.Now
             };
+
             _db.Reviews.Add(newReview);
-            _db.SaveChanges();
+            return _db.SaveChanges();
         }
 
         public int SaveHotel(SaveModel model)

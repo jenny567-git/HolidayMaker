@@ -327,6 +327,21 @@ const store = createStore({
             var result = await response.json();
             commit('setServiceFee', result)
         },
+        async addReview({commit}, payload){
+            fetch('https://localhost:44356/api/Guest/AddReview',
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json'},
+                body: JSON.stringify({rating: payload.rating, description: payload.message, hotelID: payload.hotelID, guestID: payload.guestID})
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
     }
 })
 

@@ -20,14 +20,9 @@
           >
             <i class="fa fa-trash"></i>
           </button>
-          <h5 class="card-title">Booking detail</h5>
+          <h5 class="card-title">{{hotel.hotelName}}</h5>
           <div class="textS">
-            This is a wider card with supporting text below as a natural lead-in
-            to additional content. This content is a little bit longer. Latiti
-            latita hippeti hoppeti coming for that hotel property Latiti latita
-            hippeti hoppeti coming for that hotel property Latiti latita hippeti
-            hoppeti coming for that hotel property atiti latita hippeti hoppeti
-            coming for that hotel property
+            {{hotel.hotelDescription}}
           </div>
           <button type="button" class="btn btn-primary float-end">
             See Hotel
@@ -37,3 +32,14 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+    props:{
+        hotel: {}
+    },
+    created(){
+      console.log(this.hotel);
+    }
+}
+</script>

@@ -7,6 +7,9 @@
                 <p>Distance to beach: {{hotel.beachDistance}}</p>
                 <p>Distance to city: {{hotel.centrumDistance}}</p>
                 <p>Pool: {{hotel.pool}}</p>
+                <p>Night Entertainment: {{ hotel.nightEntertainment }}</p>
+                <p>Child Club: {{ hotel.childClub }}</p>
+                <p>Restaurant: {{ hotel.restaurant }}</p>
                 
                 <p>Ratings: <span class="badge rounded-pill bg-secondary">{{hotel.averageRating}}</span></p>
 

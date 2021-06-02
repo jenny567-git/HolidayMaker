@@ -72,9 +72,11 @@
               <div class="form-check">
                 <input
                   class="form-check-input"
+                  v-model="nightEntertainment"
                   type="checkbox"
                   value=""
                   id="flexCheckDefault"
+                  @click="nightEntertainment = !nightEntertainment"
                 />
                 <label class="form-check-label" for="flexCheckDefault">
                   Night Entertainment
@@ -83,9 +85,11 @@
               <div class="form-check">
                 <input
                   class="form-check-input"
+                  v-model="childClub"
                   type="checkbox"
                   value=""
                   id="flexCheckDefault"
+                  @click="childClub = !childClub"
                 />
                 <label class="form-check-label" for="flexCheckDefault">
                   Child club
@@ -94,9 +98,11 @@
               <div class="form-check">
                 <input
                   class="form-check-input"
+                  v-model="restaurant"
                   type="checkbox"
                   value=""
                   id="flexCheckDefault"
+                  @click="restaurant = !restaurant"
                 />
                 <label class="form-check-label" for="flexCheckDefault">
                   Restaurant
@@ -142,7 +148,9 @@ export default {
         value: [800],
       },
       pool: true,
-
+      nightEntertainment: true,
+       childClub: true,
+       restaurant: false,
            
     };
   },
@@ -168,12 +176,25 @@ export default {
           (hotel) => hotel.pool == this.pool
         );
       }
-      
+
+       if(this.nightEntertainment){
+        result = result.filter(
+          (hotel) => hotel.nightEntertainment == this.nightEntertainment
+        );
+      }
+      if(this.childClub){
+        result = result.filter(
+          (hotel) => hotel.childClub == this.childClub
+        );
+      }
+      if(this.restaurant){
+        result = result.filter(
+          (hotel) => hotel.restaurant == this.restaurant
+        );
+      }
       return result
     },
-  
-   
-    }
+  }
  
 };
 </script>

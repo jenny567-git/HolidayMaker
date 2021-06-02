@@ -2,6 +2,7 @@
   <div id="test2">
     <form @submit="onSubmit">
       <div class="row pt-5 pb-3">
+        <h4 class="text text-start pb-5"></h4>
         <div class="col-md-6 text-end">Rating</div>
         <div class="col-md-6 text-start">
           <Rating v-model="rating" :cancel="false" />
@@ -53,7 +54,7 @@ export default {
         alert("Please fill in all fields");
         return;
       }
-      
+
       let newReview = {
         rating: this.rating,
         message: this.message,
@@ -62,16 +63,17 @@ export default {
         guestID: 1,
         // name: this.name,
         // email: this.email,
-        
       };
 
       console.log(newReview);
-      this.$store.dispatch('addReview', newReview);
+      this.$store.dispatch("addReview", newReview);
 
       this.message = "";
       this.name = "";
       this.email = "";
       this.rating = null;
+
+      document.querySelector(".text").innerHTML = "Thank you for your feedback!";
     },
   },
 };

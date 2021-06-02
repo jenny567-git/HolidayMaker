@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HelloWorld from "/src/components/HelloWorld.vue";
 import Info from "../components/pages/HotelViewComponents/Info.vue";
 import HotelView from "/src/components/pages/HotelView.vue";
-import RoomInfo from "../components/pages/HotelViewComponents/RoomInfo.vue";
+import Rooms from "../components/pages/HotelViewComponents/Rooms.vue";
 import Photos from "../components/pages/HotelViewComponents/Photos.vue";
 import Reviews from "../components/pages/HotelViewComponents/Reviews.vue";
 import SearchResult from "../components/pages/SearchResult.vue";
@@ -46,7 +46,7 @@ const routes = [
       {
         path: "rooms",
         name: "hotels",
-        component: RoomInfo,
+        component: Rooms,
       },
       {
         path: "Photos",

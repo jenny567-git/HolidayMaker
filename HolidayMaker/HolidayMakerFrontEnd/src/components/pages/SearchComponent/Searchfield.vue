@@ -30,7 +30,6 @@ export default {
     },
   },
   mounted() {
-    console.log("created");
     this.GetAutoComplete();
     
   },

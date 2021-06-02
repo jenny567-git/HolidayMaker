@@ -54,7 +54,6 @@ export default {
         return;
       }
       
-      console.log("in submit - " + this.rating);
       let newReview = {
         rating: this.rating,
         message: this.message,

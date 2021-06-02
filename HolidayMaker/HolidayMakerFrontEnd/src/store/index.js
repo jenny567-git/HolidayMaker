@@ -63,12 +63,12 @@ const store = createStore({
         },
         setHotelSeachResultsList(store, value) {
             store.seachResults = value;
-            console.log('set search result');
-            console.log(store.seachResults);
+            // console.log('set search result');
+            // console.log(store.seachResults);
             store.searchButtonLoading = false;
         },
         setHotel(store, value) {
-            console.log(value);
+            // console.log(value);
             store.hotel = value;
         },
         updateAdults(state, value) {
@@ -322,7 +322,7 @@ const store = createStore({
             commit('setServiceType', value)
         },
         async setServiceFee({ commit }, payload) {
-            console.log('in action set service');
+            // console.log('in action set service');
             var response = await fetch('https://localhost:44356/api/Hotel/GetAccomodationFee?id=' + payload.id + '&type=' + payload.type);
             var result = await response.json();
             commit('setServiceFee', result)

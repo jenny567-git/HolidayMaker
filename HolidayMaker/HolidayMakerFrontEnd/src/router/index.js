@@ -15,7 +15,6 @@ import Home from "/src/components/pages/Home.vue";
 import ReservationDetails from "/src/components/pages/ReservationDetails.vue";
 import Login from "../components/pages/Login/Login.vue"
 import Registration from "../components/pages/Login/Registration.vue";
-
 const routes = [
   {
     path: "/",
@@ -83,6 +82,8 @@ const routes = [
     name: "reservationdetails",
     component: ReservationDetails,
   },
+  
+  
 ];
 const router = createRouter({
   history: createWebHistory(),

@@ -82,10 +82,19 @@ namespace HolidayMakerBackEnd.Controllers
         //}
        
         [HttpPost("login")]
-        public Guest Login(LoginRequestViewModel model)
+        public IActionResult Login(LoginRequestViewModel model)
         {
 
-            return _guestService.Login(model);
+            var response = _guestService.Login(model);
+            if (response == null)
+            {
+                return BadRequest(new { message = "Username or password is incorrect" });
+            }
+            return Ok(response);
+
+                
+
+
         }
 
         

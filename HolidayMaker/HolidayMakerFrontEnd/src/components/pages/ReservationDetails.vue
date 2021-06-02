@@ -47,6 +47,7 @@ export default {
     reservation() {
       return this.$store.state.reservation;
     },
+    
   },
   created() {
     this.$store.dispatch("getReservationById", this.$route.params.id);

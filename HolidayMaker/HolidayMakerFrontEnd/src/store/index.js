@@ -47,6 +47,9 @@ const store = createStore({
         },
       
          reservation: {},
+         guest:{},        
+         
+       
          user: {
             loggedIn: false,
           },
@@ -90,15 +93,29 @@ const store = createStore({
         setReservationDetails(state, data) {
             state.reservation = data;
         },
-        setLoggedInUser(state, user) {
-            state.user = user;
+        setLoggedInUser(state, data) {
+            state.user = data;
+            state.user.loggedIn = true;
           },
         setEmail(state, value){
             state.user.Email = value; 
         },
         setPassword(state, value){
             state.user.Password = value;
+        },
+        setGuest(state, data){
+            state.guest = data;
+        },
+        
+        setUser(state, data){
+            state.user = data
+            state.user.loggedIn = true;
+        },
+        logOutUser(state){
+            
+            state.user.loggedIn=false;
         }
+
    },
    actions:{
         async searchHotels({commit}, searchString){
@@ -183,18 +200,21 @@ const store = createStore({
             console.log('result: ' + result)
             commit('setAutoComplete', result);
         },
-        async login({ dispatch }, credentials) {
+        async login({ commit }, credentials) {
             let response = await fetch("https://localhost:44356/api/Guest/login", {
               method: "post",
               headers: { "Content-type": "application/json" },
               body: JSON.stringify(credentials),
             });
             let result = await response.json();
-            await dispatch("getLoggedInUser", result);
+            commit("setUser",  result);
+            router.push('/')
+           
           },
 
-          async getLoggedInUser({ commit }) {
-            let response = await fetch("https://localhost:44356/api/Guest/GetGuestById/");
+          async getLoggedInUser({ commit }, guest ) {
+            let response = await fetch("https://localhost:44356/api/Guest/GetGuestById/"+guest.id);
+            
             let result = await response.json();
             if (response.status == 401) {
               result.loggedIn = false;
@@ -204,10 +224,16 @@ const store = createStore({
           },
           
 
-          async logout({ dispatch }) {
-            let response = await fetch("https://localhost:44356/api/Guest/login", { method: "delete" });
-            //kolla response status etc
-            await dispatch("getLoggedInUser");
+          async logout({ commit }) {
+            // let response = await fetch("https://localhost:44356/api/Guest/login", {
+            //   method: "post",
+            //   headers: { "Content-type": "application/json" },
+            //   body: JSON.stringify(credentials),
+            // });
+            // let result = await response.json();
+            commit("logOutUser");
+            router.push("/")
+          
           },
         updateAdults({ commit }, value) {
             commit('updateAdults', value)

@@ -3,6 +3,7 @@ using HolidayMakerBackEnd.Models.ViewModels;
 using HolidayMakerBackEnd.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace HolidayMakerBackEnd.Controllers
     [ApiController]
     public class GuestController : ControllerBase
     {
-
+        private readonly HolidayMakerContext _db = new HolidayMakerContext();
         private readonly GuestService _guestService;
 
         public GuestController()
@@ -26,6 +27,7 @@ namespace HolidayMakerBackEnd.Controllers
         [HttpGet("GetGuestById/{id}")]
         public IEnumerable<Guest> GetGuestById(int id)
         {
+            
             var result = _guestService.GetGuestById(id);
             return result;
         }
@@ -37,10 +39,27 @@ namespace HolidayMakerBackEnd.Controllers
             return result;
         }
         [HttpPost("addGuest")]
-        public ActionResult AddGuest([FromBody]GuestInputModel guest)
+        public async Task<Guest> AddGuest(AddGuestViewModel model)
         {
-            _guestService.AddGuest(guest);
-            return Ok();
+            var newGuest = new Guest()
+            {
+                FullName = model.FullName,
+                Street = model.Street,
+                ZipCode = model.ZipCode,
+                City = model.ZipCode,
+                Country = model.Country,
+                Phone = model.Phone,
+                Email = model.Email,
+                Password = BCrypt.Net.BCrypt.HashPassword(model.Password)
+                
+                
+
+            };
+
+            _db.Guests.Add(newGuest);
+            await _db.SaveChangesAsync();
+
+            return newGuest;
         }
 
         [HttpPost("AddReview")]
@@ -52,9 +71,25 @@ namespace HolidayMakerBackEnd.Controllers
         [HttpPost("saveFavoriteHotel")]
         public ActionResult SaveHotelToFavorites(SaveModel model)
         {
-            _guestService.SaveHotel(model);
-            return Ok();
+            int result = _guestService.SaveHotel(model);
+            return Ok(result);
+        }
+        
+       
+        [HttpPost("login")]
+        public Guest Login(LoginRequestViewModel model)
+        {
+
+            return _guestService.Login(model);
         }
 
+        
+
+        [HttpDelete("removeFavoriteHotel")]
+        public ActionResult RemoveHotelFromFavorites(SaveModel model)
+        {
+            int result = _guestService.RemoveSavedHotel(model);
+            return Ok(result);
+        }
     }
 }

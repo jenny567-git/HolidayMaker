@@ -5,7 +5,7 @@
             <title>Simple Navbar with flexbox</title>
         </head>
             <header>
-                <img class="" src="/src/assets/hotel_logo4_tempfix.png" alt="" height="120">
+                <img class="" src="/src/assets/Logo5_cropped.png" alt="" height="80">
                 <nav>
                     <ul class="nav-area">
                         <li><a href="#"><router-link to="/hotels/1">Hotel 1 | </router-link></a></li>
@@ -19,9 +19,9 @@
                 <a class="nav-link dropdown-toggle pi pi-user" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="fontSize: 2rem">
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item" href="#">Log in</a></li>
+                    <li><a class="dropdown-item" href="#"><router-link to="/login">Log in</router-link></a></li>
                     <li><a class="dropdown-item" href="#">Log out</a></li>
-                    <li><a class="dropdown-item" href="#">Register</a></li>
+                    <li><a class="dropdown-item" href="#"><router-link to="/registration">Register</router-link></a></li>
                 </ul>
                 </li>
             </header>
@@ -63,10 +63,9 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 70px;
+    padding: 12px 70px;
     background:#202a38;
-    background: rgb(32,42,56);
-    background: linear-gradient(180deg, rgb(158 180 188) 0%, rgba(255,178,0,1) 100%);
+    background: rgb(51, 57, 58);
 }
 
 .nav-area {

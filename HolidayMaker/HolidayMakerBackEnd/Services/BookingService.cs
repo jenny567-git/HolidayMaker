@@ -21,6 +21,59 @@ namespace HolidayMakerBackEnd.Services
         public int latestId;
         public string latestType;
 
+
+        //removeBooking missing
+
+
+
+
+        public Reservation GetBookingById(int id)
+        {
+            
+            var result = _db.Reservations.Include(r => r.Guest).Include(h => h.Hotel).ThenInclude(r=>r.Rooms).SingleOrDefault(r => r.Id == id);
+
+
+            return result;
+        }
+        public ReservedRoom GetReservedRoom(int id)
+        {
+            var result = _db.ReservedRooms.FirstOrDefault(x => x.ReservationId == id);
+            return result;
+        }
+
+        public ReservationsDetail GetReservationsDetail(int id)
+        {
+            var res = _db.ReservationsDetails.FirstOrDefault(r => r.ReservationId == id);
+            return res;
+
+        }
+
+        //public List<ReservationsDetail> GetAllReservationsDetails(List<int>nummer)
+        //{
+        //    var test = new List<ReservationsDetail>();
+        //    var testa = new List<ReservationsDetail>();
+        //    foreach (var item in nummer)
+        //    {
+        //        testa = _db.ReservationsDetails.Where(x => x.ReservationId == item).ToList();
+        //        foreach (var itema in testa)
+        //        {
+        //            test.Add(item);
+        //        }
+
+        //    }
+        //    return test;
+        //}
+        public IEnumerable<ReservedRoom> GetReservedRooms(int id)
+        {
+            return _db.ReservedRooms.Where(x => x.ReservationId == id).Include(r=>r.Room).AsEnumerable();
+
+        }
+        public IEnumerable<Reservation> GetAllBookingByGuestId(int id)
+        {
+            var result = _db.Reservations.Where(b => b.GuestId == id).AsEnumerable();
+            return result;
+        }
+
         public void MakeBooking(SearchViewModel model)
         {
 
@@ -78,7 +131,6 @@ namespace HolidayMakerBackEnd.Services
             
             
         }
-
 
         
         public object CalculateCost(Reservation reservation, ReservedRoom reservedRoom, ReservationsDetail reservationsDetail)

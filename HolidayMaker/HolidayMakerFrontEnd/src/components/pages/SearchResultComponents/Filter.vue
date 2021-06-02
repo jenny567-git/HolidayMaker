@@ -16,7 +16,7 @@
     </div>
     <hr />
     <div>
-      <p>Distance to beach (km)</p>
+      <p>Distance to beach (m)</p>
       <Slider
         v-model="beachDistance.value"
         v-bind="beachDistance"
@@ -219,4 +219,17 @@ export default {
     margin-left: 5px;
     position: absolute;
 }
+  #sliders{
+    color:rgb(255, 255, 255);
+    
+  }
+
+  .accordion {
+    color:black;
+  }
+  .slider-connect {
+    background: #5a3ff5;
+    cursor: pointer;
+}
+
 </style>

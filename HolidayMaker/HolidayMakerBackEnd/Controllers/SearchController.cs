@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HolidayMakerBackEnd.Services;
 using HolidayMakerBackEnd.Models.Database;
+using HolidayMakerBackEnd.Models.ViewModels;
 
 namespace HolidayMakerBackEnd.Controllers
 {
@@ -14,6 +15,7 @@ namespace HolidayMakerBackEnd.Controllers
     public class SearchController : ControllerBase
     {//test
         private readonly SearchService _searchService;
+        private readonly HotelService _hotelService;
 
         public SearchController()
         {
@@ -24,7 +26,7 @@ namespace HolidayMakerBackEnd.Controllers
         public IEnumerable<Hotel> GetAllHotel()
         {
             
-                var result = _searchService.GetAllHotels();
+                var result = _hotelService.GetAllHotels();
                 return result;
 
         }
@@ -43,15 +45,22 @@ namespace HolidayMakerBackEnd.Controllers
                 throw new ArgumentException("Named Hotel not found");
             }
 
-            //var result = _searchService.GetHotelByName(input);
-            //return result;
         }
 
         [HttpGet("GetHotelByCity")]
-        public IEnumerable<Hotel> GetHotelByCity(string input)
+        public IEnumerable<AvailableHotelViewModel> GetHotelByCity(string input)
         {
-             
-            var result = _searchService.GetHotelByCity(input);
+            IEnumerable<Hotel> searchresult = _searchService.GetHotelByCity(input);
+
+            List<AvailableHotelViewModel> viewModelList = new List<AvailableHotelViewModel>();
+
+            foreach (var hotel in searchresult)
+            {
+                viewModelList.Add(new AvailableHotelViewModel { Hotel = hotel });
+            }
+            
+            var result = viewModelList.AsEnumerable();
+
             return result;
           
         }
@@ -61,8 +70,52 @@ namespace HolidayMakerBackEnd.Controllers
         {
             var result = _searchService.GetHotelByCountry(input);
             return result;
-        } 
+        }
 
+
+
+        [HttpGet("GetAllHotelByInput")]
+        public IEnumerable<Hotel> GetAllHotelByInput(string input)
+        {
+            var result = _searchService.GetAllHotelByInput(input);
+            return result;
+        }
         
+        [HttpGet("search")]
+        public IEnumerable<AvailableHotelViewModel> GetAvailableHotelsWithStringDatesRoomsPeople(DateTime? startDate=null, DateTime? endDate=null, int? rooms=null, int? people=null, string input = null)
+        {
+            IEnumerable<AvailableHotelViewModel> result = null;
+            
+
+            if (rooms.HasValue && people.HasValue && (input == null || input == ""))
+            {
+                //all fields except string has value
+                result = _searchService.GetAvailableHotels(startDate.Value, endDate.Value, rooms.Value, people.Value);
+            }else if(startDate == null && endDate == null)
+            {
+                IEnumerable<Hotel> searchresult = _searchService.GetAllHotelByInput(input);
+                
+                List<AvailableHotelViewModel> viewModelList = new List<AvailableHotelViewModel>();
+
+                foreach (var hotel in searchresult)
+                {
+                    viewModelList.Add(new AvailableHotelViewModel { Hotel = hotel});    
+                }
+                result = viewModelList.AsEnumerable();
+            } else
+            {
+                //all fields has value
+                result = _searchService.GetAvailableHotels(startDate.Value, endDate.Value, rooms.Value, people.Value, input);
+            }
+            
+            return result;
+        }
+
+        [HttpGet("GetSearchAutoComplete")]
+        public IEnumerable<string> GetSearchAutoComplete()
+        {
+            return _searchService.GetSearchAutoComplete();
+        }
+
     }
 }

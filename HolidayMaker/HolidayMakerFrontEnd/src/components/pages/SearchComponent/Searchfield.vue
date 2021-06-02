@@ -2,35 +2,52 @@
   <div>
     <input
       class="form-control"
-      list="datalistOptions"
+      
       id="searchInput"
       placeholder="Type to search..."
-      @change="searchFieldChange"
+      @input="searchFieldChange"
       v-model="searchString"
+      minlength="2"
     />
     <datalist id="datalistOptions">
-      <option :value="hotel.name" v-for="hotel in hotels" :key="hotel.id" />
+      <option :value="item" v-for="item in autoComplete" :key="item.id" />
     </datalist>
   </div>
 </template>
 
 <script>
+// import $ from '/node_modules/jquery'
+
 export default {
-  data(){
-    return{
-      searchString: ''
-    }
+  data() {
+    return {
+      searchString: "",
+    };
   },
   computed: {
-    hotels() {
-      return this.$store.state.hotels;
+    autoComplete() {
+      return this.$store.state.searchAutoComplete;
     },
   },
-  methods:{
-    searchFieldChange(){
-      this.$emit('input-changed', this.searchString)
+  mounted() {
+    this.GetAutoComplete();
+    
+  },
+  methods: {
+    GetAutoComplete() {
+      this.$store.dispatch("getAutoComplete");
+    },
+    searchFieldChange() {
+      this.$emit("input-changed", this.searchString);
+      if(this.searchString.length >= 2){
+        var input = document.querySelector("#searchInput")
+        input.setAttribute("list", "datalistOptions")
+      } else{
+        var input = document.querySelector("#searchInput")
+        input.setAttribute("list", "")
+      }
     }
-  }
+  },
 };
 </script>
 

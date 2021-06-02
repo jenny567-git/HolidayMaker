@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HelloWorld from "/src/components/HelloWorld.vue";
 import Info from "../components/pages/HotelViewComponents/Info.vue";
 import HotelView from "/src/components/pages/HotelView.vue";
-import RoomInfo from "../components/pages/HotelViewComponents/RoomInfo.vue";
+import Rooms from "../components/pages/HotelViewComponents/Rooms.vue";
 import Photos from "../components/pages/HotelViewComponents/Photos.vue";
 import Reviews from "../components/pages/HotelViewComponents/Reviews.vue";
 import SearchResult from "../components/pages/SearchResult.vue";
@@ -11,10 +11,12 @@ import OrderCompletedView from "../components/pages/OrderCompletedView.vue";
 import CheckoutView from "../components/pages/CheckoutView.vue";
 import Body from "../components/pages/MainPage/Body.vue";
 import { registerRuntimeCompiler } from "@vue/runtime-core";
-import Home from '/src/components/pages/Home.vue';
+import Home from "/src/components/pages/Home.vue";
+import ReservationDetails from "/src/components/pages/ReservationDetails.vue";
+import Login from "../components/pages/Login/Login.vue"
+import Registration from "../components/pages/Login/Registration.vue";
 
-
-
+import SavedHotels from '/src/components/pages/UserPages/SavedHotels.vue';
 const routes = [
   {
     path: "/",
@@ -25,6 +27,16 @@ const routes = [
     path: "/result",
     name: "result",
     component: SearchResult,
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: Login,
+  },
+  {
+    path: "/registration",
+    name: "registration",
+    component: Registration,
   },
   {
     path: "/addReview",
@@ -43,7 +55,7 @@ const routes = [
       {
         path: "rooms",
         name: "hotels",
-        component: RoomInfo,
+        component: Rooms,
       },
       {
         path: "Photos",
@@ -67,6 +79,17 @@ const routes = [
     name: "Checkout",
     component: CheckoutView,
   },
+  {
+    path: "/reservationdetails/:id",
+    name: "reservationdetails",
+    component: ReservationDetails,
+  },
+  {
+    path: "/savedHotels",
+    name: "SavedHotels",
+    component: SavedHotels,
+  },
+  
 ];
 const router = createRouter({
   history: createWebHistory(),

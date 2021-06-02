@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
+using HolidayMakerBackEnd.Services;
 
 namespace HolidayMakerBackEnd.Services
 {
@@ -29,14 +31,14 @@ namespace HolidayMakerBackEnd.Services
             return _db.Guests.Where(g => g.Id == id);
         }
 
-        public void AddGuest(GuestInputModel guest)
+        public void AddGuest(AddGuestViewModel guest)
         {
 
             var newGuest = new Guest()
             {
 
 
-               
+
                 FullName = guest.FullName,
                 Street = guest.Street,
                 ZipCode = guest.ZipCode,
@@ -46,7 +48,7 @@ namespace HolidayMakerBackEnd.Services
                 Email = guest.Email
 
             };
-                       
+
             _db.Guests.Add(newGuest);
             _db.SaveChanges();
         }
@@ -80,7 +82,7 @@ namespace HolidayMakerBackEnd.Services
             _db.SaveChanges();
         }
 
-        public void SaveHotel(SaveModel model)
+        public int SaveHotel(SaveModel model)
         {
             var newSaveHotel = new SavedHotel()
             {
@@ -89,7 +91,54 @@ namespace HolidayMakerBackEnd.Services
             };
 
             _db.SavedHotels.Add(newSaveHotel);
-            _db.SaveChanges();
+            return _db.SaveChanges();
         }
+
+        public int RemoveSavedHotel(SaveModel model)
+        {
+            var newRemoveHotel = new SavedHotel()
+            {
+                HotelId = model.HotelID,
+                GuestId = model.GuestID,
+            };
+
+            _db.SavedHotels.Remove(newRemoveHotel);
+            return _db.SaveChanges();
+        }
+
+        public Guest FindGuestById(int id)
+        {
+            return _db.Guests.FirstOrDefault(x => x.Id == id);
+        }
+
+        public IEnumerable<Reservation> GetReservationsByID(int id)
+        {
+            var result = _db.Reservations.Include(r => r.Guest).Include(h => h.Hotel).Where(r => r.Id == id).AsEnumerable();
+
+            var test = _db.Reservations.Where(r => r.GuestId == id).Include(r => r.Hotel).ThenInclude(r => r.Rooms).AsEnumerable();
+
+            return test;
+        }
+
+        public Guest Login(LoginRequestViewModel model)
+        {
+            var user = _db.Guests.FirstOrDefault(x => x.Email == model.Email);
+            bool isValid = BCrypt.Net.BCrypt.Verify(model.Password, user.Password);
+
+            if (isValid)
+            {
+                return user;
+            }
+            return null;
+
+        }
+
     }
+
+    
+    public class InputData
+    {
+        public int Id { get; set; }
+    }   
 }
+

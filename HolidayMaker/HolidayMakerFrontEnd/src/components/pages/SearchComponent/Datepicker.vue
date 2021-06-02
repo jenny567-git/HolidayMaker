@@ -1,6 +1,6 @@
 <template>
   <Calendar
-    dateFormat="yy-mm-dd"
+    dateFormat="yy/mm/dd"
     v-model="dates"
     selectionMode="range"
     :manualInput="false"

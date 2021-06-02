@@ -2,17 +2,27 @@
 
     <div id="test3">
         <div class="row" v-for="hotel in filteredHotels" :hotel="hotel" :key="hotel.id">
-            <Images :id="hotel.id"/>
-                <b>{{hotel.name}}</b>
-                <p>Distance to beach: {{hotel.beachDistance}}</p>
-                <p>Distance to city: {{hotel.centrumDistance}}</p>
-                <p>Pool: {{hotel.pool}}</p>
-                <p>Night Entertainment: {{ hotel.nightEntertainment }}</p>
-                <p>Child Club: {{ hotel.childClub }}</p>
-                <p>Restaurant: {{ hotel.restaurant }}</p>
-                
-                <p>Ratings: <span class="badge rounded-pill bg-secondary">{{hotel.averageRating}}</span></p>
-
+            <div class="col-md-4">
+                <Images :id="hotel.id"/>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-6 text-start">
+                        <b>{{hotel.name}}</b>
+                        <p>{{hotel.city.cityName}}, {{hotel.country.countryName}}</p>
+                        <p>Ratings: <span class="badge rounded-pill bg-secondary">{{hotel.averageRating}}</span></p>
+                        <p>Beach distance: <span class="badge rounded-pill bg-secondary">{{hotel.beachDistance}} m </span></p>
+                        <p>Centrum distance: <span class="badge rounded-pill bg-secondary">{{hotel.centrumDistance}} km </span></p>
+                    </div>
+                    <div class="col-md-6 text-start">
+                        <h3>(3535) SEK</h3>
+                        <br/>
+                        <p v-if="hotel.pool"> <i class="fas fa-check"></i> Pool</p>
+                        <p v-if="hotel.nightEntertainment"> <i class="fas fa-check"></i> Night Entertainment</p>
+                        <p v-if="hotel.childClub"> <i class="fas fa-check"></i> Kids club</p>
+                        <p v-if="hotel.restaurant"> <i class="fas fa-check"></i> Restaurant</p>
+                    </div>
+                </div>
                 <router-link :to="'/hotels/' + hotel.id" class="nav-link"> 
                     <button class="btn btn-outline-primary" for="btn-check-outlined" @click="hotelDetailsClick">See details</button><br>
                 </router-link>
@@ -38,7 +48,7 @@ components: {
 
   methods:{
       hotelDetailsClick(event){
-          console.log("Set hotel", this.hotel.id)
+          console.log("Set hotel in result", this.hotel.id)
           this.$store.dispatch('setHotel', this.hotel)
       }
   }

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Welcome to Africa Motherfucker!</h1>
+        <h1 id="welcome"><a href="https://www.youtube.com/watch?v=FTQbiNvZqaY">Welcome to Africa Motherfucker!</a></h1>
         <div id="homeDiv">
 
             
@@ -18,5 +18,12 @@ export default {
 <style>
     #homeDiv{
         margin-top: 500px;
+    }
+
+    #welcome{
+        font-size: 3em !important;
+        color: rgb(96, 143, 106) !important;
+        padding-top: 20px;
+        text-shadow: 2px 2px black;
     }
 </style>

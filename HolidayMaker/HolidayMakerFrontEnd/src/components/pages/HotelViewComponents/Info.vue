@@ -12,9 +12,7 @@
 
 <script>
 export default {
-  props: {
-    hotel: {},
-  },
+  
   computed: {
     hotel() {
       return this.$store.state.hotel;

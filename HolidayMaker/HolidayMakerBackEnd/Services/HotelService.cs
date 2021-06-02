@@ -84,12 +84,12 @@ namespace HolidayMakerBackEnd.Services
 
         public IEnumerable<Review> GetReviews(int id)
         {
-            return _db.Reviews.Where(r => r.Hotel.Id == id).AsEnumerable();
+            return _db.Reviews.Where(r => r.Hotel.Id == id).Include(c => c.IdNavigation).AsEnumerable();
         }
 
         public Hotel GetById(int id)
         {
-            return _db.Hotels.SingleOrDefault(h => h.Id == id);
+            return _db.Hotels.Include(r => r.Rooms).SingleOrDefault(h => h.Id == id);
         }
 
         public Room GetRoomByRoomId(int id)
@@ -105,7 +105,7 @@ namespace HolidayMakerBackEnd.Services
         public IEnumerable<Hotel> GetAllHotels()
         {
             
-            var result = _db.Hotels.Include(n => n.Country).Include(n => n.City).AsEnumerable();
+            var result = _db.Hotels.Include(n => n.Country).Include(n => n.City).Include(r => r.Rooms).AsEnumerable();
             return result;
         }
 
@@ -117,6 +117,16 @@ namespace HolidayMakerBackEnd.Services
             int num3 = rand.Next(0, 5);
 
             return _db.Hotels.Where(x => x.Id == num1);
+        }
+
+        public double GetAccomodationFee(int hotelId, string type)
+        {
+            var result = _db.Accomodations.SingleOrDefault(h => h.HotelId == hotelId && h.Type.ToLower() == type.ToLower());
+            return result.Price;
+        }
+        public List<SavedHotel> GetSavedHotels(int id)
+        {
+            return _db.SavedHotels.Where(u => u.GuestId == id).Include(h => h.Hotel).ToList();
         }
 
     }

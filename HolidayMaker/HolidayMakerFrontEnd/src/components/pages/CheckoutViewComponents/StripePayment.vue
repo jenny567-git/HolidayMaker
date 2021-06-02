@@ -1,6 +1,11 @@
 <template>
     <div id="center">
         <form id="payment-form">
+           <Card style="width: 25rem; margin-bottom: 2em">
+            <template #content>
+                <p>Price: 5000</p>
+            </template>
+        </Card>
         <div id="card-element"><!--Stripe.js injects the Card Element--></div>
         <button id="submit" class="btn btn-primary">
             <div class="spinner hidden" id="spinner"></div>
@@ -39,12 +44,17 @@ var purchase = {
     items: [{ id: "xl-tshirt" }]
 };
 
+import Card from 'primevue/card'
+
 export default {
     mounted(){
         if(card === undefined){
             card = elements.create('card', {style: style});
         }
         card.mount('#card-element');
+    },
+    components:{
+      Card,
     },
     methods:{
         payWithCard(stripe, card, clientSecret){

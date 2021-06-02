@@ -129,6 +129,11 @@ export default ({
         }
     },
     created() {
+        if(!this.$store.state.seachResults.length){
+            this.$store.dispatch('getHotelById', this.$route.params.id)
+        }
+        
+  
         this.$store.dispatch('getHotelById', this.$route.params.id)
         .then(() =>{
             console.log("Test somethng");

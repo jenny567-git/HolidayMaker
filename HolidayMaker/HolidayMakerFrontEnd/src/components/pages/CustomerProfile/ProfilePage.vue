@@ -23,12 +23,11 @@
                             <div class="col-8">Country</div>
                             <div class="ml-auto"><b>Swagistan</b></div>
                         </div>
+ </div>
 </template>
 
 <script>
-
 </script>
 
 <style scoped>
-
 </style>

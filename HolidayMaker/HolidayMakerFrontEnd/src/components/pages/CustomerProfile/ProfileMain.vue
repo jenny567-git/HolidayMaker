@@ -1,5 +1,4 @@
 <template>
-
     <div class="container">
         <div class="row profile">
             <div class="col-md-3">
@@ -8,9 +7,12 @@
                     <div class="profile-userpic">
                         <div class="text-center">
                             <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-                            <h6>Upload a different photo...</h6>
-                            <input type="file" class="text-center center-block file-upload">
                           </div>
+                            <br>
+                            <h6>Upload a different photo...</h6>
+                            <div class="input-group input-group-sm mb-3">
+                                <input type="file" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                            </div>
                     </div>
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->
@@ -57,7 +59,7 @@
             </div>
             <div class="col-md-9">
                 <div class="profile-content">
-                    <router-view></router-view>
+          
                 </div>
             </div>
         </div>
@@ -184,7 +186,7 @@
     .profile-content {
         padding: 20px;
         background: #fff;
-        min-height: 560px;
+        min-height: 800px;
     }
 </style>
 

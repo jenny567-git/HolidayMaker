@@ -29,6 +29,27 @@ namespace HolidayMakerBackEnd.Controllers
             return result;
         }
 
+        [HttpGet("SavedHotelsInfo")]
+        public List<SavedHotelViewModel> GetSavedHotelsInfo(int id)
+        {
+            var result = _hotelService.GetSavedHotels(id);
+
+            List<SavedHotelViewModel> model = new();
+
+            foreach (var item in result)
+            {
+
+                SavedHotelViewModel tmp = new();
+                tmp.HotelName = item.Hotel.Name;
+                tmp.HotelDescription = item.Hotel.Description;
+                //tmp.HotelName = "Dummy name";
+                //tmp.HotelDescription = "Dummy desc. (change in hotelController)";
+                model.Add(tmp);
+                // remove for loop after testing, use foreach
+            }
+
+            return model;
+        }
 
         [HttpGet("GetReviews/{id}")]
         public IEnumerable<Review> GetReviews(int id)

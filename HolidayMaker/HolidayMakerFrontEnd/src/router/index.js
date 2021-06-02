@@ -20,6 +20,7 @@ import OrderConfirmed from '/src/components/pages/CheckoutViewComponents/OrderCo
 import Login from "../components/pages/Login/Login.vue"
 import Registration from "../components/pages/Login/Registration.vue";
 
+import SavedHotels from '/src/components/pages/UserPages/SavedHotels.vue';
 const routes = [
   {
     path: "/",
@@ -109,6 +110,12 @@ const routes = [
     name: "reservationdetails",
     component: ReservationDetails,
   },
+  {
+    path: "/savedHotels",
+    name: "SavedHotels",
+    component: SavedHotels,
+  },
+  
 ];
 const router = createRouter({
   history: createWebHistory(),

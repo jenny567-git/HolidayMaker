@@ -89,9 +89,11 @@ export default {
       this.arrayIndex = this.array.findIndex(
         (i) => i.hotel.id == this.$route.params.id
       );
-      this.singleRooms = this.array[this.arrayIndex].roomList.singleRooms;
-      this.doubleRooms = this.array[this.arrayIndex].roomList.doubleRooms;
-      this.familyRooms = this.array[this.arrayIndex].roomList.familyRooms;
+      if (this.array[this.arrayIndex].roomList) {
+        this.singleRooms = this.array[this.arrayIndex].roomList.singleRooms;
+        this.doubleRooms = this.array[this.arrayIndex].roomList.doubleRooms;
+        this.familyRooms = this.array[this.arrayIndex].roomList.familyRooms;
+      }
       // console.log("single rooms" + this.singleRooms);
       // console.log("double rooms" + this.doubleRooms);
       // console.log("family rooms" + this.familyRooms);

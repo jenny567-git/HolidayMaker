@@ -19,9 +19,9 @@
                 <a class="nav-link dropdown-toggle pi pi-user" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="fontSize: 2rem">
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item" href="#">Log in</a></li>
+                    <li><a class="dropdown-item" href="#"><router-link to="/login">Log in</router-link></a></li>
                     <li><a class="dropdown-item" href="#">Log out</a></li>
-                    <li><a class="dropdown-item" href="#">Register</a></li>
+                    <li><a class="dropdown-item" href="#"><router-link to="/registration">Register</router-link></a></li>
                 </ul>
                 </li>
             </header>

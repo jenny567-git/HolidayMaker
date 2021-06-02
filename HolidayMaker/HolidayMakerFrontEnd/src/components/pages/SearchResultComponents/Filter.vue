@@ -1,7 +1,4 @@
 <template>
-
-  
-  
   <div class="myContainer">
     <div class="hotelResults">
       <h1>Search results: {{hotelsCount}} found</h1>
@@ -149,8 +146,8 @@ export default {
       },
       pool: true,
       nightEntertainment: true,
-       childClub: true,
-       restaurant: false,
+      childClub: true,
+      restaurant: false,
            
     };
   },

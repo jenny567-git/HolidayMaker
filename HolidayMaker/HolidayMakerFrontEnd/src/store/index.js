@@ -6,13 +6,7 @@ const store = createStore({
         searchButtonLoading: false,
         guestId: 33, // hard coded
         home: {title: "store name"},
-        name: "Vue",
-        // addReview: {
-        //     name: '',
-        //     email: '',
-        //     message: ''
-        // },
-        getReviews: [],
+        name: "Vue",        
         hotels: [],
         searchString: {
             string: '',
@@ -91,9 +85,6 @@ const store = createStore({
         },
         setReservationDetails(state, data) {
             state.reservation = data;
-        },
-        getReviews(state, data) {
-            state.getReviews = data;
         },
         setSingleRooms(state, { noOfUnit, unitPrice }) {
             state.bookingDetails.noOfSingleRooms = noOfUnit
@@ -294,11 +285,6 @@ const store = createStore({
         },
         setDates({ commit }, date) {
             commit('setDates', date)
-        },
-        async getReviews({ commit }, hotelId) {
-            var response = await fetch('https://localhost:44356/api/Hotel/GetReviews/' + hotelId);
-            var result = await response.json();
-            commit('getReviews', result);
         },
         setSingleRooms({ commit }, { noOfUnit, unitPrice }) {
             commit('setSingleRooms', { noOfUnit, unitPrice })

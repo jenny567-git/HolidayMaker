@@ -5,7 +5,7 @@
         <h2>Guest reviews</h2>
       </div>
       <div class="col-md-2 text-end">
-        <router-link :to="'/hotels/' + this.$route.params.id + '/addReview'" >
+        <router-link :to="'/hotels/' + this.$route.params.id + '/addReview'">
           <button type="button" class="btn btn-primary">Add review</button>
         </router-link>
       </div>
@@ -13,9 +13,16 @@
     <hr />
     <div class="row pb-3">
       <div class="col-md-4">
-        <div class="dropdown">
+        <div class="filter">
+          <label><input type="radio" value="All" /> All</label>
+          <label><input type="radio" value="4" /> 4</label>
+          <label><input type="radio" value="3" /> 3</label>
+          <label><input type="radio" value="2" /> 2</label>
+        </div>
+        <!-- <div class="dropdown">
           <button
             class="btn btn-secondary dropdown-toggle"
+            @click="filter({filterKey})"
             type="button"
             id="reviewRatingDropdownMenu"
             data-bs-toggle="dropdown"
@@ -24,12 +31,19 @@
             Rating
           </button>
           <ul class="dropdown-menu" aria-labelledby="reviewRatingDropdownMenu">
-            <li><a class="dropdown-item" href="#">4+</a></li>
+            <li>
+              <a
+                href="#"
+                v-on:click="filterKey = 'all'"
+                :class="'dropdown-item ' + { active: userFilterKey == 'all' }"
+                >4+</a
+              >
+            </li>
             <li><a class="dropdown-item" href="#">3+</a></li>
             <li><a class="dropdown-item" href="#">2+</a></li>
             <li><a class="dropdown-item" href="#">All</a></li>
           </ul>
-        </div>
+        </div> -->
       </div>
       <div class="col-md-8">
         <!-- <div class="dropdown text-end">
@@ -53,11 +67,7 @@
       </div>
     </div>
     <div class="row">
-      <ReviewSubComp
-        v-for="review in reviews"
-        :review="review"
-        :key="review.id"
-      />
+      <Review v-for="review in allreviews" :review="review" :key="review.id" />
     </div>
     <div class="row">
       <b>Pagination not working yet, only visual</b>
@@ -75,26 +85,69 @@
 </template>
 
 <script>
-import ReviewSubComp from "./ReviewComponents/Review.vue";
+import Review from "./ReviewComponents/Review.vue";
 export default {
   components: {
-    ReviewSubComp,
+    Review,
   },
   mounted() {
     console.log(this.$route.params.id);
-    this.getReviews();
+    this.getReviews(this.$route.params.id);
+  },
+  data() {
+    return {
+      filterKey: "all",
+      allreviews: undefined,
+    };
   },
   computed: {
-    reviews: {
-      get() {
-        return this.$store.state.getReviews;
-      },
+    filteredRatings: function () {
+      let filter = this.filterKey;
+
+      if (filter === "all") {
+        return this.allreviews;
+      } else if (filter === "4") {
+        return this.reviews.filter((review) => review.rating >= 4);
+      } else {
+        return this.reviews.filter((review) => review.rating <= 4);
+      }
     },
+    // reviews: {
+    //   get() {
+    //     return this.$store.state.getReviews;
+    //   },
+    // },
   },
   methods: {
-    getReviews() {
-      this.$store.dispatch("getReviews", this.$route.params.id);
+    getReviews(hotelId) {
+            fetch('https://localhost:44356/api/Hotel/GetReviews/' + hotelId)
+                .then(response => response.json())
+                .then(result => {
+                    this.allreviews = result;
+                    console.log('all reviews ')
+                    console.log(this.allreviews)
+                    } )
+          }
+  
+      // this.$store.dispatch("getReviews", this.$route.params.id);
+      // this.allreviews = this.$store.state.getReviews;
+      
     },
-  },
+    // reviews() {
+    //   console.log("inside review method");
+    //   return this[this.filterKey];
+    // },
+    // all() {
+    //   console.log('inside all method')
+    //   return this.reviews;
+    // },
+    // 4() {
+    //   console.log('inside 4 method')
+    //   return this.reviews.filter((review) => review.rating >= 4);
+    // },
+    // filter: function(filterKey){
+    //   this.filterKey = filterKey
+    // }
+  // },
 };
 </script>

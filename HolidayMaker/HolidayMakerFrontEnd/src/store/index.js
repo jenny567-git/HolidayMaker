@@ -1,4 +1,3 @@
-import { useSSRContext } from "@vue/runtime-core";
 import { createStore } from "vuex";
 import router from "../router/index";
 
@@ -97,11 +96,10 @@ const store = createStore({
         setDoubleRooms(state, { noOfUnit, unitPrice }) {
             state.bookingDetails.noOfDoubleRooms = noOfUnit
             state.bookingDetails.unitPriceDoubleRoom = unitPrice
+        },
         setLoggedInUser(state, data) {
             state.user = data;
             console.log(data)
-          
-            
           },
         setEmail(state, value){
             state.user.Email = value; 
@@ -254,35 +252,7 @@ const store = createStore({
             var result = await response.json();
             commit('setAutoComplete', result);
         },
-        async login({ commit }, credentials) {
-           
-            let response = await fetch("https://localhost:44356/api/Guest/login", {
-              method: "post",
-              headers: { "Content-type": "application/json" },
-              body: JSON.stringify(credentials),
-            });
-            let result = await response.json();
-            
-            commit("setUser",  result );
-            Cookies.set("login", "true" )
-            Cookies.set("userId", result.id)
-            
-            router.push('/')
-           
-          },
-          checkLoggedInUSer({commit}){
-            
-            var myCookie = Cookies.get('login')
-            if(myCookie =="true"){
-                this.dispatch('login',{Email: "", Password:"", UserID:Cookies.get('userId')})
-            }
-            commit("setLoggedInUser", result);
-        },
-        async logout({ dispatch }) {
-            let response = await fetch("https://localhost:44356/api/Guest/login", { method: "delete" });
-            //kolla response status etc
-            await dispatch("getLoggedInUser");
-        },
+        
         async getSavedHotelsInfo({commit}){
             console.log('Getting saved hotels for guest id ', this.state.guestId)
             var response = await fetch('https://localhost:44356/api/Hotel/SavedHotelsInfo?id=' + this.state.guestId);

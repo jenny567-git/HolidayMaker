@@ -121,12 +121,14 @@ export default {
       showBody(){
         return this.$route.path == '/' ? true : false;
       },
-      created(){
+      
+    },
+    created(){
+        console.log("App created");
         if(Cookies.get('login')){
           this.$store.dispatch('checkLoggedInUser')
         }
       },
-    }
     
     
     

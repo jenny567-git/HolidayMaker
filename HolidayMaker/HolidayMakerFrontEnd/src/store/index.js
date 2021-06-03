@@ -312,7 +312,7 @@ const store = createStore({
           checkLoggedInUser({commit}){
             console.log("dkjgb")
             var myCookie = Cookies.get('login')
-            if(this.state.user.loggedIn){
+            if(myCookie){
                 this.dispatch('login',{Email: "", Password:"", UserID:Cookies.get('userId')})
             }
             

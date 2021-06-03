@@ -8,7 +8,6 @@ namespace HolidayMakerBackEnd.Models.ViewModels
 {
     public class SearchViewModel
     {
-        
         //Reservation
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
@@ -28,20 +27,12 @@ namespace HolidayMakerBackEnd.Models.ViewModels
 
 
         //ReservedRooms
-        
+        public List<ReservedRooms> ReservedRooms { get; set; }
+
+    }
+    public class ReservedRooms
+    {
         public int RoomId { get; set; }
         public int BookedRooms { get; set; }
-    
-
-        
-
-        
-
-
-
-
-
-
-
     }
 }

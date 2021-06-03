@@ -28,7 +28,7 @@
 <script setup>
 import Search from './pages/SearchComponent/Search.vue'
 import { defineProps, reactive } from 'vue'
-import Button from 'primevue/Button';
+import Button from 'primevue/button';
 defineProps({
   msg: String,
   component:{

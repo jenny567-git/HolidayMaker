@@ -46,7 +46,7 @@ components: {
   },
   methods:{
       hotelDetailsClick(event){
-          console.log("Set hotel", this.hotel.id)
+          console.log("Set hotel in result", this.hotel.id)
           this.$store.dispatch('setHotel', this.hotel)
       }
   }

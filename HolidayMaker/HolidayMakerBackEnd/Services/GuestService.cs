@@ -67,22 +67,22 @@ namespace HolidayMakerBackEnd.Services
 
         }
 
-        public void AddReview(ReviewModel model)
+        public int AddReview(ReviewModel model)
         {
             var newReview = new Review()
             {
                 Rating = model.Rating,
                 Description = model.Description,
                 HotelId = model.HotelID,
-                GuestId = model.GuestID
-
-
+                GuestId = model.GuestID,
+                CreationDate = DateTime.Now
             };
+
             _db.Reviews.Add(newReview);
-            _db.SaveChanges();
+            return _db.SaveChanges();
         }
 
-        public void SaveHotel(SaveModel model)
+        public int SaveHotel(SaveModel model)
         {
             var newSaveHotel = new SavedHotel()
             {
@@ -91,7 +91,19 @@ namespace HolidayMakerBackEnd.Services
             };
 
             _db.SavedHotels.Add(newSaveHotel);
-            _db.SaveChanges();
+            return _db.SaveChanges();
+        }
+
+        public int RemoveSavedHotel(SaveModel model)
+        {
+            var newRemoveHotel = new SavedHotel()
+            {
+                HotelId = model.HotelID,
+                GuestId = model.GuestID,
+            };
+
+            _db.SavedHotels.Remove(newRemoveHotel);
+            return _db.SaveChanges();
         }
 
         public Guest FindGuestById(int id)

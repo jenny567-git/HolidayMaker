@@ -23,8 +23,9 @@
         <figure>
             <figcaption></figcaption>
                 <audio
+                    id="audio"
                     controls
-                    src="/src/assets/Media/Toto.mp3">
+                    src="/src/assets/Media/Toto.mp3" loop onloadedata="setHalfVolume()"> <!--autoplay -->
                         Your browser does not support the
                         <code>audio</code> element.
                 </audio>
@@ -122,6 +123,10 @@ export default {
     }
 }
 
+ function setHalfVolume() {
+        var myAudio = document.getElementById("audio");
+        myAudio.volume = 0.2;
+    }
 
 </script>
 
@@ -174,4 +179,8 @@ export default {
   border-width: 2px 0px 2px 0px;
   justify-content: center;
 } */
+
+audio {
+  /* display: none; */
+}
 </style>

@@ -186,6 +186,9 @@ const store = createStore({
     },
   },
   actions: {
+    saveCustomerDetailsCheckout({ commit }, data){
+      commit('setCustomerDetailsCheckout', data)
+    },
     async searchHotels({ commit }, searchString) {
       let startDate;
       let endDate;

@@ -99,7 +99,7 @@ export default {
 								adults : this.$store.state.searchString.inputAdult,
 								children : this.$store.state.searchString.inputChild,
 								extraBed : bookingDetails.extraBed,
-								customerMessage : '',
+								customerMessage : this.$store.state.customerDetailsCheckout.Message,
 								reservationId : 0,
 								type : bookingDetails.serviceType,
 								reservedRooms: []

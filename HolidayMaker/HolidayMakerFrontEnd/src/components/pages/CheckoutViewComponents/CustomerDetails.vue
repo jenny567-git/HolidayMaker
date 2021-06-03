@@ -50,25 +50,15 @@
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-                            <label for="sTate">State</label>
-                            <input v-model="Details.State" type="text" class="form-control" id="sTate" placeholder="Enter State" @input="save">
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
                             <label for="zIp">Zip Code</label>
                             <input v-model="Details.ZipCode" type="text" class="form-control" id="zIp" placeholder="Zip Code" @input="save">
                         </div>
                     </div>
                 </div>
-                <!-- <div class="row gutters">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="text-right">
-                            <button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
-                            <button type="button" id="submit" name="submit" class="btn btn-primary">Update</button>
-                        </div>
-                    </div>
-                </div> -->
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h6 class="mb-2 text-primary">Message to hotel</h6>
+                </div>
+                    <BookingMessage @message="updateMessage"></BookingMessage>
             </div>
         </div>
         <hr/> 
@@ -76,7 +66,11 @@
 </template>
 
 <script>
+import BookingMessage from './BookingMessage.vue'
 export default {
+    components:{
+        BookingMessage,
+    },
     data(){
         return{
             Details:{
@@ -88,12 +82,17 @@ export default {
                 City: '',
                 State: '',
                 ZipCode: '',
+                Message: '',
             }
         }
     },
     methods:{
         save(){
             this.$store.dispatch('saveCustomerDetailsCheckout', this.Details);
+        },
+        updateMessage(msg){
+            this.Details.Message = msg;
+            this.save();
         }
     },
     created(){

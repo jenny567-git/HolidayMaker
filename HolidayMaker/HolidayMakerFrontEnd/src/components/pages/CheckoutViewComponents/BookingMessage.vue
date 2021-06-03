@@ -1,7 +1,7 @@
 <template >
     <div>
         <div class="row g-3">
-            <textarea type="text" class="" id="MessageToHotel" @input="updateMessage" />   
+            <textarea v-model="message" type="text" class="" id="MessageToHotel" @input="updateMessage" />   
         </div>
     </div>
 </template>
@@ -9,8 +9,16 @@
 export default {
     methods:{
         updateMessage(msg){
-            this.$emit('message', msg);
+            this.$emit('message', this.message);
         }
+    },
+    data(){
+        return{
+            message: '',
+        }
+    },
+    created(){
+        this.message = this.$store.state.customerDetailsCheckout.Message;
     }
 }
 </script>

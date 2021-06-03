@@ -18,11 +18,11 @@ export default {
 </script>
 
 <style>
-.page-holder {
+/* .page-holder {
   min-height: 100vh;
 }
 
 .bg-cover {
   background-size: cover !important;
-}
+} */
 </style>

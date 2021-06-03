@@ -17,15 +17,46 @@ import CustomerDetails from '/src/components/pages/CheckoutViewComponents/Custom
 import OrderDetails from '/src/components/pages/CheckoutViewComponents/OrderDetails.vue'
 import StripePayment from '/src/components/pages/CheckoutViewComponents/StripePayment.vue'
 import OrderConfirmed from '/src/components/pages/CheckoutViewComponents/OrderConfirmed.vue'
+import ProfileMain from "../components/pages/CustomerProfile/ProfileMain.vue";
 import Login from "../components/pages/Login/Login.vue"
 import Registration from "../components/pages/Login/Registration.vue";
+import Profile from '../components/pages/CustomerProfile/ProfilePage.vue'
+import Booking from '../components/pages/CustomerProfile/BookedHotel.vue'
+import SavedHotels from '/src/components/pages/CustomerProfile/SavedHotels.vue';
+import ProfileSetting from '../components/pages/CustomerProfile/ProfileSetting.vue'
 
-import SavedHotels from '/src/components/pages/UserPages/SavedHotels.vue';
+
 const routes = [
   {
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/Profile",
+    name: "Profile",
+    component: ProfileMain,
+    children: [
+      {
+        path: "",
+        component: Profile,
+      },
+      {
+        path: "booking",
+        name: "booking",
+        component: Booking,
+      },
+      {
+        path: "favorite",
+        name: "favorite",
+        component: SavedHotels,
+      },
+      {
+        path: "profileSetting",
+        name: "profileSetting",
+        component: ProfileSetting,
+      },
+    ],
   },
   {
     path: "/result",

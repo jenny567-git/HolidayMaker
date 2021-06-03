@@ -1,11 +1,9 @@
 <template>
-  <div class="myContainer">
-    <div class="hotelResults">
-      <h1>Search results: {{hotelsCount}} found</h1>
-    <Result :filteredHotels="filteredHotels"/>
-    </div>
-    
-    <div class="myFilter">
+<div class="row">
+  <!--<div class="myFilter">-->
+  <div id="sliders">
+    <h1>Search results: {{hotelsCount}} found</h1>
+    <div class="col-md-4">
     <div>
       <p>Price range (SEK)</p>
       <Slider
@@ -20,7 +18,7 @@
       <Slider
         v-model="beachDistance.value"
         v-bind="beachDistance"
-        :max="8000"
+        :max="5000"
       ></Slider>
     </div>
     <hr />
@@ -29,7 +27,6 @@
       <Slider v-model="centrumDistance.value" v-bind="centrumDistance" :max="5000"></Slider>
     </div>
     <hr />
-    
     <div>
       <div class="accordion accordion-flush" id="accordionFlushExample">
         <div class="accordion-item">
@@ -41,7 +38,6 @@
               data-bs-target="#flush-collapseOne"
               aria-expanded="false"
               aria-controls="flush-collapseOne"
-              
             >
               More filter
             </button>
@@ -56,11 +52,9 @@
               <div class="form-check">
                 <input
                   class="form-check-input"
-                  v-model="pool"
                   type="checkbox"
                   value=""
                   id="flexCheckDefault"
-                  @click="pool = !pool"
                 />
                 <label class="form-check-label" for="flexCheckDefault">
                   Pool
@@ -69,11 +63,9 @@
               <div class="form-check">
                 <input
                   class="form-check-input"
-                  v-model="nightEntertainment"
                   type="checkbox"
                   value=""
                   id="flexCheckDefault"
-                  @click="nightEntertainment = !nightEntertainment"
                 />
                 <label class="form-check-label" for="flexCheckDefault">
                   Night Entertainment
@@ -82,11 +74,9 @@
               <div class="form-check">
                 <input
                   class="form-check-input"
-                  v-model="childClub"
                   type="checkbox"
                   value=""
                   id="flexCheckDefault"
-                  @click="childClub = !childClub"
                 />
                 <label class="form-check-label" for="flexCheckDefault">
                   Child club
@@ -95,11 +85,9 @@
               <div class="form-check">
                 <input
                   class="form-check-input"
-                  v-model="restaurant"
                   type="checkbox"
                   value=""
                   id="flexCheckDefault"
-                  @click="restaurant = !restaurant"
                 />
                 <label class="form-check-label" for="flexCheckDefault">
                   Restaurant
@@ -110,13 +98,16 @@
         </div>
       </div>
     </div>
+        </div>
+    <div class="col-md-8">
+        <div class="hotelResults">
+            <Result v-for="result in filteredHotels" :hotel="result.hotel" :key="result.hotel.id" />
+        </div>
+    </div>
+    </div>
   </div>
-  </div>
- 
-   
   
 </template>
-
 <script>
 // code: https://www.vuescript.com/custom-range-slider/
 import Slider from "/node_modules/@vueform/slider";
@@ -139,7 +130,7 @@ export default {
         value: [0, 40000],
       },
       beachDistance: {
-        value: [8000],
+        value: [5000],
       },
       centrumDistance: {
         value: [800],
@@ -151,16 +142,19 @@ export default {
            
     };
   },
+  
+
   computed:{
-        hotels(){
+      
+       searchResults(){
             return this.$store.state.seachResults;
         },
         hotelsCount(){
             return this.filteredHotels.length;
         },
-       
+
     filteredHotels() {
-      let result = this.hotels.filter(
+      let result = this.searchResults.filter(
         (hotel) => hotel.beachDistance <= this.beachDistance.value
       );
       result = result.filter(
@@ -190,6 +184,7 @@ export default {
         );
       }
       return result
+      console.log('hshsjjds');
     },
   }
  

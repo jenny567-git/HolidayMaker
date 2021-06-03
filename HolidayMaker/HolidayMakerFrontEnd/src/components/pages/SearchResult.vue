@@ -17,17 +17,15 @@
             </div>
             </div>
             <hr>
-            
+
             <!-- <div class="col"> -->
 
                 <!-- OPTION 1: CHECKBOX -->
                 <!-- <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
                     <label class="btn btn-outline-primary" for="btnradio1">Price: Lowest first</label>
-
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
                     <label class="btn btn-outline-primary" for="btnradio2">Rating: Highest first</label>
-
                 </div> -->
 
 
@@ -44,25 +42,21 @@
                 </div> -->
                 
             <!-- </div> -->
-        
-            <div class="col-md-4">
                 <Filter /> 
-               
-            </div>
-            
-        
+
     </div>
 </template>
 
 <script>
 import Filter from './SearchResultComponents/Filter.vue'
-
+import Result from './SearchResultComponents/Result.vue'
 export default ({
     components:{
         Filter,
+        Result
     },
     
-   
+  
 })
 </script>
 

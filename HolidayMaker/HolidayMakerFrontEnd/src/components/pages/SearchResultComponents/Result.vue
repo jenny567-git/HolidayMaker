@@ -1,7 +1,6 @@
 <template>
-
     <div id="test3">
-        <div class="row" v-for="hotel in filteredHotels" :hotel="hotel" :key="hotel.id">
+        <div class="row" >
             <div class="col-md-4">
                 <Images :id="hotel.id"/>
             </div>
@@ -27,11 +26,12 @@
                     <button class="btn btn-outline-primary" for="btn-check-outlined" @click="hotelDetailsClick">See details</button><br>
                 </router-link>
 
-        <hr>
             </div>
         </div>
-    
+        <hr>
+    </div>
 </template>
+
 
 <script>
 import Images from '../HotelViewComponents/RoomPhotoSlider.vue'
@@ -42,10 +42,11 @@ export default {
 components: {
     Images,
     Info
-  },
-  
-  props:['filteredHotels'],
-
+ },
+       
+ props:{
+     hotel:{}
+ },
   methods:{
       hotelDetailsClick(event){
           console.log("Set hotel in result", this.hotel.id)

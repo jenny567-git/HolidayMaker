@@ -7,11 +7,11 @@ const store = createStore({
         guestId: 33, // hard coded
         home: {title: "store name"},
         name: "Vue",
-        addReview: {
-            name: '',
-            email: '',
-            message: ''
-        },
+        // addReview: {
+        //     name: '',
+        //     email: '',
+        //     message: ''
+        // },
         getReviews: [],
         hotels: [],
         searchString: {
@@ -327,21 +327,6 @@ const store = createStore({
             var result = await response.json();
             commit('setServiceFee', result)
         },
-        async addReview({commit}, payload){
-            fetch('https://localhost:44356/api/Guest/AddReview',
-            {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json'},
-                body: JSON.stringify({rating: payload.rating, description: payload.message, hotelID: payload.hotelID, guestID: payload.guestID})
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-        }
     }
 })
 

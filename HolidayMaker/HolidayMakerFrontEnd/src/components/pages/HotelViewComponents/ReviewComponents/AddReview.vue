@@ -66,15 +66,38 @@ export default {
       };
 
       console.log(newReview);
-      this.$store.dispatch("addReview", newReview);
+
+      this.addReview(newReview);
+
+      //this.$store.dispatch("addReview", newReview);
 
       this.message = "";
       this.name = "";
       this.email = "";
       this.rating = null;
 
-      document.querySelector(".text").innerHTML = "Thank you for your feedback!";
+      document.querySelector(".text").innerHTML =
+        "Thank you for your feedback!";
     },
+    addReview(payload){
+      fetch("https://localhost:44356/api/Guest/AddReview", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          rating: payload.rating,
+          description: payload.message,
+          hotelID: payload.hotelID,
+          guestID: payload.guestID,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Success:", data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
   },
 };
 </script>

@@ -79,9 +79,7 @@ namespace HolidayMakerBackEnd.Controllers
         [HttpPost("login")]
         public IActionResult Login(LoginRequestViewModel model)
         {
-            return _guestService.Login(model);
-
-
+            
             var response = _guestService.Login(model);
             if (response == null)
             {

@@ -1,6 +1,6 @@
 <template>
     <div id="test2">
-        <div class="row pt-5">
+        <div class="row">
             <div class="col-md-6">
                 <h1>Search results: {{nrOfSearchResults}} found</h1>
             </div>
@@ -15,9 +15,9 @@
                     </ul>
                 </div>
             </div>
-            </div>
-            <hr>
-            <Filter @updateNrOfHotels="updateHotelsCount" /> 
+        </div>
+        <hr>
+        <Filter @updateNrOfHotels="updateHotelsCount" /> 
     </div>
 </template>
 
@@ -50,5 +50,8 @@ export default ({
         padding-right: 25px;
         padding-bottom: 40px;
         margin-top: 20px;
+    }
+    .dropdown{
+        margin-top: 35px;
     }
 </style>

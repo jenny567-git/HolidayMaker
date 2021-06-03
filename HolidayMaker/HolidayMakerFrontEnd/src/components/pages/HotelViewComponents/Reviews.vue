@@ -22,7 +22,6 @@
         <div class="dropdown">
           <button
             class="btn btn-secondary dropdown-toggle"
-            @click="filter({filterKey})"
             type="button"
             id="reviewRatingDropdownMenu"
             data-bs-toggle="dropdown"
@@ -32,11 +31,17 @@
           </button>
           <ul class="dropdown-menu" aria-labelledby="reviewRatingDropdownMenu">
             <li>
-              <a href="#" v-on:click="filterKey = 'all'" :class="'dropdown-item ' + { active: userFilterKey == 'all' }">4+</a>
+              <a href="#" v-on:click="ratingFilterKey = 'all'" :class="'dropdown-item ' + { active: ratingFilterKey == 'all' }">All</a>
             </li>
-            <li><a class="dropdown-item" href="#">3+</a></li>
-            <li><a class="dropdown-item" href="#">2+</a></li>
-            <li><a class="dropdown-item" href="#">All</a></li>
+            <li>
+              <a href="#" v-on:click="ratingFilterKey = 'only4'" :class="'dropdown-item ' + { active: ratingFilterKey == 'only4' }">4+</a>
+            </li>
+            <li>
+              <a href="#" v-on:click="ratingFilterKey = 'only3'" :class="'dropdown-item ' + { active: ratingFilterKey == 'only3' }">3+</a>
+            </li>
+            <li>
+              <a href="#" v-on:click="ratingFilterKey = 'below3'" :class="'dropdown-item ' + { active: ratingFilterKey == 'below3' }">Under 3</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -62,9 +67,9 @@
       </div>
     </div>
     <div class="row">
-      <Review v-for="review in allreviews" :review="review" :key="review.id" />
+      <Review v-for="review in ratingFilterList" :review="review" :key="review.id" />
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <b>Pagination not working yet, only visual</b>
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
@@ -75,7 +80,7 @@
           <li class="page-item"><a class="page-link" href="#">Next</a></li>
         </ul>
       </nav>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -91,22 +96,38 @@ export default {
   },
   data() {
     return {
-      filterKey: "all",
+      ratingFilterKey: "all",
       allreviews: undefined,
     };
   },
   computed: {
-    filteredRatings: function () {
-      let filter = this.filterKey;
-
-      if (filter === "all") {
-        return this.allreviews;
-      } else if (filter === "4") {
-        return this.reviews.filter((review) => review.rating >= 4);
-      } else {
-        return this.reviews.filter((review) => review.rating <= 4);
-      }
+    ratingFilterList() {
+    	return this[this.ratingFilterKey]
     },
+    all(){
+      return this.allreviews
+    },
+    only4(){
+      return this.allreviews.filter((user) => user.rating >= 4)
+    },
+    only3(){
+      return this.allreviews.filter((user) => user.rating >= 3)
+    },
+    below3(){
+      return this.allreviews.filter((user) => user.rating <3)
+    }
+
+    // filteredRatings: function () {
+    //   let filter = this.filterKey;
+
+    //   if (filter === "all") {
+    //     return this.allreviews;
+    //   } else if (filter === "4") {
+    //     return this.reviews.filter((review) => review.rating >= 4);
+    //   } else {
+    //     return this.reviews.filter((review) => review.rating <= 4);
+    //   }
+    // },
   },
   methods: {
     getReviews(hotelId) {
@@ -121,25 +142,15 @@ export default {
                       return b - a;
                     })
                     // console.log('all reviews ')
-                    console.log(this.allreviews)
+                    // console.log(this.allreviews)
                     } )
           }
     },
-    // reviews() {
-    //   console.log("inside review method");
-    //   return this[this.filterKey];
-    // },
-    // all() {
-    //   console.log('inside all method')
-    //   return this.reviews;
-    // },
-    // 4() {
-    //   console.log('inside 4 method')
-    //   return this.reviews.filter((review) => review.rating >= 4);
-    // },
-    // filter: function(filterKey){
-    //   this.filterKey = filterKey
-    // }
-  // },
 };
 </script>
+
+<style>
+    .active {
+  font-weight: bold;
+}
+</style>

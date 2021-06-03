@@ -1,6 +1,6 @@
 <template>
     <div id="test3">
-        <div class="row">
+        <div class="row" >
             <div class="col-md-4">
                 <Images :id="hotel.id"/>
             </div>
@@ -32,18 +32,21 @@
     </div>
 </template>
 
+
 <script>
 import Images from '../HotelViewComponents/RoomPhotoSlider.vue'
 import Info from '../HotelViewComponents/Info.vue'
+
 
 export default {
 components: {
     Images,
     Info
-  },
-  props:{
-      hotel:{}
-  },
+ },
+       
+ props:{
+     hotel:{}
+ },
   methods:{
       hotelDetailsClick(event){
           console.log("Set hotel in result", this.hotel.id)

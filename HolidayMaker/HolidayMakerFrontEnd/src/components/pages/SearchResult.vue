@@ -2,7 +2,7 @@
     <div id="test2">
         <div class="row pt-5">
             <div class="col-md-6">
-                <h1>Search results: {{hotelsCount}} found</h1>
+                
             </div>
             <div class="col-md-6">
                 <div class="dropdown">
@@ -17,16 +17,15 @@
             </div>
             </div>
             <hr>
+
             <!-- <div class="col"> -->
 
                 <!-- OPTION 1: CHECKBOX -->
                 <!-- <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
                     <label class="btn btn-outline-primary" for="btnradio1">Price: Lowest first</label>
-
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
                     <label class="btn btn-outline-primary" for="btnradio2">Rating: Highest first</label>
-
                 </div> -->
 
 
@@ -43,36 +42,21 @@
                 </div> -->
                 
             <!-- </div> -->
-        <div class="row">
-            <div class="col-md-4">
-                <Filter/>
-            </div>
-            <div class="col-md-8">
-                <Result v-for="result in searchResults" :hotel="result.hotel" :key="result.hotel.id"/>
+                <Filter /> 
 
-            </div>
-        </div>
     </div>
 </template>
 
 <script>
 import Filter from './SearchResultComponents/Filter.vue'
 import Result from './SearchResultComponents/Result.vue'
-
 export default ({
     components:{
         Filter,
         Result
     },
     
-    computed:{
-        searchResults(){
-            return this.$store.state.seachResults;
-        },
-        hotelsCount(){
-            return this.$store.state.seachResults.length;
-        }
-    }
+  
 })
 </script>
 

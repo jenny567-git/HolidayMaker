@@ -368,6 +368,8 @@ const store = createStore({
         setDates({ commit }, date) {
             commit('setDates', date)
         },
+        setSingleRooms({ commit }, { noOfUnit, unitPrice }) {
+            commit('setSingleRooms', { noOfUnit, unitPrice })
         async getReviews({ commit }, hotelId) {
             var response = await fetch('https://localhost:44356/api/Hotel/GetReviews/' + hotelId);
             var result = await response.json();
@@ -398,7 +400,7 @@ const store = createStore({
             commit('setServiceType', value)
         },
         async setServiceFee({ commit }, payload) {
-            console.log('in action set service');
+            // console.log('in action set service');
             var response = await fetch('https://localhost:44356/api/Hotel/GetAccomodationFee?id=' + payload.id + '&type=' + payload.type);
             var result = await response.json();
             commit('setServiceFee', result)

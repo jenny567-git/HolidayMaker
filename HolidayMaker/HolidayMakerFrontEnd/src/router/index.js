@@ -73,11 +73,11 @@ const routes = [
     name: "registration",
     component: Registration,
   },
-  {
-    path: "/addReview",
-    name: "addReview",
-    component: AddReview,
-  },
+  // {
+  //   path: "/addReview",
+  //   name: "addReview",
+  //   component: AddReview,
+  // },
   {
     path: "/hotels/:id",
     name: "hotels",
@@ -101,6 +101,11 @@ const routes = [
         path: "Reviews",
         name: "reviews",
         component: Reviews,
+      },
+      {
+        path: "AddReview",
+        name: "addReview",
+        component: AddReview,
       },
     ],
   },

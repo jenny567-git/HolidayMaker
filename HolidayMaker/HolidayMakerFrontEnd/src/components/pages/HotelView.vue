@@ -105,10 +105,10 @@ export default ({
                 .then(response => response.json())
                 .then(result => {
                     if(result){
-                        console.log("result",result);
+                        // console.log("result",result);
                         console.log(this.hotel, this.hotelInfo);
                         for (let i = 0; i < result.length; i++) {
-                            console.log(result[i].hotelId, this.hotelInfo )
+                            // console.log(result[i].hotelId, this.hotelInfo )
                             if(result[i].hotelId === this.hotel.id){
                                 this.star = true;
                             }

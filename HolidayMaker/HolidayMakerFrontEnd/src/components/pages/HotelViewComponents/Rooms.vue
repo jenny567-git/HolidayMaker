@@ -70,9 +70,9 @@ export default {
       let id = this.$route.params.id;
       this.$store.dispatch('setServiceFee', { id: id, type: value });
     },
-    // Book() {
-    //   // this.$store.dispatch('book', this.);
-    // },
+    Book() {
+      this.$store.dispatch('setHotelName', this.hotelInfo.name)
+    },
   },
 };
 </script>

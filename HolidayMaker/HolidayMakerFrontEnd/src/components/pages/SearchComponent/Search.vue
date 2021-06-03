@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import Button from "primevue/Button";
+import Button from "primevue/button";
 import Calendar from "./Datepicker.vue";
 import SearchDropdown from "./SearchDropdown.vue";
 import Searchfield from "./Searchfield.vue";

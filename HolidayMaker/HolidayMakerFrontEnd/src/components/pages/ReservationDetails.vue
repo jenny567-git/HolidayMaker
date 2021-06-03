@@ -1,36 +1,37 @@
 <template>
   <br />
-  <div>
+  <div id="test2">
     <div class="container-fluid">
-      <p><strong>Name: </strong> {{ reservation.fullName }}</p>
-      <p><strong>Hotel: </strong>{{ reservation.hotelName }}</p>
-      <p><strong>Checkin: </strong>{{ reservation.startDate }}</p>
-      <p><strong>Checkout: </strong>{{ reservation.endDate }}</p>
+      <h3>Success!</h3>
+      <p><strong>Name: </strong> {{ reservationInfo.fullName }}</p>
+      <p><strong>Hotel: </strong>{{ reservationInfo.hotelName }}</p>
+      <p><strong>Checkin: </strong>{{ reservationInfo.startDate }}</p>
+      <p><strong>Checkout: </strong>{{ reservationInfo.endDate }}</p>
       <h3>Booked rooms</h3>
 
       <p>
         <strong>Single rooms:</strong>
-        {{ reservation.hotelRoomsViewModel.singleRooms }}
+        {{ reservationInfo.hotelRoomsViewModel.singleRooms }}
       </p>
       <p>
         <strong>Double rooms: </strong>
-        {{ reservation.hotelRoomsViewModel.doubleRooms }}
+        {{ reservationInfo.hotelRoomsViewModel.doubleRooms }}
       </p>
       <p>
         <strong>Family rooms: </strong>
-        {{ reservation.hotelRoomsViewModel.familyRooms }}
+        {{ reservationInfo.hotelRoomsViewModel.familyRooms }}
       </p>
       <h3>Persons</h3>
       <p>
-        <strong>Adults: {{ reservation.adults }}</strong>
+        <strong>Adults: {{ reservationInfo.adults }}</strong>
       </p>
       <p>
-        <strong>Children: {{ reservation.children }}</strong>
+        <strong>Children: {{ reservationInfo.children }}</strong>
       </p>
       <p><strong>Message to hotel: </strong></p>
-      <p>{{ reservation.customerMessage }}</p>
-      <p><strong>Accomodation type: </strong> {{ reservation.type }}</p>
-      <p><strong>Price: </strong>{{ reservation.totalPrice }}</p>
+      <p>{{ reservationInfo.customerMessage }}</p>
+      <p><strong>Accomodation type: </strong> {{ reservationInfo.type }}</p>
+      <p><strong>Price: </strong>{{ reservationInfo.totalPrice }}</p>
     </div>
   </div>
 </template>
@@ -40,7 +41,22 @@ export default {
   components: {},
   data() {
     return {
-      reservationInfo: {},
+      reservationInfo: {
+        fullName: 'sadas',
+        hotelName: 'sds',
+        startDate: '',
+        endDate: '',
+        adults: '',
+        children: '',
+        customerMessage: '',
+        type: '',
+        totalPrice: '',
+        hotelRoomsViewModel:{
+          singleRooms: '2',
+          doubleRooms: '2',
+          familyRooms: '2'
+        }
+      },
     };
   },
   computed: {
@@ -50,7 +66,8 @@ export default {
     
   },
   created() {
-    this.$store.dispatch("getReservationById", this.$route.params.id);
+    this.reservationInfo = this.$store.state.reservation;
+    //this.$store.dispatch("getReservationById", this.$route.params.id); // database needs reservation string for stripe
   },
 };
 </script>

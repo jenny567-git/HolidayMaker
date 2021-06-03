@@ -1,5 +1,10 @@
 <template>
-  <div id="sliders">
+<div class="row">
+  <!--<div class="myFilter">-->
+   
+    <h1>Search results: {{hotelsCount}} found</h1>
+    <div class="col-md-4">
+    <div id="sliders">
     <div>
       <p>Price range (SEK)</p>
       <Slider
@@ -12,15 +17,15 @@
     <div>
       <p>Distance to beach (m)</p>
       <Slider
-        v-model="beachRange.value"
-        v-bind="beachRange"
-        :max="5000"
+        v-model="beachDistance.value"
+        v-bind="beachDistance"
+        :max="8000"
       ></Slider>
     </div>
     <hr />
     <div>
       <p>Distance to city (km)</p>
-      <Slider v-model="cityRange.value" v-bind="cityRange" :max="5000"></Slider>
+      <Slider v-model="centrumDistance.value" v-bind="centrumDistance" :max="5000"></Slider>
     </div>
     <hr />
     <div>
@@ -48,9 +53,11 @@
               <div class="form-check">
                 <input
                   class="form-check-input"
+                  v-model="pool"
                   type="checkbox"
                   value=""
                   id="flexCheckDefault"
+                  @click="pool = !pool"
                 />
                 <label class="form-check-label" for="flexCheckDefault">
                   Pool
@@ -59,9 +66,11 @@
               <div class="form-check">
                 <input
                   class="form-check-input"
+                  v-model="nightEntertainment"
                   type="checkbox"
                   value=""
                   id="flexCheckDefault"
+                  @click="nightEntertainment = !nightEntertainment"
                 />
                 <label class="form-check-label" for="flexCheckDefault">
                   Night Entertainment
@@ -70,9 +79,11 @@
               <div class="form-check">
                 <input
                   class="form-check-input"
+                  v-model="childClub"
                   type="checkbox"
                   value=""
                   id="flexCheckDefault"
+                  @click="childClub = !childClub"
                 />
                 <label class="form-check-label" for="flexCheckDefault">
                   Child club
@@ -81,9 +92,11 @@
               <div class="form-check">
                 <input
                   class="form-check-input"
+                  v-model="restaurant"
                   type="checkbox"
                   value=""
                   id="flexCheckDefault"
+                  @click="restaurant = !restaurant"
                 />
                 <label class="form-check-label" for="flexCheckDefault">
                   Restaurant
@@ -94,36 +107,126 @@
         </div>
       </div>
     </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <Result v-for="result in filteredHotels" :hotel="result.hotel" :key="result.hotel.id" /> 
+    </div>
   </div>
+  
 </template>
-
 <script>
 // code: https://www.vuescript.com/custom-range-slider/
 import Slider from "/node_modules/@vueform/slider";
+import Images from '../HotelViewComponents/RoomPhotoSlider.vue'
+import Info from '../HotelViewComponents/Info.vue'
+import Result from './Result.vue'
+
 
 export default {
   components: {
     Slider,
+    Images,
+    Info,
+    Result
   },
+
   data() {
     return {
       pricerange: {
         value: [0, 40000],
       },
-      beachRange: {
-        value: [0],
+      beachDistance: {
+        value: 8000,
       },
-      cityRange: {
-        value: [0],
+      centrumDistance: {
+        value: 800,
       },
+      pool: false,
+      nightEntertainment: false,
+      childClub: false,
+      restaurant: false,
+           
     };
   },
+  
+
+  computed:{
+      
+       searchResults(){
+            return this.$store.state.seachResults;
+        },
+        hotelsCount(){
+            return this.filteredHotels.length;
+        },
+
+    filteredHotels() {
+      
+      let result = this.searchResults.filter(
+        (res) => res.hotel.beachDistance <= this.beachDistance.value
+      );
+      console.log('hej', result);
+      result = result.filter(
+        (res) => res.hotel.centrumDistance <= this.centrumDistance.value
+      );
+      console.log('hej', result);
+      if(this.pool){
+
+        result = result.filter(
+          (res) => res.hotel.pool == this.pool
+        );
+      }
+      console.log('hej', result);
+
+       if(this.nightEntertainment){
+        result = result.filter(
+          (res) => res.hotel.nightEntertainment == this.nightEntertainment
+        );
+      }
+      console.log('hej', result);
+      if(this.childClub){
+        result = result.filter(
+          (res) => res.hotel.childClub == this.childClub
+        );
+      }
+      console.log('hej', result);
+      if(this.restaurant){
+        result = result.filter(
+          (res) => res.hotel.restaurant == this.restaurant
+        );
+      }
+      console.log('hej', result);
+      return result
+      
+    },
+  }
+ 
 };
 </script>
 
-<style src="@vueform/slider/themes/default.css"></style>
+<style src="@vueform/slider/themes/default.css">
+
+</style>
 
 <style scoped>
+.myContainer{
+    width: 300%;
+    height: auto;
+    margin: 10px;
+    padding: 10px;
+    display: grid;
+}
+.hotelResults{
+  width: 30%;
+    height: fit-content;
+    margin: auto;
+    margin-right: 5px;
+}
+.myFilter{
+    width: 101%;
+    margin-left: 5px;
+    position: absolute;
+}
   #sliders{
     color:rgb(255, 255, 255);
     

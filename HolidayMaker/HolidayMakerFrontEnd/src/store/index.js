@@ -7,6 +7,12 @@ const store = createStore({
     guestId: 33, // hard coded
     home: { title: "store name" },
     name: "Vue",
+    addReview: {
+      name: "",
+      email: "",
+      message: "",
+    },
+    getReviews: [],
     hotels: [],
     searchString: {
       string: "",
@@ -23,9 +29,13 @@ const store = createStore({
     },
     bookingDetails: {
       hotelId: "",
+      hotelName: "",
       noOfSingleRooms: 0,
       noOfDoubleRooms: 0,
       noOfFamilyRooms: 0,
+      singleRoomId: 0,
+      doubleRoomId: 0,
+      familyRoomId: 0,
       unitPriceSingleRoom: 0,
       unitPriceDoubleRoom: 0,
       unitPriceFamilyRoom: 0,
@@ -36,15 +46,24 @@ const store = createStore({
       totalprice: "",
     },
 
-    reservation: {},
-    guest: {},
-
-    user: {
-      loggedIn: false,
+    reservation: {
+      fullName: "sadas",
+      hotelName: "sds",
+      startDate: "",
+      endDate: "",
+      adults: "",
+      children: "",
+      customerMessage: "",
+      type: "",
+      totalPrice: "",
+      hotelRoomsViewModel: {
+        singleRooms: "2",
+        doubleRooms: "2",
+        familyRooms: "2",
+      },
     },
-    savedHotels: [],
+    customerDetailsCheckout: {},
   },
-
   mutations: {
     setEmail(store, value) {
       store.addReview.email = value;
@@ -57,12 +76,12 @@ const store = createStore({
     },
     setHotelSeachResultsList(store, value) {
       store.seachResults = value;
-      // console.log('set search result');
-      // console.log(store.seachResults);
+      console.log("set search result");
+      console.log(store.seachResults);
       store.searchButtonLoading = false;
     },
     setHotel(store, value) {
-      // console.log(value);
+      console.log(value);
       store.hotel = value;
     },
     updateAdults(state, value) {
@@ -86,35 +105,47 @@ const store = createStore({
     setReservationDetails(state, data) {
       state.reservation = data;
     },
-    setSingleRooms(state, { noOfUnit, unitPrice }) {
+    setHotelName(state, data) {
+      state.bookingDetails.hotelName = data;
+    },
+    getReviews(state, data) {
+      state.getReviews = data;
+    },
+    setSingleRooms(state, { noOfUnit, unitPrice, roomId }) {
       state.bookingDetails.noOfSingleRooms = noOfUnit;
       state.bookingDetails.unitPriceSingleRoom = unitPrice;
+      state.bookingDetails.singleRoomId = roomId;
     },
-    setDoubleRooms(state, { noOfUnit, unitPrice }) {
+    setDoubleRooms(state, { noOfUnit, unitPrice, roomId }) {
       state.bookingDetails.noOfDoubleRooms = noOfUnit;
       state.bookingDetails.unitPriceDoubleRoom = unitPrice;
+      state.bookingDetails.doubleRoomId = roomId;
     },
-    setLoggedInUser(state, data) {
-      state.user = data;
-      console.log(data);
-    },
-    setEmail(state, value) {
-      state.user.Email = value;
-    },
-    setFamilyRooms(state, { noOfUnit, unitPrice }) {
+    setFamilyRooms(state, { noOfUnit, unitPrice, roomId }) {
       state.bookingDetails.noOfFamilyRooms = noOfUnit;
       state.bookingDetails.unitPriceFamilyRoom = unitPrice;
+      state.bookingDetails.familyRoomId = roomId;
     },
     getTotalPrice(state) {
+      var days = Math.floor(
+        (Date.parse(state.searchString.dates[1].toISOString().split("T")[0]) -
+          Date.parse(state.searchString.dates[0].toISOString().split("T")[0])) /
+          86400000
+      );
+      console.log(days);
+
       let singleRoomsTotalPrice =
         state.bookingDetails.noOfSingleRooms *
-        state.bookingDetails.unitPriceSingleRoom;
+        state.bookingDetails.unitPriceSingleRoom *
+        days;
       let doubleRoomsTotalPrice =
         state.bookingDetails.noOfDoubleRooms *
-        state.bookingDetails.unitPriceDoubleRoom;
+        state.bookingDetails.unitPriceDoubleRoom *
+        days;
       let familyRoomsTotalPrice =
         state.bookingDetails.noOfFamilyRooms *
-        state.bookingDetails.unitPriceFamilyRoom;
+        state.bookingDetails.unitPriceFamilyRoom *
+        days;
 
       let servicePrice = state.bookingDetails.serviceFee;
 
@@ -143,37 +174,29 @@ const store = createStore({
       console.log("value" + value);
       state.bookingDetails.serviceFee = value;
     },
-
+    setCustomerDetailsCheckout(state, data) {
+      state.customerDetailsCheckout = data;
+     },
+    setUser(state, data) {
+      state.user = data;
+      state.user.loggedIn = true;
+      console.log(data);
+    },
+    
+    logOutUser(state) {
+      state.user.loggedIn = false;
+    },
+    setEmail(state, value) {
+      state.user.Email = value;
+    },
     setPassword(state, value) {
       state.user.Password = value;
     },
-    setSavedHotels(state, data) {
-      state.savedHotels = data;
-    },
-    setUser(state, data) {
-      state.user = data;
-      state.user.loggedIn = true;
-      console.log(data);
-    },
-
-    logOutUser(state) {
-      state.user.loggedIn = false;
-    },
-    setGuest(state, data) {
-      state.guest = data;
-    },
-
-    setUser(state, data) {
-      state.user = data;
-      state.user.loggedIn = true;
-      console.log(data);
-    },
-
-    logOutUser(state) {
-      state.user.loggedIn = false;
-    },
   },
   actions: {
+    saveCustomerDetailsCheckout({ commit }, data) {
+      commit("setCustomerDetailsCheckout", data);
+    },
     async searchHotels({ commit }, searchString) {
       let startDate;
       let endDate;
@@ -289,7 +312,37 @@ const store = createStore({
       var result = await response.json();
       commit("setAutoComplete", result);
     },
+    async login({ dispatch }, credentials) {
+        let response = await fetch("https://localhost:44356/api/Guest/login", {
+            method: "post",
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify(credentials),
+        });
+        let result = await response.json();
 
+        commit("setUser", result);
+        Cookies.set("login", "true");
+        Cookies.set("userId", result.id);
+
+        router.push("/");
+    },
+      checkLoggedInUser({ commit }) {
+          console.log("dkjgb");
+          var myCookie = Cookies.get("login");
+          if (myCookie) {
+              this.dispatch("login", {
+                  Email: "",
+                  Password: "",
+                  UserID: Cookies.get("userId"),
+              });
+          }
+      },
+      async logout({ commit }) {
+          Cookies.remove("userId");
+          Cookies.remove("login");
+          commit("logOutUser");
+          router.push("/");
+      },
     async getSavedHotelsInfo({ commit }) {
       console.log("Getting saved hotels for guest id ", this.state.guestId);
       var response = await fetch(
@@ -330,44 +383,6 @@ const store = createStore({
           console.error("Error:", error);
         });
     },
-    async login({ commit }, credentials) {
-      let response = await fetch("https://localhost:44356/api/Guest/login", {
-        method: "post",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify(credentials),
-      });
-      let result = await response.json();
-
-      commit("setUser", result);
-      Cookies.set("login", "true");
-      Cookies.set("userId", result.id);
-
-      router.push("/");
-    },
-    checkLoggedInUser({ commit }) {
-      console.log("dkjgb");
-      var myCookie = Cookies.get("login");
-      if (myCookie) {
-        this.dispatch("login", {
-          Email: "",
-          Password: "",
-          UserID: Cookies.get("userId"),
-        });
-      }
-    },
-
-    async logout({ commit }) {
-      // let response = await fetch("https://localhost:44356/api/Guest/login", {
-      //   method: "post",
-      //   headers: { "Content-type": "application/json" },
-      //   body: JSON.stringify(credentials),
-      // });
-      // let result = await response.json();
-      Cookies.remove("userId");
-      Cookies.remove("login");
-      commit("logOutUser");
-      router.push("/");
-    },
     updateAdults({ commit }, value) {
       commit("updateAdults", value);
     },
@@ -383,11 +398,21 @@ const store = createStore({
     setSingleRooms({ commit }, { noOfUnit, unitPrice }) {
       commit("setSingleRooms", { noOfUnit, unitPrice });
     },
-    setDoubleRooms({ commit }, { noOfUnit, unitPrice }) {
-      commit("setDoubleRooms", { noOfUnit, unitPrice });
+    async getReviews({ commit }, hotelId) {
+      var response = await fetch(
+        "https://localhost:44356/api/Hotel/GetReviews/" + hotelId
+      );
+      var result = await response.json();
+      commit("getReviews", result);
     },
-    setFamilyRooms({ commit }, { noOfUnit, unitPrice }) {
-      commit("setFamilyRooms", { noOfUnit, unitPrice });
+    setSingleRooms({ commit }, { noOfUnit, unitPrice, roomId }) {
+      commit("setSingleRooms", { noOfUnit, unitPrice, roomId });
+    },
+    setDoubleRooms({ commit }, { noOfUnit, unitPrice, roomId }) {
+      commit("setDoubleRooms", { noOfUnit, unitPrice, roomId });
+    },
+    setFamilyRooms({ commit }, { noOfUnit, unitPrice, roomId }) {
+      commit("setFamilyRooms", { noOfUnit, unitPrice, roomId });
     },
     getTotalPrice({ commit }) {
       commit("getTotalPrice");
@@ -397,6 +422,9 @@ const store = createStore({
     },
     setExtraBedFee({ commit }, value) {
       commit("setExtraBedFee", value);
+    },
+    setHotelName({ commit }, value) {
+      commit("setHotelName", value);
     },
     setServiceType({ commit }, value) {
       commit("setServiceType", value);

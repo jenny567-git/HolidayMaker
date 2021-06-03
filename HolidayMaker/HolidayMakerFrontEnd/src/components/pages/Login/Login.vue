@@ -30,6 +30,8 @@
 
 
 <script>
+
+
 export default {
   data(){
     return{
@@ -53,7 +55,8 @@ export default {
   methods:{
     async guestLogin(){
             
-       let credentials = {Email: this.Email, Password:this.Password}
+       let credentials = {Email: this.Email, Password:this.Password, UserID:0}
+       
         this.$store.dispatch('login', credentials);
             
    },

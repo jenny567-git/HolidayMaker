@@ -81,7 +81,9 @@ export default {
         this.$store.state.searchButtonLoading = true;
 
         this.$store.dispatch('searchHotels', this.searchString);
-      }
+      },
+      
+      
     },
     computed:{
       isLoading(){
@@ -90,7 +92,17 @@ export default {
       showBody(){
         return this.$route.path == '/' ? true : false;
       }
+    },
+    created(){
+        if(Cookies.get('login')){
+          this.$store.dispatch('checkLoggedInUSer')
+
+        }
     }
+    
+    
+    
+    
 }
 
 

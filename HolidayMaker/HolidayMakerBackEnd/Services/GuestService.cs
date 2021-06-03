@@ -110,17 +110,27 @@ namespace HolidayMakerBackEnd.Services
 
         public LoginResponseViewModel Login(LoginRequestViewModel model)
         {
-            
-            var user = _db.Guests.FirstOrDefault(x => x.Email == model.Email);
-            bool isValid = BCrypt.Net.BCrypt.Verify(model.Password, user.Password);
+            Guest user =null;
+            if (model.UserId !=0)
+            {
+                user = _db.Guests.FirstOrDefault(x => x.Id == model.UserId);
+               
+            }
+            else
+            {
+                user = _db.Guests.FirstOrDefault(x => x.Email == model.Email);
+                bool isValid = BCrypt.Net.BCrypt.Verify(model.Password, user.Password);
 
-            if (user ==null)
+                
+            }
+
+            if (user == null)
             {
                 return null;
             }
 
             return new LoginResponseViewModel(user);
-            
+
 
         }
 

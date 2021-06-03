@@ -1,3 +1,4 @@
+import { useSSRContext } from "@vue/runtime-core";
 import { createStore } from "vuex";
 import router from "../router/index";
 
@@ -95,7 +96,9 @@ const store = createStore({
         },
         setLoggedInUser(state, data) {
             state.user = data;
-            state.user.loggedIn = true;
+            console.log(data)
+          
+            
           },
         setEmail(state, value){
             state.user.Email = value; 
@@ -110,10 +113,14 @@ const store = createStore({
         setUser(state, data){
             state.user = data
             state.user.loggedIn = true;
+            console.log(data)
+            
         },
+                
         logOutUser(state){
             
             state.user.loggedIn=false;
+            
         }
 
    },
@@ -201,27 +208,30 @@ const store = createStore({
             commit('setAutoComplete', result);
         },
         async login({ commit }, credentials) {
+           
             let response = await fetch("https://localhost:44356/api/Guest/login", {
               method: "post",
               headers: { "Content-type": "application/json" },
               body: JSON.stringify(credentials),
             });
             let result = await response.json();
-            commit("setUser",  result);
+            
+            commit("setUser",  result );
+            Cookies.set("login", "true" )
+            Cookies.set("userId", result.id)
+            
             router.push('/')
            
           },
-
-          async getLoggedInUser({ commit }, guest ) {
-            let response = await fetch("https://localhost:44356/api/Guest/GetGuestById/"+guest.id);
+          checkLoggedInUSer({commit}){
             
-            let result = await response.json();
-            if (response.status == 401) {
-              result.loggedIn = false;
+            var myCookie = Cookies.get('login')
+            if(myCookie =="true"){
+                this.dispatch('login',{Email: "", Password:"", UserID:Cookies.get('userId')})
             }
-            commit("setLoggedInUser", result);
-    
-          },
+            
+        },
+
           
 
           async logout({ commit }) {
@@ -231,6 +241,8 @@ const store = createStore({
             //   body: JSON.stringify(credentials),
             // });
             // let result = await response.json();
+            Cookies.remove('userId')
+            Cookies.remove('login')
             commit("logOutUser");
             router.push("/")
           

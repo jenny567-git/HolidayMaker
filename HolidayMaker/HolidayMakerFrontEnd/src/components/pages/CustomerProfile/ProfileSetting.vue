@@ -88,11 +88,5 @@
     label{
         color: black;
     }
-
-    .text-right {
-        display:flex;
-        left: 19cm;
-        bottom: 20px;
-        position:absolute;
-    }
+    
 </style>

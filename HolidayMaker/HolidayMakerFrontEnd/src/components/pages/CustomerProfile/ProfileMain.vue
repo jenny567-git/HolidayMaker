@@ -50,9 +50,8 @@
                                 <i class="fas fa-hotel"></i>
                             </li>
                             <li>
-                                <a href="#">
+                                <router-link :to="'/profile/profileSetting'">Settings </router-link>
                                 <i class="fas fa-users-cog"></i>
-                               Settings</a>
                             </li>
                         </ul>
                     </div>

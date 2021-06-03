@@ -90,13 +90,6 @@ const store = createStore({
         setReservationDetails(state, data) {
             state.reservation = data;
         },
-        setSingleRooms(state, { noOfUnit, unitPrice }) {
-            state.bookingDetails.noOfSingleRooms = noOfUnit
-            state.bookingDetails.unitPriceSingleRoom = unitPrice
-        },
-        setDoubleRooms(state, { noOfUnit, unitPrice }) {
-            state.bookingDetails.noOfDoubleRooms = noOfUnit
-            state.bookingDetails.unitPriceDoubleRoom = unitPrice
         setLoggedInUser(state, data) {
             state.user = data;
             console.log(data)
@@ -105,24 +98,6 @@ const store = createStore({
           },
         setEmail(state, value){
             state.user.Email = value; 
-        },
-        setFamilyRooms(state, { noOfUnit, unitPrice }) {
-            state.bookingDetails.noOfFamilyRooms = noOfUnit
-            state.bookingDetails.unitPriceFamilyRoom = unitPrice
-        },
-        getTotalPrice(state) {
-            let singleRoomsTotalPrice = state.bookingDetails.noOfSingleRooms * state.bookingDetails.unitPriceSingleRoom;
-            let doubleRoomsTotalPrice = state.bookingDetails.noOfDoubleRooms * state.bookingDetails.unitPriceDoubleRoom;
-            let familyRoomsTotalPrice = state.bookingDetails.noOfFamilyRooms * state.bookingDetails.unitPriceFamilyRoom;
-
-            let servicePrice = state.bookingDetails.serviceFee;
-
-            state.bookingDetails.totalprice = singleRoomsTotalPrice + doubleRoomsTotalPrice + familyRoomsTotalPrice + servicePrice;
-
-            if (state.bookingDetails.extraBed) {
-                state.bookingDetails.totalprice += state.bookingDetails.extraBedFee;
-            }
-
         },
         updateExtraBed(state) {
             state.bookingDetails.extraBed = (state.bookingDetails.extraBed != true) ? true : false;
@@ -159,11 +134,6 @@ const store = createStore({
             
         }
 
-   },
-        },
-        setSavedHotels(state, data){
-            state.savedHotels = data;
-        },
    },
    actions:{
         async searchHotels({commit}, searchString){
@@ -265,64 +235,9 @@ const store = createStore({
             var myCookie = Cookies.get('login')
             if(myCookie =="true"){
                 this.dispatch('login',{Email: "", Password:"", UserID:Cookies.get('userId')})
-            await dispatch("getLoggedInUser", result);
-        },
-        async getLoggedInUser({ commit }) {
-            let response = await fetch("https://localhost:44356/api/Guest/GetGuestById/");
-            let result = await response.json();
-            if (response.status == 401) {
-                result.loggedIn = false;
             }
-            commit("setLoggedInUser", result);
-        },
-        async logout({ dispatch }) {
-            let response = await fetch("https://localhost:44356/api/Guest/login", { method: "delete" });
-            //kolla response status etc
-            await dispatch("getLoggedInUser");
-        },
-        async getSavedHotelsInfo({commit}){
-            console.log('Getting saved hotels for guest id ', this.state.guestId)
-            var response = await fetch('https://localhost:44356/api/Hotel/SavedHotelsInfo?id=' + this.state.guestId);
-            var result = await response.json();
-            if(result){
-                console.log(result);
-                commit('setSavedHotels', result);
-            }
-        },
-        async addFavouriteHotel({commit}, hotelId){
-            fetch('https://localhost:44356/api/Guest/saveFavoriteHotel',
-            {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json'},
-                body: JSON.stringify({hotelID: hotelId, guestID: this.state.guestId})
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-        },
-        async removeFavouriteHotel({commit}, hotelId){
-            fetch('https://localhost:44356/api/Guest/removeFavoriteHotel',
-            {
-                method: 'DELETE',
-                headers: { 'Content-Type': 'application/json'},
-                body: JSON.stringify({hotelID: hotelId, guestID: this.state.guestId})
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            }); 
-        },
             
         },
-
-          
 
           async logout({ commit }) {
             // let response = await fetch("https://localhost:44356/api/Guest/login", {
@@ -377,6 +292,7 @@ const store = createStore({
             commit('setServiceFee', result)
         },
     }
-})
+});
+
 
 export default store;

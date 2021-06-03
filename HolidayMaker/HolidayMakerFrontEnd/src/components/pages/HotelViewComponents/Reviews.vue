@@ -25,16 +25,16 @@
           </button>
           <ul class="dropdown-menu" aria-labelledby="reviewRatingDropdownMenu">
             <li>
-              <a href="#" v-on:click="ratingFilterKey = 'all'" :class="'dropdown-item ' + { active: ratingFilterKey == 'all' }">All</a>
+              <a v-on:click="ratingFilterKey = 'all'" :class="'dropdown-item ' + { active: ratingFilterKey == 'all' }">All</a>
             </li>
             <li>
-              <a href="#" v-on:click="ratingFilterKey = 'only4'" :class="'dropdown-item ' + { active: ratingFilterKey == 'only4' }">4+</a>
+              <a  v-on:click="ratingFilterKey = 'only4'" :class="'dropdown-item ' + { active: ratingFilterKey == 'only4' }">4+</a>
             </li>
             <li>
-              <a href="#" v-on:click="ratingFilterKey = 'only3'" :class="'dropdown-item ' + { active: ratingFilterKey == 'only3' }">3+</a>
+              <a v-on:click="ratingFilterKey = 'only3'" :class="'dropdown-item ' + { active: ratingFilterKey == 'only3' }">3+</a>
             </li>
             <li>
-              <a href="#" v-on:click="ratingFilterKey = 'below3'" :class="'dropdown-item ' + { active: ratingFilterKey == 'below3' }">Under 3</a>
+              <a v-on:click="ratingFilterKey = 'below3'" :class="'dropdown-item ' + { active: ratingFilterKey == 'below3' }">Below 3</a>
             </li>
           </ul>
         </div>
@@ -110,18 +110,6 @@ export default {
     below3(){
       return this.allreviews.filter((user) => user.rating <3)
     }
-
-    // filteredRatings: function () {
-    //   let filter = this.filterKey;
-
-    //   if (filter === "all") {
-    //     return this.allreviews;
-    //   } else if (filter === "4") {
-    //     return this.reviews.filter((review) => review.rating >= 4);
-    //   } else {
-    //     return this.reviews.filter((review) => review.rating <= 4);
-    //   }
-    // },
   },
   methods: {
     getReviews(hotelId) {

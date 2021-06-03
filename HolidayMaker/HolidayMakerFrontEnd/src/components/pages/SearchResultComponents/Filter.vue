@@ -161,43 +161,40 @@ export default {
         },
 
     filteredHotels() {
-      
       let result = this.searchResults.filter(
         (res) => res.hotel.beachDistance <= this.beachDistance.value
       );
-      console.log('hej', result);
+      
       result = result.filter(
         (res) => res.hotel.centrumDistance <= this.centrumDistance.value
       );
-      console.log('hej', result);
+      
       if(this.pool){
 
         result = result.filter(
           (res) => res.hotel.pool == this.pool
         );
       }
-      console.log('hej', result);
 
        if(this.nightEntertainment){
         result = result.filter(
           (res) => res.hotel.nightEntertainment == this.nightEntertainment
         );
       }
-      console.log('hej', result);
+      
       if(this.childClub){
         result = result.filter(
           (res) => res.hotel.childClub == this.childClub
         );
       }
-      console.log('hej', result);
+      
       if(this.restaurant){
         result = result.filter(
           (res) => res.hotel.restaurant == this.restaurant
         );
       }
-      console.log('hej', result);
-      return result
       
+      return result
     },
   }
  

@@ -165,35 +165,38 @@ export default {
       return this.filteredHotels.length;
     },
     filteredHotels() {
-      let result = this.searchResults.filter(
-        (res) => res.hotel.beachDistance <= this.beachDistance.value
-      );
-
-      result = result.filter(
-        (res) => res.hotel.centrumDistance <= this.centrumDistance.value
-      );
-
-      if (this.pool) {
-        result = result.filter((res) => res.hotel.pool == this.pool);
-      }
-
-      if (this.nightEntertainment) {
-        result = result.filter(
-          (res) => res.hotel.nightEntertainment == this.nightEntertainment
+      if(this.searchResults.length){
+        let result = this.searchResults.filter(
+          (res) => res.hotel.beachDistance <= this.beachDistance.value
         );
-      }
 
-      if (this.childClub) {
-        result = result.filter((res) => res.hotel.childClub == this.childClub);
-      }
-
-      if (this.restaurant) {
         result = result.filter(
-          (res) => res.hotel.restaurant == this.restaurant
+          (res) => res.hotel.centrumDistance <= this.centrumDistance.value
         );
+
+        if (this.pool) {
+          result = result.filter((res) => res.hotel.pool == this.pool);
+        }
+
+        if (this.nightEntertainment) {
+          result = result.filter(
+            (res) => res.hotel.nightEntertainment == this.nightEntertainment
+          );
+        }
+
+        if (this.childClub) {
+          result = result.filter((res) => res.hotel.childClub == this.childClub);
+        }
+
+        if (this.restaurant) {
+          result = result.filter(
+            (res) => res.hotel.restaurant == this.restaurant
+          );
+        }
+        this.$emit("updateNrOfHotels", result.length);
+        return result;
       }
-      this.$emit("updateNrOfHotels", result.length);
-      return result;
+      return 0;
     },
   },
 };

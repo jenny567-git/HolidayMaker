@@ -12,9 +12,9 @@
         </div>
         <div class="float-child2">
           <Skeleton width="100px" height="30px"/>
-          <Skeleton :width="randomEntertainmentLength + 'px'" height="10px" style="margin-top: 30px;"/>
-          <Skeleton :width="randomEntertainmentLength + 'px'" height="10px" style="margin-top: 30px;"/>
-          <Skeleton :width="randomEntertainmentLength + 'px'" height="10px" style="margin-top: 30px; margin-bottom: 10px;"/>
+          <Skeleton :width="randomEntertainmentLength1 + 'px'" height="10px" style="margin-top: 30px;"/>
+          <Skeleton :width="randomEntertainmentLength2 + 'px'" height="10px" style="margin-top: 30px;"/>
+          <Skeleton :width="randomEntertainmentLength3 + 'px'" height="10px" style="margin-top: 30px; margin-bottom: 10px;"/>
         </div>
         <hr>
     </div>
@@ -29,10 +29,16 @@ export default {
         randomNameLength(){
             return (Math.random() * (180 - 130) + 130).toString();
         },
-        randomEntertainmentLength(){
+        randomEntertainmentLength1(){ // Workaround to get 3 random values from computed
+            return (Math.random() * (70 - 30) + 30).toString();
+        },
+        randomEntertainmentLength2(){
+            return (Math.random() * (70 - 30) + 30).toString();
+        },
+        randomEntertainmentLength3(){
             return (Math.random() * (70 - 30) + 30).toString();
         }
-    }
+    },
 }
 </script>
 <style>

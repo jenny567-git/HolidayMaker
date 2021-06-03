@@ -1,9 +1,10 @@
 <template>
 <div class="row">
   <!--<div class="myFilter">-->
-  <div id="sliders">
+   
     <h1>Search results: {{hotelsCount}} found</h1>
     <div class="col-md-4">
+    <div id="sliders">
     <div>
       <p>Price range (SEK)</p>
       <Slider
@@ -18,7 +19,7 @@
       <Slider
         v-model="beachDistance.value"
         v-bind="beachDistance"
-        :max="5000"
+        :max="8000"
       ></Slider>
     </div>
     <hr />
@@ -52,9 +53,11 @@
               <div class="form-check">
                 <input
                   class="form-check-input"
+                  v-model="pool"
                   type="checkbox"
                   value=""
                   id="flexCheckDefault"
+                  @click="pool = !pool"
                 />
                 <label class="form-check-label" for="flexCheckDefault">
                   Pool
@@ -63,9 +66,11 @@
               <div class="form-check">
                 <input
                   class="form-check-input"
+                  v-model="nightEntertainment"
                   type="checkbox"
                   value=""
                   id="flexCheckDefault"
+                  @click="nightEntertainment = !nightEntertainment"
                 />
                 <label class="form-check-label" for="flexCheckDefault">
                   Night Entertainment
@@ -74,9 +79,11 @@
               <div class="form-check">
                 <input
                   class="form-check-input"
+                  v-model="childClub"
                   type="checkbox"
                   value=""
                   id="flexCheckDefault"
+                  @click="childClub = !childClub"
                 />
                 <label class="form-check-label" for="flexCheckDefault">
                   Child club
@@ -85,9 +92,11 @@
               <div class="form-check">
                 <input
                   class="form-check-input"
+                  v-model="restaurant"
                   type="checkbox"
                   value=""
                   id="flexCheckDefault"
+                  @click="restaurant = !restaurant"
                 />
                 <label class="form-check-label" for="flexCheckDefault">
                   Restaurant
@@ -99,11 +108,9 @@
       </div>
     </div>
         </div>
-    <div class="col-md-8">
-        <div class="hotelResults">
-            <Result v-for="result in filteredHotels" :hotel="result.hotel" :key="result.hotel.id" />
-        </div>
     </div>
+    <div class="col-md-8">
+        <Result v-for="result in filteredHotels" :hotel="result.hotel" :key="result.hotel.id" /> 
     </div>
   </div>
   
@@ -130,14 +137,14 @@ export default {
         value: [0, 40000],
       },
       beachDistance: {
-        value: [5000],
+        value: [8000],
       },
       centrumDistance: {
         value: [800],
       },
-      pool: true,
-      nightEntertainment: true,
-      childClub: true,
+      pool: false,
+      nightEntertainment: false,
+      childClub: false,
       restaurant: false,
            
     };
@@ -154,37 +161,43 @@ export default {
         },
 
     filteredHotels() {
-      let result = this.searchResults.filter(
-        (hotel) => hotel.beachDistance <= this.beachDistance.value
-      );
-      result = result.filter(
-        (hotel) => hotel.centrumDistance <= this.centrumDistance.value
-      );
       
+      let result = this.searchResults.filter(
+        (res) => res.hotel.beachDistance <= this.beachDistance.value
+      );
+      console.log('hej', result);
+      result = result.filter(
+        (res) => res.hotel.centrumDistance <= this.centrumDistance.value
+      );
+      console.log('hej', result);
       if(this.pool){
 
         result = result.filter(
-          (hotel) => hotel.pool == this.pool
+          (res) => res.hotel.pool == this.pool
         );
       }
+      console.log('hej', result);
 
        if(this.nightEntertainment){
         result = result.filter(
-          (hotel) => hotel.nightEntertainment == this.nightEntertainment
+          (res) => res.hotel.nightEntertainment == this.nightEntertainment
         );
       }
+      console.log('hej', result);
       if(this.childClub){
         result = result.filter(
-          (hotel) => hotel.childClub == this.childClub
+          (res) => res.hotel.childClub == this.childClub
         );
       }
+      console.log('hej', result);
       if(this.restaurant){
         result = result.filter(
-          (hotel) => hotel.restaurant == this.restaurant
+          (res) => res.hotel.restaurant == this.restaurant
         );
       }
+      console.log('hej', result);
       return result
-      console.log('hshsjjds');
+      
     },
   }
  

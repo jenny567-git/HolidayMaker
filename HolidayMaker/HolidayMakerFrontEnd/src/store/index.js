@@ -176,13 +176,13 @@ const store = createStore({
     },
     setCustomerDetailsCheckout(state, data) {
       state.customerDetailsCheckout = data;
-     },
+    },
     setUser(state, data) {
       state.user = data;
       state.user.loggedIn = true;
       console.log(data);
     },
-    
+
     logOutUser(state) {
       state.user.loggedIn = false;
     },
@@ -312,37 +312,37 @@ const store = createStore({
       var result = await response.json();
       commit("setAutoComplete", result);
     },
-    async login({ dispatch }, credentials) {
-        let response = await fetch("https://localhost:44356/api/Guest/login", {
-            method: "post",
-            headers: { "Content-type": "application/json" },
-            body: JSON.stringify(credentials),
-        });
-        let result = await response.json();
+    async login({ commit }, credentials) {
+      let response = await fetch("https://localhost:44356/api/Guest/login", {
+        method: "post",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(credentials),
+      });
+      let result = await response.json();
 
-        commit("setUser", result);
-        Cookies.set("login", "true");
-        Cookies.set("userId", result.id);
+      commit("setUser", result);
+      Cookies.set("login", "true");
+      Cookies.set("userId", result.id);
 
-        router.push("/");
+      router.push("/");
     },
-      checkLoggedInUser({ commit }) {
-          console.log("dkjgb");
-          var myCookie = Cookies.get("login");
-          if (myCookie) {
-              this.dispatch("login", {
-                  Email: "",
-                  Password: "",
-                  UserID: Cookies.get("userId"),
-              });
-          }
-      },
-      async logout({ commit }) {
-          Cookies.remove("userId");
-          Cookies.remove("login");
-          commit("logOutUser");
-          router.push("/");
-      },
+    checkLoggedInUser({ commit }) {
+      console.log("dkjgb");
+      var myCookie = Cookies.get("login");
+      if (myCookie) {
+        this.dispatch("login", {
+          Email: "",
+          Password: "",
+          UserID: Cookies.get("userId"),
+        });
+      }
+    },
+    async logout({ commit }) {
+      Cookies.remove("userId");
+      Cookies.remove("login");
+      commit("logOutUser");
+      router.push("/");
+    },
     async getSavedHotelsInfo({ commit }) {
       console.log("Getting saved hotels for guest id ", this.state.guestId);
       var response = await fetch(

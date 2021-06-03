@@ -195,6 +195,7 @@ const store = createStore({
       commit("setCustomerDetailsCheckout", data);
     },
     async searchHotels({ commit }, searchString) {
+      router.push({ name: "result" });
       let startDate;
       let endDate;
       if (this.state.searchString.dates.length) {

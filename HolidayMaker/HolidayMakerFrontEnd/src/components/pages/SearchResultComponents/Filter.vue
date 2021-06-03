@@ -110,12 +110,15 @@
         </div>
       </div>
     </div>
-    <div class="col-md-8">
+    <div v-if="filteredHotels.length" class="col-md-8">
       <Result
         v-for="result in filteredHotels"
         :hotel="result.hotel"
         :key="result.hotel.id"
       />
+    </div>
+    <div v-else class="col-md-8 float-container">
+      <Skel v-for="n in nrOfSkeletons" :key="n"></Skel>
     </div>
   </div>
 </template>
@@ -125,15 +128,15 @@ import Slider from "/node_modules/@vueform/slider";
 import Images from "../HotelViewComponents/RoomPhotoSlider.vue";
 import Info from "../HotelViewComponents/Info.vue";
 import Result from "./Result.vue";
-
+import Skel from "./Skel.vue";
 export default {
   components: {
     Slider,
     Images,
     Info,
     Result,
+    Skel,
   },
-
   data() {
     return {
       pricerange: {
@@ -152,13 +155,15 @@ export default {
     };
   },
   computed: {
+    nrOfSkeletons(){
+      return 3
+    },
     searchResults() {
       return this.$store.state.seachResults;
     },
     hotelsCount() {
       return this.filteredHotels.length;
     },
-
     filteredHotels() {
       let result = this.searchResults.filter(
         (res) => res.hotel.beachDistance <= this.beachDistance.value
@@ -198,6 +203,7 @@ export default {
 </style>
 
 <style scoped>
+
 .myContainer {
   width: 300%;
   height: auto;

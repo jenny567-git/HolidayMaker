@@ -1,12 +1,13 @@
 <template >
     <div>
         
-        <Card style="margin-top: 30px;">
+        <Card class="cardStyle">
             <template #title>
-            Order successful!
+                Order successful!
             </template>
             <template #content>
-                <img alt="Bootstrap Image Preview" src="https://raw.githubusercontent.com/PKief/vscode-markdown-checkbox/master/logo.png" class="rounded-circle" id="orderPic"/>
+                <img alt="Confirmed" src="https://raw.githubusercontent.com/PKief/vscode-markdown-checkbox/master/logo.png" class="rounded-circle" id="orderPic"/>
+                
             </template>
         </Card>
     </div>
@@ -23,5 +24,8 @@ export default {
     #orderPic {
         width: 100px;
         height: 100px;
+    }
+    .cardStyle{
+        margin-top: 30px;
     }
 </style>

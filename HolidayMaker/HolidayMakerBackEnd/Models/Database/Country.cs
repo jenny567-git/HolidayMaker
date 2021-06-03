@@ -16,10 +16,8 @@ namespace HolidayMakerBackEnd.Models.Database
 
         public int Id { get; set; }
         public string CountryName { get; set; }
-
         [JsonIgnore]
         public virtual ICollection<City> Cities { get; set; }
-        
         [JsonIgnore]
         public virtual ICollection<Hotel> Hotels { get; set; }
     }

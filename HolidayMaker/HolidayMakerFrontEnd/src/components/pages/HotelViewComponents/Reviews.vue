@@ -13,12 +13,6 @@
     <hr />
     <div class="row pb-3">
       <div class="col-md-4">
-        <!-- <div class="filter">
-          <label><input type="radio" value="All" /> All</label>
-          <label><input type="radio" value="4" /> 4</label>
-          <label><input type="radio" value="3" /> 3</label>
-          <label><input type="radio" value="2" /> 2</label>
-        </div> -->
         <div class="dropdown">
           <button
             class="btn btn-secondary dropdown-toggle"

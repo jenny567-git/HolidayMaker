@@ -137,10 +137,10 @@ export default {
         value: [0, 40000],
       },
       beachDistance: {
-        value: [8000],
+        value: 8000,
       },
       centrumDistance: {
-        value: [800],
+        value: 800,
       },
       pool: false,
       nightEntertainment: false,

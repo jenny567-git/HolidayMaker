@@ -22,7 +22,7 @@
         that our customers will concider visiting these fantastic places soon! 
       </p>
       <br>
-      <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.africansafarisnetwork.com%2Fwp-content%2Fuploads%2F2017%2F05%2Ftable-bay-hotel-1.png&f=1&nofb=1" height="210px" width="350" alt="">
+      <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.africansafarisnetwork.com%2Fwp-content%2Fuploads%2F2017%2F05%2Ftable-bay-hotel-1.png&f=1&nofb=1" height="210px" width="370" alt="">
       <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.hotelsrepublic.com%2Fwp-content%2Fuploads%2F2016%2F02%2FFairmont-Nile-City-Cairo-Egypt.jpg&f=1&nofb=1" height="210px" alt="">
       <ul class="list-inline small text-muted mt-3 mb-0">
         <li class="list-inline-item">

@@ -8,14 +8,6 @@
           <Rating v-model="rating" :cancel="false" />
         </div>
       </div>
-      <!-- <div class="form-group">
-        <label for="exampleFormControlInput1">Your name</label>
-        <input v-model="name" type="text" name="name" class="form-control" />
-      </div>
-      <div class="form-group">
-        <label for="exampleFormControlInput1">Your email</label>
-        <input v-model="email" type="email" name="email" class="form-control" />
-      </div> -->
       <div class="form-group">
         <label for="exampleFormControlTextarea1">Your message</label>
         <textarea
@@ -40,8 +32,6 @@ export default {
   data() {
     return {
       //bind to model
-      name: "",
-      email: "",
       message: "",
       rating: null,
     };
@@ -69,19 +59,14 @@ export default {
         hotelID: this.$route.params.id,
         //connected to guest in state
         guestID: this.$store.state.guestId,
-        // name: this.name,
-        // email: this.email,
       };
 
       console.log(newReview);
 
       this.addReview(newReview);
 
-      //this.$store.dispatch("addReview", newReview);
 
       this.message = "";
-      this.name = "";
-      this.email = "";
       this.rating = null;
 
       document.querySelector(".text").innerHTML =

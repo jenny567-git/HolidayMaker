@@ -13,15 +13,46 @@ import Body from "../components/pages/MainPage/Body.vue";
 import { registerRuntimeCompiler } from "@vue/runtime-core";
 import Home from "/src/components/pages/Home.vue";
 import ReservationDetails from "/src/components/pages/ReservationDetails.vue";
+import ProfileMain from "../components/pages/CustomerProfile/ProfileMain.vue";
 import Login from "../components/pages/Login/Login.vue"
 import Registration from "../components/pages/Login/Registration.vue";
+import Profile from '../components/pages/CustomerProfile/ProfilePage.vue'
+import Booking from '../components/pages/CustomerProfile/BookedHotel.vue'
+import SavedHotels from '/src/components/pages/CustomerProfile/SavedHotels.vue';
+import ProfileSetting from '../components/pages/CustomerProfile/ProfileSetting.vue'
 
-import SavedHotels from '/src/components/pages/UserPages/SavedHotels.vue';
+
 const routes = [
   {
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/Profile",
+    name: "Profile",
+    component: ProfileMain,
+    children: [
+      {
+        path: "",
+        component: Profile,
+      },
+      {
+        path: "booking",
+        name: "booking",
+        component: Booking,
+      },
+      {
+        path: "favorite",
+        name: "favorite",
+        component: SavedHotels,
+      },
+      {
+        path: "profileSetting",
+        name: "profileSetting",
+        component: ProfileSetting,
+      },
+    ],
   },
   {
     path: "/result",
@@ -38,11 +69,11 @@ const routes = [
     name: "registration",
     component: Registration,
   },
-  {
-    path: "/addReview",
-    name: "addReview",
-    component: AddReview,
-  },
+  // {
+  //   path: "/addReview",
+  //   name: "addReview",
+  //   component: AddReview,
+  // },
   {
     path: "/hotels/:id",
     name: "hotels",
@@ -66,6 +97,11 @@ const routes = [
         path: "Reviews",
         name: "reviews",
         component: Reviews,
+      },
+      {
+        path: "AddReview",
+        name: "addReview",
+        component: AddReview,
       },
     ],
   },

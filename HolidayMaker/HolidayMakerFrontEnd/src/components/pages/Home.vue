@@ -1,9 +1,9 @@
 <template>
     <div>
-        <h1 id="welcome"><a href="https://www.youtube.com/watch?v=FTQbiNvZqaY">Welcome to Africa Motherfucker!</a></h1>
+        <h1 id="welcome">Welcome to Africa Motherfucker!</h1>
         <div id="homeDiv">
 
-            
+
         </div>
     </div>
 </template>
@@ -15,15 +15,27 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
     #homeDiv{
         margin-top: 500px;
     }
+    figure {
+    margin: 0;
+}
+
 
     #welcome{
-        font-size: 3em !important;
-        color: rgb(96, 143, 106) !important;
+        font-size: 3em;
+        color: rgb(189 158 101) !important;
         padding-top: 20px;
         text-shadow: 2px 2px black;
+    }
+
+    a{
+        color: rgb(189 158 101);
+    }
+
+    a :hover{
+        list-style: none;
     }
 </style>

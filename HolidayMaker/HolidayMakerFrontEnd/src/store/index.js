@@ -6,36 +6,8 @@ const store = createStore({
         searchButtonLoading: false,
         guestId: 33, // hard coded
         home: {title: "store name"},
-        name: "Vue",
-        addReview: {
-            name: '',
-            email: '',
-            message: ''
-        },
-        hotels:
-            [
-                {
-                    id: 1,
-                    name: 'Hotel ajgipjdfjsjdfisdjfopia',
-                    beachDistance: 270,
-                    centrumDistance: 770,
-                    pool: true,
-                    nightEntertainment: false,
-                    childClub: true,
-                    restaurant: true,
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dapibus lacus a diam rhoncus suscipit. Nulla facilisi. Maecenas non metus faucibus, feugiat lectus non, elementum urna. Morbi viverra gravida diam, et tincidunt felis laoreet vitae. Suspendisse vel metus non ex tempus tincidunt. Proin egestas sapien nisi, eu elementum est aliquet.'
-                },
-                {
-                    id: 2,
-                    name: 'Hotel ijaefioeijfaiheouyfaehcaj',
-                    beachDistance: 370,
-                    centrumDistance: 970,
-                    pool: false,
-                    nightEntertainment: true,
-                    childClub: true,
-                    restaurant: false,
-                    description: 'In varius, nisi quis blandit porta, dolor tortor aliquam odio, eget consectetur lectus leo a massa. Proin dignissim dignissim porttitor. Praesent sed risus id diam dapibus consectetur. Vivamus sollicitudin urna ut tincidunt varius. Morbi congue malesuada erat id luctus. Nunc.'
-                }],
+        name: "Vue",        
+        hotels: [],
         searchString: {
             string: '',
             inputAdult: 0,
@@ -85,12 +57,12 @@ const store = createStore({
         },
         setHotelSeachResultsList(store, value) {
             store.seachResults = value;
-            console.log('set search result');
-            console.log(store.seachResults);
+            // console.log('set search result');
+            // console.log(store.seachResults);
             store.searchButtonLoading = false;
         },
         setHotel(store, value) {
-            console.log(value);
+            // console.log(value);
             store.hotel = value;
         },
         updateAdults(state, value) {
@@ -113,9 +85,6 @@ const store = createStore({
         },
         setReservationDetails(state, data) {
             state.reservation = data;
-        },
-        getReviews(state, data) {
-            state.getReviews = data;
         },
         setSingleRooms(state, { noOfUnit, unitPrice }) {
             state.bookingDetails.noOfSingleRooms = noOfUnit
@@ -317,11 +286,6 @@ const store = createStore({
         setDates({ commit }, date) {
             commit('setDates', date)
         },
-        async getReviews({ commit }, hotelId) {
-            var response = await fetch('https://localhost:44356/api/Hotel/GetReviews/' + hotelId);
-            var result = await response.json();
-            commit('getReviews', result);
-        },
         setSingleRooms({ commit }, { noOfUnit, unitPrice }) {
             commit('setSingleRooms', { noOfUnit, unitPrice })
         },
@@ -344,7 +308,7 @@ const store = createStore({
             commit('setServiceType', value)
         },
         async setServiceFee({ commit }, payload) {
-            console.log('in action set service');
+            // console.log('in action set service');
             var response = await fetch('https://localhost:44356/api/Hotel/GetAccomodationFee?id=' + payload.id + '&type=' + payload.type);
             var result = await response.json();
             commit('setServiceFee', result)

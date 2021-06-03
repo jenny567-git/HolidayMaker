@@ -370,6 +370,7 @@ const store = createStore({
         },
         setSingleRooms({ commit }, { noOfUnit, unitPrice }) {
             commit('setSingleRooms', { noOfUnit, unitPrice })
+        },
         async getReviews({ commit }, hotelId) {
             var response = await fetch('https://localhost:44356/api/Hotel/GetReviews/' + hotelId);
             var result = await response.json();

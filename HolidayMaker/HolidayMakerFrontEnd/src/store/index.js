@@ -133,6 +133,18 @@ const store = createStore({
         setSavedHotels(state, data){
             state.savedHotels = data;
         },
+        setUser(state, data){
+            state.user = data
+            state.user.loggedIn = true;
+            console.log(data)
+            
+        },
+                
+        logOutUser(state){
+            
+            state.user.loggedIn=false;
+            
+        }
    },
    actions:{
         async searchHotels({commit}, searchString){
@@ -273,7 +285,46 @@ const store = createStore({
             .catch((error) => {
                 console.error('Error:', error);
             }); 
+            
         },
+        async login({ commit }, credentials) {
+           
+            let response = await fetch("https://localhost:44356/api/Guest/login", {
+              method: "post",
+              headers: { "Content-type": "application/json" },
+              body: JSON.stringify(credentials),
+            });
+            let result = await response.json();
+            
+            commit("setUser",  result );
+            Cookies.set("login", "true" )
+            Cookies.set("userId", result.id)
+            
+            router.push('/')
+           
+          },
+          checkLoggedInUser({commit}){
+            console.log("dkjgb")
+            var myCookie = Cookies.get('login')
+            if(this.state.user.loggedIn){
+                this.dispatch('login',{Email: "", Password:"", UserID:Cookies.get('userId')})
+            }
+            
+        },
+
+          async logout({ commit }) {
+            // let response = await fetch("https://localhost:44356/api/Guest/login", {
+            //   method: "post",
+            //   headers: { "Content-type": "application/json" },
+            //   body: JSON.stringify(credentials),
+            // });
+            // let result = await response.json();
+            Cookies.remove('userId')
+            Cookies.remove('login')
+            commit("logOutUser");
+            router.push("/")
+          
+          },
         updateAdults({ commit }, value) {
             commit('updateAdults', value)
         },

@@ -75,16 +75,16 @@ namespace HolidayMakerBackEnd.Controllers
             int result = _guestService.SaveHotel(model);
             return Ok(result);
         }
-        
-       
-        [HttpPost("login")]
-        public Guest Login(LoginRequestViewModel model)
-        {
 
+        [HttpPost("login")]
+        public LoginResponseViewModel Login(LoginRequestViewModel model)
+        {
             return _guestService.Login(model);
+
+
         }
 
-        
+
 
         [HttpDelete("removeFavoriteHotel")]
         public ActionResult RemoveHotelFromFavorites(SaveModel model)

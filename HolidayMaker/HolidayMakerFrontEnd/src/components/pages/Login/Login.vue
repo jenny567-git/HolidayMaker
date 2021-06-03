@@ -15,12 +15,12 @@
                     <input class="pass" type="password" align="center" placeholder="Password" required v-model="Password">
                     <button class="submit" >Sign in</button>
 
+                
                     <p class="forgot" align="center"><a href="#">Sign up?</a></p>
                     <p class="forgot" align="center"><a href="#">Forgot password</a></p>
-                   
+                    
                 </form>
-
-                 
+                
             </div>
         
     </html>
@@ -33,28 +33,36 @@
 export default {
   data(){
     return{
-    //    login:{
-    //     Email: "",
-    //     Password:""
-    //  }
+        Email: "",
+        Password:""
+    
     }
   },
-  async mounted(){
-
+  computed:{
+    loggedIn(){
+            return this.$store.state.user.loggedIn
+    },
+    user(){
+      return this.$store.state.user;
+    },
+      
+    
   },
+  
   methods:{
     async guestLogin(){
             
-            let credentials = {Email: this.Email, Password:this.Password}
-             this.$store.dispatch('login', credentials);
+       let credentials = {Email: this.Email, Password:this.Password, UserID:0}
+       
+        this.$store.dispatch('login', credentials);
             
+   },
+   logout(){
+       
+            this.$store.dispatch('logout')
         }
   },
-    
-    logout(){
-            this.$store.dispatch('logout')
-    },
-    
+      
 }
 </script>
 

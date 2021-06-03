@@ -118,7 +118,12 @@ export default {
       },
       showBody(){
         return this.$route.path == '/' ? true : false;
-      }
+      },
+      created(){
+        if(Cookies.get('login')){
+          this.$store.dispatch('checkLoggedInUser')
+        }
+      },
     }
 }
 

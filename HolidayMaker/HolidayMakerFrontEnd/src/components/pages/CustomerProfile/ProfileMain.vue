@@ -36,9 +36,9 @@
                     <div class="profile-usermenu">
                         <ul class="nav"> 
                             <li > <!-- class="active" -->
-                                <a href="#">
+                                <router-link :to="'/profile/'">Profile </router-link>
                                 <i class="fas fa-user"></i>
-                                Profile </a>
+                                
                             </li>
                             <li>
                                 <router-link :to="'/profile/booking'">Bookings </router-link>

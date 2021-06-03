@@ -64,7 +64,7 @@ export default {
         },
         checkoutDate(){
            if(this.$store.state.searchString.dates[1]  !== undefined){
-                return this.$store.state.searchString.dates[0].toISOString().split('T')[0];
+                return this.$store.state.searchString.dates[1].toISOString().split('T')[0];
             }else{
                 return "not specified"
             }

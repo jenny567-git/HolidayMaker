@@ -13,13 +13,13 @@
     <hr />
     <div class="row pb-3">
       <div class="col-md-4">
-        <div class="filter">
+        <!-- <div class="filter">
           <label><input type="radio" value="All" /> All</label>
           <label><input type="radio" value="4" /> 4</label>
           <label><input type="radio" value="3" /> 3</label>
           <label><input type="radio" value="2" /> 2</label>
-        </div>
-        <!-- <div class="dropdown">
+        </div> -->
+        <div class="dropdown">
           <button
             class="btn btn-secondary dropdown-toggle"
             @click="filter({filterKey})"
@@ -32,18 +32,13 @@
           </button>
           <ul class="dropdown-menu" aria-labelledby="reviewRatingDropdownMenu">
             <li>
-              <a
-                href="#"
-                v-on:click="filterKey = 'all'"
-                :class="'dropdown-item ' + { active: userFilterKey == 'all' }"
-                >4+</a
-              >
+              <a href="#" v-on:click="filterKey = 'all'" :class="'dropdown-item ' + { active: userFilterKey == 'all' }">4+</a>
             </li>
             <li><a class="dropdown-item" href="#">3+</a></li>
             <li><a class="dropdown-item" href="#">2+</a></li>
             <li><a class="dropdown-item" href="#">All</a></li>
           </ul>
-        </div> -->
+        </div>
       </div>
       <div class="col-md-8">
         <!-- <div class="dropdown text-end">
@@ -91,7 +86,7 @@ export default {
     Review,
   },
   mounted() {
-    console.log(this.$route.params.id);
+    // console.log(this.$route.params.id);
     this.getReviews(this.$route.params.id);
   },
   data() {
@@ -123,8 +118,14 @@ export default {
             fetch('https://localhost:44356/api/Hotel/GetReviews/' + hotelId)
                 .then(response => response.json())
                 .then(result => {
-                    this.allreviews = result;
-                    console.log('all reviews ')
+                    //sort by latest date first
+                    this.allreviews = result.sort((x, y) =>
+                    {
+                      let a = new Date(x.creationDate),
+                          b = new Date(y.creationDate);
+                      return b - a;
+                    })
+                    // console.log('all reviews ')
                     console.log(this.allreviews)
                     } )
           }

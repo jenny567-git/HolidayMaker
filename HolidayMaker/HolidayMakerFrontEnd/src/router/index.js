@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HelloWorld from "/src/components/HelloWorld.vue";
 import Info from "../components/pages/HotelViewComponents/Info.vue";
 import HotelView from "/src/components/pages/HotelView.vue";
-import RoomInfo from "../components/pages/HotelViewComponents/RoomInfo.vue";
+import Rooms from "../components/pages/HotelViewComponents/Rooms.vue";
 import Photos from "../components/pages/HotelViewComponents/Photos.vue";
 import Reviews from "../components/pages/HotelViewComponents/Reviews.vue";
 import SearchResult from "../components/pages/SearchResult.vue";
@@ -13,13 +13,46 @@ import Body from "../components/pages/MainPage/Body.vue";
 import { registerRuntimeCompiler } from "@vue/runtime-core";
 import Home from "/src/components/pages/Home.vue";
 import ReservationDetails from "/src/components/pages/ReservationDetails.vue";
+import ProfileMain from "../components/pages/CustomerProfile/ProfileMain.vue";
 import Login from "../components/pages/Login/Login.vue"
 import Registration from "../components/pages/Login/Registration.vue";
+import Profile from '../components/pages/CustomerProfile/ProfilePage.vue'
+import Booking from '../components/pages/CustomerProfile/BookedHotel.vue'
+import SavedHotels from '/src/components/pages/CustomerProfile/SavedHotels.vue';
+import ProfileSetting from '../components/pages/CustomerProfile/ProfileSetting.vue'
+
+
 const routes = [
   {
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/Profile",
+    name: "Profile",
+    component: ProfileMain,
+    children: [
+      {
+        path: "",
+        component: Profile,
+      },
+      {
+        path: "booking",
+        name: "booking",
+        component: Booking,
+      },
+      {
+        path: "favorite",
+        name: "favorite",
+        component: SavedHotels,
+      },
+      {
+        path: "profileSetting",
+        name: "profileSetting",
+        component: ProfileSetting,
+      },
+    ],
   },
   {
     path: "/result",
@@ -36,11 +69,11 @@ const routes = [
     name: "registration",
     component: Registration,
   },
-  {
-    path: "/addReview",
-    name: "addReview",
-    component: AddReview,
-  },
+  // {
+  //   path: "/addReview",
+  //   name: "addReview",
+  //   component: AddReview,
+  // },
   {
     path: "/hotels/:id",
     name: "hotels",
@@ -53,7 +86,7 @@ const routes = [
       {
         path: "rooms",
         name: "hotels",
-        component: RoomInfo,
+        component: Rooms,
       },
       {
         path: "Photos",
@@ -64,6 +97,11 @@ const routes = [
         path: "Reviews",
         name: "reviews",
         component: Reviews,
+      },
+      {
+        path: "AddReview",
+        name: "addReview",
+        component: AddReview,
       },
     ],
   },
@@ -82,7 +120,11 @@ const routes = [
     name: "reservationdetails",
     component: ReservationDetails,
   },
-  
+  {
+    path: "/savedHotels",
+    name: "SavedHotels",
+    component: SavedHotels,
+  },
   
 ];
 const router = createRouter({

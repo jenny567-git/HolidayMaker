@@ -3,8 +3,8 @@ import router from "../router/index";
 
 const store = createStore({
   state: {
-        searchButtonLoading: false,
-        guestId: 33, // hard coded
+    searchButtonLoading: false,
+    guestId: 33, // hard coded
     home: { title: "store name" },
     name: "Vue",
     addReview: {
@@ -33,6 +33,9 @@ const store = createStore({
       noOfSingleRooms: 0,
       noOfDoubleRooms: 0,
       noOfFamilyRooms: 0,
+      singleRoomId: 0,
+      doubleRoomId: 0,
+      familyRoomId: 0,
       unitPriceSingleRoom: 0,
       unitPriceDoubleRoom: 0,
       unitPriceFamilyRoom: 0,
@@ -111,28 +114,36 @@ const store = createStore({
     getReviews(state, data) {
       state.getReviews = data;
     },
-    setSingleRooms(state, { noOfUnit, unitPrice }) {
+    setSingleRooms(state, { noOfUnit, unitPrice, roomId }) {
       state.bookingDetails.noOfSingleRooms = noOfUnit;
       state.bookingDetails.unitPriceSingleRoom = unitPrice;
+      state.bookingDetails.singleRoomId = roomId;
     },
-    setDoubleRooms(state, { noOfUnit, unitPrice }) {
+    setDoubleRooms(state, { noOfUnit, unitPrice, roomId }) {
       state.bookingDetails.noOfDoubleRooms = noOfUnit;
       state.bookingDetails.unitPriceDoubleRoom = unitPrice;
+      state.bookingDetails.doubleRoomId = roomId;
     },
-    setFamilyRooms(state, { noOfUnit, unitPrice }) {
+    setFamilyRooms(state, { noOfUnit, unitPrice, roomId }) {
       state.bookingDetails.noOfFamilyRooms = noOfUnit;
       state.bookingDetails.unitPriceFamilyRoom = unitPrice;
+      state.bookingDetails.familyRoomId = roomId;
     },
     getTotalPrice(state) {
+      
+      var days =  Math.floor(( Date.parse(state.searchString.dates[1].toISOString().split('T')[0]) - Date.parse(state.searchString.dates[0].toISOString().split('T')[0]) ) / 86400000); 
+      console.log(days);
+
+
       let singleRoomsTotalPrice =
         state.bookingDetails.noOfSingleRooms *
-        state.bookingDetails.unitPriceSingleRoom;
+        state.bookingDetails.unitPriceSingleRoom * days;
       let doubleRoomsTotalPrice =
         state.bookingDetails.noOfDoubleRooms *
-        state.bookingDetails.unitPriceDoubleRoom;
+        state.bookingDetails.unitPriceDoubleRoom * days;
       let familyRoomsTotalPrice =
         state.bookingDetails.noOfFamilyRooms *
-        state.bookingDetails.unitPriceFamilyRoom;
+        state.bookingDetails.unitPriceFamilyRoom * days;
 
       let servicePrice = state.bookingDetails.serviceFee;
 
@@ -359,14 +370,14 @@ const store = createStore({
             var result = await response.json();
             commit('getReviews', result);
         },
-        setSingleRooms({ commit }, { noOfUnit, unitPrice }) {
-            commit('setSingleRooms', { noOfUnit, unitPrice })
+        setSingleRooms({ commit }, { noOfUnit, unitPrice, roomId }) {
+            commit('setSingleRooms', { noOfUnit, unitPrice, roomId })
         },
-        setDoubleRooms({ commit }, { noOfUnit, unitPrice }) {
-            commit('setDoubleRooms', { noOfUnit, unitPrice })
+        setDoubleRooms({ commit }, { noOfUnit, unitPrice, roomId }) {
+            commit('setDoubleRooms', { noOfUnit, unitPrice, roomId })
         },
-        setFamilyRooms({ commit }, { noOfUnit, unitPrice }) {
-            commit('setFamilyRooms', { noOfUnit, unitPrice })
+        setFamilyRooms({ commit }, { noOfUnit, unitPrice, roomId }) {
+            commit('setFamilyRooms', { noOfUnit, unitPrice, roomId })
         },
         getTotalPrice({ commit }) {
             commit('getTotalPrice')
@@ -376,6 +387,9 @@ const store = createStore({
         },
         setExtraBedFee({ commit }, value) {
             commit('setExtraBedFee', value)
+        },
+        setHotelName({ commit }, value){
+          commit('setHotelName', value);
         },
         setServiceType({ commit }, value) {
             commit('setServiceType', value)

@@ -107,11 +107,6 @@ export default {
         return this.reviews.filter((review) => review.rating <= 4);
       }
     },
-    // reviews: {
-    //   get() {
-    //     return this.$store.state.getReviews;
-    //   },
-    // },
   },
   methods: {
     getReviews(hotelId) {
@@ -129,10 +124,6 @@ export default {
                     console.log(this.allreviews)
                     } )
           }
-  
-      // this.$store.dispatch("getReviews", this.$route.params.id);
-      // this.allreviews = this.$store.state.getReviews;
-      
     },
     // reviews() {
     //   console.log("inside review method");

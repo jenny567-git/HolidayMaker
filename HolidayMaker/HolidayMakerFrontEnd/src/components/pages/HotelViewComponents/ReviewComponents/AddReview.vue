@@ -8,14 +8,14 @@
           <Rating v-model="rating" :cancel="false" />
         </div>
       </div>
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="exampleFormControlInput1">Your name</label>
         <input v-model="name" type="text" name="name" class="form-control" />
       </div>
       <div class="form-group">
         <label for="exampleFormControlInput1">Your email</label>
         <input v-model="email" type="email" name="email" class="form-control" />
-      </div>
+      </div> -->
       <div class="form-group">
         <label for="exampleFormControlTextarea1">Your message</label>
         <textarea
@@ -25,7 +25,7 @@
           rows="3"
         ></textarea>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" id="btnSubmit" class="btn btn-primary">Submit</button>
     </form>
   </div>
 </template>
@@ -46,11 +46,19 @@ export default {
       rating: null,
     };
   },
+  mounted(){
+    if(this.$store.state.guestId == null || this.$store.state.guestId == undefined){
+      document.querySelector(".text").innerHTML = "Log in to submit a review";
+      document.querySelector("#btnSubmit").disabled = true;
+    }else{
+      document.querySelector("#btnSubmit").disabled = false;
+    }
+  },
   methods: {
     onSubmit(e) {
       e.preventDefault();
 
-      if (!this.message || !this.name || !this.email || !this.rating) {
+      if (!this.message || !this.rating) {
         alert("Please fill in all fields");
         return;
       }
@@ -59,8 +67,8 @@ export default {
         rating: this.rating,
         message: this.message,
         hotelID: this.$route.params.id,
-        //connect to real guest
-        guestID: 1,
+        //connected to guest in state
+        guestID: this.$store.state.guestId,
         // name: this.name,
         // email: this.email,
       };

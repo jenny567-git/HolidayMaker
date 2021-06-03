@@ -130,20 +130,25 @@ const store = createStore({
       state.bookingDetails.familyRoomId = roomId;
     },
     getTotalPrice(state) {
-      
-      var days =  Math.floor(( Date.parse(state.searchString.dates[1].toISOString().split('T')[0]) - Date.parse(state.searchString.dates[0].toISOString().split('T')[0]) ) / 86400000); 
+      var days = Math.floor(
+        (Date.parse(state.searchString.dates[1].toISOString().split("T")[0]) -
+          Date.parse(state.searchString.dates[0].toISOString().split("T")[0])) /
+          86400000
+      );
       console.log(days);
-
 
       let singleRoomsTotalPrice =
         state.bookingDetails.noOfSingleRooms *
-        state.bookingDetails.unitPriceSingleRoom * days;
+        state.bookingDetails.unitPriceSingleRoom *
+        days;
       let doubleRoomsTotalPrice =
         state.bookingDetails.noOfDoubleRooms *
-        state.bookingDetails.unitPriceDoubleRoom * days;
+        state.bookingDetails.unitPriceDoubleRoom *
+        days;
       let familyRoomsTotalPrice =
         state.bookingDetails.noOfFamilyRooms *
-        state.bookingDetails.unitPriceFamilyRoom * days;
+        state.bookingDetails.unitPriceFamilyRoom *
+        days;
 
       let servicePrice = state.bookingDetails.serviceFee;
 
@@ -186,8 +191,8 @@ const store = createStore({
     },
   },
   actions: {
-    saveCustomerDetailsCheckout({ commit }, data){
-      commit('setCustomerDetailsCheckout', data)
+    saveCustomerDetailsCheckout({ commit }, data) {
+      commit("setCustomerDetailsCheckout", data);
     },
     async searchHotels({ commit }, searchString) {
       let startDate;
@@ -267,146 +272,167 @@ const store = createStore({
       var result = await response.json();
 
       commit("setReservationDetails", result);
+    },
+    async searchHotelByCity({ commit }, searchString) {
+      var response = await fetch(
+        "https://localhost:44356/api/Search/GetHotelByCity?input=" +
+          searchString
+      ); // Default is GET
+      var result = await response.json();
+      console.log(searchString, result);
+      if (result) {
+        commit("setHotelSeachResultsList", result);
+        router.push({ name: "result" });
+      }
+    },
+    async searchSpecific({ commit }, payload) {
+      window.scrollTo(0, 0);
+      commit("setSearchString", payload.searchString);
+      commit("setSearchButtonLoadingTrue", null);
+      setTimeout(
+        function (that) {
+          // Timeout resolves inconsistent scroll behaviour between scrollTo and router.push
+          if (payload.type === "city") {
+            that.dispatch("searchHotelByCity", payload.searchString);
+          } else {
+            that.dispatch("searchHotelByName", payload.searchString);
+          }
         },
-        async searchHotelByCity({ commit }, searchString) {
-            var response = await fetch('https://localhost:44356/api/Search/GetHotelByCity?input=' + searchString); // Default is GET
-            var result = await response.json();
-            console.log(searchString, result)
-            if (result) {
-                commit('setHotelSeachResultsList', result);
-                router.push({ name: 'result' })
-            }
-        },
-        async searchSpecific({ commit }, payload) {
-            window.scrollTo(0, 0)
-            commit('setSearchString', payload.searchString);
-            commit('setSearchButtonLoadingTrue', null);
-            setTimeout(function (that) { // Timeout resolves inconsistent scroll behaviour between scrollTo and router.push
-                if (payload.type === 'city') {
-                    that.dispatch('searchHotelByCity', payload.searchString);
-                }
-                else {
-                    that.dispatch('searchHotelByName', payload.searchString);
-                }
-            }, 500, this);
-        },
-        async getAutoComplete({ commit }) {
-            var response = await fetch('https://localhost:44356/api/Search/GetSearchAutoComplete');
-            var result = await response.json();
-            commit('setAutoComplete', result);
-        },
-        async login({ dispatch }, credentials) {
-            let response = await fetch("https://localhost:44356/api/Guest/login", {
-              method: "post",
-              headers: { "Content-type": "application/json" },
-              body: JSON.stringify(credentials),
-            });
-            let result = await response.json();
-            await dispatch("getLoggedInUser", result);
-        },
-        async getLoggedInUser({ commit }) {
-            let response = await fetch("https://localhost:44356/api/Guest/GetGuestById/");
-            let result = await response.json();
-            if (response.status == 401) {
-                result.loggedIn = false;
-            }
-            commit("setLoggedInUser", result);
-        },
-        async logout({ dispatch }) {
-            let response = await fetch("https://localhost:44356/api/Guest/login", { method: "delete" });
-            //kolla response status etc
-            await dispatch("getLoggedInUser");
-        },
-        async getSavedHotelsInfo({commit}){
-            console.log('Getting saved hotels for guest id ', this.state.guestId)
-            var response = await fetch('https://localhost:44356/api/Hotel/SavedHotelsInfo?id=' + this.state.guestId);
-            var result = await response.json();
-            if(result){
-                console.log(result);
-                commit('setSavedHotels', result);
-            }
-        },
-        async addFavouriteHotel({commit}, hotelId){
-            fetch('https://localhost:44356/api/Guest/saveFavoriteHotel',
-            {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json'},
-                body: JSON.stringify({hotelID: hotelId, guestID: this.state.guestId})
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-        },
-        async removeFavouriteHotel({commit}, hotelId){
-            fetch('https://localhost:44356/api/Guest/removeFavoriteHotel',
-            {
-                method: 'DELETE',
-                headers: { 'Content-Type': 'application/json'},
-                body: JSON.stringify({hotelID: hotelId, guestID: this.state.guestId})
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            }); 
-        },
-        updateAdults({ commit }, value) {
-            commit('updateAdults', value)
-        },
-        updateChild({ commit }, value) {
-            commit('updateChild', value)
-        },
-        updateRoom({ commit }, value) {
-            commit('updateRoom', value)
-        },
-        setDates({ commit }, date) {
-            commit('setDates', date)
-        },
-        setSingleRooms({ commit }, { noOfUnit, unitPrice }) {
-            commit('setSingleRooms', { noOfUnit, unitPrice })
-        },
-        async getReviews({ commit }, hotelId) {
-            var response = await fetch('https://localhost:44356/api/Hotel/GetReviews/' + hotelId);
-            var result = await response.json();
-            commit('getReviews', result);
-        },
-        setSingleRooms({ commit }, { noOfUnit, unitPrice, roomId }) {
-            commit('setSingleRooms', { noOfUnit, unitPrice, roomId })
-        },
-        setDoubleRooms({ commit }, { noOfUnit, unitPrice, roomId }) {
-            commit('setDoubleRooms', { noOfUnit, unitPrice, roomId })
-        },
-        setFamilyRooms({ commit }, { noOfUnit, unitPrice, roomId }) {
-            commit('setFamilyRooms', { noOfUnit, unitPrice, roomId })
-        },
-        getTotalPrice({ commit }) {
-            commit('getTotalPrice')
-        },
-        updateExtraBed({ commit }) {
-            commit('updateExtraBed')
-        },
-        setExtraBedFee({ commit }, value) {
-            commit('setExtraBedFee', value)
-        },
-        setHotelName({ commit }, value){
-          commit('setHotelName', value);
-        },
-        setServiceType({ commit }, value) {
-            commit('setServiceType', value)
-        },
-        async setServiceFee({ commit }, payload) {
-            // console.log('in action set service');
-            var response = await fetch('https://localhost:44356/api/Hotel/GetAccomodationFee?id=' + payload.id + '&type=' + payload.type);
-            var result = await response.json();
-            commit('setServiceFee', result)
-        },
-    }
-})
+        500,
+        this
+      );
+    },
+    async getAutoComplete({ commit }) {
+      var response = await fetch(
+        "https://localhost:44356/api/Search/GetSearchAutoComplete"
+      );
+      var result = await response.json();
+      commit("setAutoComplete", result);
+    },
+    async login({ dispatch }, credentials) {
+      let response = await fetch("https://localhost:44356/api/Guest/login", {
+        method: "post",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify(credentials),
+      });
+      let result = await response.json();
+      await dispatch("getLoggedInUser", result);
+    },
+    async getLoggedInUser({ commit }) {
+      let response = await fetch(
+        "https://localhost:44356/api/Guest/GetGuestById/"
+      );
+      let result = await response.json();
+      if (response.status == 401) {
+        result.loggedIn = false;
+      }
+      commit("setLoggedInUser", result);
+    },
+    async logout({ dispatch }) {
+      let response = await fetch("https://localhost:44356/api/Guest/login", {
+        method: "delete",
+      });
+      //kolla response status etc
+      await dispatch("getLoggedInUser");
+    },
+    async getSavedHotelsInfo({ commit }) {
+      console.log("Getting saved hotels for guest id ", this.state.guestId);
+      var response = await fetch(
+        "https://localhost:44356/api/Hotel/SavedHotelsInfo?id=" +
+          this.state.guestId
+      );
+      var result = await response.json();
+      if (result) {
+        console.log(result);
+        commit("setSavedHotels", result);
+      }
+    },
+    async addFavouriteHotel({ commit }, hotelId) {
+      fetch("https://localhost:44356/api/Guest/saveFavoriteHotel", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ hotelID: hotelId, guestID: this.state.guestId }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Success:", data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    },
+    async removeFavouriteHotel({ commit }, hotelId) {
+      fetch("https://localhost:44356/api/Guest/removeFavoriteHotel", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ hotelID: hotelId, guestID: this.state.guestId }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Success:", data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    },
+    updateAdults({ commit }, value) {
+      commit("updateAdults", value);
+    },
+    updateChild({ commit }, value) {
+      commit("updateChild", value);
+    },
+    updateRoom({ commit }, value) {
+      commit("updateRoom", value);
+    },
+    setDates({ commit }, date) {
+      commit("setDates", date);
+    },
+    setSingleRooms({ commit }, { noOfUnit, unitPrice }) {
+      commit("setSingleRooms", { noOfUnit, unitPrice });
+    },
+    async getReviews({ commit }, hotelId) {
+      var response = await fetch(
+        "https://localhost:44356/api/Hotel/GetReviews/" + hotelId
+      );
+      var result = await response.json();
+      commit("getReviews", result);
+    },
+    setSingleRooms({ commit }, { noOfUnit, unitPrice, roomId }) {
+      commit("setSingleRooms", { noOfUnit, unitPrice, roomId });
+    },
+    setDoubleRooms({ commit }, { noOfUnit, unitPrice, roomId }) {
+      commit("setDoubleRooms", { noOfUnit, unitPrice, roomId });
+    },
+    setFamilyRooms({ commit }, { noOfUnit, unitPrice, roomId }) {
+      commit("setFamilyRooms", { noOfUnit, unitPrice, roomId });
+    },
+    getTotalPrice({ commit }) {
+      commit("getTotalPrice");
+    },
+    updateExtraBed({ commit }) {
+      commit("updateExtraBed");
+    },
+    setExtraBedFee({ commit }, value) {
+      commit("setExtraBedFee", value);
+    },
+    setHotelName({ commit }, value) {
+      commit("setHotelName", value);
+    },
+    setServiceType({ commit }, value) {
+      commit("setServiceType", value);
+    },
+    async setServiceFee({ commit }, payload) {
+      // console.log('in action set service');
+      var response = await fetch(
+        "https://localhost:44356/api/Hotel/GetAccomodationFee?id=" +
+          payload.id +
+          "&type=" +
+          payload.type
+      );
+      var result = await response.json();
+      commit("setServiceFee", result);
+    },
+  },
+});
 
 export default store;

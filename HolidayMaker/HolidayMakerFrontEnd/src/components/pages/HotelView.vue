@@ -17,9 +17,8 @@
                     </div>
                 </div>
             </div>
-            <hr>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 buttons">
                     <ul class="nav nav-pills">
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <button type="button" class="btn btn-primary"><router-link :to="'/hotels/' + this.$route.params.id + '/'" class="nav-link" > Info </router-link></button>
@@ -47,7 +46,6 @@
                     </ul>
                 </div>
             </div>
-            <hr>
             <div> <!-- tab view -->
                 <router-view></router-view>
             </div>
@@ -66,10 +64,34 @@
             color:rgb(0, 0, 0);
         }
 
+        .col-md-4{
+            padding-bottom: 10px;
+        }
+
+        .col-md-12.buttons{
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+            padding-top:15px;
+            padding-bottom:15px;
+        }
+
         button.btn.btn-primary{
             background: #43744f;
             border-color:rgb(0, 0, 0);
         }
+
+        .nav-link:focus, .nav-link:hover {
+             color: #4d915e;
+        }
+
+        .nav.nav-pills a:hover{
+            color:rgb(51, 161, 78);
+        }
+
+        .nav.nav-pills a:hover ::before{
+            color:rgb(51, 161, 78);
+        }
+
 
         .nav.nav-pills{
             margin-left: 8cm;

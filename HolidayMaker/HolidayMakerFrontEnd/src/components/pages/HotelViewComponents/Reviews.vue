@@ -72,6 +72,11 @@
   </div>
 </template>
 
+<style scoped>
+
+</style>
+
+
 <script>
 import ReviewSubComp from "./ReviewComponents/Review.vue";
 export default {
@@ -96,7 +101,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-
-</style>

@@ -7,7 +7,7 @@
           <Slider
             v-model="pricerange.value"
             v-bind="pricerange"
-            :max="50000"
+            :max="2000"
           ></Slider>
         </div>
         <hr />
@@ -25,7 +25,7 @@
           <Slider
             v-model="centrumDistance.value"
             v-bind="centrumDistance"
-            :max="5000"
+            :max="10"
           ></Slider>
         </div>
         <hr />

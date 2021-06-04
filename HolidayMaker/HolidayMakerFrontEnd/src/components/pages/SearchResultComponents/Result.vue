@@ -14,7 +14,7 @@
                         <p>Centrum distance: <span class="badge rounded-pill bg-secondary">{{hotel.centrumDistance}} km </span></p>
                     </div>
                     <div class="col-md-6 text-start">
-                        <h3>{{lowestPrice}} SEK</h3>
+                        <h4>from {{lowestPrice}} SEK/unit</h4>
                         <br/>
                         <p v-if="hotel.pool"> <i class="fas fa-check"></i> Pool</p>
                         <p v-if="hotel.nightEntertainment"> <i class="fas fa-check"></i> Night Entertainment</p>

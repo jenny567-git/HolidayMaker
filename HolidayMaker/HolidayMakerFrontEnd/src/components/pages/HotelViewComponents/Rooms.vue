@@ -7,7 +7,7 @@
       </div>
 
       <!-- right column -->
-      <div class="col-md-6">
+      <div class="col-md-6" id="test">
         <Options @checked="setExtraBedFee" />
 
         <!-- Pension type -->
@@ -76,3 +76,13 @@ export default {
   },
 };
 </script>
+
+
+<style scoped>
+  #test{
+  }
+
+  .row{
+    border: solid;
+  }
+</style>

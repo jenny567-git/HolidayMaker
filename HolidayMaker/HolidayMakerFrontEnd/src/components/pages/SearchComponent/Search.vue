@@ -64,9 +64,10 @@ export default {
 
 #test2{
         border-radius: 30px;
-        background-color: rgba(107, 146, 83, 0.5);
+        background-color: white;
         padding-left: 25px;
         padding-right: 25px;
+        color:black;
     }
     
 #searchBtn{

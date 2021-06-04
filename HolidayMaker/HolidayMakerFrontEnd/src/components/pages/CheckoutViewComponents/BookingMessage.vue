@@ -16,4 +16,8 @@ export default {
         width: 75%;
         margin: 0 auto;
     }
+
+    .row{
+        color:black;
+    }
 </style>

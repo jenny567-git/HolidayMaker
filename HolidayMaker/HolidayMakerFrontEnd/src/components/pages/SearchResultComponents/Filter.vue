@@ -125,7 +125,7 @@ export default {
 
 <style scoped>
   #sliders{
-    color:rgb(255, 255, 255);
+    color:black;
     
   }
 

@@ -1,5 +1,5 @@
 <template >
-    <div>
+    <div class="herp">
         <h4 class="mb-3">Billing address</h4>
         <form asp-action="AddOrder" class="form-horizontal" id="CheckoutForm">
                     <div class="row g-3">
@@ -126,6 +126,10 @@ export default {
     
 }
 </script>
-<style >
+<style scoped>
     
+    .herp{
+        color:black;
+    }
+
 </style>

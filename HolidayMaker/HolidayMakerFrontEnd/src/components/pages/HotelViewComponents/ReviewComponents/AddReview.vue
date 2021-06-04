@@ -76,12 +76,12 @@ export default {
 <style scoped>
 #test2 {
   border-radius: 30px;
-  background-color: rgba(107, 146, 83, 0.5);
+  background-color: white;
   padding-left: 25px;
   padding-right: 25px;
   padding-bottom: 40px;
   margin-top: 20px;
-  color: white;
+  color: black;
   /* text-shadow: 2px 2px black; */
 }
 </style>

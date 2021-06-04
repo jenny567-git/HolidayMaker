@@ -17,11 +17,18 @@
                     </div>
                 </div>
             </div>
+            <hr>
             <div class="row">
                 <div class="col-md-12">
                     <ul class="nav nav-pills">
-                        <li class="nav-item">
-                            <router-link :to="'/hotels/' + this.$route.params.id + '/'" class="nav-link"> Info </router-link>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-primary"><router-link :to="'/hotels/' + this.$route.params.id + '/'" class="nav-link" > Info </router-link></button>
+                            <button type="button" class="btn btn-primary"><router-link :to="'/hotels/' + this.$route.params.id + '/photos'" class="nav-link"> Photos </router-link></button>
+                            <button type="button" class="btn btn-primary"><router-link :to="'/hotels/' + this.$route.params.id + '/reviews'" class="nav-link"> Reviews </router-link></button>
+                            <button type="button" class="btn btn-primary"><router-link :to="'/hotels/' + this.$route.params.id + '/rooms'" class="nav-link"> Rooms </router-link></button>
+                        </div>
+                        <!-- <li class="nav-item">
+                            <router-link :to="'/hotels/' + this.$route.params.id + '/'" class="nav-link" > Info </router-link>
                         </li>
                         <li class="nav-item">
                             <router-link :to="'/hotels/' + this.$route.params.id + '/photos'" class="nav-link"> Photos </router-link>
@@ -31,16 +38,16 @@
                         </li>
                         <li class="nav-item">
                             <router-link :to="'/hotels/' + this.$route.params.id + '/rooms'" class="nav-link"> Rooms </router-link>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <button class="btn" @click="ToggleStar" id="starBtn">
-                                <i :class="star ? 'fas fa-heart' : 'far fa-heart'" style="color: red;"></i>
+                                <i :class="star ? 'fas fa-heart fa-2x' : 'far fa-heart fa-2x'" style="color: red;"></i>
                             </button>
                         </li>
-                        
                     </ul>
                 </div>
             </div>
+            <hr>
             <div> <!-- tab view -->
                 <router-view></router-view>
             </div>
@@ -51,22 +58,34 @@
 <style>
     #test2{
             border-radius: 30px;
-            background-color: rgba(107, 146, 83, 0.5);
+            background-color: white;
             padding-left: 25px;
             padding-right: 25px;
             padding-bottom: 40px;
             margin-top: 20px;
-            color:white;
+            color:rgb(0, 0, 0);
+        }
+
+        button.btn.btn-primary{
+            background: #43744f;
+            border-color:rgb(0, 0, 0);
+        }
+
+        .nav.nav-pills{
+            margin-left: 8cm;
         }
 
         .nav-link{
-            color:white;
+            color:rgb(255, 255, 255);
         }
+
         #starBtn{
             outline: none;
             box-shadow: none;
         }
+
 </style>
+
 
 <script>
 import Info from './HotelViewComponents/Info.vue'

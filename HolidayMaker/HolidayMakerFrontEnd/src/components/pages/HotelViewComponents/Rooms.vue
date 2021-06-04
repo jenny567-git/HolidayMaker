@@ -80,9 +80,17 @@ export default {
 
 <style scoped>
   #test{
+    border: solid;
+  }
+
+  .btn.btn-primary{
+    background-color:#43744f;
+    border-color:black;
+  }
+
+  .col-md-6 {
   }
 
   .row{
-    border: solid;
   }
 </style>

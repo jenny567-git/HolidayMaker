@@ -67,12 +67,17 @@
         .hotelview h1{
         }
 
-
         .col-md-4.twopic{
             padding-bottom: 10px;
         }
 
-        .col-md-8.onepic{
+        .col-md-4.twopic img{
+            padding-bottom: 8px;
+            border-radius: 20px;
+        }
+
+        .col-md-8.onepic img{
+            border-radius: 20px;
         }
 
         .col-md-12.buttons{

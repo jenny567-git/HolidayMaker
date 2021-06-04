@@ -5,9 +5,9 @@
         <h2>Guest reviews</h2>
       </div>
       <div class="col-md-2 text-end">
-        <router-link :to="'/hotels/' + this.$route.params.id + '/addReview'">
+        <!-- <router-link :to="'/hotels/' + this.$route.params.id + '/AddReview'"> -->
           <button type="button" class="btn btn-primary">Add review</button>
-        </router-link>
+        <!-- </router-link> -->
       </div>
     </div>
     <hr />

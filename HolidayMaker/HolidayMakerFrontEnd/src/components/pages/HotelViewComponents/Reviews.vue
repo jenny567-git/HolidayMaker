@@ -74,6 +74,15 @@
 
 <style scoped>
 
+
+  h2 {
+    margin-left: 6cm;
+  }
+
+  /* .dropdown{
+    margin-left: 25cm;
+  } */
+
 </style>
 
 

@@ -1,9 +1,9 @@
 <template>
-    <div id="test2">
+    <div id="test2" class="hotelview">
         <h1>{{hotel.name}}</h1>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4"> <!-- Stacked images -->
+                <div class="col-md-4 twopic"> <!-- Stacked images -->
                     <div>
                         <img class="img-fluid" src="https://storage.googleapis.com/static-content-hc/sites/default/files/cataloina_porto_doble_balcon2_2.jpg" alt="">
                     </div>
@@ -11,7 +11,7 @@
                         <img class="img-fluid" src="https://storage.googleapis.com/static-content-hc/sites/default/files/cataloina_porto_doble_balcon2_2.jpg" alt="">
                     </div>
                 </div>
-                <div class="col-md-8 "> <!-- Main image -->
+                <div class="col-md-8 onepic"> <!-- Main image -->
                     <div>
                         <img class="img-fluid" src="https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg" alt="">
                     </div>
@@ -64,8 +64,15 @@
             color:rgb(0, 0, 0);
         }
 
-        .col-md-4{
+        .hotelview h1{
+        }
+
+
+        .col-md-4.twopic{
             padding-bottom: 10px;
+        }
+
+        .col-md-8.onepic{
         }
 
         .col-md-12.buttons{

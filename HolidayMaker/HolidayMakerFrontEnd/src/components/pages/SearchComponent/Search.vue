@@ -1,5 +1,7 @@
 <template>
-  <div id="test2">
+  <Card id="test11">
+    
+      <template #content>
     <div class="p-grid">
       <div class="p-col-12 p-md-6 p-lg-4">
         <label for="searchInput" id="searchField">Location/Hotel name </label>
@@ -20,7 +22,9 @@
           <Button  class="p-mx-auto" label="Search" @click="Search" :loading="isLoading"/>
       </div>
     </div>
-  </div>
+   </template>     
+        </Card>
+    
 </template>
 
 <script>
@@ -28,7 +32,7 @@ import Button from "primevue/button";
 import Calendar from "./Datepicker.vue";
 import SearchDropdown from "./SearchDropdown.vue";
 import Searchfield from "./Searchfield.vue";
-
+import Card from 'primevue/card';
 export default {
   data(){
     return{
@@ -40,6 +44,7 @@ export default {
     Button,
     Calendar,
     SearchDropdown,
+    Card
   },
   methods: {
     onSubmit() {},
@@ -61,8 +66,10 @@ export default {
 </script>
 
 <style scoped>
-
-#test2{
+#test11{
+  border-radius: 20px;
+}
+#test3{
         border-radius: 30px;
         background-color: rgba(107, 146, 83, 0.5);
         padding-left: 25px;

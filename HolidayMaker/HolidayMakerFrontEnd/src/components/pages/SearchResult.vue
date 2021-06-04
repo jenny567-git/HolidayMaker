@@ -1,5 +1,7 @@
 <template>
-    <div id="test2">
+   
+        <Card id="test3">
+      <template #content>
         <div class="row">
             <div class="col-md-6">
                 <h1>Search results: {{nrOfSearchResults}} found</h1>
@@ -18,16 +20,20 @@
         </div>
         <hr>
         <Filter @updateNrOfHotels="updateHotelsCount" /> 
-    </div>
+            </template>     
+        </Card>
+    
 </template>
 
 <script>
 import Filter from './SearchResultComponents/Filter.vue'
 import Result from './SearchResultComponents/Result.vue'
+import Card from 'primevue/card';
 export default ({
     components:{
         Filter,
-        Result
+        Result,
+        Card
     },
     data(){
         return{
@@ -43,12 +49,8 @@ export default ({
 </script>
 
 <style scoped>
-    #test2{
-        border-radius: 30px;
-        background-color: rgba(107, 146, 83, 0.5);
-        padding-left: 25px;
-        padding-right: 25px;
-        padding-bottom: 40px;
+    #test3{
+        border-radius: 20px;
         margin-top: 20px;
     }
     .dropdown{

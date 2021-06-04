@@ -1,8 +1,10 @@
 <template>
+    
   <div class="row">
+
+     
     <div class="col-md-4">
-      <Card>
-        <template #content>
+      
       <div id="sliders">
         <div>
           <p>Price range (SEK)</p>
@@ -111,31 +113,27 @@
           </div>
         </div>
       </div>
-      </template>
-     </Card>
+      
     </div>
 
     <div v-if="filteredHotels.length" class="col-md-8">
 
-      <Card>
-        <template #content>
+      
           <Result
             v-for="result in filteredHotels"
             :hotel="result.hotel"
             :key="result.hotel.id"
           />
-        </template>
-      </Card>
+       
       
     </div>
     <div v-else class="col-md-8 float-container">
-      <Card>
-        <template #content>
+      
           <Skel v-for="n in nrOfSkeletons" :key="n"></Skel>
-        </template>
-      </Card>
+        
     </div>
   </div>
+   
 </template>
 <script>
 // code: https://www.vuescript.com/custom-range-slider/

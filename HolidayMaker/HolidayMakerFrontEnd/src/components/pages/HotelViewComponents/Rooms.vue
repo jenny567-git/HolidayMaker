@@ -43,22 +43,18 @@ export default {
     ServiceType,
     Options,
   },
-  mounted() {
-    this.getTotalPrice();
-  },
   computed: {
     hotelInfo() {
       return this.$store.state.hotel;
     },
     totalprice() {
-      this.$store.dispatch('getTotalPrice');
-      return this.$store.state.bookingDetails.totalprice;
+      if(this.$store.state.searchString.dates[1] != null){
+        this.$store.dispatch('getTotalPrice');
+        return this.$store.state.bookingDetails.totalprice;
+      }
     },
   },
   methods: {
-    getTotalPrice() {
-      this.$store.dispatch('getTotalPrice');
-    },
     setExtraBedFee() {
       this.$store.dispatch('setExtraBedFee', this.hotelInfo.extraBedFee);
     },
@@ -70,9 +66,9 @@ export default {
       let id = this.$route.params.id;
       this.$store.dispatch('setServiceFee', { id: id, type: value });
     },
-    // Book() {
-    //   // this.$store.dispatch('book', this.);
-    // },
+    Book() {
+      this.$store.dispatch('setHotelName', this.hotelInfo.name)
+    },
   },
 };
 </script>

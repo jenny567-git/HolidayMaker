@@ -65,9 +65,10 @@ namespace HolidayMakerBackEnd.Controllers
         [HttpPost("AddReview")]
         public ActionResult AddReview([FromBody]ReviewModel model)
         {
-            _guestService.AddReview(model);
-                return Ok();
+            int result = _guestService.AddReview(model);
+                return Ok(result);
         }
+
         [HttpPost("saveFavoriteHotel")]
         public ActionResult SaveHotelToFavorites(SaveModel model)
         {

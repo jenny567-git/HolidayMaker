@@ -3,7 +3,7 @@
     <div class="row">
       <div class="row">
         <div class="col-md-4">
-          <p>Name: {{review.idNavigation.fullName}}</p>
+          <p>Name: {{review.guest.fullName}}</p>
           <p>Date created: {{ review.creationDate }}</p>
           <!-- <p>Language: (English)</p> -->
         </div>

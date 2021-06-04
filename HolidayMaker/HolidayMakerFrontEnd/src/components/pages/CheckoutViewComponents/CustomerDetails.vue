@@ -1,135 +1,109 @@
 <template >
     <div class="herp">
         <h4 class="mb-3">Billing address</h4>
-        <form asp-action="AddOrder" class="form-horizontal" id="CheckoutForm">
-                    <div class="row g-3">
-                        <div class="col-sm-6">
-                            <label class="control-label">First Name</label>
-                            <input type="text" class="form-control" />
-                            
-                        </div>
-
-                        <div class="col-sm-6">
-                            <label class="control-label">Last Name</label>
-                            <input type="text" class="form-control" />
-                            
-                        </div>
-
-                        <div class="col-12">
-                            <label class="control-label">Email</label>
-                            <input type="email" class="form-control" />
-                            
-                        </div>
-
-                        <div class="col-12">
-                            <label class="control-label">Street</label>
-                            <input type="text" class="form-control" />
-                            
-                        </div>
-
-                        <div class="col-md-5">
-                            <label class="control-label">Phone number</label>
-                            <input type="tel" class="form-control" />
-                            
-                        </div>
-
-                        <div class="col-md-4">
-                            <label class="control-label">City</label>
-                            <input type="text" class="form-control" />
-                            
-                        </div>
-
-                        <div class="col-md-3">
-                            <label class="control-label">Zip Code</label>
-                            <input type="number" class="form-control" />
-                            
+        <div class="card h-100">
+            <div class="card-body">
+                <div class="row gutters">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <h6 class="mb-2 text-primary">Personal Details</h6>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input v-model="Details.FirstName" type="text" class="form-control" id="firstName" placeholder="Enter first name" @input="save">
                         </div>
                     </div>
-
-                    <hr class="my-4">
-
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="same-address">
-                        <label class="form-check-label" for="same-address">Shipping address is the same as my billing address</label>
-                    </div>
-
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="save-info">
-                        <label class="form-check-label" for="save-info">Save this information for next time</label>
-                    </div>
-
-                    <hr class="my-4">
-
-                    <h4 class="mb-3">Payment</h4>
-
-                    <div class="my-3">
-                        <div class="form-check">
-                            <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
-                            <label class="form-check-label" for="credit">Credit card</label>
-                        </div>
-                        <div class="form-check">
-                            <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
-                            <label class="form-check-label" for="debit">Debit card</label>
-                        </div>
-                        <div class="form-check">
-                            <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
-                            <label class="form-check-label" for="paypal">PayPal</label>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input v-model="Details.LastName" type="text" class="form-control" id="lastName" placeholder="Enter last Name" @input="save">
                         </div>
                     </div>
-
-                    <div class="row gy-3">
-                        <div class="col-md-6">
-                            <label for="cc-name" class="form-label">Name on card</label>
-                            <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                            <small class="text-muted">Full name as displayed on card</small>
-                            <div class="invalid-feedback">
-                                Name on card is required
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="cc-number" class="form-label">Credit card number</label>
-                            <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                            <div class="invalid-feedback">
-                                Credit card number is required
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <label for="cc-expiration" class="form-label">Expiration</label>
-                            <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-                            <div class="invalid-feedback">
-                                Expiration date required
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <label for="cc-cvv" class="form-label">CVV</label>
-                            <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                            <div class="invalid-feedback">
-                                Security code required
-                            </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input v-model="Details.PhoneNumber" type="number" class="form-control" id="phone" placeholder="Enter phone number" @input="save">
                         </div>
                     </div>
-
-                    <hr class="my-4">
-                        <button id="CheckoutBtn" class="w-100 btn btn-primary btn-lg" type="submit" value="Submit">Checkout</button>
-                    <div class="form-group">
-
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input v-model="Details.Email" type="email" class="form-control" id="email" placeholder="Enter email" @input="save">
+                        </div>
                     </div>
-        </form>  
+                </div>
+                <div class="row gutters">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <h6 class="mt-3 mb-2 text-primary">Address</h6>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="Street">Street</label>
+                            <input v-model="Details.Street" type="name" class="form-control" id="Street" placeholder="Enter Street" @input="save">
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="ciTy">City</label>
+                            <input v-model="Details.City" type="name" class="form-control" id="ciTy" placeholder="Enter City" @input="save">
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label for="zIp">Zip Code</label>
+                            <input v-model="Details.ZipCode" type="text" class="form-control" id="zIp" placeholder="Zip Code" @input="save">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h6 class="mb-2 text-primary">Message to hotel</h6>
+                </div>
+                    <BookingMessage @message="updateMessage"></BookingMessage>
+            </div>
+        </div>
+        <hr/> 
     </div>
 </template>
 
 <script>
+import BookingMessage from './BookingMessage.vue'
 export default {
+    components:{
+        BookingMessage,
+    },
+    data(){
+        return{
+            Details:{
+                FirstName: '',
+                LastName: '',
+                Email: '',
+                Street: '',
+                PhoneNumber: '',
+                City: '',
+                State: '',
+                ZipCode: '',
+                Message: '',
+            }
+        }
+    },
+    methods:{
+        save(){
+            this.$store.dispatch('saveCustomerDetailsCheckout', this.Details);
+        },
+        updateMessage(msg){
+            this.Details.Message = msg;
+            this.save();
+        }
+    },
+    created(){
+        this.Details = this.$store.state.customerDetailsCheckout;
+        console.log(this.$store.state.customerDetailsCheckout);
+    }
     
 }
 </script>
 <style scoped>
-    
-    .herp{
+    label{
         color:black;
     }
-
 </style>

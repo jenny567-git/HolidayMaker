@@ -108,7 +108,8 @@ export default {
         console.log('single input: ' + noOfUnit);
         if(this.room.type == 'Single'){
           let unitPrice = this.room.price;
-          this.$store.dispatch("setSingleRooms", {noOfUnit, unitPrice});
+          let roomId = this.room.id;
+          this.$store.dispatch("setSingleRooms", {noOfUnit, unitPrice, roomId});
         }
       },
     },
@@ -120,7 +121,8 @@ export default {
         console.log('double input: ' + noOfUnit);
         if(this.room.type == 'Double'){
           let unitPrice = this.room.price
-          this.$store.dispatch("setDoubleRooms", {noOfUnit, unitPrice});
+          let roomId = this.room.id;
+          this.$store.dispatch("setDoubleRooms", {noOfUnit, unitPrice, roomId});
         }
         
       },
@@ -133,7 +135,8 @@ export default {
         console.log('family input: ' + noOfUnit);
         if(this.room.type == 'Family'){
           let unitPrice = this.room.price
-          this.$store.dispatch("setFamilyRooms", {noOfUnit, unitPrice});
+          let roomId = this.room.id;
+          this.$store.dispatch("setFamilyRooms", {noOfUnit, unitPrice, roomId});
         }
       },
     },

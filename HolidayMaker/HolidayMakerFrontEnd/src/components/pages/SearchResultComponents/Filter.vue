@@ -87,7 +87,7 @@
                       @click="childClub = !childClub"
                     />
                     <label class="form-check-label" for="flexCheckDefault">
-                      Child club
+                      Kids club
                     </label>
                   </div>
                   <div class="form-check">
@@ -137,13 +137,13 @@ export default {
   data() {
     return {
       pricerange: {
-        value: [0, 40000],
+        value: [0, 2000],
       },
       beachDistance: {
         value: 8000,
       },
       centrumDistance: {
-        value: 800,
+        value: 10,
       },
       pool: false,
       nightEntertainment: false,
@@ -160,9 +160,16 @@ export default {
     },
 
     filteredHotels() {
+      
+      //filter price
       let result = this.searchResults.filter(
-        (res) => res.hotel.beachDistance <= this.beachDistance.value
+        (res) => this.pricerange.value[0] <= res.hotel.rooms[0].price && res.hotel.rooms[0].price <= this.pricerange.value[1]
+        );
+        
+      result = result.filter(
+          (res) => res.hotel.beachDistance <= this.beachDistance.value
       );
+        
 
       result = result.filter(
         (res) => res.hotel.centrumDistance <= this.centrumDistance.value

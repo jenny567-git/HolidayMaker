@@ -12,20 +12,20 @@
         </div>
         <hr />
         <div>
-          <p>Distance to beach (m)</p>
+          <p>Distance to beach</p>
           <Slider
             v-model="beachDistance.value"
             v-bind="beachDistance"
-            :max="8000"
+            :max="7"
           ></Slider>
         </div>
         <hr />
         <div>
-          <p>Distance to city (km)</p>
+          <p>Distance to city</p>
           <Slider
             v-model="centrumDistance.value"
             v-bind="centrumDistance"
-            :max="10"
+            :max="5"
           ></Slider>
         </div>
         <hr />
@@ -140,10 +140,20 @@ export default {
         value: [0, 2000],
       },
       beachDistance: {
-        value: 8000,
+        value: 7,
+        step: -1,
+        format:{
+          decimals: 1,
+          suffix: ' km'
+        }
       },
       centrumDistance: {
         value: 10,
+        step:-1,
+        format:{
+          decimals:1,
+          suffix: ' km'
+        }
       },
       pool: false,
       nightEntertainment: false,

@@ -24,8 +24,8 @@ namespace HolidayMakerBackEnd.Models.Database
         public bool NightEntertainment { get; set; }
         public bool ChildClub { get; set; }
         public bool Restaurant { get; set; }
-        public string BeachDistance { get; set; }
-        public int CentrumDistance { get; set; }
+        public double BeachDistance { get; set; }
+        public double CentrumDistance { get; set; }
         public int CityId { get; set; }
         public int CountryId { get; set; }
         public int? ExtraBedFee { get; set; }

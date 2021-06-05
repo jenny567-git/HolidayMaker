@@ -96,8 +96,6 @@ export default {
     },
     created(){
         this.Details = this.$store.state.customerDetailsCheckout;
-        console.log(this.$store.state.customerDetailsCheckout);
-        console.log(this.Details)
     },
 }
 </script>

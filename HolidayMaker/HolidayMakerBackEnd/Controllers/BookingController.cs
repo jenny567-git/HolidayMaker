@@ -30,8 +30,21 @@ namespace HolidayMakerBackEnd.Controllers
             return Ok();
         }
 
-        [HttpGet("Booking/{id}")]
-        public ActionResult<ReservationViewModel> GetBookingById(int id)
+        [HttpGet("{id}")]
+        public ActionResult<ReservationViewModel> Get(int BookingId)
+        {
+            ReservationViewModel model = new();
+            int statusCode = this.GetBookingById(BookingId, ref model);
+
+            if (statusCode == 200)
+            {
+                return Ok(model);
+            }
+            return Ok();
+        }
+
+
+        private int GetBookingById(int id, ref ReservationViewModel reference)
         {
             var result = new Reservation();
             var reservationDetails = new ReservationsDetail();
@@ -42,13 +55,13 @@ namespace HolidayMakerBackEnd.Controllers
                 reservationDetails = _bookingService.GetReservationsDetail(result.Id);
                 reservedRooms = _bookingService.GetReservedRooms(result.Id);
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
-                return StatusCode(204);
+                return 204;
             }
-            
-            
+
+
             ReservationViewModel model = new ReservationViewModel();
             model.FullName = result.Guest.FullName;
             model.HotelName = result.Hotel.Name;
@@ -68,47 +81,47 @@ namespace HolidayMakerBackEnd.Controllers
             foreach (var item in reservedRooms)
             {
                 model.NumberOfRooms += item.BookedRooms;
-                if (item.Room.Type=="Single")
+                if (item.Room.Type == "Single")
                 {
                     model.hotelRoomsViewModel.SingleRooms = item.BookedRooms;
                 }
-                else if (item.Room.Type =="Double")
+                else if (item.Room.Type == "Double")
                 {
                     model.hotelRoomsViewModel.DoubleRooms = item.BookedRooms;
-                }else if (item.Room.Type == "Family")
-                {
-                    model.hotelRoomsViewModel.FamilyRooms =item.BookedRooms;
                 }
-                
+                else if (item.Room.Type == "Family")
+                {
+                    model.hotelRoomsViewModel.FamilyRooms = item.BookedRooms;
+                }
+
             }
-            
 
-            return model;
-           
-
+            reference = model;
+            return 200;
         }
 
-        //[HttpGet("Bookings/{id}")]
-        //public GuestAllBookingsViewModel GetAllBookingByGuestId(int id)
-        //{
-        //    GuestAllBookingsViewModel model = new GuestAllBookingsViewModel();
-        //    //hämta en gäst
-        //    //hämta ut gästens alla bokningar
-        //    //hämta ut tillhörande detaljer
-        //    //hämta ut tillhörande bokade rum
+        [HttpGet("guest/{id}")]
+        public List<ReservationViewModel> GetAllBookingByGuestId(int id)
+        {
+            GuestAllBookingsViewModel model = new GuestAllBookingsViewModel();
+            //hämta en gäst
+            //hämta ut gästens alla bokningar
+            //hämta ut tillhörande detaljer
+            //hämta ut tillhörande bokade rum
 
-        //    var guest = _guestService.FindGuestById(id);
-        //    var result = _bookingService.GetAllBookingByGuestId(guest.Id);
-        //    var nummer = new List<int>();
-        //    foreach (var item in result)
-        //    {
-        //        nummer.Add(item.Id);
-        //    }
-        //    var reservationsDetails = _bookingService.GetAllReservationsDetails(nummer);
-        //    return model;
+            var guest = _guestService.FindGuestById(id);
+            var bookingIds = _bookingService.GetAllBookingByGuestId(guest.Id);
 
+            List<ReservationViewModel> bookings = new();
 
+            foreach (var booking in bookingIds)
+            {
+                ReservationViewModel tmp = new();
+                GetBookingById(booking.Id, ref tmp);
+                bookings.Add(tmp);
+            }
 
-        //}
+            return bookings;
+        }
     }
 }

@@ -35,7 +35,7 @@ namespace HolidayMakerBackEnd.Models.Database
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Database=HolidayMaker;Server=tcp:holidaymaker.database.windows.net,1433;Initial Catalog=HolidayMaker;Persist Security Info=False;User ID=Grupp1;Password=Viärbäst!;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+                optionsBuilder.UseSqlServer("Database=HolidayMaker;Server=tcp:holidaymaker.database.windows.net,1433;Initial Catalog=HolidayMaker;Persist Security Info=False;User ID=Grupp1;Password=Viärbäst!;MultipleActiveResultSets=True;");
             }
         }
 
@@ -130,11 +130,6 @@ namespace HolidayMakerBackEnd.Models.Database
             modelBuilder.Entity<Hotel>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
-
-                entity.Property(e => e.BeachDistance)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
 
                 entity.Property(e => e.CityId).HasColumnName("CityID");
 
@@ -259,7 +254,7 @@ namespace HolidayMakerBackEnd.Models.Database
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.CreationDate).HasColumnType("datetime");
+                entity.Property(e => e.CreationDate).HasColumnType("date");
 
                 entity.Property(e => e.Description)
                     .IsRequired()

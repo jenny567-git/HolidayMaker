@@ -11,10 +11,10 @@
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title">Booking detail</h5>
+          <h5 class="card-title">{{hotel.hotelName}}</h5>
           <div class="textB">
-            <p>Hotel</p>
-            <p>Date</p>
+            <p>{{hotel.fullName}}</p>
+            <p>{{startDate}} - {{endDate}}</p>
             <p>More information about the booking</p>
           </div>
           <!-- Button trigger modal -->
@@ -64,3 +64,19 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+    props:{
+        hotel: {}
+    },
+    computed:{
+        startDate(){
+            return this.hotel.startDate.split('T')[0];
+        },
+        endDate(){
+            return this.hotel.endDate.split('T')[0];
+        }
+    }
+}
+</script>

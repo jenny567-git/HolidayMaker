@@ -21,6 +21,7 @@ const store = createStore({
       inputRooms: 0,
       dates: [],
     },
+    bookedHotels: [],
     searchAutoComplete: [],
     seachResults: [],
     hotel: [],
@@ -188,6 +189,9 @@ const store = createStore({
     },
     setPassword(state, value) {
       state.user.Password = value;
+    },
+    setBookedHotels(state, value) {
+      state.bookedHotels = value;
     },
   },
   actions: {
@@ -431,6 +435,14 @@ const store = createStore({
       );
       var result = await response.json();
       commit("setServiceFee", result);
+    },
+    async getBookings({ commit }) {
+      var response = await fetch(
+        "https://localhost:44356/api/Booking/guest/" + this.state.guestId
+      );
+      var result = await response.json();
+      console.log(result);
+      commit("setBookedHotels", result);
     },
   },
 });

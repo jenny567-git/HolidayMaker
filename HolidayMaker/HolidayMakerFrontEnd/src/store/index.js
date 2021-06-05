@@ -193,6 +193,9 @@ const store = createStore({
     setBookedHotels(state, value) {
       state.bookedHotels = value;
     },
+    setSavedHotels(state, data){
+      state.savedHotels = data;
+    },
   },
   actions: {
     saveCustomerDetailsCheckout({ commit }, data) {

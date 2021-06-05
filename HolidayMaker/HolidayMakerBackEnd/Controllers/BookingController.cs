@@ -64,6 +64,14 @@ namespace HolidayMakerBackEnd.Controllers
 
             ReservationViewModel model = new ReservationViewModel();
             model.FullName = result.Guest.FullName;
+            model.GuestDetails.FirstName = result.Guest.FullName.Split(' ')[0];
+            model.GuestDetails.LastName = result.Guest.FullName.Split(' ')[1];
+            model.GuestDetails.Email = result.Guest.Email;
+            model.GuestDetails.Street = result.Guest.Street;
+            model.GuestDetails.PhoneNumber = result.Guest.Phone;
+            model.GuestDetails.City = result.Guest.City;
+            model.GuestDetails.ZipCode = result.Guest.ZipCode;
+            model.GuestDetails.Message = reservationDetails.CustomerMessage;
             model.HotelName = result.Hotel.Name;
             model.HotelId = result.HotelId;
             model.StartDate = result.StartDate;

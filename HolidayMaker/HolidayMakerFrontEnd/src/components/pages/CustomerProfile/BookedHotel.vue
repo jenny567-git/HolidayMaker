@@ -24,6 +24,11 @@
             data-bs-toggle="modal"
             data-bs-target="#staticBackdrop"
           >Cancel Booking</button>
+           <button
+            type="button"
+            class="btn btn-info"
+            @click="toggleEdit"
+          >Edit Booking</button>
 
           <!-- Modal -->
           <div
@@ -62,13 +67,26 @@
         </div>
       </div>
     </div>
+    <div v-if="edit">
+        <CustomerDetails/>
+    </div>
   </div>
 </template>
 
 <script>
+import CustomerDetails from '/src/components/pages/CheckoutViewComponents/CustomerDetails.vue'
+
 export default {
+    components:{
+        CustomerDetails,
+    },
     props:{
         hotel: {}
+    },
+    data(){
+        return {
+            edit: false
+        }
     },
     computed:{
         startDate(){
@@ -77,6 +95,12 @@ export default {
         endDate(){
             return this.hotel.endDate.split('T')[0];
         }
-    }
+    },
+    methods: {
+        toggleEdit(){
+            this.edit = !this.edit;
+            this.$store.dispatch('saveCustomerDetailsCheckout', this.hotel.guestDetails);
+        }
+    },
 }
 </script>

@@ -20,7 +20,54 @@ export default {
       CarouselCard,
       CarouselCardItem,
   },
-    props:[]
-      
+    props:[
+       
+    // initialIndex: { 
+    // type: Number, 
+    // default: 0
+    // },
+
+    // height: { 
+    // type: String,
+    // default: '200', 
+    // },
+
+    // trigger: { 
+    // type: String, 
+    // default: 'hover' 
+    // },
+
+    // autoplay: { 
+    // type: Boolean, 
+    // default: true 
+    // },
+
+    // interval: { 
+    // type: Number, 
+    // default: 3000 
+    // },
+
+    // indicatorPosition: { 
+    // type: String, 
+    // default: 'outside' // outside/none
+    // },
+
+    // indicator: { 
+    // type: Boolean, 
+    // default: true 
+    // },
+
+    // arrow: { 
+    // type: String, 
+    // default: 'hover' // always/hover/never
+    // },
+
+    // type: String // card
+    // label: {
+    // type: [String, Number],
+    // default: ''
+    // }
+        ]
+        
 }; 
 </script>

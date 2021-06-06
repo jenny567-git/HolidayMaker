@@ -60,6 +60,8 @@
 
         .hotelview h1{
             padding-bottom: 10px;
+            font-family:'Times New Roman', Times, serif;
+            font-weight: bold;
         }
 
         /* .col-md-4.twopic{

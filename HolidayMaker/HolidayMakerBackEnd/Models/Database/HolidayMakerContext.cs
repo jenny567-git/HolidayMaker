@@ -131,11 +131,6 @@ namespace HolidayMakerBackEnd.Models.Database
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.BeachDistance)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
                 entity.Property(e => e.CityId).HasColumnName("CityID");
 
                 entity.Property(e => e.CountryId).HasColumnName("CountryID");
@@ -259,7 +254,7 @@ namespace HolidayMakerBackEnd.Models.Database
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.CreationDate).HasColumnType("datetime");
+                entity.Property(e => e.CreationDate).HasColumnType("date");
 
                 entity.Property(e => e.Description)
                     .IsRequired()

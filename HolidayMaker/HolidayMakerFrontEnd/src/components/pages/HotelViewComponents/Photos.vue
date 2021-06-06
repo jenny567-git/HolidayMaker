@@ -48,8 +48,10 @@
 
 <style scoped>
     .col-md-12.photos{
-        padding-top: 20px;
+        padding-bottom: 20px;
     }
+
+  
 </style>
 
 <script>

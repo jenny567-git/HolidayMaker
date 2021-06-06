@@ -2,8 +2,12 @@
     <div id="test2" class="hotelview">
         <h1>{{hotel.name}}</h1>
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-4 twopic"> <!-- Stacked images -->
+            <h2>Welcome to</h2>
+            <Photos>
+                
+            </Photos>
+            <!-- <div class="row">
+                <div class="col-md-4 twopic">
                     <div>
                         <img class="img-fluid" src="https://storage.googleapis.com/static-content-hc/sites/default/files/cataloina_porto_doble_balcon2_2.jpg" alt="">
                     </div>
@@ -11,12 +15,11 @@
                         <img class="img-fluid" src="https://storage.googleapis.com/static-content-hc/sites/default/files/cataloina_porto_doble_balcon2_2.jpg" alt="">
                     </div>
                 </div>
-                <div class="col-md-8 onepic"> <!-- Main image -->
-                    <div>
+                <div class="col-md-8 onepic">
                         <img class="img-fluid" src="https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg" alt="">
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="row">
                 <div class="col-md-12 buttons">
                     <ul class="nav nav-pills">
@@ -123,10 +126,14 @@
 
 <script>
 import Info from './HotelViewComponents/Info.vue'
+import Galleria from 'primevue/galleria';
+import Photos from "./HotelViewComponents/Photos.vue"
 
 export default ({
     components:{
         Info,
+        Galleria,
+        Photos
     },
     data(){
         return{

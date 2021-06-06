@@ -11,9 +11,7 @@
             </button>
             <p id="card-error" role="alert"></p>
             <p class="result-message hidden">
-                Payment succeeded, see the result in your
-                <a href="" target="_blank">Stripe dashboard.</a> Refresh the
-                page to pay again.
+                Payment succeeded, finishing booking.
             </p>
         </form>
     </div>
@@ -66,7 +64,7 @@ export default {
         payWithCard(stripe, card, clientSecret) {
             loading(true);
             var ref = this;
-            var email = this.$store.state.customerDetailsCheckout.Email;
+            var email = this.$store.state.customerDetailsCheckout.email;
             console.log(email);
             stripe
                 .confirmCardPayment(clientSecret, {
@@ -82,9 +80,9 @@ export default {
                     } else {
                         // The payment succeeded!
                         orderComplete(result.paymentIntent.id);
-                        console.log("Order has completed!");
+                        console.log("Payment Confirmed!");
                         ref.createBooking();
-                        ref.$emit("payment-confirmed", result.paymentIntent.id);
+                        
                     }
                 });
         },
@@ -124,6 +122,7 @@ export default {
             }).then(response => response.json())
 							.then(data => {
 									console.log('Success:', data);
+                                    this.$emit("payment-confirmed", data);
 							})
 							.catch((error) => {
 									console.error('Error:', error);
@@ -166,12 +165,7 @@ export default {
 // Shows a success message when the payment is complete
 var orderComplete = function (paymentIntentId) {
     loading(false);
-    document
-        .querySelector(".result-message a")
-        .setAttribute(
-            "href",
-            "https://dashboard.stripe.com/test/payments/" + paymentIntentId
-        );
+    
     document.querySelector(".result-message").classList.remove("hidden");
     document.querySelector("button").disabled = true;
 };

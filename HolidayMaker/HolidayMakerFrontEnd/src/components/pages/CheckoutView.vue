@@ -76,6 +76,7 @@ export default {
         },
         confirmed(id){
             // Set id in vuex
+            this.$store.dispatch('setOrderId', id);
             this.nextPage();
         }
     }

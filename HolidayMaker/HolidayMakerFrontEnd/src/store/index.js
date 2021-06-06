@@ -64,6 +64,7 @@ const store = createStore({
       },
     },
     customerDetailsCheckout: {},
+    orderId: "",
     user: {
       loggedIn: false,
     },
@@ -193,8 +194,11 @@ const store = createStore({
     setBookedHotels(state, value) {
       state.bookedHotels = value;
     },
-    setSavedHotels(state, data){
+    setSavedHotels(state, data) {
       state.savedHotels = data;
+    },
+    setOrderId(state, value) {
+      state.orderId = value;
     },
   },
   actions: {
@@ -274,10 +278,9 @@ const store = createStore({
     },
     async getReservationById({ commit }, reservationId) {
       var response = await fetch(
-        "https://localhost:44356/api/Booking/Booking/" + reservationId
+        "https://localhost:44356/api/Booking/" + reservationId
       );
       var result = await response.json();
-
       commit("setReservationDetails", result);
     },
     async searchHotelByCity({ commit }, searchString) {
@@ -446,6 +449,9 @@ const store = createStore({
       var result = await response.json();
       console.log(result);
       commit("setBookedHotels", result);
+    },
+    async setOrderId({ commit }, value) {
+      commit("setOrderId", value);
     },
   },
 });

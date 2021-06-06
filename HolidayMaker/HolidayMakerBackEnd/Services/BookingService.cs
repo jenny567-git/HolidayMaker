@@ -50,7 +50,7 @@ namespace HolidayMakerBackEnd.Services
             return result;
         }
 
-        public void MakeBooking(SearchViewModel model)
+        public int MakeBooking(SearchViewModel model)
         {
             var newReservation = new Reservation()
             {
@@ -99,7 +99,7 @@ namespace HolidayMakerBackEnd.Services
             }
 
             var Cost = CalculateCost(newReservation, model.ReservedRooms, newResDetails);
-
+            return latestId;
         }
 
         

@@ -26,15 +26,15 @@ namespace HolidayMakerBackEnd.Controllers
         [HttpPost("AddBooking")]
         public ActionResult AddBooking(SearchViewModel model)
         {
-            _bookingService.MakeBooking(model);
-            return Ok();
+            int bookingId = _bookingService.MakeBooking(model);
+            return Ok(bookingId);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<ReservationViewModel> Get(int BookingId)
+        public ActionResult<ReservationViewModel> Get(int id)
         {
             ReservationViewModel model = new();
-            int statusCode = this.GetBookingById(BookingId, ref model);
+            int statusCode = this.GetBookingById(id, ref model);
 
             if (statusCode == 200)
             {

@@ -2,10 +2,7 @@
     <div id="test2" class="hotelview">
         <h1>{{hotel.name}}</h1>
         <div class="container-fluid">
-            <h2>Welcome to</h2>
-            <Photos>
-                
-            </Photos>
+            <Photos></Photos>
             <!-- <div class="row">
                 <div class="col-md-4 twopic">
                     <div>
@@ -24,23 +21,17 @@
                 <div class="col-md-12 buttons">
                     <ul class="nav nav-pills">
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-primary"><router-link :to="'/hotels/' + this.$route.params.id + '/'" class="nav-link" > Info </router-link></button>
+                            <!-- <button type="button" class="btn btn-primary"><router-link :to="'/hotels/' + this.$route.params.id + '/'" class="nav-link" > Info </router-link></button>
                             <button type="button" class="btn btn-primary"><router-link :to="'/hotels/' + this.$route.params.id + '/photos'" class="nav-link"> Photos </router-link></button>
                             <button type="button" class="btn btn-primary"><router-link :to="'/hotels/' + this.$route.params.id + '/reviews'" class="nav-link"> Reviews </router-link></button>
-                            <button type="button" class="btn btn-primary"><router-link :to="'/hotels/' + this.$route.params.id + '/rooms'" class="nav-link"> Rooms </router-link></button>
+                            <button type="button" class="btn btn-primary"><router-link :to="'/hotels/' + this.$route.params.id + '/rooms'" class="nav-link"> Rooms </router-link></button> -->
+                            <span class="p-buttonset">
+                                <Button label="Info" icon="pi pi-check" ><router-link :to="'/hotels/' + this.$route.params.id + '/'" class="nav-link" > Info </router-link></Button>
+                                <Button label="Photo" icon="pi pi-trash"><router-link :to="'/hotels/' + this.$route.params.id + '/photos'" class="nav-link"> Photos </router-link></Button>
+                                <Button label="Reviews" icon="pi pi-times" ><router-link :to="'/hotels/' + this.$route.params.id + '/reviews'" class="nav-link"> Reviews </router-link></Button>
+                                <Button label="Rooms" icon="pi pi-times" ><router-link :to="'/hotels/' + this.$route.params.id + '/rooms'" class="nav-link"> Rooms </router-link></Button>
+                            </span>
                         </div>
-                        <!-- <li class="nav-item">
-                            <router-link :to="'/hotels/' + this.$route.params.id + '/'" class="nav-link" > Info </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link :to="'/hotels/' + this.$route.params.id + '/photos'" class="nav-link"> Photos </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link :to="'/hotels/' + this.$route.params.id + '/reviews'" class="nav-link"> Reviews </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link :to="'/hotels/' + this.$route.params.id + '/rooms'" class="nav-link"> Rooms </router-link>
-                        </li> -->
                         <li class="nav-item">
                             <button class="btn" @click="ToggleStar" id="starBtn">
                                 <i :class="star ? 'fas fa-heart fa-2x' : 'far fa-heart fa-2x'" style="color: red;"></i>
@@ -58,8 +49,8 @@
 
 <style>
     #test2{
-            border-radius: 30px;
-            background-color: white;
+            border-radius: 20px;
+            background-color: rgb(255, 255, 255);
             padding-left: 25px;
             padding-right: 25px;
             padding-bottom: 40px;
@@ -68,9 +59,10 @@
         }
 
         .hotelview h1{
+            padding-bottom: 10px;
         }
 
-        .col-md-4.twopic{
+        /* .col-md-4.twopic{
             padding-bottom: 10px;
         }
 
@@ -81,7 +73,7 @@
 
         .col-md-8.onepic img{
             border-radius: 20px;
-        }
+        } */
 
         .col-md-12.buttons{
             border-top: 1px solid black;
@@ -90,21 +82,21 @@
             padding-bottom:15px;
         }
 
-        button.btn.btn-primary{
-            background: #43744f;
+        /* button.btn.btn-primary{
+            background: #7a6b4b;
             border-color:rgb(0, 0, 0);
-        }
+        } */
 
         .nav-link:focus, .nav-link:hover {
-             color: #4d915e;
+             color: #47bad6;
         }
 
         .nav.nav-pills a:hover{
-            color:rgb(51, 161, 78);
+            color:rgb(81, 195, 199);
         }
 
         .nav.nav-pills a:hover ::before{
-            color:rgb(51, 161, 78);
+            color:rgb(103, 192, 214);
         }
 
 
@@ -128,12 +120,15 @@
 import Info from './HotelViewComponents/Info.vue'
 import Galleria from 'primevue/galleria';
 import Photos from "./HotelViewComponents/Photos.vue"
+import Button from 'primevue/button';
 
 export default ({
     components:{
         Info,
         Galleria,
-        Photos
+        Photos,
+        Button
+        
     },
     data(){
         return{

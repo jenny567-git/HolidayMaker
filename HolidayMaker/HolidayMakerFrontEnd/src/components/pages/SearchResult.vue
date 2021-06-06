@@ -44,7 +44,7 @@ export default ({
 
 <style scoped>
     #test2{
-        border-radius: 30px;
+        border-radius: 20px;
         background-color: white;
         padding-left: 25px;
         padding-right: 25px;

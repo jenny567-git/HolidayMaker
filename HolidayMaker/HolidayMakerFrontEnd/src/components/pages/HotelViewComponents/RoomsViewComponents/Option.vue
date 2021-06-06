@@ -53,5 +53,11 @@ export default {
 </script>
 
 <style scoped>
+  .p-field-checkbox{
+    padding-left:60mm;
+  }
 
+  label{
+    display:none;
+  }
 </style>

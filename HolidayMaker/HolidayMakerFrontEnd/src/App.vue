@@ -8,16 +8,6 @@
                 <Searcher/>
                 <router-view/>
               </div>
-                <div>
-                    <div>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                    </div>
-                </div>
             </div>
         </div>
         <figure>
@@ -51,8 +41,6 @@ import ColorPicker from 'primevue/colorpicker';
 import Navigator from '/src/components/Navigator.vue';
 import Footer from '/src/components/Footer.vue';
 import Body from "/src/components/pages/MainPage/Body.vue";
-
-
 import Searcher from './components/pages/SearchComponent/Search.vue'
 
 export default {

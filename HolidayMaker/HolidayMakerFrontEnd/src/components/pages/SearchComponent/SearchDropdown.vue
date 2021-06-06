@@ -88,7 +88,7 @@ components: {
 
 <style scoped>
 .dropdown-toggle{
-  background-color: #43744f;
+  background-color: #516cb8;
 }
 b{
   padding-left: 10px;

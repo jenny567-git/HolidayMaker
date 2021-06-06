@@ -7,7 +7,7 @@
       </div>
 
       <!-- right column -->
-      <div class="col-md-6" id="test">
+      <div class="col-md-6">
         <Options @checked="setExtraBedFee" />
 
         <!-- Pension type -->
@@ -75,18 +75,15 @@ export default {
 
 
 <style scoped>
-  #test{
-    border: solid;
-  }
 
   .btn.btn-primary{
-    background-color:#43744f;
-    border-color:black;
+    /* background-color:#43744f;
+    border-color:black; */
   }
 
-  .col-md-6 {
+  .container {
+    padding-top: 20px;
   }
 
-  .row{
-  }
+
 </style>

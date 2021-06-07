@@ -73,8 +73,7 @@ export default {
     checkPasswords(){
         var password = document.querySelector('.password').value;
         var confirmPassword = document.querySelector('.confirmPassword').value;
-        console.log(password)
-        console.log(confirmPassword)
+        
         if(confirmPassword !=password){
           document.querySelector('.text').innerHTML = "Passwords dont match"
           
@@ -93,10 +92,15 @@ export default {
           'Accept': 'application/json',
           'Content-type': 'application/json'
         },
-        body: JSON.stringify({Fullname:this.guest.Fullname, Street:this.guest.Street, Zipcode:this.guest.Zipcode, City:this.guest.City, Country:this.guest.Country, Phone:this.guest.Phone, Email:this.guest.Email, Password:this.guest.Password})
-      
+        body: JSON.stringify({Fullname:this.guest.Fullname, Street:this.guest.Street, Zipcode:this.guest.Zipcode, City:this.guest.City, Country:this.guest.Country, Phone:this.guest.Phone, Email:this.guest.Email, Password:this.guest.Password}),
+        
       })
-    }
+       this.resetForm()
+    },
+      resetForm(){
+        console.log("hej")
+        document.querySelector('.form1').reset()
+      }
   }
 }
 </script>

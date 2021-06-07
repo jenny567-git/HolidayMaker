@@ -8,10 +8,10 @@
                     </h3>
                 </div>
             </div>
-            <div class="card">
+            <div class="card p-shadow-1">
                 <Steps :model="items" />
             </div>
-            <router-view @payment-confirmed="confirmed"/>
+            <router-view class="" @payment-confirmed="confirmed"/>
             <Button v-if="notAtStart" @click="prevPage" label="Prev" class="p-button-raised p-button-rounded" />
             <Button v-if="notAtEnd" @click="nextPage" label="Next" class="p-button-raised p-button-rounded" />
         </div>

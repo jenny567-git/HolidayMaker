@@ -89,8 +89,8 @@ export default {
         createBooking() {
 						var bookingDetails = this.$store.state.bookingDetails;
 						var booking = {
-								startDate: this.$store.state.searchString.dates[0].toISOString().split('T')[0],
-								endDate : this.$store.state.searchString.dates[1].toISOString().split('T')[0],
+								startDate: this.$store.state.searchString.dates[0].split('T')[0],
+								endDate : this.$store.state.searchString.dates[1].split('T')[0],
 								totalPrice : bookingDetails.totalprice,
 								hotelId : this.$store.state.hotel.id,
 								guestId : this.$store.state.guestId,

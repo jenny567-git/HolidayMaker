@@ -254,6 +254,7 @@ export default {
 #accordionFlushExample{
   border:solid;
   border-color: silver;
+  margin-bottom: 25px;
 }
 
 .accordion {

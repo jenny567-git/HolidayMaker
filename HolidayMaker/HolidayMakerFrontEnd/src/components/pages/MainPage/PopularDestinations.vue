@@ -82,12 +82,8 @@ export default {
   padding: 0.7em 0;
 }
 
-.h1, h1{
-  padding-top: 50px;
-  color:white;
-}
-
 #pop{
+  padding-top: 60px;
   font-family:'Times New Roman', Times, serif;
   font-weight: bold;
   text-decoration:underline;

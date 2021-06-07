@@ -76,10 +76,10 @@ export default {
 
 <style scoped>
 
-  .btn.btn-primary{
-    /* background-color:#43744f;
-    border-color:black; */
-  }
+  /* .btn.btn-primary{
+    background-color:#43744f;
+    border-color:black;
+  } */
 
   .container {
     padding-top: 20px;

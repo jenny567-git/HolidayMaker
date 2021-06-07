@@ -5,7 +5,7 @@
             <title>Simple Navbar with flexbox</title>
         </head>
             <header>
-                <img class="" src="/src/assets/Logo5_cropped.png" alt="" height="80">
+                <a href="/"><img class="" src="/src/assets/Logo5_cropped.png" alt="" height="80" href="/"></a>
                 <nav>
                     <ul class="nav-area">
                         <li><a href="#"><router-link to="/hotels/1">Hotel 1 | </router-link></a></li>
@@ -23,7 +23,6 @@
                     <ul class="nav-area">
                         <li ><p>{{user.email}}</p></li>
                     </ul>
-                    
                     
                    
                    
@@ -81,11 +80,7 @@ export default {
 </script>
 
 
-
-
-
 <style scoped>
-
 
 * {
     margin: 0;
@@ -97,8 +92,6 @@ header{
     color:white;
 }
 
-a{
-}
 
 header {
     margin-top: -60px;

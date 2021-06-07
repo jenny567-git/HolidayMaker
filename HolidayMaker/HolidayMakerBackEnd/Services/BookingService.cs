@@ -82,7 +82,7 @@ namespace HolidayMakerBackEnd.Services
                 Street = model.customerDetails.Street,
                 City = model.customerDetails.City,
                 Zipcode = model.customerDetails.ZipCode,
-                Country = model.customerDetails.Country
+                Country = model.customerDetails.Country,
                 Status = "Confirmed"
             };
 

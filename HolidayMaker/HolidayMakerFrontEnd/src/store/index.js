@@ -440,19 +440,17 @@ const store = createStore({
       var result = await response.json()
       commit('setServiceFee', result)
     },
-    async deleteGuestAccount(Id) {
+    deleteGuestAccount({ commit }, Id) {
+      console.log(Id)
       fetch('https://localhost:44356/api/Guest/removeGuest', {
         method: 'post',
         headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify((Id = this.state.user.id)),
+        body: JSON.stringify({ Id: Id }),
       })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log('Success:', data)
-        })
-        .catch((error) => {
-          console.error('Error:', error)
-        })
+      Cookies.remove('userId')
+      Cookies.remove('login')
+      commit('logOutUser')
+      router.push('/')
     },
   },
 })

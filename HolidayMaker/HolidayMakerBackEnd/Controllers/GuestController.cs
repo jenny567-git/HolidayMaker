@@ -102,9 +102,17 @@ namespace HolidayMakerBackEnd.Controllers
         }
 
         [HttpPost("removeGuest")]
-        public void RemoveGuest(int id)
+        public void RemoveGuest(Test id)
         {
-            _guestService.RemoveGuest(id);
+           _guestService.RemoveGuest(id.Id);
         }
+
+        
+       
+    }
+
+    public class Test
+    {
+        public int Id { get; set; }
     }
 }

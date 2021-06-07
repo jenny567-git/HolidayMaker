@@ -154,28 +154,11 @@
 export default {
   data() {
     return {
-      guest: {
-        Fullname: '',
-        Street: '',
-        Zipcode: '',
-        City: '',
-        Country: '',
-        Phone: '',
-        Email: '',
-        Password: '',
-        confirmPassword: '',
-        Id: '',
-      },
+      userInfo: {},
     }
   },
-  methods: {
-    deleteAccout() {
-      let credentials = 78
-
-      if (confirm('Do you really want to delete your account?')) {
-        this.$store.dispatch('deleteGuestAccount', credentials)
-      }
-    },
+  created() {
+    this.user = this.$store.state.user
   },
   computed: {
     loggedIn() {
@@ -183,6 +166,15 @@ export default {
     },
     user() {
       return this.$store.state.user
+    },
+  },
+  methods: {
+    deleteAccout() {
+      let credentials = this.user.id
+      console.log(this.user.id)
+      if (confirm('Do you really want to delete your account?')) {
+        this.$store.dispatch('deleteGuestAccount', credentials)
+      }
     },
   },
 }

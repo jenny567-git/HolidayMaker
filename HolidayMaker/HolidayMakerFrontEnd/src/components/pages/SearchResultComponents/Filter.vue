@@ -1,10 +1,6 @@
 <template>
-    
   <div class="row">
-
-     
     <div class="col-md-4">
-      
       <div id="sliders">
         <div>
           <p>Price range (SEK)</p>
@@ -113,27 +109,19 @@
           </div>
         </div>
       </div>
-      
     </div>
 
     <div v-if="filteredHotels.length" class="col-md-8">
-
-      
-          <Result
-            v-for="result in filteredHotels"
-            :hotel="result.hotel"
-            :key="result.hotel.id"
-          />
-       
-      
+      <Result
+        v-for="result in filteredHotels"
+        :hotel="result.hotel"
+        :key="result.hotel.id"
+      />
     </div>
     <div v-else class="col-md-8 float-container">
-      
-          <Skel v-for="n in nrOfSkeletons" :key="n"></Skel>
-        
+      <Skel v-for="n in nrOfSkeletons" :key="n"></Skel>
     </div>
   </div>
-   
 </template>
 <script>
 // code: https://www.vuescript.com/custom-range-slider/
@@ -142,7 +130,7 @@ import Images from "../HotelViewComponents/RoomPhotoSlider.vue";
 import Info from "../HotelViewComponents/Info.vue";
 import Result from "./Result.vue";
 import Skel from "./Skel.vue";
-import Card from 'primevue/card';
+import Card from "primevue/card";
 export default {
   components: {
     Slider,
@@ -160,18 +148,18 @@ export default {
       beachDistance: {
         value: 7,
         step: -1,
-        format:{
+        format: {
           decimals: 1,
-          suffix: ' km'
-        }
+          suffix: " km",
+        },
       },
       centrumDistance: {
         value: 10,
-        step:-1,
-        format:{
-          decimals:1,
-          suffix: ' km'
-        }
+        step: -1,
+        format: {
+          decimals: 1,
+          suffix: " km",
+        },
       },
       pool: false,
       nightEntertainment: false,
@@ -180,8 +168,8 @@ export default {
     };
   },
   computed: {
-    nrOfSkeletons(){
-      return 3
+    nrOfSkeletons() {
+      return 3;
     },
     searchResults() {
       return this.$store.state.seachResults;
@@ -190,20 +178,21 @@ export default {
       return this.filteredHotels.length;
     },
     filteredHotels() {
-      
-      //filter price
-      let result = this.searchResults.filter(
-        (res) => this.pricerange.value[0] <= res.hotel.rooms[0].price && res.hotel.rooms[0].price <= this.pricerange.value[1]
+      if (this.searchResults.length) {
+        //filter price
+        let result = this.searchResults.filter(
+          (res) =>
+            this.pricerange.value[0] <= res.hotel.rooms[0].price &&
+            res.hotel.rooms[0].price <= this.pricerange.value[1]
         );
-        
-      result = result.filter(
-          (res) => res.hotel.beachDistance <= this.beachDistance.value
-      );
-        
 
-      result = result.filter(
-        (res) => res.hotel.centrumDistance <= this.centrumDistance.value
-      );
+        result = result.filter(
+          (res) => res.hotel.beachDistance <= this.beachDistance.value
+        );
+
+        result = result.filter(
+          (res) => res.hotel.centrumDistance <= this.centrumDistance.value
+        );
 
         if (this.pool) {
           result = result.filter((res) => res.hotel.pool == this.pool);
@@ -216,7 +205,9 @@ export default {
         }
 
         if (this.childClub) {
-          result = result.filter((res) => res.hotel.childClub == this.childClub);
+          result = result.filter(
+            (res) => res.hotel.childClub == this.childClub
+          );
         }
 
         if (this.restaurant) {
@@ -237,7 +228,6 @@ export default {
 </style>
 
 <style scoped>
-
 .myContainer {
   width: 300%;
   height: auto;

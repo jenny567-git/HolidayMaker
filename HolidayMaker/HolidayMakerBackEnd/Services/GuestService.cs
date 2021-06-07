@@ -59,13 +59,7 @@ namespace HolidayMakerBackEnd.Services
             return await _db.SaveChangesAsync();
         }
 
-        public void RemoveGuest(int id)
-        {
-            var guest = _db.Guests.SingleOrDefault(g => g.Id == id);
-            _db.Guests.Remove(guest);
-            _db.SaveChanges();
-
-        }
+        
 
         public int AddReview(ReviewModel model)
         {
@@ -146,6 +140,21 @@ namespace HolidayMakerBackEnd.Services
 
         }
 
+        public void RemoveGuest(int id)
+        {
+            const string deleted = "deleted";
+            var customer = _db.Guests.SingleOrDefault(x => x.Id == id);
+            customer.FullName = deleted;
+            customer.Street = deleted;
+            customer.ZipCode = deleted;
+            customer.City = deleted;
+            customer.Country = deleted;
+            customer.Phone = deleted;
+            customer.Email = deleted;
+            customer.Password = deleted;
+
+            _db.SaveChanges();
+        }
 
 
     }

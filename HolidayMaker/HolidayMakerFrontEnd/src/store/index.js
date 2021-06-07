@@ -21,6 +21,7 @@ const store = createStore({
       inputRooms: 0,
       dates: [],
     },
+    bookedHotels: [],
     searchAutoComplete: [],
     seachResults: [],
     hotel: [],
@@ -63,6 +64,10 @@ const store = createStore({
       },
     },
     customerDetailsCheckout: {},
+    orderId: "",
+    user: {
+      loggedIn: false,
+    },
   },
   mutations: {
     setEmail(store, value) {
@@ -192,6 +197,15 @@ const store = createStore({
     setPassword(state, value) {
       state.user.Password = value;
     },
+    setBookedHotels(state, value) {
+      state.bookedHotels = value;
+    },
+    setSavedHotels(state, data) {
+      state.savedHotels = data;
+    },
+    setOrderId(state, value) {
+      state.orderId = value;
+    },
   },
   actions: {
     saveCustomerDetailsCheckout({ commit }, data) {
@@ -270,10 +284,9 @@ const store = createStore({
     },
     async getReservationById({ commit }, reservationId) {
       var response = await fetch(
-        "https://localhost:44356/api/Booking/Booking/" + reservationId
+        "https://localhost:44356/api/Booking/" + reservationId
       );
       var result = await response.json();
-
       commit("setReservationDetails", result);
     },
     async searchHotelByCity({ commit }, searchString) {
@@ -439,6 +452,17 @@ const store = createStore({
       );
       var result = await response.json();
       commit("setServiceFee", result);
+    },
+    async getBookings({ commit }) {
+      var response = await fetch(
+        "https://localhost:44356/api/Booking/guest/" + this.state.guestId
+      );
+      var result = await response.json();
+      console.log(result);
+      commit("setBookedHotels", result);
+    },
+    async setOrderId({ commit }, value) {
+      commit("setOrderId", value);
     },
   },
 });

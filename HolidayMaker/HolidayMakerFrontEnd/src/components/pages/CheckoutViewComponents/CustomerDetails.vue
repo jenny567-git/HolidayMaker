@@ -10,25 +10,25 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="firstName">First Name</label>
-                            <input v-model="Details.FirstName" type="text" class="form-control" id="firstName" placeholder="Enter first name" @input="save">
+                            <input v-model="Details.firstName" type="text" class="form-control" id="firstName" placeholder="Enter first name" @input="save">
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="lastName">Last Name</label>
-                            <input v-model="Details.LastName" type="text" class="form-control" id="lastName" placeholder="Enter last Name" @input="save">
+                            <input v-model="Details.lastName" type="text" class="form-control" id="lastName" placeholder="Enter last Name" @input="save">
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="phone">Phone</label>
-                            <input v-model="Details.PhoneNumber" type="number" class="form-control" id="phone" placeholder="Enter phone number" @input="save">
+                            <input v-model="Details.phoneNumber" type="text" class="form-control" id="phone" placeholder="Enter phone number" @input="save">
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input v-model="Details.Email" type="email" class="form-control" id="email" placeholder="Enter email" @input="save">
+                            <input v-model="Details.email" type="email" class="form-control" id="email" placeholder="Enter email" @input="save">
                         </div>
                     </div>
                 </div>
@@ -39,19 +39,19 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="Street">Street</label>
-                            <input v-model="Details.Street" type="name" class="form-control" id="Street" placeholder="Enter Street" @input="save">
+                            <input v-model="Details.street" type="name" class="form-control" id="Street" placeholder="Enter Street" @input="save">
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="ciTy">City</label>
-                            <input v-model="Details.City" type="name" class="form-control" id="ciTy" placeholder="Enter City" @input="save">
+                            <input v-model="Details.city" type="name" class="form-control" id="ciTy" placeholder="Enter City" @input="save">
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                             <label for="zIp">Zip Code</label>
-                            <input v-model="Details.ZipCode" type="text" class="form-control" id="zIp" placeholder="Zip Code" @input="save">
+                            <input v-model="Details.zipCode" type="text" class="form-control" id="zIp" placeholder="Zip Code" @input="save">
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,6 @@
                     <BookingMessage @message="updateMessage"></BookingMessage>
             </div>
         </div>
-        <hr/> 
     </div>
 </template>
 
@@ -74,21 +73,22 @@ export default {
     data(){
         return{
             Details:{
-                FirstName: '',
-                LastName: '',
-                Email: '',
-                Street: '',
-                PhoneNumber: '',
-                City: '',
-                State: '',
-                ZipCode: '',
-                Message: '',
+                firstName: '',
+                lastName: '',
+                email: '',
+                street: '',
+                phoneNumber: '',
+                city: '',
+                state: '',
+                zipCode: '',
+                message: '',
             }
         }
     },
     methods:{
         save(){
             this.$store.dispatch('saveCustomerDetailsCheckout', this.Details);
+            console.log("saving cust details", this.Details)
         },
         updateMessage(msg){
             this.Details.Message = msg;
@@ -97,9 +97,7 @@ export default {
     },
     created(){
         this.Details = this.$store.state.customerDetailsCheckout;
-        console.log(this.$store.state.customerDetailsCheckout);
-    }
-    
+    },
 }
 </script>
 <style scoped>

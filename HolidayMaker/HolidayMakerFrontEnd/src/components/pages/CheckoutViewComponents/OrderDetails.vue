@@ -9,10 +9,10 @@
                     </template>
                     <template #content>
                         <ul class="list-group list-group-flush" >
-                            <li class="list-group-item leftTexAlignt"> <b>Full name:</b> {{Details.FirstName}} {{Details.LastName}}</li>
-                            <li class="list-group-item leftTexAlignt"> <b>Email:</b> {{Details.Email}}</li>
-                            <li class="list-group-item leftTexAlignt"> <b>Phone:</b> {{Details.PhoneNumber}}</li>
-                            <li class="list-group-item leftTexAlignt"> <b>Address:</b> {{Details.Street}}, {{Details.ZipCode}}, {{Details.City}}</li>
+                            <li class="list-group-item leftTexAlignt"> <b>Full name:</b> {{Details.firstName}} {{Details.lastName}}</li>
+                            <li class="list-group-item leftTexAlignt"> <b>Email:</b> {{Details.email}}</li>
+                            <li class="list-group-item leftTexAlignt"> <b>Phone:</b> {{Details.phoneNumber}}</li>
+                            <li class="list-group-item leftTexAlignt"> <b>Address:</b> {{Details.street}}, {{Details.zipCode}}, {{Details.city}}</li>
                         </ul>
                     </template>
                 </Card>
@@ -72,6 +72,7 @@ export default {
     },
     created(){
         this.Details = this.$store.state.customerDetailsCheckout;
+        console.log("order details cust details: ",this.$store.state.customerDetailsCheckout)
         this.BookingDetails = this.$store.state.bookingDetails;
         this.SearchString = this.$store.state.searchString;
     },

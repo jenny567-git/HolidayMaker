@@ -11,10 +11,10 @@
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title">Booking detail</h5>
+          <h5 class="card-title">{{hotel.hotelName}}</h5>
           <div class="textB">
-            <p>Hotel</p>
-            <p>Date</p>
+            <p>{{hotel.fullName}}</p>
+            <p>{{startDate}} - {{endDate}}</p>
             <p>More information about the booking</p>
           </div>
           <!-- Button trigger modal -->
@@ -24,6 +24,11 @@
             data-bs-toggle="modal"
             data-bs-target="#staticBackdrop"
           >Cancel Booking</button>
+           <button
+            type="button"
+            class="btn btn-info"
+            @click="toggleEdit"
+          >Edit Booking</button>
 
           <!-- Modal -->
           <div
@@ -62,5 +67,40 @@
         </div>
       </div>
     </div>
+    <div v-if="edit">
+        <CustomerDetails/>
+    </div>
   </div>
 </template>
+
+<script>
+import CustomerDetails from '/src/components/pages/CheckoutViewComponents/CustomerDetails.vue'
+
+export default {
+    components:{
+        CustomerDetails,
+    },
+    props:{
+        hotel: {}
+    },
+    data(){
+        return {
+            edit: false
+        }
+    },
+    computed:{
+        startDate(){
+            return this.hotel.startDate.split('T')[0];
+        },
+        endDate(){
+            return this.hotel.endDate.split('T')[0];
+        }
+    },
+    methods: {
+        toggleEdit(){
+            this.edit = !this.edit;
+            this.$store.dispatch('saveCustomerDetailsCheckout', this.hotel.guestDetails);
+        }
+    },
+}
+</script>

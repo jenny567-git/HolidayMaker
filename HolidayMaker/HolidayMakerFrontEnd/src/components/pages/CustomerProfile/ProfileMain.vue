@@ -67,13 +67,7 @@
 </template>
 
 <script>
-import Card from 'primevue/card'; 
-
 export default {
-    components:{
-        Card,
-        
-    },
     data() {
         return {
             fullName: "",

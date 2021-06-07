@@ -80,7 +80,6 @@
 
 <style scoped>
 
-
   h2 {
     margin-left: 6cm;
   }

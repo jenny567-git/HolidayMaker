@@ -54,6 +54,10 @@ export default ({
     .dropdown{
         margin-top: 35px;
     }
+    
+    div.dropdown{
+        margin-left:7cm;
+    }
 
     a.dropdown-item{
         color:black !important;

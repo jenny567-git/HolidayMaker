@@ -20,6 +20,7 @@ namespace HolidayMakerBackEnd.Models.Database
         public int? FlightId { get; set; }
         public int HotelId { get; set; }
         public int GuestId { get; set; }
+        public string Status { get; set; }
 
         public virtual Guest Guest { get; set; }
         public virtual Hotel Hotel { get; set; }

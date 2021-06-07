@@ -72,7 +72,7 @@ namespace HolidayMakerBackEnd.Services
                 DateCreated = DateTime.Now,
                 HotelId = model.HotelId,
                 GuestId = model.GuestId,
-                
+                Status = "Confirmed"
             };
 
             _db.Reservations.Add(newReservation);

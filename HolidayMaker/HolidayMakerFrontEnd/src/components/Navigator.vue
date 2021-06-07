@@ -69,7 +69,6 @@ export default {
     
   },
   created() {
-    this.$store.dispatch("getReservationById", this.$route.params.id);
   },
   methods:{
       logout(){

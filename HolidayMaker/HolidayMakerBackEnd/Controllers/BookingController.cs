@@ -30,6 +30,13 @@ namespace HolidayMakerBackEnd.Controllers
             return Ok(bookingId);
         }
 
+        [HttpPut("CancelBooking")]
+        public ActionResult CancelBooking(int id)
+        {
+            int result = _bookingService.CancelBooking(id);
+            return Ok(result);
+        }
+
         [HttpGet("{id}")]
         public ActionResult<ReservationViewModel> Get(int id)
         {
@@ -88,6 +95,7 @@ namespace HolidayMakerBackEnd.Controllers
             model.Type = reservationDetails.Type;
             model.ExtraBed = reservationDetails.ExtraBed;
             model.HotelId = result.HotelId;
+            model.Status = result.Status;
 
             foreach (var item in reservedRooms)
             {

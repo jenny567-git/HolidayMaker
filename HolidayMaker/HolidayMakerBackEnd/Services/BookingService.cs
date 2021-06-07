@@ -50,6 +50,23 @@ namespace HolidayMakerBackEnd.Services
             return result;
         }
 
+        public int CancelBooking(int bookingId)
+        {
+            var booking = GetBookingById(bookingId);
+            var reservedRooms = GetReservedRooms(bookingId);
+
+            foreach(var r in reservedRooms)
+            {
+                r.BookedRooms = 0;
+                _db.ReservedRooms.Update(r);
+            }
+
+            booking.Status = "Cancelled";
+            _db.Reservations.Update(booking);
+
+            return _db.SaveChanges();
+        }
+
         public int MakeBooking(SearchViewModel model)
         {
             var newReservation = new Reservation()
@@ -65,7 +82,8 @@ namespace HolidayMakerBackEnd.Services
                 Street = model.customerDetails.Street,
                 City = model.customerDetails.City,
                 Zipcode = model.customerDetails.ZipCode,
-                Country = model.customerDetails.Country
+                Country = model.customerDetails.Country,
+                Status = "Confirmed"
             };
 
             _db.Reservations.Add(newReservation);

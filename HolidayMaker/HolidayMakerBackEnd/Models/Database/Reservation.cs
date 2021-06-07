@@ -27,6 +27,7 @@ namespace HolidayMakerBackEnd.Models.Database
         public string Country { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
+        public string Status { get; set; }
 
         public virtual Guest Guest { get; set; }
         public virtual Hotel Hotel { get; set; }

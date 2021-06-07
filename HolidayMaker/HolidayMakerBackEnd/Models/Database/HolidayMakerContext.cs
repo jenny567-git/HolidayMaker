@@ -35,7 +35,7 @@ namespace HolidayMakerBackEnd.Models.Database
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Database=HolidayMaker;Server=tcp:holidaymaker.database.windows.net,1433;Initial Catalog=HolidayMaker;Persist Security Info=False;User ID=Grupp1;Password=Viärbäst!;MultipleActiveResultSets=True;");
+                optionsBuilder.UseSqlServer("Database=HolidayMaker;Server=tcp:holidaymaker.database.windows.net,1433;Initial Catalog=HolidayMaker;Persist Security Info=False;User ID=Grupp1;Password=Viärbäst!;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             }
         }
 
@@ -208,6 +208,10 @@ namespace HolidayMakerBackEnd.Models.Database
                 entity.Property(e => e.Phone).IsUnicode(false);
 
                 entity.Property(e => e.StartDate).HasColumnType("date");
+
+                entity.Property(e => e.Status)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Street).IsUnicode(false);
 

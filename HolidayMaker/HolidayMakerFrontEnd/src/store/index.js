@@ -21,6 +21,7 @@ const store = createStore({
       inputRooms: 0,
       dates: [],
     },
+    bookedHotels: [],
     searchAutoComplete: [],
     seachResults: [],
     hotel: [],
@@ -63,6 +64,7 @@ const store = createStore({
       },
     },
     customerDetailsCheckout: {},
+    orderId: "",
     user: {
       loggedIn: false,
     },
@@ -180,14 +182,29 @@ const store = createStore({
     setCustomerDetailsCheckout(state, data) {
       state.customerDetailsCheckout = data;
     },
-    setLoggedInUser(state, user) {
-      state.user = user;
+    setUser(state, data) {
+      state.user = data;
+      state.user.loggedIn = true;
+      console.log(data);
+    },
+
+    logOutUser(state) {
+      state.user.loggedIn = false;
     },
     setEmail(state, value) {
       state.user.Email = value;
     },
     setPassword(state, value) {
       state.user.Password = value;
+    },
+    setBookedHotels(state, value) {
+      state.bookedHotels = value;
+    },
+    setSavedHotels(state, data) {
+      state.savedHotels = data;
+    },
+    setOrderId(state, value) {
+      state.orderId = value;
     },
   },
   actions: {
@@ -268,10 +285,9 @@ const store = createStore({
     },
     async getReservationById({ commit }, reservationId) {
       var response = await fetch(
-        "https://localhost:44356/api/Booking/Booking/" + reservationId
+        "https://localhost:44356/api/Booking/" + reservationId
       );
       var result = await response.json();
-
       commit("setReservationDetails", result);
     },
     async searchHotelByCity({ commit }, searchString) {
@@ -310,31 +326,36 @@ const store = createStore({
       var result = await response.json();
       commit("setAutoComplete", result);
     },
-    async login({ dispatch }, credentials) {
+    async login({ commit }, credentials) {
       let response = await fetch("https://localhost:44356/api/Guest/login", {
         method: "post",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(credentials),
       });
       let result = await response.json();
-      await dispatch("getLoggedInUser", result);
+
+      commit("setUser", result);
+      Cookies.set("login", "true");
+      Cookies.set("userId", result.id);
+
+      router.push("/profile");
     },
-    async getLoggedInUser({ commit }) {
-      let response = await fetch(
-        "https://localhost:44356/api/Guest/GetGuestById/"
-      );
-      let result = await response.json();
-      if (response.status == 401) {
-        result.loggedIn = false;
+    checkLoggedInUser({ commit }) {
+      console.log("dkjgb");
+      var myCookie = Cookies.get("login");
+      if (myCookie) {
+        this.dispatch("login", {
+          Email: "",
+          Password: "",
+          UserID: Cookies.get("userId"),
+        });
       }
-      commit("setLoggedInUser", result);
     },
-    async logout({ dispatch }) {
-      let response = await fetch("https://localhost:44356/api/Guest/login", {
-        method: "delete",
-      });
-      //kolla response status etc
-      await dispatch("getLoggedInUser");
+    async logout({ commit }) {
+      Cookies.remove("userId");
+      Cookies.remove("login");
+      commit("logOutUser");
+      router.push("/");
     },
     async getSavedHotelsInfo({ commit }) {
       console.log("Getting saved hotels for guest id ", this.state.guestId);
@@ -432,6 +453,17 @@ const store = createStore({
       );
       var result = await response.json();
       commit("setServiceFee", result);
+    },
+    async getBookings({ commit }) {
+      var response = await fetch(
+        "https://localhost:44356/api/Booking/guest/" + this.state.guestId
+      );
+      var result = await response.json();
+      console.log(result);
+      commit("setBookedHotels", result);
+    },
+    async setOrderId({ commit }, value) {
+      commit("setOrderId", value);
     },
   },
 });

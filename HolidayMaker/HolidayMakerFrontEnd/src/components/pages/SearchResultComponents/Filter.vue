@@ -11,25 +11,25 @@
           <Slider
             v-model="pricerange.value"
             v-bind="pricerange"
-            :max="50000"
+            :max="2000"
           ></Slider>
         </div>
         <hr />
         <div>
-          <p>Distance to beach (m)</p>
+          <p>Distance to beach</p>
           <Slider
             v-model="beachDistance.value"
             v-bind="beachDistance"
-            :max="8000"
+            :max="7"
           ></Slider>
         </div>
         <hr />
         <div>
-          <p>Distance to city (km)</p>
+          <p>Distance to city</p>
           <Slider
             v-model="centrumDistance.value"
             v-bind="centrumDistance"
-            :max="5000"
+            :max="5"
           ></Slider>
         </div>
         <hr />
@@ -91,7 +91,7 @@
                       @click="childClub = !childClub"
                     />
                     <label class="form-check-label" for="flexCheckDefault">
-                      Child club
+                      Kids club
                     </label>
                   </div>
                   <div class="form-check">
@@ -155,13 +155,23 @@ export default {
   data() {
     return {
       pricerange: {
-        value: [0, 40000],
+        value: [0, 2000],
       },
       beachDistance: {
-        value: 8000,
+        value: 7,
+        step: -1,
+        format:{
+          decimals: 1,
+          suffix: ' km'
+        }
       },
       centrumDistance: {
-        value: 800,
+        value: 10,
+        step:-1,
+        format:{
+          decimals:1,
+          suffix: ' km'
+        }
       },
       pool: false,
       nightEntertainment: false,
@@ -180,14 +190,20 @@ export default {
       return this.filteredHotels.length;
     },
     filteredHotels() {
-      if(this.searchResults.length){
-        let result = this.searchResults.filter(
+      
+      //filter price
+      let result = this.searchResults.filter(
+        (res) => this.pricerange.value[0] <= res.hotel.rooms[0].price && res.hotel.rooms[0].price <= this.pricerange.value[1]
+        );
+        
+      result = result.filter(
           (res) => res.hotel.beachDistance <= this.beachDistance.value
-        );
+      );
+        
 
-        result = result.filter(
-          (res) => res.hotel.centrumDistance <= this.centrumDistance.value
-        );
+      result = result.filter(
+        (res) => res.hotel.centrumDistance <= this.centrumDistance.value
+      );
 
         if (this.pool) {
           result = result.filter((res) => res.hotel.pool == this.pool);

@@ -59,9 +59,17 @@ export default {
       },
     };
   },
+  computed: {
+    reservation() {
+      return this.$store.state.reservation;
+    },
+    
+  },
   created() {
-    this.reservationInfo = this.$store.state.reservation;
-    //this.$store.dispatch("getReservationById", this.$route.params.id); // database needs reservation string for stripe
+    this.$store.dispatch("getReservationById", this.$route.params.id)
+    .then(() =>{
+      this.reservationInfo = this.$store.state.reservation;
+    });
   },
 };
 </script>

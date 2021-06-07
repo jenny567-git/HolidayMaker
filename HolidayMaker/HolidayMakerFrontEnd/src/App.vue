@@ -110,7 +110,9 @@ export default {
         this.$store.state.searchButtonLoading = true;
 
         this.$store.dispatch('searchHotels', this.searchString);
-      }
+      },
+      
+      
     },
     computed:{
       isLoading(){
@@ -118,8 +120,19 @@ export default {
       },
       showBody(){
         return this.$route.path == '/' ? true : false;
-      }
-    }
+      },
+      
+    },
+    created(){
+        console.log("App created");
+        if(Cookies.get('login')){
+          this.$store.dispatch('checkLoggedInUser')
+        }
+      },
+    
+    
+    
+    
 }
 
 
@@ -145,8 +158,9 @@ export default {
 
 .intro-2 {
     background: url("https://wallpaperaccess.com/full/1198002.jpg")no-repeat center center;
-    background-size: cover !important;
-    background-position: center;
+    background-size: cover ;
+    background-position: top;
+    background-attachment: fixed;
     background-repeat: no-repeat;
     border-color: black;
     border-style: solid;

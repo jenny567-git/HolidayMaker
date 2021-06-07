@@ -2,7 +2,7 @@
   <div class="container py-5">
     <div class="row">
       <div class="col-lg-12 mx-auto">
-        <h1>Popular Hotels</h1>
+        <h1 id="popa">Popular Hotels</h1>
         <div class="row py-5">
           <div class="col-lg-4 clickable" @click="searchHotel(hotels[0].title)">
             <figure
@@ -112,4 +112,13 @@ export default {
 .clickable{
    cursor: pointer;
 
-}</style>
+}
+
+#popa{
+  font-family:'Times New Roman', Times, serif;
+  font-weight: bold;
+  text-decoration:underline;
+  color:#2c3e50;
+}
+
+</style>

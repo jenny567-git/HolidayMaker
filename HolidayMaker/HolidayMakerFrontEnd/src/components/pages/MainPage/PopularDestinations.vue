@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Popular Destinations</h1>
+    <h1 id="pop">Popular Destinations</h1>
     <div class="row my-5">
       <div class="col-lg-12 mx-auto">
         <div class="row">
@@ -83,8 +83,14 @@ export default {
 }
 
 .h1, h1{
-  padding-top: 30px;
+  padding-top: 50px;
   color:white;
+}
+
+#pop{
+  font-family:'Times New Roman', Times, serif;
+  font-weight: bold;
+  text-decoration:underline;
 }
 
 @media screen and (max-width: 640px){

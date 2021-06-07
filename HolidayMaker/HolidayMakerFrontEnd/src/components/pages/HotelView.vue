@@ -74,14 +74,16 @@
             border-radius: 20px;
         } */
         .hotelview h1{
-            padding-bottom: 10px;
+            padding-bottom: 30px;
             font-family:'Times New Roman', Times, serif;
             font-weight: bold;
+            text-decoration:underline;
         }
 
         button.p-button.p-component{
             margin-right:5px;
             height:45px;
+            
         }
 
 
@@ -90,12 +92,13 @@
             border-bottom: 1px solid black;
             padding-top:15px;
             padding-bottom:10px;
-            margin-left:20px;
+            margin-left:px;
             color:white;
         }
 
-        a { 
+        .btn-group a{ 
             color:white !important;
+            text-decoration: none !important;
         }
       
 

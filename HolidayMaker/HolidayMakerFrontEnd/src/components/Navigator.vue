@@ -93,9 +93,11 @@ export default {
     box-sizing: border-box
 }
 
-a {
-    color:black !important;
-    text-decoration: none;
+header{
+    color:white;
+}
+
+a{
 }
 
 header {

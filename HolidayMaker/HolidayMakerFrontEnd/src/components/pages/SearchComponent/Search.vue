@@ -80,8 +80,15 @@ export default {
     }
      */
 #searchBtn{
-  margin-top: 48px;
+  margin-top: 46px;
 }
+
+button.p-button.p-component.p-mx-auto{
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+
 #range{
   display: block;
 }

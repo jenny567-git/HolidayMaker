@@ -12,7 +12,7 @@
     </div>
     <hr />
     <div class="row pb-3">
-      <div class="col-md-4">
+      <div class="col-md-12">
         <div class="dropdown">
           <button
             class="btn btn-secondary dropdown-toggle"
@@ -39,26 +39,6 @@
           </ul>
         </div>
       </div>
-      <div class="col-md-8">
-        <!-- <div class="dropdown text-end">
-          <button
-            class="btn btn-secondary dropdown-toggle"
-            type="button"
-            id="reviewLanguageDropdownMenu"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Language
-          </button>
-          <ul
-            class="dropdown-menu"
-            aria-labelledby="reviewLanguageDropdownMenu"
-          >
-            <li><a class="dropdown-item" href="#">English</a></li>
-            <li><a class="dropdown-item" href="#">Swedish</a></li>
-          </ul>
-        </div> -->
-      </div>
     </div>
     <div class="row">
       <Review v-for="review in ratingFilterList" :review="review" :key="review.id" />
@@ -81,12 +61,16 @@
 <style scoped>
 
   h2 {
-    margin-left: 6cm;
+    margin-left: 5cm;
   }
 
-  /* .dropdown{
+  .dropdown{
     margin-left: 25cm;
-  } */
+  }
+
+  .active {
+  font-weight: bold;
+}
 
 </style>
 
@@ -143,9 +127,3 @@ export default {
     },
 };
 </script>
-
-<style>
-    .active {
-  font-weight: bold;
-}
-</style>

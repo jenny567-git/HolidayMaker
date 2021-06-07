@@ -1,6 +1,6 @@
 <template>
     <div class="p-4 rounded shadow-sm">
-    <div id="test3">
+    <div id="testOmega">
         <div class="row" >
             <div class="col-md-4">
                 <Images :id="hotel.id"/>
@@ -68,8 +68,12 @@ computed:{
 </script>
 
 <style scoped>
-    #test3{
+    #testOmega{
         opacity: 100% !important;
+    }
+
+    a.nav-link{
+        margin-left: 35mm;
     }
 
     .p-4{

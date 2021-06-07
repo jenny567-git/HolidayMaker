@@ -50,7 +50,24 @@ namespace HolidayMakerBackEnd.Services
             return result;
         }
 
-        public void MakeBooking(SearchViewModel model)
+        public int CancelBooking(int bookingId)
+        {
+            var booking = GetBookingById(bookingId);
+            var reservedRooms = GetReservedRooms(bookingId);
+
+            foreach(var r in reservedRooms)
+            {
+                r.BookedRooms = 0;
+                _db.ReservedRooms.Update(r);
+            }
+
+            booking.Status = "Cancelled";
+            _db.Reservations.Update(booking);
+
+            return _db.SaveChanges();
+        }
+
+        public int MakeBooking(SearchViewModel model)
         {
             var newReservation = new Reservation()
             {
@@ -59,7 +76,14 @@ namespace HolidayMakerBackEnd.Services
                 DateCreated = DateTime.Now,
                 HotelId = model.HotelId,
                 GuestId = model.GuestId,
-                
+                FullName = model.customerDetails.FirstName + " " + model.customerDetails.LastName,
+                Email = model.customerDetails.Email,
+                Phone = model.customerDetails.PhoneNumber,
+                Street = model.customerDetails.Street,
+                City = model.customerDetails.City,
+                Zipcode = model.customerDetails.ZipCode,
+                Country = model.customerDetails.Country,
+                Status = "Confirmed"
             };
 
             _db.Reservations.Add(newReservation);
@@ -99,7 +123,7 @@ namespace HolidayMakerBackEnd.Services
             }
 
             var Cost = CalculateCost(newReservation, model.ReservedRooms, newResDetails);
-
+            return latestId;
         }
 
         
@@ -140,6 +164,25 @@ namespace HolidayMakerBackEnd.Services
                 }
             }
             return totalprice;
+        }
+
+        public void UpdateReservation(CustomerDetailsModel model, int id)
+        {
+            var reservation = _db.Reservations.SingleOrDefault(r => r.Id == id);
+
+            if (reservation != null)
+            {
+                reservation.FullName = model.FirstName + " " + model.LastName;
+                reservation.Email = model.Email;
+                reservation.Phone = model.PhoneNumber;
+                reservation.Street = model.Street;
+                reservation.City = model.City;
+                reservation.Zipcode = model.ZipCode;
+                reservation.Country = model.Country;
+
+                _db.SaveChanges();
+            }
+            
         }
     }
 }

@@ -41,7 +41,7 @@
                                 
                             </li>
                             <li>
-                                <router-link :to="'/profile/booking'">Bookings </router-link>
+                                <router-link :to="'/profile/bookings'">Bookings </router-link>
                                 <i class="fas fa-concierge-bell"></i>
                                 
                             </li>

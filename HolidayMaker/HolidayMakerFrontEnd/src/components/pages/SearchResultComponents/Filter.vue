@@ -110,12 +110,16 @@
         </div>
       </div>
     </div>
-    <div class="col-md-8">
+
+    <div v-if="filteredHotels.length" class="col-md-8">
       <Result
         v-for="result in filteredHotels"
         :hotel="result.hotel"
         :key="result.hotel.id"
       />
+    </div>
+    <div v-else class="col-md-8 float-container">
+      <Skel v-for="n in nrOfSkeletons" :key="n"></Skel>
     </div>
   </div>
 </template>
@@ -125,15 +129,17 @@ import Slider from "/node_modules/@vueform/slider";
 import Images from "../HotelViewComponents/RoomPhotoSlider.vue";
 import Info from "../HotelViewComponents/Info.vue";
 import Result from "./Result.vue";
-
+import Skel from "./Skel.vue";
+import Card from "primevue/card";
 export default {
   components: {
     Slider,
     Images,
     Info,
     Result,
+    Skel,
+    Card,
   },
-
   data() {
     return {
       pricerange: {
@@ -142,18 +148,18 @@ export default {
       beachDistance: {
         value: 7,
         step: -1,
-        format:{
+        format: {
           decimals: 1,
-          suffix: ' km'
-        }
+          suffix: " km",
+        },
       },
       centrumDistance: {
         value: 10,
-        step:-1,
-        format:{
-          decimals:1,
-          suffix: ' km'
-        }
+        step: -1,
+        format: {
+          decimals: 1,
+          suffix: " km",
+        },
       },
       pool: false,
       nightEntertainment: false,
@@ -162,50 +168,57 @@ export default {
     };
   },
   computed: {
+    nrOfSkeletons() {
+      return 3;
+    },
     searchResults() {
       return this.$store.state.seachResults;
     },
     hotelsCount() {
       return this.filteredHotels.length;
     },
-
     filteredHotels() {
-      
-      //filter price
-      let result = this.searchResults.filter(
-        (res) => this.pricerange.value[0] <= res.hotel.rooms[0].price && res.hotel.rooms[0].price <= this.pricerange.value[1]
+      if (this.searchResults.length) {
+        //filter price
+        let result = this.searchResults.filter(
+          (res) =>
+            this.pricerange.value[0] <= res.hotel.rooms[0].price &&
+            res.hotel.rooms[0].price <= this.pricerange.value[1]
         );
-        
-      result = result.filter(
+
+        result = result.filter(
           (res) => res.hotel.beachDistance <= this.beachDistance.value
-      );
-        
-
-      result = result.filter(
-        (res) => res.hotel.centrumDistance <= this.centrumDistance.value
-      );
-
-      if (this.pool) {
-        result = result.filter((res) => res.hotel.pool == this.pool);
-      }
-
-      if (this.nightEntertainment) {
-        result = result.filter(
-          (res) => res.hotel.nightEntertainment == this.nightEntertainment
         );
-      }
 
-      if (this.childClub) {
-        result = result.filter((res) => res.hotel.childClub == this.childClub);
-      }
-
-      if (this.restaurant) {
         result = result.filter(
-          (res) => res.hotel.restaurant == this.restaurant
+          (res) => res.hotel.centrumDistance <= this.centrumDistance.value
         );
+
+        if (this.pool) {
+          result = result.filter((res) => res.hotel.pool == this.pool);
+        }
+
+        if (this.nightEntertainment) {
+          result = result.filter(
+            (res) => res.hotel.nightEntertainment == this.nightEntertainment
+          );
+        }
+
+        if (this.childClub) {
+          result = result.filter(
+            (res) => res.hotel.childClub == this.childClub
+          );
+        }
+
+        if (this.restaurant) {
+          result = result.filter(
+            (res) => res.hotel.restaurant == this.restaurant
+          );
+        }
+        this.$emit("updateNrOfHotels", result.length);
+        return result;
       }
-      this.$emit("updateNrOfHotels", result.length);
-      return result;
+      return 0;
     },
   },
 };
@@ -215,6 +228,26 @@ export default {
 </style>
 
 <style scoped>
+.myContainer {
+  width: 300%;
+  height: auto;
+  margin: 10px;
+  padding: 10px;
+  display: grid;
+}
+.hotelResults {
+  width: 30%;
+  height: fit-content;
+  margin: auto;
+  margin-right: 5px;
+}
+.myFilter {
+  width: 101%;
+  margin-left: 5px;
+  position: absolute;
+}
+#sliders {
+  color: rgb(0, 0, 0);
   #sliders{
     color: black;
   }

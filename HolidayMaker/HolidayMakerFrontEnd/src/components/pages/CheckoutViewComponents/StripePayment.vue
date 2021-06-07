@@ -11,9 +11,7 @@
             </button>
             <p id="card-error" role="alert"></p>
             <p class="result-message hidden">
-                Payment succeeded, see the result in your
-                <a href="" target="_blank">Stripe dashboard.</a> Refresh the
-                page to pay again.
+                Payment succeeded, finishing booking.
             </p>
         </form>
     </div>
@@ -66,7 +64,7 @@ export default {
         payWithCard(stripe, card, clientSecret) {
             loading(true);
             var ref = this;
-            var email = this.$store.state.customerDetailsCheckout.Email;
+            var email = this.$store.state.customerDetailsCheckout.email;
             console.log(email);
             stripe
                 .confirmCardPayment(clientSecret, {
@@ -82,17 +80,17 @@ export default {
                     } else {
                         // The payment succeeded!
                         orderComplete(result.paymentIntent.id);
-                        console.log("Order has completed!");
+                        console.log("Payment Confirmed!");
                         ref.createBooking();
-                        ref.$emit("payment-confirmed", result.paymentIntent.id);
+                        
                     }
                 });
         },
         createBooking() {
 						var bookingDetails = this.$store.state.bookingDetails;
 						var booking = {
-								startDate: this.$store.state.searchString.dates[0].toISOString().split('T')[0],
-								endDate : this.$store.state.searchString.dates[1].toISOString().split('T')[0],
+								startDate: this.$store.state.searchString.dates[0].split('T')[0],
+								endDate : this.$store.state.searchString.dates[1].split('T')[0],
 								totalPrice : bookingDetails.totalprice,
 								hotelId : this.$store.state.hotel.id,
 								guestId : this.$store.state.guestId,
@@ -102,8 +100,11 @@ export default {
 								customerMessage : this.$store.state.customerDetailsCheckout.Message,
 								reservationId : 0,
 								type : bookingDetails.serviceType,
-								reservedRooms: []
+								reservedRooms: [],
+                                customerDetails: {}
 							}
+
+                            booking.customerDetails = this.$store.state.customerDetailsCheckout;
 
 							if(bookingDetails.noOfSingleRooms > 0){
 								booking.reservedRooms.push({roomId: bookingDetails.singleRoomId , bookedRooms: bookingDetails.noOfSingleRooms});
@@ -124,6 +125,7 @@ export default {
             }).then(response => response.json())
 							.then(data => {
 									console.log('Success:', data);
+                                    this.$emit("payment-confirmed", data);
 							})
 							.catch((error) => {
 									console.error('Error:', error);
@@ -166,12 +168,7 @@ export default {
 // Shows a success message when the payment is complete
 var orderComplete = function (paymentIntentId) {
     loading(false);
-    document
-        .querySelector(".result-message a")
-        .setAttribute(
-            "href",
-            "https://dashboard.stripe.com/test/payments/" + paymentIntentId
-        );
+    
     document.querySelector(".result-message").classList.remove("hidden");
     document.querySelector("button").disabled = true;
 };

@@ -23,10 +23,10 @@
                         <div class="col-md-12 buttons">
                             <ul class="nav nav-pills">
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                        <Button label="Info" icon="pi pi-check" ><router-link :to="'/hotels/' + this.$route.params.id + '/'"> Info </router-link></Button>
-                                        <Button label="Photo" icon="pi pi-trash"><router-link :to="'/hotels/' + this.$route.params.id + '/photos'" > Photos </router-link></Button>
-                                        <Button label="Reviews" icon="pi pi-times" ><router-link :to="'/hotels/' + this.$route.params.id + '/reviews'" > Reviews </router-link></Button>
-                                        <Button label="Rooms" icon="pi pi-times" ><router-link :to="'/hotels/' + this.$route.params.id + '/rooms'" > Rooms </router-link></Button>
+                                        <Button  id="fuckyB" label="Info" icon="pi pi-check" ><router-link :to="'/hotels/' + this.$route.params.id + '/'"> Info </router-link></Button>
+                                        <Button  id="fuckyB" label="Photo" icon="pi pi-trash"><router-link :to="'/hotels/' + this.$route.params.id + '/photos'" > Photos </router-link></Button>
+                                        <Button  id="fuckyB" label="Reviews" icon="pi pi-times" ><router-link :to="'/hotels/' + this.$route.params.id + '/reviews'" > Reviews </router-link></Button>
+                                        <Button  id="fuckyB" label="Rooms" icon="pi pi-times" ><router-link :to="'/hotels/' + this.$route.params.id + '/rooms'" > Rooms </router-link></Button>
                                 </div>
                                 <li class="nav-item">
                                     <button class="btn" @click="ToggleStar" id="starBtn">
@@ -80,12 +80,10 @@
             text-decoration:underline;
         }
 
-        button.p-button.p-component{
-            margin-right:5px;
-            height:45px;
-            
+        #fuckyB{
+           margin-right:5px;
+            height:45px; 
         }
-
 
         .col-md-12.buttons{
             border-top: 1px solid black;

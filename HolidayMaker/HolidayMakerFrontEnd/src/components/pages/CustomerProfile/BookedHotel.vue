@@ -82,41 +82,47 @@
       </div>
     </div>
     <div v-if="edit">
-      <CustomerDetails />
+        <ProfileCustomerDetails :hotel="hotel"/>
     </div>
   </div>
 </template>
 
 <script>
-import CustomerDetails from "/src/components/pages/CheckoutViewComponents/CustomerDetails.vue";
+import ProfileCustomerDetails from '/src/components/pages/CustomerProfile/ProfileCustomerDetails.vue'
 
 export default {
-  components: {
-    CustomerDetails,
-  },
-  props: {
-    hotel: {},
-  },
-  data() {
-    return {
-      edit: false,
-    };
-  },
-  computed: {
-    startDate() {
-      return this.hotel.startDate.split("T")[0];
+    components:{
+        ProfileCustomerDetails,
     },
-    endDate() {
-      return this.hotel.endDate.split("T")[0];
+    props:{
+        hotel: {}
     },
-  },
-  methods: {
-    toggleEdit() {
-      this.edit = !this.edit;
-      this.$store.dispatch(
-        "saveCustomerDetailsCheckout",
-        this.hotel.guestDetails
-      );
+    data(){
+        return {
+            edit: false
+        }
+    },
+    computed:{
+        startDate(){
+            return this.hotel.startDate.split('T')[0];
+        },
+        endDate(){
+            return this.hotel.endDate.split('T')[0];
+        }
+    },
+    methods: {
+        toggleEdit(){
+            this.edit = !this.edit;
+            //this.$store.dispatch('saveCustomerDetailsCheckout', this.hotel.guestDetails);
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Success:", data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     },
     CancelBooking() {
       // console.log(this.hotel.reservationId)

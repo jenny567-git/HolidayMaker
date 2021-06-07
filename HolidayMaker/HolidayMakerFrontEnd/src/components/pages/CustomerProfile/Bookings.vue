@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h1>test</h1>
         <BookedHotel v-for="hotel in bookedHotels" :hotel="hotel"></BookedHotel>
     </div>
 </template>
@@ -13,6 +12,7 @@ export default {
     created(){
         // Get booked hotels
         this.$store.dispatch('getBookings');
+        console.log(this.$store.state.bookedHotels)
     },
     computed:{
         bookedHotels(){

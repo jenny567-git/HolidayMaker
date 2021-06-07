@@ -158,8 +158,9 @@ export default {
 
 .intro-2 {
     background: url("https://wallpaperaccess.com/full/1198002.jpg")no-repeat center center;
-    background-size: cover !important;
-    background-position: center;
+    background-size: cover ;
+    background-position: top;
+    background-attachment: fixed;
     background-repeat: no-repeat;
     border-color: black;
     border-style: solid;

@@ -76,6 +76,13 @@ namespace HolidayMakerBackEnd.Services
                 DateCreated = DateTime.Now,
                 HotelId = model.HotelId,
                 GuestId = model.GuestId,
+                FullName = model.customerDetails.FirstName + " " + model.customerDetails.LastName,
+                Email = model.customerDetails.Email,
+                Phone = model.customerDetails.PhoneNumber,
+                Street = model.customerDetails.Street,
+                City = model.customerDetails.City,
+                Zipcode = model.customerDetails.ZipCode,
+                Country = model.customerDetails.Country
                 Status = "Confirmed"
             };
 
@@ -157,6 +164,25 @@ namespace HolidayMakerBackEnd.Services
                 }
             }
             return totalprice;
+        }
+
+        public void UpdateReservation(CustomerDetailsModel model, int id)
+        {
+            var reservation = _db.Reservations.SingleOrDefault(r => r.Id == id);
+
+            if (reservation != null)
+            {
+                reservation.FullName = model.FirstName + " " + model.LastName;
+                reservation.Email = model.Email;
+                reservation.Phone = model.PhoneNumber;
+                reservation.Street = model.Street;
+                reservation.City = model.City;
+                reservation.Zipcode = model.ZipCode;
+                reservation.Country = model.Country;
+
+                _db.SaveChanges();
+            }
+            
         }
     }
 }

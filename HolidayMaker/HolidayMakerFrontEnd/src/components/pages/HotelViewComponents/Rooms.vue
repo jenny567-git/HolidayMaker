@@ -47,7 +47,7 @@ export default {
   },
   data(){
     return{
-      value: '',
+      value: 'Self service',
       serviceTypes: ['Self service', 'Half board', 'Full board', 'All inclusive'],
     }
   },

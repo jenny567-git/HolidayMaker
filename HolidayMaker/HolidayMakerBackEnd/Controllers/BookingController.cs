@@ -92,6 +92,7 @@ namespace HolidayMakerBackEnd.Controllers
             model.Type = reservationDetails.Type;
             model.ExtraBed = reservationDetails.ExtraBed;
             model.HotelId = result.HotelId;
+            model.Status = result.Status;
 
             foreach (var item in reservedRooms)
             {

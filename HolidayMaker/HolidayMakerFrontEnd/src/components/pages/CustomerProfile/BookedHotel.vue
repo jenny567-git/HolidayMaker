@@ -11,24 +11,29 @@
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title">{{hotel.hotelName}}</h5>
+          <h5 class="card-title">{{ hotel.hotelName }}</h5>
           <div class="textB">
-            <p>{{hotel.fullName}}</p>
-            <p>{{startDate}} - {{endDate}}</p>
+            <p>{{ hotel.fullName }}</p>
+            <p>{{ startDate }} - {{ endDate }}</p>
             <p>More information about the booking</p>
           </div>
           <!-- Button trigger modal -->
-          <button
-            type="button"
-            class="btn btn-danger float-end"
-            data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop"
-          >Cancel Booking</button>
-           <button
-            type="button"
-            class="btn btn-info"
-            @click="toggleEdit"
-          >Edit Booking</button>
+          <div v-if="hotel.status != 'Cancelled'">
+            <button
+              type="button"
+              class="btn btn-danger float-end"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+            >
+              Cancel Booking
+            </button>
+            <button type="button" class="btn btn-info" @click="toggleEdit">
+              Edit Booking
+            </button>
+          </div>
+          <div v-else>
+            <p style="color:red">This booking is cancelled</p>
+          </div>
 
           <!-- Modal -->
           <div
@@ -38,8 +43,8 @@
             data-bs-keyboard="false"
             tabindex="-1"
             aria-labelledby="staticBackdropLabel"
-            aria-hidden="true">
-
+            aria-hidden="true"
+          >
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -58,8 +63,17 @@
                   <button
                     type="button"
                     class="btn btn-secondary"
-                    data-bs-dismiss="modal">No</button>
-                  <button type="button" class="btn btn-danger" @click="CancelBooking">Yes</button>
+                    data-bs-dismiss="modal"
+                  >
+                    No
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    @click="CancelBooking"
+                  >
+                    Yes
+                  </button>
                 </div>
               </div>
             </div>
@@ -68,55 +82,61 @@
       </div>
     </div>
     <div v-if="edit">
-        <CustomerDetails/>
+      <CustomerDetails />
     </div>
   </div>
 </template>
 
 <script>
-import CustomerDetails from '/src/components/pages/CheckoutViewComponents/CustomerDetails.vue'
+import CustomerDetails from "/src/components/pages/CheckoutViewComponents/CustomerDetails.vue";
 
 export default {
-    components:{
-        CustomerDetails,
+  components: {
+    CustomerDetails,
+  },
+  props: {
+    hotel: {},
+  },
+  data() {
+    return {
+      edit: false,
+    };
+  },
+  computed: {
+    startDate() {
+      return this.hotel.startDate.split("T")[0];
     },
-    props:{
-        hotel: {}
+    endDate() {
+      return this.hotel.endDate.split("T")[0];
     },
-    data(){
-        return {
-            edit: false
+  },
+  methods: {
+    toggleEdit() {
+      this.edit = !this.edit;
+      this.$store.dispatch(
+        "saveCustomerDetailsCheckout",
+        this.hotel.guestDetails
+      );
+    },
+    CancelBooking() {
+      // console.log(this.hotel.reservationId)
+      fetch(
+        "https://localhost:44356/api/Booking/CancelBooking?id=" +
+          this.hotel.reservationId,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(this.hotel.reservationId),
         }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Success:", data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     },
-    computed:{
-        startDate(){
-            return this.hotel.startDate.split('T')[0];
-        },
-        endDate(){
-            return this.hotel.endDate.split('T')[0];
-        }
-    },
-    methods: {
-        toggleEdit(){
-            this.edit = !this.edit;
-            this.$store.dispatch('saveCustomerDetailsCheckout', this.hotel.guestDetails);
-        },
-        CancelBooking(){
-          // console.log(this.hotel.reservationId)
-          fetch("https://localhost:44356/api/Booking/CancelBooking?id=" + this.hotel.reservationId, 
-          {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(this.hotel.reservationId),
-          })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log("Success:", data);
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
-          }
-    },
-}
+  },
+};
 </script>

@@ -63,9 +63,6 @@ const store = createStore({
       },
     },
     customerDetailsCheckout: {},
-    user: {
-      loggedIn: false,
-    },
   },
   mutations: {
     setEmail(store, value) {
@@ -180,8 +177,14 @@ const store = createStore({
     setCustomerDetailsCheckout(state, data) {
       state.customerDetailsCheckout = data;
     },
-    setLoggedInUser(state, user) {
-      state.user = user;
+    setUser(state, data) {
+      state.user = data;
+      state.user.loggedIn = true;
+      console.log(data);
+    },
+
+    logOutUser(state) {
+      state.user.loggedIn = false;
     },
     setEmail(state, value) {
       state.user.Email = value;
@@ -309,31 +312,36 @@ const store = createStore({
       var result = await response.json();
       commit("setAutoComplete", result);
     },
-    async login({ dispatch }, credentials) {
+    async login({ commit }, credentials) {
       let response = await fetch("https://localhost:44356/api/Guest/login", {
         method: "post",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(credentials),
       });
       let result = await response.json();
-      await dispatch("getLoggedInUser", result);
+
+      commit("setUser", result);
+      Cookies.set("login", "true");
+      Cookies.set("userId", result.id);
+
+      router.push("/");
     },
-    async getLoggedInUser({ commit }) {
-      let response = await fetch(
-        "https://localhost:44356/api/Guest/GetGuestById/"
-      );
-      let result = await response.json();
-      if (response.status == 401) {
-        result.loggedIn = false;
+    checkLoggedInUser({ commit }) {
+      console.log("dkjgb");
+      var myCookie = Cookies.get("login");
+      if (myCookie) {
+        this.dispatch("login", {
+          Email: "",
+          Password: "",
+          UserID: Cookies.get("userId"),
+        });
       }
-      commit("setLoggedInUser", result);
     },
-    async logout({ dispatch }) {
-      let response = await fetch("https://localhost:44356/api/Guest/login", {
-        method: "delete",
-      });
-      //kolla response status etc
-      await dispatch("getLoggedInUser");
+    async logout({ commit }) {
+      Cookies.remove("userId");
+      Cookies.remove("login");
+      commit("logOutUser");
+      router.push("/");
     },
     async getSavedHotelsInfo({ commit }) {
       console.log("Getting saved hotels for guest id ", this.state.guestId);

@@ -1,5 +1,8 @@
 <template>
     <div>
+        <div v-if="!bookedHotels.length">
+            <ProgressSpinner />
+        </div>
         <BookedHotel v-for="hotel in bookedHotels" :hotel="hotel" :key="hotel.reservationId"></BookedHotel>
         <ConfirmDialog></ConfirmDialog>
     </div>
@@ -7,10 +10,12 @@
 <script>
 import BookedHotel from './BookedHotel.vue'
 import ConfirmDialog from "primevue/confirmdialog";
+import ProgressSpinner from 'primevue/progressspinner';
 export default {
     components:{
         BookedHotel,
-        ConfirmDialog
+        ConfirmDialog,
+        ProgressSpinner
     },
     created(){
         // Get booked hotels

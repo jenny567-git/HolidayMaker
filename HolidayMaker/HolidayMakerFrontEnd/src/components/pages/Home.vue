@@ -1,10 +1,7 @@
 <template>
     <div>
         <h1 id="welcome">Welcome to Africa Motherfucker!</h1>
-        <div id="homeDiv">
-
-
-        </div>
+        
     </div>
 </template>
 <script>
@@ -16,9 +13,9 @@ export default {
 }
 </script>
 <style scoped>
-    #homeDiv{
+    /* #homeDiv{
         margin-top: 500px;
-    }
+    } */
     figure {
     margin: 0;
 }

@@ -28,4 +28,8 @@ export default {
         margin: 0 auto;
         margin-top: 30px;
     }
+
+    .row{
+        color:black;
+    }
 </style>

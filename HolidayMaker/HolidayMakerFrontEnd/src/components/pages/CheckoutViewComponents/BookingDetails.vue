@@ -1,5 +1,5 @@
 <template >
-    <div>
+    <div class="derp">
         <h4 class="mb-3">Booking details</h4>
         <ul class="list-unstyled" id="BookingDetailsList">
             <li class="list-item">
@@ -51,5 +51,9 @@ export default {
     #BookingDetailsList{
         display: inline-block;
         text-align: left;
+    }
+
+    .derp{
+        color:black;
     }
 </style>

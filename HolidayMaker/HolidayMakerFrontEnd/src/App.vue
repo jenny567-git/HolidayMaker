@@ -16,6 +16,9 @@
                         <br>
                         <br>
                         <br>
+                        <br>
+                        <br>
+                        <br>
                     </div>
                 </div>
             </div>
@@ -51,8 +54,6 @@ import ColorPicker from 'primevue/colorpicker';
 import Navigator from '/src/components/Navigator.vue';
 import Footer from '/src/components/Footer.vue';
 import Body from "/src/components/pages/MainPage/Body.vue";
-
-
 import Searcher from './components/pages/SearchComponent/Search.vue'
 
 export default {
@@ -110,9 +111,7 @@ export default {
         this.$store.state.searchButtonLoading = true;
 
         this.$store.dispatch('searchHotels', this.searchString);
-      },
-      
-      
+      }
     },
     computed:{
       isLoading(){
@@ -120,19 +119,8 @@ export default {
       },
       showBody(){
         return this.$route.path == '/' ? true : false;
-      },
-      
-    },
-    created(){
-        console.log("App created");
-        if(Cookies.get('login')){
-          this.$store.dispatch('checkLoggedInUser')
-        }
-      },
-    
-    
-    
-    
+      }
+    }
 }
 
 
@@ -162,18 +150,11 @@ export default {
     background-position: top;
     background-attachment: fixed;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     border-color: black;
     border-style: solid;
     border-width: 2px 0px 2px 0px;
 }
-
-/* .full-bg-img{
-  max-height: 300fr;
-  max-width: none;
-  min-width: 100%;
-  min-height: 100%;
-  position: static;
-} */
 
 .view {
     height: 100%;
@@ -188,4 +169,8 @@ export default {
   border-width: 2px 0px 2px 0px;
   justify-content: center;
 } */
+
+audio{
+  margin-top: 20px;
+}
 </style>

@@ -1,7 +1,6 @@
 <template>
-  <Card id="test11">
-    
-      <template #content>
+ <Card id="test3">
+   <template #content>
     <div class="p-grid">
       <div class="p-col-12 p-md-6 p-lg-4">
         <label for="searchInput" id="searchField">Location/Hotel name </label>
@@ -22,9 +21,8 @@
           <Button  class="p-mx-auto" label="Search" @click="Search" :loading="isLoading"/>
       </div>
     </div>
-   </template>     
-        </Card>
-    
+   </template>
+ </Card>
 </template>
 
 <script>
@@ -33,6 +31,7 @@ import Calendar from "./Datepicker.vue";
 import SearchDropdown from "./SearchDropdown.vue";
 import Searchfield from "./Searchfield.vue";
 import Card from 'primevue/card';
+
 export default {
   data(){
     return{
@@ -44,7 +43,7 @@ export default {
     Button,
     Calendar,
     SearchDropdown,
-    Card
+    Card,
   },
   methods: {
     onSubmit() {},
@@ -66,19 +65,30 @@ export default {
 </script>
 
 <style scoped>
-#test11{
+
+#test3{
+  margin-top: 30px;
   border-radius: 20px;
 }
-#test3{
+
+/* #test2{
         border-radius: 30px;
-        background-color: rgba(107, 146, 83, 0.5);
+        background-color: white;
         padding-left: 25px;
         padding-right: 25px;
+        color:black;
     }
-    
+     */
 #searchBtn{
-  margin-top: 48px;
+  margin-top: 46px;
 }
+
+button.p-button.p-component.p-mx-auto{
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+
 #range{
   display: block;
 }
@@ -98,7 +108,7 @@ export default {
 
 .container {
   background-color: #7e7e7e;
-  color: #283618;
+  color: #182436;
   border-radius: 25px;
   padding-left: 50px;
   padding-right: 50px;

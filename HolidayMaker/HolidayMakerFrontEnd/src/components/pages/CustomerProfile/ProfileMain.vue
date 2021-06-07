@@ -41,7 +41,7 @@
                                 
                             </li>
                             <li>
-                                <router-link :to="'/profile/bookings'">Bookings </router-link>
+                                <router-link :to="'/profile/booking'">Bookings </router-link>
                                 <i class="fas fa-concierge-bell"></i>
                                 
                             </li>
@@ -87,7 +87,7 @@ export default {
     .profile {
         margin: 20px 0;
     }
-    
+
     /* Profile sidebar */
     .profile-sidebar {
         padding: 20px 0 20px 0;

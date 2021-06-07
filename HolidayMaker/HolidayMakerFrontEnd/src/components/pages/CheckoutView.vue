@@ -88,8 +88,8 @@ export default {
         padding-top: 20px;
     }
     #test2{
-        border-radius: 30px;
-        background-color: rgba(107, 146, 83, 0.5);
+        border-radius: 20px;
+        background-color: white;
         padding-left: 25px;
         padding-right: 25px;
         padding-bottom: 40px;

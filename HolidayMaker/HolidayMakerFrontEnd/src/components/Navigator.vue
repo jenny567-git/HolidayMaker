@@ -93,8 +93,11 @@ export default {
     box-sizing: border-box
 }
 
-a {
-    text-decoration: none;
+header{
+    color:white;
+}
+
+a{
 }
 
 header {

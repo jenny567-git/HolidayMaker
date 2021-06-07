@@ -1,25 +1,24 @@
 <template>
-  <div>
-    <div class="row">
+    <div class="p-4 rounded shadow-sm">
       <div class="row">
-        <div class="col-md-4">
-          <p>Name: {{review.guest.fullName}}</p>
-          <p>Date created: {{ createdDate }}</p>
-          <!-- <p>Language: (English)</p> -->
-        </div>
-        <div class="col-md-8">
-          <p>
-            Ratings:
-            <span class="badge rounded-pill bg-secondary">{{
-              review.rating
-            }}</span>
-          </p>
-          <p>{{ review.description }}</p>
+        <div class="row">
+          <div class="col-md-4">
+            <p>Name: {{review.guest.fullName}}</p>
+            <p>Date created: {{ createdDate }}</p>
+            <!-- <p>Language: (English)</p> -->
+          </div>
+          <div class="col-md-8">
+            <p>
+              Ratings:
+              <span class="badge rounded-pill bg-secondary">{{
+                review.rating
+              }}</span>
+            </p>
+            <p>{{ review.description }}</p>
+          </div>
         </div>
       </div>
-      <hr />
     </div>
-  </div>
 </template>
 
 
@@ -40,5 +39,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.p-4{
+        margin-top:15px;
+        background-color:rgb(241, 241, 241);
+    }
 </style>

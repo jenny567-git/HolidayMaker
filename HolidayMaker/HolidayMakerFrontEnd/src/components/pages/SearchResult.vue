@@ -49,11 +49,29 @@ export default ({
 </script>
 
 <style scoped>
-    #test3{
+    /* #test2{
         border-radius: 20px;
+        background-color: white;
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-bottom: 40px;
         margin-top: 20px;
+    } */
+
+    #test3{
+        border-radius:20px;
+        margin-top:20px;
     }
+
     .dropdown{
         margin-top: 35px;
+    }
+    
+    div.dropdown{
+        margin-left:7cm;
+    }
+
+    a.dropdown-item{
+        color:black !important;
     }
 </style>

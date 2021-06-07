@@ -50,6 +50,19 @@ namespace HolidayMakerBackEnd.Services
             return result;
         }
 
+        public void DeleteBooking(int bookingId)
+        {
+            var booking = GetBookingById(bookingId);
+            var reservedRooms = GetReservedRooms(bookingId);
+
+            foreach(var r in reservedRooms)
+            {
+                r.BookedRooms = 0;
+            }
+
+
+        }
+
         public int MakeBooking(SearchViewModel model)
         {
             var newReservation = new Reservation()

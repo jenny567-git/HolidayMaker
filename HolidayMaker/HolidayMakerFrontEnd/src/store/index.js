@@ -337,7 +337,7 @@ const store = createStore({
       Cookies.set("login", "true");
       Cookies.set("userId", result.id);
 
-      router.push("/");
+      router.push("/profile");
     },
     checkLoggedInUser({ commit }) {
       console.log("dkjgb");

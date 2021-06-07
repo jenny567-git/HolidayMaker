@@ -18,7 +18,7 @@
         <SearchDropdown />
       </div>
       <div class="p-col-12 p-md-6 p-lg-2" id="searchBtn">
-          <Button  class="p-mx-auto" label="Search" @click="Search" :loading="isLoading"/>
+          <Button  class="" label="Search" @click="Search" :loading="isLoading"/>
       </div>
     </div>
    </template>

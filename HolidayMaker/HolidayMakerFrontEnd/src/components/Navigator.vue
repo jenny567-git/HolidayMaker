@@ -15,12 +15,33 @@
                         <li><a href="#"><router-link to="/checkout">Checkout</router-link></a></li>
                     </ul>
                 </nav>
+
+
+
+                <!-- Detta ska flyttas till ovanför ikonen till höger -->
+                <div v-if="loggedIn">
+                    <ul class="nav-area">
+                        <li ><p>{{user.email}}</p></li>
+                    </ul>
+                    
+                    
+                   
+                   
+                </div>
                  <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle pi pi-user" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="fontSize: 2rem">
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item" href="#"><router-link to="/login">Log in</router-link></a></li>
-                    <li><a class="dropdown-item" href="#">Log out</a></li>
+                   
+                    <div v-if="!loggedIn">
+                    <li ><a class="dropdown-item" href="#"><router-link to="/login">Log in</router-link></a></li>
+                    </div>
+
+                    <div v-if="loggedIn">
+                   <li ><a class="dropdown-item" href="" @click="logout()">Log out</a></li>
+                   <li><a class="dropdown-item" href="#"><router-link to="/test">Profile</router-link>  </a></li>
+                    </div>
+                    
                     <li><a class="dropdown-item" href="#"><router-link to="/registration">Register</router-link></a></li>
                 </ul>
                 </li>
@@ -28,18 +49,41 @@
     </html>
 </template>
 
+
+
 <script>
-import { defineProps, reactive } from 'vue'
-import Button from 'primevue/button';
-
-defineProps({
-  msg: String,
-  component:{
-    Button
-  }
-
-})
+export default {
+  components: {},
+  data() {
+    return {
+      userInfo: {},
+    };
+  },
+  computed: {
+    loggedIn(){
+            return this.$store.state.user.loggedIn
+    },
+    user() {
+      return this.$store.state.user;
+    },
+    
+  },
+  created() {
+    this.$store.dispatch("getReservationById", this.$route.params.id);
+  },
+  methods:{
+      logout(){
+            this.$store.dispatch('logout')
+            
+        }
+  },
+  
+};
 </script>
+
+
+
+
 
 <style scoped>
 
@@ -80,6 +124,9 @@ header {
 .nav-area li a {
     color: rgb(224, 224, 224);
 }
+.nav-area li p {
+    color: rgb(224, 224, 224);
+}
 
 .nav-area li a:hover {
     color: #ffffff;
@@ -107,3 +154,4 @@ header {
 
 
 </style>
+

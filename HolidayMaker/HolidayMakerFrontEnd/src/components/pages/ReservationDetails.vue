@@ -59,6 +59,12 @@ export default {
       },
     };
   },
+  computed: {
+    reservation() {
+      return this.$store.state.reservation;
+    },
+    
+  },
   created() {
     this.$store.dispatch("getReservationById", this.$route.params.id)
     .then(() =>{

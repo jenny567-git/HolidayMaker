@@ -75,16 +75,24 @@ namespace HolidayMakerBackEnd.Controllers
             int result = _guestService.SaveHotel(model);
             return Ok(result);
         }
-        
-       
-        [HttpPost("login")]
-        public Guest Login(LoginRequestViewModel model)
-        {
 
-            return _guestService.Login(model);
+        [HttpPost("login")]
+        public IActionResult Login(LoginRequestViewModel model)
+        {
+            
+            var response = _guestService.Login(model);
+            if (response == null)
+            {
+                return BadRequest(new { message = "Username or password is incorrect" });
+            }
+            return Ok(response);
+
+                
+
+
         }
 
-        
+
 
         [HttpDelete("removeFavoriteHotel")]
         public ActionResult RemoveHotelFromFavorites(SaveModel model)

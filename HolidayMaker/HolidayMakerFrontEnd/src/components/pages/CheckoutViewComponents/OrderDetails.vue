@@ -57,14 +57,14 @@ export default {
         checkinDate(){
             if(this.$store.state.searchString.dates[0] !== undefined){
                 console.log("sdasds",this.$store.state.searchString.dates[0]);
-                return this.$store.state.searchString.dates[0].split('T')[0];
+                return this.$store.state.searchString.dates[0].toLocaleDateString('sv-SE');
             }else{
                 return "not specified"
             }
         },
         checkoutDate(){
            if(this.$store.state.searchString.dates[1]  !== undefined){
-                return this.$store.state.searchString.dates[1].split('T')[0];
+                return this.$store.state.searchString.dates[1].toLocaleDateString('sv-SE');
             }else{
                 return "not specified"
             }

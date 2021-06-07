@@ -5,8 +5,8 @@
       <h3>Success!</h3>
       <p><strong>Name: </strong> {{ reservationInfo.fullName }}</p>
       <p><strong>Hotel: </strong>{{ reservationInfo.hotelName }}</p>
-      <p><strong>Checkin: </strong>{{ reservationInfo.startDate }}</p>
-      <p><strong>Checkout: </strong>{{ reservationInfo.endDate }}</p>
+      <p><strong>Checkin: </strong>{{ checkInDate }}</p>
+      <p><strong>Checkout: </strong>{{ checkOutDate }}</p>
       <h3>Booked rooms</h3>
 
       <p>
@@ -63,7 +63,12 @@ export default {
     reservation() {
       return this.$store.state.reservation;
     },
-    
+    checkInDate(){
+      return this.reservationInfo.startDate.split('T')[0];
+    },
+    checkOutDate(){
+      return this.reservationInfo.endDate.split('T')[0];
+    }
   },
   created() {
     this.$store.dispatch("getReservationById", this.$route.params.id)

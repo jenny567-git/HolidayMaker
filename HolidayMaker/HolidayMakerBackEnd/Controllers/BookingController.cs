@@ -70,7 +70,7 @@ namespace HolidayMakerBackEnd.Controllers
 
 
             ReservationViewModel model = new ReservationViewModel();
-            model.FullName = result.Guest.FullName;
+            model.FullName = result.FullName;
             if (result.FullName != null)
             {
                 model.GuestDetails.FirstName = result.FullName.Split(' ')[0];

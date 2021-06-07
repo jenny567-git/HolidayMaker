@@ -95,6 +95,7 @@ export default {
 }
 
 a {
+    color:black !important;
     text-decoration: none;
 }
 

@@ -67,7 +67,13 @@
 </template>
 
 <script>
+import Card from 'primevue/card'; 
+
 export default {
+    components:{
+        Card,
+        
+    },
     data() {
         return {
             fullName: "",
@@ -86,6 +92,10 @@ export default {
     /* Profile container */
     .profile {
         margin: 20px 0;
+    }
+
+    .nav a{
+        color:rgb(0, 0, 0) !important;
     }
     
     /* Profile sidebar */

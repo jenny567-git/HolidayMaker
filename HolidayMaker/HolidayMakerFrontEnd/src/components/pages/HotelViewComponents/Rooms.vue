@@ -12,7 +12,8 @@
 
         <!-- Pension type -->
         <div class="row">
-          <ServiceType @serviceType="getServicetype" />
+          <!-- <ServiceType @serviceType="getServicetype" /> -->
+          <SelectButton @click="getServicetype" v-model="value" :options="serviceTypes" />
         </div>
 
         <div class="row pt-5">
@@ -35,13 +36,20 @@ import Images from "./RoomPhotoSlider.vue";
 import Room from "./RoomsViewComponents/Room.vue";
 import ServiceType from "./RoomsViewComponents/ServiceType.vue";
 import Options from "./RoomsViewComponents/Option.vue";
-
+import SelectButton from 'primevue/selectbutton';
 export default {
   components: {
     Images,
     Room,
     ServiceType,
     Options,
+    SelectButton
+  },
+  data(){
+    return{
+      value: '',
+      serviceTypes: ['Self service', 'Half board', 'Full board', 'All inclusive'],
+    }
   },
   computed: {
     hotelInfo() {
@@ -59,12 +67,12 @@ export default {
       this.$store.dispatch('setExtraBedFee', this.hotelInfo.extraBedFee);
     },
     getServicetype(value) {
-      this.serviceType = value;
-      this.$store.dispatch('setServiceType', value);
+      this.serviceType = value.path[0].innerText;
+      this.$store.dispatch('setServiceType', this.serviceType);
 
       console.log("set fee");
       let id = this.$route.params.id;
-      this.$store.dispatch('setServiceFee', { id: id, type: value });
+      this.$store.dispatch('setServiceFee', { id: id, type: this.serviceType });
     },
     Book() {
       this.$store.dispatch('setHotelName', this.hotelInfo.name)

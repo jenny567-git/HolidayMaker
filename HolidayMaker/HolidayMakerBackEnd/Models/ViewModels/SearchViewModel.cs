@@ -16,7 +16,6 @@ namespace HolidayMakerBackEnd.Models.ViewModels
         public int? FlightId { get; set; }
         public int HotelId { get; set; }
         public int GuestId { get; set; }
-        public string Status { get; set; }
 
         //ReservationDetails
         public int Adults { get; set; }

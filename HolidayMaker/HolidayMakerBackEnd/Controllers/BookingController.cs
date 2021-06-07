@@ -30,6 +30,13 @@ namespace HolidayMakerBackEnd.Controllers
             return Ok(bookingId);
         }
 
+        [HttpPut("CancelBooking")]
+        public ActionResult CancelBooking(int id)
+        {
+            int result = _bookingService.CancelBooking(id);
+            return Ok(result);
+        }
+
         [HttpGet("{id}")]
         public ActionResult<ReservationViewModel> Get(int id)
         {

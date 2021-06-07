@@ -23,6 +23,7 @@
             class="btn btn-danger float-end"
             data-bs-toggle="modal"
             data-bs-target="#staticBackdrop"
+            @click="CancelBooking"
           >Cancel Booking</button>
            <button
             type="button"
@@ -100,7 +101,22 @@ export default {
         toggleEdit(){
             this.edit = !this.edit;
             this.$store.dispatch('saveCustomerDetailsCheckout', this.hotel.guestDetails);
-        }
+        },
+        CancelBooking(){
+          fetch("https://localhost:44356/api/Booking/CancelBooking?id=" + this.hotel.hotelID, 
+          {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(this.hotel.hotelID),
+          })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Success:", data);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+          }
     },
 }
 </script>

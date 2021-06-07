@@ -50,7 +50,7 @@ namespace HolidayMakerBackEnd.Services
             return result;
         }
 
-        public void DeleteBooking(int bookingId)
+        public int CancelBooking(int bookingId)
         {
             var booking = GetBookingById(bookingId);
             var reservedRooms = GetReservedRooms(bookingId);
@@ -58,9 +58,13 @@ namespace HolidayMakerBackEnd.Services
             foreach(var r in reservedRooms)
             {
                 r.BookedRooms = 0;
+                _db.ReservedRooms.Update(r);
             }
 
+            booking.Status = "Cancelled";
+            _db.Reservations.Update(booking);
 
+            return _db.SaveChanges();
         }
 
         public int MakeBooking(SearchViewModel model)

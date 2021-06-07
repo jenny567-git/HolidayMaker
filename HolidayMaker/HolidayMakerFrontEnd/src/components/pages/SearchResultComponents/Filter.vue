@@ -220,11 +220,14 @@ export default {
     
   }
 
+
+#accordionFlushExample{
+  border:solid;
+  border-color: silver;
+}
+
 .accordion {
   color: black;
 }
-.slider-connect {
-  background: #5a3ff5;
-  cursor: pointer;
-}
+
 </style>

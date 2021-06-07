@@ -1,33 +1,33 @@
 <template>
   <main>
     <Navigator/>
-    <div class="view intro-2">
-        <div class="full-bg-img">
-            <div class="mask rgba-black-light flex-center">
-              <div class="container">
-                <Searcher/>
-                <router-view/>
+      <div class="view intro-2">
+          <div class="full-bg-img">
+              <div class="mask rgba-black-light flex-center">
+                <div class="container">
+                  <Searcher/>
+                  <router-view/>
+                </div>
               </div>
-            </div>
-        </div>
-        <figure>
-            <figcaption></figcaption>
-                <audio
-                    controls
-                    src="/src/assets/Media/Toto.mp3">
-                        Your browser does not support the
-                        <code>audio</code> element.
-                </audio>
-            </figure> 
-    </div>
-      <!-- <div style="background: url(https://wallpaperaccess.com/full/1198002.jpg);" class="page-holder bg-cover">
-        <div class="container">
-          <Searcher/>
-          <router-view/>
-        </div>
-    </div> -->
-        <Body v-if="showBody"/>
-    <Footer/>
+          </div>
+      </div>
+        <!-- <div style="background: url(https://wallpaperaccess.com/full/1198002.jpg);" class="page-holder bg-cover">
+          <div class="container">
+            <Searcher/>
+            <router-view/>
+          </div>
+      </div> -->
+          <Body v-if="showBody"/>
+          <figure>
+              <figcaption></figcaption>
+                  <audio
+                      controls
+                      src="/src/assets/Media/Toto.mp3">
+                          Your browser does not support the
+                          <code>audio</code> element.
+                  </audio>
+              </figure> 
+      <Footer/>
   </main>
 </template>
 
@@ -142,11 +142,8 @@ export default {
 }
 
 /* .full-bg-img{
-  max-height: 300fr;
-  max-width: none;
-  min-width: 100%;
-  min-height: 100%;
-  position: static;
+ height:800px;
+ min-height:auto;
 } */
 
 .view {

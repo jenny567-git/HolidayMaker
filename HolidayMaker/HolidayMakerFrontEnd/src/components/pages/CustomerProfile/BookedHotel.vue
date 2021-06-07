@@ -23,7 +23,6 @@
             class="btn btn-danger float-end"
             data-bs-toggle="modal"
             data-bs-target="#staticBackdrop"
-            @click="CancelBooking"
           >Cancel Booking</button>
            <button
             type="button"
@@ -60,7 +59,7 @@
                     type="button"
                     class="btn btn-secondary"
                     data-bs-dismiss="modal">No</button>
-                  <button type="button" class="btn btn-danger">Yes</button>
+                  <button type="button" class="btn btn-danger" @click="CancelBooking">Yes</button>
                 </div>
               </div>
             </div>
@@ -103,11 +102,12 @@ export default {
             this.$store.dispatch('saveCustomerDetailsCheckout', this.hotel.guestDetails);
         },
         CancelBooking(){
-          fetch("https://localhost:44356/api/Booking/CancelBooking?id=" + this.hotel.hotelID, 
+          // console.log(this.hotel.reservationId)
+          fetch("https://localhost:44356/api/Booking/CancelBooking?id=" + this.hotel.reservationId, 
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(this.hotel.hotelID),
+            body: JSON.stringify(this.hotel.reservationId),
           })
           .then((response) => response.json())
           .then((data) => {

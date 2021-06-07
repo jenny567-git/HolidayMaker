@@ -187,21 +187,35 @@ namespace HolidayMakerBackEnd.Models.Database
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
 
+                entity.Property(e => e.City).IsUnicode(false);
+
+                entity.Property(e => e.Country).IsUnicode(false);
+
                 entity.Property(e => e.DateCreated).HasColumnType("date");
+
+                entity.Property(e => e.Email).IsUnicode(false);
 
                 entity.Property(e => e.EndDate).HasColumnType("date");
 
                 entity.Property(e => e.FlightId).HasColumnName("FlightID");
 
+                entity.Property(e => e.FullName).IsUnicode(false);
+
                 entity.Property(e => e.GuestId).HasColumnName("GuestID");
 
                 entity.Property(e => e.HotelId).HasColumnName("HotelID");
+
+                entity.Property(e => e.Phone).IsUnicode(false);
 
                 entity.Property(e => e.StartDate).HasColumnType("date");
 
                 entity.Property(e => e.Status)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Street).IsUnicode(false);
+
+                entity.Property(e => e.Zipcode).IsUnicode(false);
 
                 entity.HasOne(d => d.Guest)
                     .WithMany(p => p.Reservations)

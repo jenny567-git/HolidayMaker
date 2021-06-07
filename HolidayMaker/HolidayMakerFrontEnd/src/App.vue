@@ -8,19 +8,6 @@
                 <Searcher/>
                 <router-view/>
               </div>
-                <div>
-                    <div>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                    </div>
-                </div>
             </div>
         </div>
         <figure>
@@ -158,6 +145,7 @@ export default {
 
 .view {
     height: 100%;
+    min-height: 900px;
 }
 
 /* .bg-cover {

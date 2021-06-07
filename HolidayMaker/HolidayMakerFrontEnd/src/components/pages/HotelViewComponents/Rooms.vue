@@ -7,7 +7,7 @@
       </div>
 
       <!-- right column -->
-      <div class="col-md-6">
+      <div class="col-md-6 rounded shadow-sm">
         <Options @checked="setExtraBedFee" />
 
         <!-- Pension type -->

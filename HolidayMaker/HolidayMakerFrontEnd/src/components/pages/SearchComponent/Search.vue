@@ -68,6 +68,7 @@ export default {
 
 #test3{
   margin-top: 30px;
+  border-radius: 20px;
 }
 
 /* #test2{

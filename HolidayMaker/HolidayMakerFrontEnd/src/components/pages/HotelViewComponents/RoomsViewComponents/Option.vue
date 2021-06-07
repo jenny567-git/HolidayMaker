@@ -53,6 +53,10 @@ export default {
 </script>
 
 <style scoped>
+  h3{
+    padding-top:30px;
+  }
+
   .p-field-checkbox{
     padding-left:60mm;
   }

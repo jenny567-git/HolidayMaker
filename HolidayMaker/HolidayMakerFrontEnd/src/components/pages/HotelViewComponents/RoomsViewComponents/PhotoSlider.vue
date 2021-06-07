@@ -1,73 +1,37 @@
 <template>
-<CarouselCard :interval="7000" height="300px" type="card" arrow="always">
-    <CarouselCardItem v-for="i in 6" :key="i">
-        <h1 v-text="i"></h1>
-    </CarouselCardItem>
-</CarouselCard>
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapercave.com%2Fwp%2Fwp1846066.jpg&f=1&nofb=1" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwallpapercave.com%2Fwp%2Fwp1846068.jpg&f=1&nofb=1" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.alphacoders.com%2F498%2F498263.jpg&f=1&nofb=1" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
 </template>
 
+<style scoped>
 
-<script>
-import Galleria from 'primevue/galleria';
-import { CarouselCard, CarouselCardItem } from 'vue-carousel-card'
-import 'vue-carousel-card/styles/index.css'
+#carouselExampleFade{
+    margin-bottom:15px;
+    border-style:inset;
+}
 
-
-export default {
-
-     components: {
-      Galleria,
-      CarouselCard,
-      CarouselCardItem,
-  },
-    props:[
-       
-    // initialIndex: { 
-    // type: Number, 
-    // default: 0
-    // },
-
-    // height: { 
-    // type: String,
-    // default: '200', 
-    // },
-
-    // trigger: { 
-    // type: String, 
-    // default: 'hover' 
-    // },
-
-    // autoplay: { 
-    // type: Boolean, 
-    // default: true 
-    // },
-
-    // interval: { 
-    // type: Number, 
-    // default: 3000 
-    // },
-
-    // indicatorPosition: { 
-    // type: String, 
-    // default: 'outside' // outside/none
-    // },
-
-    // indicator: { 
-    // type: Boolean, 
-    // default: true 
-    // },
-
-    // arrow: { 
-    // type: String, 
-    // default: 'hover' // always/hover/never
-    // },
-
-    // type: String // card
-    // label: {
-    // type: [String, Number],
-    // default: ''
-    // }
-        ]
-        
-}; 
-</script>
+.carousel-inner{
+  width:100%;
+  max-height: 550px !important;
+  min-height: 550px !important;
+}
+</style>

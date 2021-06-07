@@ -1,6 +1,5 @@
 <template>
-<div class="py-4">
-    <div class="p-4 bg-light rounded shadow-sm">
+    <div class="p-4 rounded shadow-sm">
       <div class="row">
       <div class="col">
         <Images :id="room.id" />
@@ -59,7 +58,6 @@
       </div>
     </div>
     </div>
-  </div>
 
 
   <!-- <div id="test3">
@@ -210,5 +208,10 @@ export default {
 <style scoped>
  p {
    padding-top:5px;
+ }
+
+ .p-4{
+   margin-top: 15px;
+   background-color:rgb(241, 241, 241);
  }
 </style>

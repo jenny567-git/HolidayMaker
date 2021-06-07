@@ -74,5 +74,8 @@ export default {
 </script>
 
 <style scoped>
-
+.p-4{
+        margin-top:15px;
+        background-color:rgb(241, 241, 241);
+    }
 </style>

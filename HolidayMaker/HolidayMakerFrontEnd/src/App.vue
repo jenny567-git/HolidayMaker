@@ -1,33 +1,46 @@
 <template>
   <main>
     <Navigator/>
-      <div class="view intro-2">
-          <div class="full-bg-img">
-              <div class="mask rgba-black-light flex-center">
-                <div class="container">
-                  <Searcher/>
-                  <router-view/>
-                </div>
+    <div class="view intro-2">
+        <div class="full-bg-img">
+            <div class="mask rgba-black-light flex-center">
+              <div class="container">
+                <Searcher/>
+                <router-view/>
               </div>
-          </div>
-      </div>
-        <!-- <div style="background: url(https://wallpaperaccess.com/full/1198002.jpg);" class="page-holder bg-cover">
-          <div class="container">
-            <Searcher/>
-            <router-view/>
-          </div>
-      </div> -->
-          <Body v-if="showBody"/>
-          <figure>
-              <figcaption></figcaption>
-                  <audio
-                      controls
-                      src="/src/assets/Media/Toto.mp3">
-                          Your browser does not support the
-                          <code>audio</code> element.
-                  </audio>
-              </figure> 
-      <Footer/>
+                <div>
+                    <div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <figure>
+            <figcaption></figcaption>
+                <audio
+                    controls
+                    src="/src/assets/Media/Toto.mp3">
+                        Your browser does not support the
+                        <code>audio</code> element.
+                </audio>
+            </figure> 
+    </div>
+      <!-- <div style="background: url(https://wallpaperaccess.com/full/1198002.jpg);" class="page-holder bg-cover">
+        <div class="container">
+          <Searcher/>
+          <router-view/>
+        </div>
+    </div> -->
+        <Body v-if="showBody"/>
+    <Footer/>
   </main>
 </template>
 
@@ -98,9 +111,7 @@ export default {
         this.$store.state.searchButtonLoading = true;
 
         this.$store.dispatch('searchHotels', this.searchString);
-      },
-      
-      
+      }
     },
     computed:{
       isLoading(){
@@ -108,19 +119,8 @@ export default {
       },
       showBody(){
         return this.$route.path == '/' ? true : false;
-      },
-      
-    },
-    created(){
-        console.log("App created");
-        if(Cookies.get('login')){
-          this.$store.dispatch('checkLoggedInUser')
-        }
-      },
-    
-    
-    
-    
+      }
+    }
 }
 
 
@@ -145,19 +145,15 @@ export default {
 }
 
 .intro-2 {
-    background: url("https://wallpaperaccess.com/full/1198002.jpg")no-repeat center center;
+    background: url("https://wallpaperaccess.com/full/1198002.jpg") center center;
     background-size: cover !important;
-    background-position: center;
+    background-position: top;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     border-color: black;
     border-style: solid;
     border-width: 2px 0px 2px 0px;
 }
-
-/* .full-bg-img{
- height:800px;
- min-height:auto;
-} */
 
 .view {
     height: 100%;
@@ -172,4 +168,8 @@ export default {
   border-width: 2px 0px 2px 0px;
   justify-content: center;
 } */
+
+audio{
+  margin-top: 20px;
+}
 </style>

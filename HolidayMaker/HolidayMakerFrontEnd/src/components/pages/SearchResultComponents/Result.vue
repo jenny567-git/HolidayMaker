@@ -1,4 +1,5 @@
 <template>
+    <div class="p-4 rounded shadow-sm">
     <div id="test3">
         <div class="row" >
             <div class="col-md-4">
@@ -23,12 +24,12 @@
                     </div>
                 </div>
                 <router-link :to="'/hotels/' + hotel.id" class="nav-link"> 
-                    <button class="btn btn-outline-primary" for="btn-check-outlined" @click="hotelDetailsClick">See details</button><br>
+                    <button class="btn btn-primary" for="btn-check-outlined" @click="hotelDetailsClick">See details</button><br>
                 </router-link>
 
             </div>
         </div>
-        <hr>
+    </div>
     </div>
 </template>
 
@@ -69,5 +70,10 @@ computed:{
 <style scoped>
     #test3{
         opacity: 100% !important;
+    }
+
+    .p-4{
+        margin-top:15px;
+        background-color:rgb(241, 241, 241);
     }
 </style>

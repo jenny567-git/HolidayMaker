@@ -10,11 +10,11 @@
                         <b>{{hotel.name}}</b>
                         <p>{{hotel.city.cityName}}, {{hotel.country.countryName}}</p>
                         <p>Ratings: <span class="badge rounded-pill bg-secondary">{{hotel.averageRating}}</span></p>
-                        <p>Beach distance: <span class="badge rounded-pill bg-secondary">{{hotel.beachDistance}} m </span></p>
+                        <p>Beach distance: <span class="badge rounded-pill bg-secondary">{{hotel.beachDistance}} km </span></p>
                         <p>Centrum distance: <span class="badge rounded-pill bg-secondary">{{hotel.centrumDistance}} km </span></p>
                     </div>
                     <div class="col-md-6 text-start">
-                        <h3>{{lowestPrice}} SEK</h3>
+                        <h5><small>from</small> <b>{{lowestPrice}} kr/unit</b></h5>
                         <br/>
                         <p v-if="hotel.pool"> <i class="fas fa-check"></i> Pool</p>
                         <p v-if="hotel.nightEntertainment"> <i class="fas fa-check"></i> Night Entertainment</p>

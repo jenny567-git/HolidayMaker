@@ -133,8 +133,8 @@ const store = createStore({
     },
     getTotalPrice(state) {
       var days = Math.floor(
-        (Date.parse(state.searchString.dates[1].toISOString().split("T")[0]) -
-          Date.parse(state.searchString.dates[0].toISOString().split("T")[0])) /
+        (Date.parse(state.searchString.dates[1].toLocaleDateString('sv-SE')) -
+          Date.parse(state.searchString.dates[0].toLocaleDateString('sv-SE'))) /
           86400000
       );
       console.log(days);
@@ -216,8 +216,8 @@ const store = createStore({
       let startDate;
       let endDate;
       if (this.state.searchString.dates.length) {
-        startDate = this.state.searchString.dates[0].toISOString().slice(0, 10);
-        endDate = this.state.searchString.dates[1].toISOString().slice(0, 10);
+        startDate = this.state.searchString.dates[0].toLocaleDateString('sv-SE');
+        endDate = this.state.searchString.dates[1].toLocaleDateString('sv-SE');
       }
       //search with all values but no string
       if (searchString === null || searchString == "") {

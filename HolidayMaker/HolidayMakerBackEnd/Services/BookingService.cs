@@ -139,7 +139,7 @@ namespace HolidayMakerBackEnd.Services
             DateTime d1 = reservation.StartDate;
             DateTime d2 = reservation.EndDate;
             TimeSpan t = d2 - d1;
-            var accomodationTypePrice = _db.Accomodations.FirstOrDefault(x => x.Type == reservationsDetail.Type).Price;
+            var accomodationTypePrice = _db.Accomodations.FirstOrDefault(x => x.Type == reservationsDetail.Type && x.HotelId == reservation.HotelId).Price;
             int days = (int)t.Days;
             int rooms = reservedRooms.Sum(b => b.BookedRooms);
 

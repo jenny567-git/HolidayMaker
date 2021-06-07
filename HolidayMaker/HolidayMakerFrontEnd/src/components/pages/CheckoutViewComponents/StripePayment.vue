@@ -100,8 +100,11 @@ export default {
 								customerMessage : this.$store.state.customerDetailsCheckout.Message,
 								reservationId : 0,
 								type : bookingDetails.serviceType,
-								reservedRooms: []
+								reservedRooms: [],
+                                customerDetails: {}
 							}
+
+                            booking.customerDetails = this.$store.state.customerDetailsCheckout;
 
 							if(bookingDetails.noOfSingleRooms > 0){
 								booking.reservedRooms.push({roomId: bookingDetails.singleRoomId , bookedRooms: bookingDetails.noOfSingleRooms});

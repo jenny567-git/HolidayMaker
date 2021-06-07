@@ -68,17 +68,17 @@
       </div>
     </div>
     <div v-if="edit">
-        <CustomerDetails/>
+        <ProfileCustomerDetails :hotel="hotel"/>
     </div>
   </div>
 </template>
 
 <script>
-import CustomerDetails from '/src/components/pages/CheckoutViewComponents/CustomerDetails.vue'
+import ProfileCustomerDetails from '/src/components/pages/CustomerProfile/ProfileCustomerDetails.vue'
 
 export default {
     components:{
-        CustomerDetails,
+        ProfileCustomerDetails,
     },
     props:{
         hotel: {}
@@ -99,7 +99,7 @@ export default {
     methods: {
         toggleEdit(){
             this.edit = !this.edit;
-            this.$store.dispatch('saveCustomerDetailsCheckout', this.hotel.guestDetails);
+            //this.$store.dispatch('saveCustomerDetailsCheckout', this.hotel.guestDetails);
         }
     },
 }

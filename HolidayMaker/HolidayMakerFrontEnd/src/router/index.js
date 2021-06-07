@@ -24,6 +24,7 @@ import Profile from '../components/pages/CustomerProfile/ProfilePage.vue'
 import Bookings from '../components/pages/CustomerProfile/Bookings.vue'
 import SavedHotels from '/src/components/pages/CustomerProfile/SavedHotels.vue';
 import ProfileSetting from '../components/pages/CustomerProfile/ProfileSetting.vue'
+import ProfileCustomerDetails from '../components/pages/CustomerProfile/ProfileCustomerDetails.vue'
 
 
 const routes = [

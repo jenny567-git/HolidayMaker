@@ -440,7 +440,7 @@ const store = createStore({
       var result = await response.json()
       commit('setServiceFee', result)
     },
-    async deleteGuestAccount({ commit }, Id) {
+    async deleteGuestAccount(Id) {
       fetch('https://localhost:44356/api/Guest/removeGuest', {
         method: 'post',
         headers: { 'Content-type': 'application/json' },

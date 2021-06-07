@@ -170,7 +170,7 @@ export default {
   },
   methods: {
     deleteAccout() {
-      let credentials = { Id: this.guest.Id }
+      let credentials = 78
 
       if (confirm('Do you really want to delete your account?')) {
         this.$store.dispatch('deleteGuestAccount', credentials)

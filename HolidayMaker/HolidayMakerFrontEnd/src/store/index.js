@@ -224,6 +224,9 @@ const store = createStore({
       state.bookingDetails.extraBed= false,
       state.bookingDetails.extraBedFee= 0
       state.bookingDetails.totalprice= "";
+    },
+    setHotelId(state, value){
+      state.bookingDetails.hotelId = value;
     }
   },
   actions: {
@@ -486,6 +489,9 @@ const store = createStore({
     },
     clearCart({commit}){
       commit('clearBookingDetails')
+    },
+    setHotelId({commit}, value){
+      commit('setHotelId', value)
     }
   },
 });

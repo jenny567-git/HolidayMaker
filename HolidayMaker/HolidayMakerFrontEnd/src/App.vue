@@ -8,19 +8,6 @@
                 <Searcher/>
                 <router-view/>
               </div>
-                <div>
-                    <div>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                    </div>
-                </div>
             </div>
         </div>
         <figure>
@@ -146,6 +133,7 @@ export default {
 
 .intro-2 {
     background: url("https://wallpaperaccess.com/full/1198002.jpg")no-repeat center center;
+    padding-bottom: 11cm;
     background-size: cover ;
     background-position: top;
     background-attachment: fixed;

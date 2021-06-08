@@ -7,16 +7,21 @@
 			  							
 			  			</div>
 			  			<div class="col-lg-6 col-sm-6 col- header-top-right">
-                              
 							<div class="header-social">
-                                <div v-if="loggedIn">
-                                    <ul class="nav-area">
-                                        <li ><p>{{user.email}}</p></li>
-                                    </ul>
-                                </div>
-                                <a href="#"><router-link to="/login">Log in</router-link></a>
-                                <a href="#"><router-link to="/registration">Register</router-link></a>
+                        <div v-if="!loggedIn">
+                            <a href=""><router-link to="/login">Log in</router-link></a>
+                        </div>
+                        <div v-if="loggedIn">
+                          <a  href="" @click="logout()">Log out</a>
+                          <a  href=""><router-link to="/Profile">Profile</router-link></a>
+                        </div>
 							</div>
+                            <a href="#"><router-link to="/registration">Register</router-link></a>
+                        <div v-if="loggedIn">
+                          <ul>
+                              <li ><a>{{user.email}}</a></li>
+                         </ul>
+                        </div>
 			  			</div>
 			  		</div>			  					
 					</div>
@@ -29,7 +34,7 @@
 				      <nav id="nav-menu-container">
 				        <ul class="nav-menu">
 				          <li><a href="">Home</a></li>
-				          <li><a href="">About</a></li>
+				          <li><a href="">Work With us</a></li>
 				          <li><a href="">Packages</a></li>
 				          <li><a href="">Hotels</a></li>
 				          <li><a href="">Contact</a></li>
@@ -186,6 +191,12 @@ header {
     border-radius: 5px;
     background: #c7b09e;
 }  */
+
+div.header-social{
+  display: inline-block;
+  padding-right: 7px;
+}
+
 
 ol, ul {
   margin: 0;

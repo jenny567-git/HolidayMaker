@@ -104,21 +104,92 @@ namespace HolidayMakerBackEnd.Controllers
         [HttpPost("updateGuest")]
         public void UpdateGuest(UpdateGuestViewModel model)
         {
-            if (model.UserId != 0)
+            
+            if (model.Id != 0)
             {
-                var guest = _db.Guests.FirstOrDefault(x => x.Id == model.UserId);
-                guest.FullName = model.FullName;
-                guest.Email = model.Email;
-                guest.Phone = model.Phone;
-                guest.Street = model.Street;
-                guest.ZipCode = model.ZipCode;
-                guest.City = model.City;
-                guest.Country = model.Country;
-                guest.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
+                
+                var guest = _db.Guests.FirstOrDefault(x => x.Id == model.Id);
+                if(model.FullName == "")
+                {
+                    guest.FullName = guest.FullName;
+
+                }
+                else
+                {
+                    guest.FullName = model.FullName;
+                }
+                if (model.Email == "")
+                {
+                    guest.Email = guest.Email;
+
+                }
+                else
+                {
+                    guest.Email = model.Email;
+                }
+                if (model.Phone == "")
+                {
+                    guest.Phone = guest.Phone;
+
+                }
+                else
+                {
+                    guest.Phone = model.Phone;
+                }
+                if (model.Street =="")
+                {
+                    guest.Street = guest.Street;
+
+                }
+                else
+                {
+                    guest.Street = model.Street;
+                }
+                if (model.ZipCode =="")
+                {
+                    guest.ZipCode = guest.ZipCode;
+
+                }
+                else
+                {
+                    guest.ZipCode = model.ZipCode;
+                }
+                if (model.City=="")
+                {
+                guest.City = guest.City;
+
+                }
+                else
+                {
+                    guest.City = model.City;
+                }
+                if (model.Country=="")
+                {
+                    guest.Country = guest.Country;
+
+                }
+                else
+                {
+                    guest.Country = model.Country;
+                }
+                if (model.Password=="")
+                {
+                    guest.Password = BCrypt.Net.BCrypt.HashPassword(guest.Password);
+                }
+                else
+                {
+                    guest.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
+                }
 
             }
 
             _db.SaveChanges();
         }
     }
+    public class input
+    {
+        public int Id { get; set; }
+    }
+
+    
 }

@@ -1,5 +1,5 @@
 <template>
-<form class="form1" @submit.prevent="checkPasswords">
+<form class="form1" @submit="checkPasswords">
         <div class="card-body">
             <div class="row gutters">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -8,7 +8,7 @@
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
                         <label for="fullName">Full Name</label>
-                        <input type="text" class="form-control" id="fullName" :placeholder="user.fullName" v-model="guest.fullName">
+                        <input type="text" class="form-control" id="fullName" :placeholder="user.fullName" v-model="guest.Fullname">
                         
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
                         <label for="website">Email</label>
-                        <input type="email" class="form-control" id="website" :placeholder=" user.email" v-model="guest.email">
+                        <input type="email" class="form-control" id="website" :placeholder=" user.email" v-model="guest.Email">
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -36,13 +36,13 @@
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
                         <label for="Street">Street</label>
-                        <input type="text" class="form-control" id="Street" :placeholder="user.street" v-model="guest.street">
+                        <input type="text" class="form-control" id="Street" :placeholder="user.street" v-model="guest.Street">
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
                         <label for="ciTy">City</label>
-                        <input type="text" class="form-control" id="ciTy" :placeholder="user.city" v-model="guest.city">
+                        <input type="text" class="form-control" id="ciTy" :placeholder="user.city" v-model="guest.City">
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -103,7 +103,8 @@ export default {
         Phone:"",
         Email: "",
         Password: "",
-        confirmPassword:""
+        confirmPassword:"",
+        
       }
     }
   },
@@ -112,7 +113,6 @@ export default {
   },
   methods:{
     checkPasswords(){
-        console.log("he")
         var password = document.querySelector('.password').value;
         var confirmPassword = document.querySelector('.confirmPassword').value;
         
@@ -126,15 +126,16 @@ export default {
         }
     },
     async updateGuest(){
-      console.log("då")
-      var id = this.user.Id
-      await fetch('https://localhost:44356/api/Guest/updateGuets', {
+      var id = this.user.id
+      console.log(id)
+      await fetch('https://localhost:44356/api/Guest/updateGuest', {
         method:'Post',
         headers:{
           'Accept': 'application/json',
           'Content-type': 'application/json'
         },
-        body: JSON.stringify({id, Fullname:this.guest.Fullname, Street:this.guest.Street, Zipcode:this.guest.Zipcode, City:this.guest.City, Country:this.guest.Country, Phone:this.guest.Phone, Email:this.guest.Email, Password:this.guest.Password}),
+        
+        body: JSON.stringify({Id:id, Fullname:this.guest.Fullname, Street:this.guest.Street, Zipcode:this.guest.Zipcode, City:this.guest.City, Country:this.guest.Country, Phone:this.guest.Phone, Email:this.guest.Email, Password:this.guest.Password}),
         
       })
        this.resetForm()
@@ -143,6 +144,9 @@ export default {
         console.log("hej")
         document.querySelector('.form1').reset()
       }
+  },
+   created() {
+    this.user = this.$store.state.user
   },
   computed: {
     loggedIn(){

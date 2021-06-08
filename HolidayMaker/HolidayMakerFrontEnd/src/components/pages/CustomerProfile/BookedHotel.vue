@@ -4,7 +4,7 @@
     <div class="row g-0">
       <div class="col-md-4">
         <img
-          src="https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"
+          :src="hotel.hotelImg"
           alt="..."
           class="img-fluid"
         />

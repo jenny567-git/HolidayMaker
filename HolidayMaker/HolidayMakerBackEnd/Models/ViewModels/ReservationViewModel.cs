@@ -22,6 +22,7 @@ namespace HolidayMakerBackEnd.Models.ViewModels
         public int HotelId { get; set; }
         public string HotelName { get; set; }
         public string Status { get; set; }
+        public string HotelImg { get; set; }
 
 
         //ReservationDetails

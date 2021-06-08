@@ -203,6 +203,7 @@ const store = createStore({
     },
     setSavedHotels(state, data) {
       state.savedHotels = data;
+      // console.log('in saved hotel ', data);
     },
     setOrderId(state, value) {
       state.orderId = value;
@@ -224,6 +225,9 @@ const store = createStore({
       state.bookingDetails.extraBed= false,
       state.bookingDetails.extraBedFee= 0
       state.bookingDetails.totalprice= "";
+    },
+    setHotelId(state, value){
+      state.bookingDetails.hotelId = value;
     }
   },
   actions: {
@@ -384,7 +388,8 @@ const store = createStore({
       );
       var result = await response.json();
       if (result) {
-        console.log(result);
+        // console.log('in saved hotel result: ', result);
+        // console.log(result);
         commit("setSavedHotels", result);
       }
     },
@@ -486,6 +491,9 @@ const store = createStore({
     },
     clearCart({commit}){
       commit('clearBookingDetails')
+    },
+    setHotelId({commit}, value){
+      commit('setHotelId', value)
     }
   },
 });

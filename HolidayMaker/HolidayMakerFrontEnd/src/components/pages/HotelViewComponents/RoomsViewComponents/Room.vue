@@ -2,7 +2,8 @@
     <div class="p-4 rounded shadow-sm">
       <div class="row">
       <div class="col">
-        <Images :id="room.id" />
+        <!-- <Images :id="room.id" /> -->
+        <img :src="room.img" alt="" width="250" height="150">
       </div>
       <div class="col">
         <h3>{{ room.type }}</h3>
@@ -159,6 +160,7 @@ export default {
       // console.log("double rooms" + this.doubleRooms);
       // console.log("family rooms" + this.familyRooms);
     }
+    console.log('img: ', this.room.img);
   },
   computed: {
     inputSingleRooms: {

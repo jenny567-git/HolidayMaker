@@ -33,6 +33,9 @@
                             <li v-if="BookingDetails.extraBed" class="list-group-item leftTexAlignt"> <b>Extra bed:</b> Yes</li>
                             <li class="list-group-item leftTexAlignt"> <b>Total price:</b> {{BookingDetails.totalprice}}</li>
                         </ul>
+                        <router-link :to="link" class="btn btn-primary">
+                            Edit booking
+                        </router-link>
                     </template>
                 </Card>
             </div>
@@ -50,7 +53,8 @@ export default {
         return{
             Details:{},
             BookingDetails: {},
-            SearchString: {}
+            SearchString: {},
+            link: '/hotels/' + this.$store.state.bookingDetails.hotelId + '/rooms'
         }
     },
     computed:{

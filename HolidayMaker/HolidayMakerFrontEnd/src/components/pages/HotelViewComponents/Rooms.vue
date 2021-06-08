@@ -81,6 +81,7 @@ export default {
     },
     Book() {
       this.$store.dispatch('setHotelName', this.hotelInfo.name)
+      this.$store.dispatch('setHotelId', this.hotelInfo.id)
     },
   },
 };

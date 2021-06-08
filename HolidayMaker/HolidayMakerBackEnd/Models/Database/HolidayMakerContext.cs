@@ -141,6 +141,8 @@ namespace HolidayMakerBackEnd.Models.Database
 
                 entity.Property(e => e.ExtraBedFee).HasColumnName("extraBedFee");
 
+                entity.Property(e => e.Img).IsUnicode(false);
+
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .IsUnicode(false);
@@ -149,13 +151,13 @@ namespace HolidayMakerBackEnd.Models.Database
                     .WithMany(p => p.Hotels)
                     .HasForeignKey(d => d.CityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Hotels__CityID__6383C8BA");
+                    .HasConstraintName("FK_Hotels_City");
 
                 entity.HasOne(d => d.Country)
                     .WithMany(p => p.Hotels)
                     .HasForeignKey(d => d.CountryId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Hotels__CountryI__6477ECF3");
+                    .HasConstraintName("FK_Hotels_Country");
             });
 
             modelBuilder.Entity<Position>(entity =>
@@ -300,6 +302,8 @@ namespace HolidayMakerBackEnd.Models.Database
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.HotelId).HasColumnName("HotelID");
+
+                entity.Property(e => e.Img).IsUnicode(false);
 
                 entity.Property(e => e.Type)
                     .IsRequired()

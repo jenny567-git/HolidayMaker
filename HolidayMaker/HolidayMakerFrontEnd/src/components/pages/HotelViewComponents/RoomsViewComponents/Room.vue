@@ -9,7 +9,7 @@
         <h3>{{ room.type }}</h3>
          
           <p>Rooms:</p>
-          <div v-if="$store.state.searchString.dates.length">
+          <div v-if="$store.state.searchString.dates.length && $store.state.seachResults.length">
             <InputNumber
               v-if="room.type == 'Single'"
               v-model="inputSingleRooms"

@@ -9,10 +9,10 @@
                         <div class="col-md-12 buttons">
                             <ul class="nav nav-pills">
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                        <Button  id="fuckyB" label="Info" icon="pi pi-check" ><router-link :to="'/hotels/' + this.$route.params.id + '/'"> Info </router-link></Button>
-                                        <Button  id="fuckyB" label="Photo" icon="pi pi-trash"><router-link :to="'/hotels/' + this.$route.params.id + '/photos'" > Photos </router-link></Button>
-                                        <Button  id="fuckyB" label="Reviews" icon="pi pi-times" ><router-link :to="'/hotels/' + this.$route.params.id + '/reviews'" > Reviews </router-link></Button>
-                                        <Button  id="fuckyB" label="Rooms" icon="pi pi-times" ><router-link :to="'/hotels/' + this.$route.params.id + '/rooms'" > Rooms </router-link></Button>
+                                        <Button  id="fuckyB" label="Info" icon="pi pi-info-circle" @click="$router.push('/hotels/' + this.$route.params.id + '/')" ></Button>
+                                        <Button  id="fuckyB" label="Photos" icon="pi pi-images" @click="$router.push('/hotels/' + this.$route.params.id + '/photos')"></Button>
+                                        <Button  id="fuckyB" label="Reviews" icon="pi pi-comments" @click="$router.push('/hotels/' + this.$route.params.id + '/reviews')"></Button>
+                                        <Button  id="fuckyB" label="Rooms" icon="pi pi-home" @click="$router.push('/hotels/' + this.$route.params.id + '/rooms')"></Button>
                                 </div>
                                 <li class="nav-item">
                                     <button class="btn" @click="ToggleStar" id="starBtn">

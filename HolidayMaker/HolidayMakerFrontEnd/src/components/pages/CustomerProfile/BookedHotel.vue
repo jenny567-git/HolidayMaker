@@ -11,96 +11,97 @@
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title">{{hotel.hotelName}}</h5>
+          <h5 class="card-title">{{ hotel.hotelName }}</h5>
           <div class="textB">
-            <p>{{hotel.fullName}}</p>
-            <p>{{startDate}} - {{endDate}}</p>
+            <p>{{ hotel.fullName }}</p>
+            <p>{{ startDate }} - {{ endDate }}</p>
             <p>More information about the booking</p>
           </div>
           <!-- Button trigger modal -->
-          <button
-            type="button"
-            class="btn btn-danger float-end"
-            data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop"
-          >Cancel Booking</button>
-           <button
-            type="button"
-            class="btn btn-info"
-            @click="toggleEdit"
-          >Edit Booking</button>
+          <div v-if="hotel.status != 'Cancelled' && !canceled">
+            <Button @click="toggleEdit" class="p-button-info mr-1" label="Edit Booking"></Button>
 
-          <!-- Modal -->
-          <div
-            class="modal fade"
-            id="staticBackdrop"
-            data-bs-backdrop="static"
-            data-bs-keyboard="false"
-            tabindex="-1"
-            aria-labelledby="staticBackdropLabel"
-            aria-hidden="true">
-
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="staticBackdropLabel">Warning</h5>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div class="modal-body">
-                  Are you sure you wish to cancel your booking?
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-bs-dismiss="modal">No</button>
-                  <button type="button" class="btn btn-danger">Yes</button>
-                </div>
-              </div>
-            </div>
+            <Button @click="delete" class="p-button-danger" label="Cancel booking"></Button>
           </div>
+          <div v-else>
+            <p style="color: red">This booking is cancelled</p>
+          </div>
+
         </div>
       </div>
     </div>
     <div v-if="edit">
-        <CustomerDetails/>
+      <ProfileCustomerDetails :hotel="hotel" />
     </div>
   </div>
 </template>
 
 <script>
-import CustomerDetails from '/src/components/pages/CheckoutViewComponents/CustomerDetails.vue'
+import ProfileCustomerDetails from "/src/components/pages/CustomerProfile/ProfileCustomerDetails.vue";
 
+import Button from "primevue/button";
 export default {
-    components:{
-        CustomerDetails,
+  components: {
+    ProfileCustomerDetails,
+    Button,
+  },
+  props: {
+    hotel: {},
+  },
+  data() {
+    return {
+      edit: false,
+      canceled: false,
+    };
+  },
+  computed: {
+    startDate() {
+      return this.hotel.startDate.split("T")[0];
     },
-    props:{
-        hotel: {}
+    endDate() {
+      return this.hotel.endDate.split("T")[0];
     },
-    data(){
-        return {
-            edit: false
+  },
+  methods: {
+    toggleEdit() {
+      this.edit = !this.edit;
+      //this.$store.dispatch('saveCustomerDetailsCheckout', this.hotel.guestDetails);
+    },
+    CancelBooking() {
+      console.log(this.hotel.reservationId);
+      fetch(
+        "https://localhost:44356/api/Booking/CancelBooking?id=" +
+          this.hotel.reservationId,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(this.hotel.reservationId),
         }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Success:", data);
+          this.canceled = true;
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     },
-    computed:{
-        startDate(){
-            return this.hotel.startDate.split('T')[0];
+    delete() {
+      this.$confirm.require({
+        message: "Are you sure you want to cancel?",
+        header: "Confirmation",
+        icon: "pi pi-exclamation-triangle",
+        acceptClass: 'p-button-danger',
+        accept: () => {
+          //callback to execute when user confirms the action
+          this.CancelBooking();
         },
-        endDate(){
-            return this.hotel.endDate.split('T')[0];
-        }
+        reject: () => {
+          //callback to execute when user rejects the action
+        },
+      });
     },
-    methods: {
-        toggleEdit(){
-            this.edit = !this.edit;
-            this.$store.dispatch('saveCustomerDetailsCheckout', this.hotel.guestDetails);
-        }
-    },
-}
+  },
+};
 </script>

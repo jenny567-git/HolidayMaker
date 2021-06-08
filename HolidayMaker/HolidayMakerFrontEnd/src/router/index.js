@@ -4,6 +4,7 @@ import Info from "../components/pages/HotelViewComponents/Info.vue";
 import HotelView from "/src/components/pages/HotelView.vue";
 import Rooms from "../components/pages/HotelViewComponents/Rooms.vue";
 import Photos from "../components/pages/HotelViewComponents/Photos.vue";
+import PhotoGallery from "../components/pages/HotelViewComponents/RoomsViewComponents/PhotoGallery.vue";
 import Reviews from "../components/pages/HotelViewComponents/Reviews.vue";
 import SearchResult from "../components/pages/SearchResult.vue";
 import AddReview from "../components/pages/HotelViewComponents/ReviewComponents/AddReview.vue";
@@ -24,6 +25,7 @@ import Profile from '../components/pages/CustomerProfile/ProfilePage.vue'
 import Bookings from '../components/pages/CustomerProfile/Bookings.vue'
 import SavedHotels from '/src/components/pages/CustomerProfile/SavedHotels.vue';
 import ProfileSetting from '../components/pages/CustomerProfile/ProfileSetting.vue'
+import ProfileCustomerDetails from '../components/pages/CustomerProfile/ProfileCustomerDetails.vue'
 
 
 const routes = [
@@ -95,7 +97,7 @@ const routes = [
       {
         path: "Photos",
         name: "photos",
-        component: Photos,
+        component: PhotoGallery,
       },
       {
         path: "Reviews",

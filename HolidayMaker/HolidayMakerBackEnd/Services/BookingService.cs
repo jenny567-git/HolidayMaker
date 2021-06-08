@@ -11,9 +11,11 @@ namespace HolidayMakerBackEnd.Services
     public class BookingService
     {
         private readonly HolidayMakerContext _db;
+        private readonly HotelService _hs;
         public BookingService()
         {
             _db = new HolidayMakerContext();
+            _hs = new HotelService();
         }
 
         public int latestId;
@@ -50,6 +52,23 @@ namespace HolidayMakerBackEnd.Services
             return result;
         }
 
+        public int CancelBooking(int bookingId)
+        {
+            var booking = GetBookingById(bookingId);
+            var reservedRooms = GetReservedRooms(bookingId);
+
+            foreach(var r in reservedRooms)
+            {
+                r.BookedRooms = 0;
+                _db.ReservedRooms.Update(r);
+            }
+
+            booking.Status = "Cancelled";
+            _db.Reservations.Update(booking);
+
+            return _db.SaveChanges();
+        }
+
         public int MakeBooking(SearchViewModel model)
         {
             var newReservation = new Reservation()
@@ -59,7 +78,14 @@ namespace HolidayMakerBackEnd.Services
                 DateCreated = DateTime.Now,
                 HotelId = model.HotelId,
                 GuestId = model.GuestId,
-                
+                FullName = model.customerDetails.FirstName + " " + model.customerDetails.LastName,
+                Email = model.customerDetails.Email,
+                Phone = model.customerDetails.PhoneNumber,
+                Street = model.customerDetails.Street,
+                City = model.customerDetails.City,
+                Zipcode = model.customerDetails.ZipCode,
+                Country = model.customerDetails.Country,
+                Status = "Confirmed"
             };
 
             _db.Reservations.Add(newReservation);
@@ -115,7 +141,8 @@ namespace HolidayMakerBackEnd.Services
             DateTime d1 = reservation.StartDate;
             DateTime d2 = reservation.EndDate;
             TimeSpan t = d2 - d1;
-            var accomodationTypePrice = _db.Accomodations.FirstOrDefault(x => x.Type == reservationsDetail.Type).Price;
+            var accomodationPrice = _hs.GetAccomodationFee(reservation.HotelId, reservationsDetail.Type);
+            //var accomodationTypePrice = _db.Accomodations.FirstOrDefault(x => x.Type == reservationsDetail.Type && x.HotelId == reservation.HotelId).Price;
             int days = (int)t.Days;
             int rooms = reservedRooms.Sum(b => b.BookedRooms);
 
@@ -123,11 +150,13 @@ namespace HolidayMakerBackEnd.Services
 
             totalprice += CostPerNightAndRoom;
 
-            totalprice += accomodationTypePrice;
+            totalprice += accomodationPrice;
 
             if (extrabed==true)
             {
-                totalprice += 200;
+                var hotel = _hs.GetById(reservation.HotelId);
+                totalprice += (double)hotel.ExtraBedFee;
+                //totalprice += 200;
             }
 
             using (var db = new HolidayMakerContext())
@@ -140,6 +169,25 @@ namespace HolidayMakerBackEnd.Services
                 }
             }
             return totalprice;
+        }
+
+        public void UpdateReservation(CustomerDetailsModel model, int id)
+        {
+            var reservation = _db.Reservations.SingleOrDefault(r => r.Id == id);
+
+            if (reservation != null)
+            {
+                reservation.FullName = model.FirstName + " " + model.LastName;
+                reservation.Email = model.Email;
+                reservation.Phone = model.PhoneNumber;
+                reservation.Street = model.Street;
+                reservation.City = model.City;
+                reservation.Zipcode = model.ZipCode;
+                reservation.Country = model.Country;
+
+                _db.SaveChanges();
+            }
+            
         }
     }
 }

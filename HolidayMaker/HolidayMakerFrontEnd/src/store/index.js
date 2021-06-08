@@ -57,6 +57,7 @@ const store = createStore({
       customerMessage: "",
       type: "",
       totalPrice: "",
+      extraBed:null,
       hotelRoomsViewModel: {
         singleRooms: "2",
         doubleRooms: "2",
@@ -133,8 +134,8 @@ const store = createStore({
     },
     getTotalPrice(state) {
       var days = Math.floor(
-        (Date.parse(state.searchString.dates[1].toISOString().split("T")[0]) -
-          Date.parse(state.searchString.dates[0].toISOString().split("T")[0])) /
+        (Date.parse(state.searchString.dates[1].toLocaleDateString('sv-SE')) -
+          Date.parse(state.searchString.dates[0].toLocaleDateString('sv-SE'))) /
           86400000
       );
       console.log(days);
@@ -206,17 +207,39 @@ const store = createStore({
     setOrderId(state, value) {
       state.orderId = value;
     },
+    clearBookingDetails(state){
+      state.bookingDetails.hotelId = "",
+      state.bookingDetails.hotelName = "",
+      state.bookingDetails.noOfSingleRooms = 0,
+      state.bookingDetails.noOfDoubleRooms= 0,
+      state.bookingDetails.noOfFamilyRooms= 0,
+      state.bookingDetails.singleRoomId= 0,
+      state.bookingDetails.doubleRoomId= 0,
+      state.bookingDetails.familyRoomId= 0,
+      state.bookingDetails.unitPriceSingleRoom= 0,
+      state.bookingDetails.unitPriceDoubleRoom= 0,
+      state.bookingDetails.unitPriceFamilyRoom= 0,
+      state.bookingDetails.serviceType= "",
+      state.bookingDetails.serviceFee= 0,
+      state.bookingDetails.extraBed= false,
+      state.bookingDetails.extraBedFee= 0
+      state.bookingDetails.totalprice= "";
+    },
+    setHotelId(state, value){
+      state.bookingDetails.hotelId = value;
+    }
   },
   actions: {
     saveCustomerDetailsCheckout({ commit }, data) {
       commit("setCustomerDetailsCheckout", data);
     },
     async searchHotels({ commit }, searchString) {
+      router.push({ name: "result" });
       let startDate;
       let endDate;
       if (this.state.searchString.dates.length) {
-        startDate = this.state.searchString.dates[0].toISOString().slice(0, 10);
-        endDate = this.state.searchString.dates[1].toISOString().slice(0, 10);
+        startDate = this.state.searchString.dates[0].toLocaleDateString('sv-SE');
+        endDate = this.state.searchString.dates[1].toLocaleDateString('sv-SE');
       }
       //search with all values but no string
       if (searchString === null || searchString == "") {
@@ -337,7 +360,7 @@ const store = createStore({
       Cookies.set("login", "true");
       Cookies.set("userId", result.id);
 
-      router.push("/");
+      router.push("/profile");
     },
     checkLoggedInUser({ commit }) {
       console.log("dkjgb");
@@ -464,6 +487,12 @@ const store = createStore({
     async setOrderId({ commit }, value) {
       commit("setOrderId", value);
     },
+    clearCart({commit}){
+      commit('clearBookingDetails')
+    },
+    setHotelId({commit}, value){
+      commit('setHotelId', value)
+    }
   },
 });
 

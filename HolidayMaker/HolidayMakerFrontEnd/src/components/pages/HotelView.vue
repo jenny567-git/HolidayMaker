@@ -1,79 +1,136 @@
 <template>
-    <div id="test2">
-        <h1>{{hotel.name}}</h1>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-4"> <!-- Stacked images -->
-                    <div>
-                        <img class="img-fluid" src="https://storage.googleapis.com/static-content-hc/sites/default/files/cataloina_porto_doble_balcon2_2.jpg" alt="">
+    <Card id="test4">
+        <template #content>
+            <div class="hotelview">
+                <h1>{{hotel.name}}</h1>
+                <div class="container-fluid">
+                    <PhotoG></PhotoG>
+                    <!-- <div class="row">
+                        <div class="col-md-4 twopic">
+                            <div>
+                                <img class="img-fluid" src="https://storage.googleapis.com/static-content-hc/sites/default/files/cataloina_porto_doble_balcon2_2.jpg" alt="">
+                            </div>
+                            <div>
+                                <img class="img-fluid" src="https://storage.googleapis.com/static-content-hc/sites/default/files/cataloina_porto_doble_balcon2_2.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="col-md-8 onepic">
+                                <img class="img-fluid" src="https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg" alt="">
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <div class="col-md-12 buttons">
+                            <ul class="nav nav-pills">
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                        <Button  id="fuckyB" label="Info" icon="pi pi-check" ><router-link :to="'/hotels/' + this.$route.params.id + '/'"> Info </router-link></Button>
+                                        <Button  id="fuckyB" label="Photo" icon="pi pi-trash"><router-link :to="'/hotels/' + this.$route.params.id + '/photos'" > Photos </router-link></Button>
+                                        <Button  id="fuckyB" label="Reviews" icon="pi pi-times" ><router-link :to="'/hotels/' + this.$route.params.id + '/reviews'" > Reviews </router-link></Button>
+                                        <Button  id="fuckyB" label="Rooms" icon="pi pi-times" ><router-link :to="'/hotels/' + this.$route.params.id + '/rooms'" > Rooms </router-link></Button>
+                                </div>
+                                <li class="nav-item">
+                                    <button class="btn" @click="ToggleStar" id="starBtn">
+                                        <i :class="star ? 'fas fa-heart fa-2x' : 'far fa-heart fa-2x'" style="color: red;"></i>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div>
-                        <img class="img-fluid" src="https://storage.googleapis.com/static-content-hc/sites/default/files/cataloina_porto_doble_balcon2_2.jpg" alt="">
-                    </div>
-                </div>
-                <div class="col-md-8 "> <!-- Main image -->
-                    <div>
-                        <img class="img-fluid" src="https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg" alt="">
+                    <div> <!-- tab view -->
+                        <router-view></router-view>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="nav nav-pills">
-                        <li class="nav-item">
-                            <router-link :to="'/hotels/' + this.$route.params.id + '/'" class="nav-link"> Info </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link :to="'/hotels/' + this.$route.params.id + '/photos'" class="nav-link"> Photos </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link :to="'/hotels/' + this.$route.params.id + '/reviews'" class="nav-link"> Reviews </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link :to="'/hotels/' + this.$route.params.id + '/rooms'" class="nav-link"> Rooms </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <button class="btn" @click="ToggleStar" id="starBtn">
-                                <i :class="star ? 'fas fa-heart' : 'far fa-heart'" style="color: red;"></i>
-                            </button>
-                        </li>
-                        
-                    </ul>
-                </div>
-            </div>
-            <div> <!-- tab view -->
-                <router-view></router-view>
-            </div>
-        </div>
-    </div>
+        </template>
+    </Card>
 </template>
 
 <style>
-    #test2{
-            border-radius: 30px;
-            background-color: rgba(107, 146, 83, 0.5);
+    /* #test2{
+            border-radius: 20px;
+            background-color: rgb(255, 255, 255);
             padding-left: 25px;
             padding-right: 25px;
             padding-bottom: 40px;
             margin-top: 20px;
+            color:rgb(0, 0, 0);
+        } */
+
+        #test4{
+            margin-top: 30px;
+            border-radius: 20px;
+         }
+
+        /* .col-md-4.twopic{
+            padding-bottom: 10px;
+        }
+
+        .col-md-4.twopic img{
+            padding-bottom: 8px;
+            border-radius: 20px;
+        }
+
+        .col-md-8.onepic img{
+            border-radius: 20px;
+        } */
+        .hotelview h1{
+            padding-bottom: 30px;
+            font-family:'Times New Roman', Times, serif;
+            font-weight: bold;
+            text-decoration:underline;
+        }
+
+        #fuckyB{
+           margin-right:5px;
+            height:45px; 
+        }
+
+        .col-md-12.buttons{
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+            padding-top:15px;
+            padding-bottom:10px;
+            margin-left:px;
             color:white;
         }
 
-        .nav-link{
-            color:white;
+        .btn-group a{ 
+            color:white !important;
+            text-decoration: none !important;
         }
+      
+
+        .nav.nav-pills{
+            margin-left: 8cm;
+        }
+
+        .nav-link{
+            color:rgb(255, 255, 255);
+        }
+
         #starBtn{
             outline: none;
             box-shadow: none;
         }
+
 </style>
+
 
 <script>
 import Info from './HotelViewComponents/Info.vue'
+import Photos from "./HotelViewComponents/Photos.vue"
+import Button from 'primevue/button';
+import PhotoG from "./HotelViewComponents/RoomsViewComponents/PhotoSlider.vue"
+import Card from 'primevue/card';
 
 export default ({
     components:{
         Info,
+        Photos,
+        Button,
+        PhotoG,
+        Card,
+        
     },
     data(){
         return{

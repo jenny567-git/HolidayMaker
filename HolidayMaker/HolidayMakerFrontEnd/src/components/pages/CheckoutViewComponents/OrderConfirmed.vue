@@ -1,9 +1,9 @@
 <template >
     <div>
         
-        <Card style="margin-top: 30px;">
+        <Card class="cardStyle">
             <template #title>
-            Order successful!
+                Order successful!
             </template>
             <template #content>
                 <img alt="Bootstrap Image Preview" src="https://raw.githubusercontent.com/PKief/vscode-markdown-checkbox/master/logo.png" class="rounded-circle" id="orderPic"/>
@@ -23,11 +23,17 @@ export default {
             return this.$store.state.orderId;
         }
     },
+    mounted(){
+        this.$store.dispatch('clearCart')
+    }
 }
 </script>
 <style scoped>
     #orderPic {
         width: 100px;
         height: 100px;
+    }
+    .cardStyle{
+        margin-top: 30px;
     }
 </style>

@@ -33,6 +33,9 @@
                             <li v-if="BookingDetails.extraBed" class="list-group-item leftTexAlignt"> <b>Extra bed:</b> Yes</li>
                             <li class="list-group-item leftTexAlignt"> <b>Total price:</b> {{BookingDetails.totalprice}}</li>
                         </ul>
+                        <router-link :to="link" class="btn btn-primary">
+                            Edit booking
+                        </router-link>
                     </template>
                 </Card>
             </div>
@@ -50,21 +53,22 @@ export default {
         return{
             Details:{},
             BookingDetails: {},
-            SearchString: {}
+            SearchString: {},
+            link: '/hotels/' + this.$store.state.bookingDetails.hotelId + '/rooms'
         }
     },
     computed:{
         checkinDate(){
             if(this.$store.state.searchString.dates[0] !== undefined){
                 console.log("sdasds",this.$store.state.searchString.dates[0]);
-                return this.$store.state.searchString.dates[0].toISOString().split('T')[0];
+                return this.$store.state.searchString.dates[0].toLocaleDateString('sv-SE');
             }else{
                 return "not specified"
             }
         },
         checkoutDate(){
            if(this.$store.state.searchString.dates[1]  !== undefined){
-                return this.$store.state.searchString.dates[1].toISOString().split('T')[0];
+                return this.$store.state.searchString.dates[1].toLocaleDateString('sv-SE');
             }else{
                 return "not specified"
             }

@@ -18,7 +18,6 @@ namespace HolidayMakerBackEnd.Models.Database
         public int MaxCapacity { get; set; }
         public int HotelId { get; set; }
         public int NoOfRooms { get; set; }
-        public string Img { get; set; }
 
         public virtual Hotel Hotel { get; set; }
         public virtual ICollection<ReservedRoom> ReservedRooms { get; set; }

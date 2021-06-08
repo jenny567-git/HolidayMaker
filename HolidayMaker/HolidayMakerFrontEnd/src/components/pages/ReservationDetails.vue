@@ -43,8 +43,8 @@ export default {
   data() {
     return {
       reservationInfo: {
-        fullName: "sadas",
-        hotelName: "sds",
+        fullName: "",
+        hotelName: "",
         startDate: "",
         endDate: "",
         adults: "",

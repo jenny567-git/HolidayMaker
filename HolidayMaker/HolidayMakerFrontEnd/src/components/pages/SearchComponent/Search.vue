@@ -72,23 +72,9 @@ export default {
   margin-top: 36mm;
 }
 
-/* #test2{
-        border-radius: 30px;
-        background-color: white;
-        padding-left: 25px;
-        padding-right: 25px;
-        color:black;
-    }
-     */
 #searchBtn{
   margin-top: 46px;
 }
-
-/* button.p-button.p-component.p-mx-auto{
-  padding-left: 50px;
-  padding-right: 50px;
-} */
-
 
 #range{
   display: block;

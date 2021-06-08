@@ -32,33 +32,11 @@
 </template>
 
 <style>
-    /* #test2{
-            border-radius: 20px;
-            background-color: rgb(255, 255, 255);
-            padding-left: 25px;
-            padding-right: 25px;
-            padding-bottom: 40px;
-            margin-top: 20px;
-            color:rgb(0, 0, 0);
-        } */
-
         #test4{
             margin-top: 30px;
             border-radius: 20px;
          }
 
-        /* .col-md-4.twopic{
-            padding-bottom: 10px;
-        }
-
-        .col-md-4.twopic img{
-            padding-bottom: 8px;
-            border-radius: 20px;
-        }
-
-        .col-md-8.onepic img{
-            border-radius: 20px;
-        } */
         .hotelview h1{
             padding-bottom: 30px;
             font-family:'Times New Roman', Times, serif;

@@ -29,67 +29,18 @@
 				<div class=" main-menu">
 					<div class="row align-items-center justify-content-between d-flex">
 				      <div id="logo">
-				        <a href="/"><img src="/src/assets/Logo5_cropped.png" alt="" title="" height="80"></a>
+                <router-link to="/"><img src="/src/assets/Logo5_cropped.png" alt="" title="" height="80"></router-link>
 				      </div>
+					</div>
 				      <nav id="nav-menu-container">
 				        <ul class="nav-menu">
 				          <li><a href="">Home</a></li>
 				          <li><a href="">Work With us</a></li>
-				          <li><a href="">DildoShop</a></li>
-				          <li><a href="">Hotels</a></li>
 				          <li><a href="">Contact</a></li>
 				        </ul>
 				      </nav><!-- #nav-menu-container -->					      		  
-					</div>
 				</div>
 			</header><!-- #header -->
-            
-    <!-- <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <title>Simple Navbar with flexbox</title>
-        </head>
-            <header>
-                <a href="/"><img class="" src="/src/assets/Logo5_cropped.png" alt="" height="80" href="/"></a>
-                <nav>
-                    <ul class="nav-area">
-                        <li><a href="#"><router-link to="/hotels/1">Hotel 1 | </router-link></a></li>
-                        <li><a href="#"><router-link to="/hotels/2">Hotel 2 | </router-link></a></li>
-                        <li><a href="#"><router-link to="/result">Search result view | </router-link></a></li>
-                        <li><a href="#"><router-link to="/checkout">Checkout</router-link></a></li>
-                    </ul>
-                </nav> -->
-
-
-
-                <!-- Detta ska flyttas till ovanför ikonen till höger -->
-                <!-- <div v-if="loggedIn">
-                    <ul class="nav-area">
-                        <li ><p>{{user.email}}</p></li>
-                    </ul>
-                    
-                   
-                   
-                </div>
-                 <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle pi pi-user" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="fontSize: 2rem">
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                   
-                    <div v-if="!loggedIn">
-                    <li ><a class="dropdown-item" href="#"><router-link to="/login">Log in</router-link></a></li>
-                    </div>
-
-                    <div v-if="loggedIn">
-                   <li ><a class="dropdown-item" href="" @click="logout()">Log out</a></li>
-                   <li><a class="dropdown-item" href="#"><router-link to="/test">Profile</router-link>  </a></li>
-                    </div>
-                    
-                    <li><a class="dropdown-item" href="#"><router-link to="/registration">Register</router-link></a></li>
-                </ul>
-                </li>
-            </header>
-    </html> -->
 </template>
 
 
@@ -126,71 +77,9 @@ export default {
 
 <style scoped>
 
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box
+nav#nav-menu-container{
+  display:inline-block;
 }
-
-header{
-    color:white;
-}
-
-
-header {
-    margin-top: -60px;
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: -o-flex;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 70px;
-    background:#202a38;
-    background: rgb(51, 57, 58);
-}
-
-.nav-area {
-    list-style: none;
-}
-
-.nav-area li {
-    display: inline-block;
-    padding: 0 15px;
-}
-
-.nav-area li a {
-    color: rgb(224, 224, 224);
-}
-.nav-area li p {
-    color: rgb(224, 224, 224);
-}
-
-.nav-area li a:hover {
-    color: #ffffff;
-}
-
-.nav-item {
- list-style-type: none;
-}
-
-.pi {
-    color: rgb(224, 224, 224) !important;
-    list-style-type: none;
-} */
-
-/* .btn-area {
-    cursor: pointer;
-    color: #fff;
-    font-size: 16px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 10px 30px;
-    border-radius: 5px;
-    background: #c7b09e;
-}  */
-
 
 ol, ul {
   margin: 0;
@@ -213,9 +102,8 @@ a {
   transition: all 0.3s ease 0s;
 }
 
-/*--------------------------------------------------------------
-# Header
---------------------------------------------------------------*/
+/*Header*/
+
 .header-top {
   font-size: 12px;
   padding: 6px 0px;
@@ -266,11 +154,6 @@ a {
   color: #11b82d;
 }
 
-/* .top-head-btn {
-  background: #e90b0b;
-  padding: 9px 26px;
-} */
-
 .main-menu {
   padding-bottom: 10px;
   padding-top: 10px;
@@ -293,15 +176,15 @@ a {
 /* #header.header-scrolled {
   transition: all 0.5s;
   background-color: rgba(34, 34, 34, 0.9);
-} */
-
-/* #header.header-scrolled .header-top {
-  display: none;
-} */
-
-/* #header.header-scrolled .main-menu {
-  background: transparent;
 }
+
+#header.header-scrolled .header-top {
+  display: none;
+}
+
+ #header.header-scrolled .main-menu {
+  background: transparent;
+} */
 
 /*--------------------------------------------------------------
 # Navigation Menu
@@ -367,6 +250,7 @@ a {
   #nav-menu-container {
     display: none;
   }
+  
 }
 
 /* Nav Meu Styling */

@@ -161,9 +161,9 @@ export default {
         border-bottom: 2px solid #f0f4f7; */
     }
     
-    .profile-usermenu ul li:last-child {
-        /* border-bottom: none; */
-    }
+    /* .profile-usermenu ul li:last-child {
+        border-bottom: none;
+    } */
     
     .profile-usermenu ul li a {
         color: #93a3b5;

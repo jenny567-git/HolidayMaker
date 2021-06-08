@@ -26,6 +26,10 @@ import Bookings from '../components/pages/CustomerProfile/Bookings.vue'
 import SavedHotels from '/src/components/pages/CustomerProfile/SavedHotels.vue';
 import ProfileSetting from '../components/pages/CustomerProfile/ProfileSetting.vue'
 import ProfileCustomerDetails from '../components/pages/CustomerProfile/ProfileCustomerDetails.vue'
+import Contact from '../components/pages/Extra pages/Contact.vue';
+import Tourism from '../components/pages/Extra pages/TouristAttraction.vue';
+import About from '../components/pages/Extra pages/About.vue';
+import News from '../components/pages/Extra pages/New.vue';
 
 
 const routes = [
@@ -74,6 +78,26 @@ const routes = [
     path: "/registration",
     name: "registration",
     component: Registration,
+  },
+  {
+    path: "/Contact",
+    name: "contact",
+    component: Contact,
+  },
+  {
+    path: "/Tourism",
+    name: "tourism",
+    component: Tourism,
+  },
+  {
+    path: "/About",
+    name: "about",
+    component: About,
+  },
+  {
+    path: "/News",
+    name: "news",
+    component: News,
   },
   // {
   //   path: "/addReview",

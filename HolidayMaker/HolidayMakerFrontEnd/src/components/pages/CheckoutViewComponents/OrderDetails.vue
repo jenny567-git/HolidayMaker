@@ -33,9 +33,10 @@
                             <li v-if="BookingDetails.extraBed" class="list-group-item leftTexAlignt"> <b>Extra bed:</b> Yes</li>
                             <li class="list-group-item leftTexAlignt"><span class="fas fa-money-check-alt"></span><b> Total price:</b> {{BookingDetails.totalprice}} SEK</li>
                         </ul>
-                        <router-link :to="link" class="btn btn-primary">
+                        <Button  label="Edit Booking" icon="pi pi-user-edit" @click="$router.push('/hotels/' + $store.state.bookingDetails.hotelId + '/rooms')"></Button>
+                        <!-- <router-link :to="link" class="btn btn-secondary">
                             Edit booking
-                        </router-link>
+                        </router-link> -->
                     </template>
                 </Card>
             </div>
@@ -45,9 +46,12 @@
 </template>
 <script>
 import Card from 'primevue/card';
+import Button from 'primevue/button';
+
 export default {
      components:{
          Card,
+         Button,
      },
      data(){
         return{

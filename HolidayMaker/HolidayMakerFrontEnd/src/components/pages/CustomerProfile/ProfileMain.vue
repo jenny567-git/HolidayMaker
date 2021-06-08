@@ -36,22 +36,22 @@
                     <div class="profile-usermenu">
                         <ul class="nav"> 
                             <li > <!-- class="active" -->
-                                <router-link :to="'/profile/'">Home </router-link>
                                 <i class="fas fa-user"></i>
+                                <router-link :to="'/profile/'"> Home </router-link>
                                 
                             </li>
                             <li>
-                                <router-link :to="'/profile/bookings'">Bookings </router-link>
                                 <i class="fas fa-concierge-bell"></i>
+                                <router-link :to="'/profile/bookings'"> Bookings </router-link>
                                 
                             </li>
                             <li>
-                                <router-link :to="'/profile/favorite'">Saved Hotels </router-link>
                                 <i class="fas fa-hotel"></i>
+                                <router-link :to="'/profile/favorite'"> Saved Hotels </router-link>
                             </li>
                             <li>
-                                <router-link :to="'/profile/profileSetting'">Settings </router-link>
                                 <i class="fas fa-users-cog"></i>
+                                <router-link :to="'/profile/profileSetting'"> Settings </router-link>
                             </li>
                         </ul>
                     </div>

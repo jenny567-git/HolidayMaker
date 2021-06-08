@@ -9,5 +9,6 @@ namespace HolidayMakerBackEnd.Models.ViewModels
     {
         public string HotelName { get; set; }
         public string HotelDescription { get; set; }
+        public string HotelImg { get; set; }
     }
 }

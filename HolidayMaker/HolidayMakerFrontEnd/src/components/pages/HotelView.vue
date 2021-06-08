@@ -4,29 +4,15 @@
             <div class="hotelview">
                 <h1>{{hotel.name}}</h1>
                 <div class="container-fluid">
-                    <PhotoG></PhotoG>
-                    <!-- <div class="row">
-                        <div class="col-md-4 twopic">
-                            <div>
-                                <img class="img-fluid" src="https://storage.googleapis.com/static-content-hc/sites/default/files/cataloina_porto_doble_balcon2_2.jpg" alt="">
-                            </div>
-                            <div>
-                                <img class="img-fluid" src="https://storage.googleapis.com/static-content-hc/sites/default/files/cataloina_porto_doble_balcon2_2.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="col-md-8 onepic">
-                                <img class="img-fluid" src="https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg" alt="">
-                            </div>
-                        </div>
-                    </div> -->
+                    <PhotoG :photos="hotelImage"></PhotoG>
                     <div class="row">
                         <div class="col-md-12 buttons">
                             <ul class="nav nav-pills">
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                        <Button  id="fuckyB" label="Info" icon="pi pi-check" ><router-link :to="'/hotels/' + this.$route.params.id + '/'"> Info </router-link></Button>
-                                        <Button  id="fuckyB" label="Photo" icon="pi pi-trash"><router-link :to="'/hotels/' + this.$route.params.id + '/photos'" > Photos </router-link></Button>
-                                        <Button  id="fuckyB" label="Reviews" icon="pi pi-times" ><router-link :to="'/hotels/' + this.$route.params.id + '/reviews'" > Reviews </router-link></Button>
-                                        <Button  id="fuckyB" label="Rooms" icon="pi pi-times" ><router-link :to="'/hotels/' + this.$route.params.id + '/rooms'" > Rooms </router-link></Button>
+                                        <Button  id="fuckyB" label="Info" icon="pi pi-info-circle" @click="$router.push('/hotels/' + this.$route.params.id + '/')" ></Button>
+                                        <Button  id="fuckyB" label="Photos" icon="pi pi-images" @click="$router.push('/hotels/' + this.$route.params.id + '/photos')"></Button>
+                                        <Button  id="fuckyB" label="Reviews" icon="pi pi-comments" @click="$router.push('/hotels/' + this.$route.params.id + '/reviews')"></Button>
+                                        <Button  id="fuckyB" label="Rooms" icon="pi pi-home" @click="$router.push('/hotels/' + this.$route.params.id + '/rooms')"></Button>
                                 </div>
                                 <li class="nav-item">
                                     <button class="btn" @click="ToggleStar" id="starBtn">
@@ -46,33 +32,11 @@
 </template>
 
 <style>
-    /* #test2{
-            border-radius: 20px;
-            background-color: rgb(255, 255, 255);
-            padding-left: 25px;
-            padding-right: 25px;
-            padding-bottom: 40px;
-            margin-top: 20px;
-            color:rgb(0, 0, 0);
-        } */
-
         #test4{
             margin-top: 30px;
             border-radius: 20px;
          }
 
-        /* .col-md-4.twopic{
-            padding-bottom: 10px;
-        }
-
-        .col-md-4.twopic img{
-            padding-bottom: 8px;
-            border-radius: 20px;
-        }
-
-        .col-md-8.onepic img{
-            border-radius: 20px;
-        } */
         .hotelview h1{
             padding-bottom: 30px;
             font-family:'Times New Roman', Times, serif;
@@ -129,8 +93,7 @@ export default ({
         Photos,
         Button,
         PhotoG,
-        Card,
-        
+        Card,    
     },
     data(){
         return{
@@ -142,6 +105,9 @@ export default ({
         hotel(){ 
             return this.$store.state.hotel;
         },
+        hotelImage(){
+            return [{id: this.hotel.id, roomPhoto: this.hotel.img}]
+        }
     },
     methods:{
         ToggleStar(){

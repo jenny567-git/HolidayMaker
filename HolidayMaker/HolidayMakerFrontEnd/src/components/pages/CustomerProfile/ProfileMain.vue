@@ -8,8 +8,16 @@
                             <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
                           </div>
                           <br>
-                            <h6>Upload a different photo...</h6>
-                            <input type="file" class="text-center center-block file-upload" aria-label="Sizing example input">
+                          <div class="container">
+                                <h6>Upload a different photo</h6>
+                            <div class="input-group mb-3">
+                            
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                <label class="custom-file-label" for="inputGroupFile01"></label>
+                            </div>
+                            </div>
+                          </div>
                     </div>
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->
@@ -36,22 +44,22 @@
                     <div class="profile-usermenu">
                         <ul class="nav"> 
                             <li > <!-- class="active" -->
-                                <router-link :to="'/profile/'">Home </router-link>
                                 <i class="fas fa-user"></i>
+                                <router-link :to="'/profile/'"> Home </router-link>
                                 
                             </li>
                             <li>
-                                <router-link :to="'/profile/bookings'">Bookings </router-link>
                                 <i class="fas fa-concierge-bell"></i>
+                                <router-link :to="'/profile/bookings'"> Bookings </router-link>
                                 
                             </li>
                             <li>
-                                <router-link :to="'/profile/favorite'">Saved Hotels </router-link>
                                 <i class="fas fa-hotel"></i>
+                                <router-link :to="'/profile/favorite'"> Saved Hotels </router-link>
                             </li>
                             <li>
-                                <router-link :to="'/profile/profileSetting'">Settings </router-link>
                                 <i class="fas fa-users-cog"></i>
+                                <router-link :to="'/profile/profileSetting'"> Settings </router-link>
                             </li>
                         </ul>
                     </div>
@@ -117,7 +125,7 @@ export default {
     }
     
     .profile input{
-        padding-left:30px;
+        /* padding-left:30px; */
     }
     
     .profile-usertitle {
@@ -170,9 +178,9 @@ export default {
         border-bottom: 2px solid #f0f4f7; */
     }
     
-    .profile-usermenu ul li:last-child {
-        /* border-bottom: none; */
-    }
+    /* .profile-usermenu ul li:last-child {
+        border-bottom: none;
+    } */
     
     .profile-usermenu ul li a {
         color: #93a3b5;

@@ -22,14 +22,10 @@ export default {
 
 
     #welcome{
-        font-size: 3em;
-        color: rgb(189 158 101) !important;
+        font-size: 4em;
+        color:rgb(108 193 109);
         padding-top: 20px;
         text-shadow: 2px 2px black;
-    }
-
-    a{
-        color: rgb(189 158 101);
     }
 
     a :hover{

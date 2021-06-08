@@ -20,12 +20,6 @@
                 </audio>
             </figure> 
     </div>
-      <!-- <div style="background: url(https://wallpaperaccess.com/full/1198002.jpg);" class="page-holder bg-cover">
-        <div class="container">
-          <Searcher/>
-          <router-view/>
-        </div>
-    </div> -->
         <Body v-if="showBody"/>
     <Footer/>
   </main>
@@ -107,7 +101,13 @@ export default {
       showBody(){
         return this.$route.path == '/' ? true : false;
       }
-    }
+    },
+    created(){
+        console.log("App created");
+        if(Cookies.get('login')){
+          this.$store.dispatch('checkLoggedInUser')
+        }
+      },
 }
 
 
@@ -133,6 +133,7 @@ export default {
 
 .intro-2 {
     background: url("https://wallpaperaccess.com/full/1198002.jpg")no-repeat center center;
+    padding-bottom: 11cm;
     background-size: cover ;
     background-position: top;
     background-attachment: fixed;
@@ -143,20 +144,20 @@ export default {
     border-width: 2px 0px 2px 0px;
 }
 
+button.p-button.p-component{
+  background: #53c16e;
+  border:#14a04d;
+}
+
+.p-button:enabled:hover{
+  background:#348047 !important;
+  border-color:#14a04d;
+}
+
 .view {
     height: 100%;
     min-height: 900px;
 }
-
-/* .bg-cover {
-  padding: 40px;
-  width: auto;
-  height: auto;
-  border-color: black;
-  border-style: solid;
-  border-width: 2px 0px 2px 0px;
-  justify-content: center;
-} */
 
 audio{
   margin-top: 20px;

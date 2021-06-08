@@ -88,8 +88,15 @@ components: {
 
 <style scoped>
 .dropdown-toggle{
-  background-color: #516cb8;
+  background-color: rgb(83 193 110);
+  border: #14a04d;
 }
+
+.btn-secondary:hover {
+  background-color: rgb(83 193 110);
+  border: #14a04d;
+}
+
 b{
   padding-left: 10px;
 }

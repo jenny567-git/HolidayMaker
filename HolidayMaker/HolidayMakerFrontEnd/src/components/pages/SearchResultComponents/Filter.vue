@@ -228,6 +228,11 @@ export default {
 </style>
 
 <style scoped>
+
+div.col-md-4{
+  padding-right: 25px;
+}
+
 .myContainer {
   width: 300%;
   height: auto;

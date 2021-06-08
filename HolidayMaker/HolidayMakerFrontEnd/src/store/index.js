@@ -40,7 +40,7 @@ const store = createStore({
       unitPriceSingleRoom: 0,
       unitPriceDoubleRoom: 0,
       unitPriceFamilyRoom: 0,
-      serviceType: "SelfService",
+      serviceType: "",
       serviceFee: 0,
       extraBed: false,
       extraBedFee: 0,
@@ -176,8 +176,8 @@ const store = createStore({
       state.bookingDetails.serviceType = value;
     },
     setServiceFee(state, value) {
-      console.log("in mutation set service");
-      console.log("value" + value);
+      // console.log("in mutation set service");
+      // console.log("value" + value);
       state.bookingDetails.serviceFee = value;
     },
     setCustomerDetailsCheckout(state, data) {
@@ -203,10 +203,32 @@ const store = createStore({
     },
     setSavedHotels(state, data) {
       state.savedHotels = data;
+      // console.log('in saved hotel ', data);
     },
     setOrderId(state, value) {
       state.orderId = value;
     },
+    clearBookingDetails(state){
+      state.bookingDetails.hotelId = "",
+      state.bookingDetails.hotelName = "",
+      state.bookingDetails.noOfSingleRooms = 0,
+      state.bookingDetails.noOfDoubleRooms= 0,
+      state.bookingDetails.noOfFamilyRooms= 0,
+      state.bookingDetails.singleRoomId= 0,
+      state.bookingDetails.doubleRoomId= 0,
+      state.bookingDetails.familyRoomId= 0,
+      state.bookingDetails.unitPriceSingleRoom= 0,
+      state.bookingDetails.unitPriceDoubleRoom= 0,
+      state.bookingDetails.unitPriceFamilyRoom= 0,
+      state.bookingDetails.serviceType= "",
+      state.bookingDetails.serviceFee= 0,
+      state.bookingDetails.extraBed= false,
+      state.bookingDetails.extraBedFee= 0
+      state.bookingDetails.totalprice= "";
+    },
+    setHotelId(state, value){
+      state.bookingDetails.hotelId = value;
+    }
   },
   actions: {
     saveCustomerDetailsCheckout({ commit }, data) {
@@ -366,7 +388,8 @@ const store = createStore({
       );
       var result = await response.json();
       if (result) {
-        console.log(result);
+        // console.log('in saved hotel result: ', result);
+        // console.log(result);
         commit("setSavedHotels", result);
       }
     },
@@ -466,6 +489,12 @@ const store = createStore({
     async setOrderId({ commit }, value) {
       commit("setOrderId", value);
     },
+    clearCart({commit}){
+      commit('clearBookingDetails')
+    },
+    setHotelId({commit}, value){
+      commit('setHotelId', value)
+    }
   },
 });
 

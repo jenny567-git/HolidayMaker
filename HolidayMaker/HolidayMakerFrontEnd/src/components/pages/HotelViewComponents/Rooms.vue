@@ -21,9 +21,14 @@
             <p>Total price: {{ totalprice }} SEK</p>
           </div>
           <div class="col-md-6">
+            <div v-if="value != null">
             <router-link to="/checkout" class="btn btn-primary" @click="Book"
               >Book</router-link
             >
+            </div>
+            <div v-else>
+              <p>Select service type to proceed to booking</p>
+            </div>    
           </div>
         </div>
       </div>
@@ -47,7 +52,7 @@ export default {
   },
   data(){
     return{
-      value: 'Self service',
+      value: null,
       serviceTypes: ['Self service', 'Half board', 'Full board', 'All inclusive'],
     }
   },

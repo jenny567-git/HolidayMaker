@@ -207,6 +207,24 @@ const store = createStore({
     setOrderId(state, value) {
       state.orderId = value;
     },
+    clearBookingDetails(state){
+      state.bookingDetails.hotelId = "",
+      state.bookingDetails.hotelName = "",
+      state.bookingDetails.noOfSingleRooms = 0,
+      state.bookingDetails.noOfDoubleRooms= 0,
+      state.bookingDetails.noOfFamilyRooms= 0,
+      state.bookingDetails.singleRoomId= 0,
+      state.bookingDetails.doubleRoomId= 0,
+      state.bookingDetails.familyRoomId= 0,
+      state.bookingDetails.unitPriceSingleRoom= 0,
+      state.bookingDetails.unitPriceDoubleRoom= 0,
+      state.bookingDetails.unitPriceFamilyRoom= 0,
+      state.bookingDetails.serviceType= "",
+      state.bookingDetails.serviceFee= 0,
+      state.bookingDetails.extraBed= false,
+      state.bookingDetails.extraBedFee= 0
+      state.bookingDetails.totalprice= "";
+    }
   },
   actions: {
     saveCustomerDetailsCheckout({ commit }, data) {
@@ -466,6 +484,9 @@ const store = createStore({
     async setOrderId({ commit }, value) {
       commit("setOrderId", value);
     },
+    clearCart({commit}){
+      commit('clearBookingDetails')
+    }
   },
 });
 

@@ -23,6 +23,9 @@ export default {
             return this.$store.state.orderId;
         }
     },
+    mounted(){
+        this.$store.dispatch('clearCart')
+    }
 }
 </script>
 <style scoped>

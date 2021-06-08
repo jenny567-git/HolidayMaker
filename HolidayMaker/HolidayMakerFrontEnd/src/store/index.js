@@ -57,6 +57,7 @@ const store = createStore({
       customerMessage: "",
       type: "",
       totalPrice: "",
+      extraBed:null,
       hotelRoomsViewModel: {
         singleRooms: "2",
         doubleRooms: "2",

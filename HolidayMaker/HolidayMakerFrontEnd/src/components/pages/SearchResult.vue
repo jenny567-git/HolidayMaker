@@ -10,8 +10,8 @@
                         Sort by
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Price: Lowest first</a></li>
-                        <li><a class="dropdown-item" href="#">Rating: Highest first</a></li>
+                        <li><a class="dropdown-item" href="#" @click="lowestPrice">Price: Lowest first</a></li>
+                        <li><a class="dropdown-item" href="#" @click="highestRating">Rating: Highest first</a></li>
                     </ul>
                 </div>
             </div>
@@ -24,6 +24,7 @@
 <script>
 import Filter from './SearchResultComponents/Filter.vue'
 import Result from './SearchResultComponents/Result.vue'
+import lowestPrice from './SearchResultComponents/Result.vue'
 export default ({
     components:{
         Filter,

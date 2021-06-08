@@ -51,6 +51,13 @@ computed:{
         })
         var min = rooms[0]
         return min.price;
+      },
+      sortbyRating(){
+          var highestRating = this.hotel.avrageRating;
+          highestRating.sort((a,b) => {
+              return b.avrageRating - a.avrageRating
+          })
+          var max = highestRating[0]
       }
 },
  props:{

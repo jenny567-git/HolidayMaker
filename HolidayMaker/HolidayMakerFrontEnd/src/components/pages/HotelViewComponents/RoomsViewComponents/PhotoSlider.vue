@@ -1,5 +1,5 @@
 <template>
-  <div v-if="photos.length">
+  <div v-if="photoExists">
     <div :id="'carouselExampleFade' + photos[0].id" class="carousel slide carousel-fade" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="active carousel-item">
@@ -29,8 +29,13 @@ export default {
     }  
   },
   created(){
-    console.log(this.photos)
+    // console.log("photo comp", this.photos)
   },
+  computed:{
+    photoExists(){
+      return (this.photos.length !== undefined )|| this.photos ? true : false;
+    }
+  }
 }
 </script>
 

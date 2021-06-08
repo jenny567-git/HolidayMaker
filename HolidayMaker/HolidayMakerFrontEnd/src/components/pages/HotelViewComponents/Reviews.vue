@@ -5,8 +5,8 @@
         <h2>Guest reviews</h2>
       </div>
       <div class="col-md-2 text-end">
-        <router-link :to="addReviewLink">
-          <button type="button" class="btn btn-primary">Add review</button>
+        <router-link :to="addReviewLink" class="btn btn-primary">
+          Add review
         </router-link>
       </div>
     </div>

@@ -100,5 +100,21 @@ namespace HolidayMakerBackEnd.Controllers
             int result = _guestService.RemoveSavedHotel(model);
             return Ok(result);
         }
+
+        [HttpPost("updateGuest")]
+        public void UpdateGuest(UpdateGuestViewModel model)
+        {
+            var guest = _db.Guests.FirstOrDefault(x => x.Id == model.Id);
+            guest.FullName = model.FullName;
+            guest.Email = model.Email;
+            guest.Phone = model.Phone;
+            guest.Street = model.Street;
+            guest.ZipCode = model.ZipCode;
+            guest.City = model.City;
+            guest.Country = model.Country;
+            guest.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
+
+            _db.SaveChanges();
+        }
     }
 }

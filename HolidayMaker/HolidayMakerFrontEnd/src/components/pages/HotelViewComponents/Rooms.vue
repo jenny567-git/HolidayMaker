@@ -18,12 +18,12 @@
 
         <div class="row pt-5">
           <div class="col-md-6">
-            <p>Total price: {{ totalprice }} SEK</p>
+            <b>Total price: {{ totalprice }} SEK</b>
           </div>
           <div class="col-md-6">
             <div v-if="value != null">
             <router-link to="/checkout" class="btn btn-primary" @click="Book"
-              >Book</router-link
+              ><span class="far fa-bookmark"></span> Book</router-link
             >
             </div>
             <div v-else>
@@ -95,10 +95,10 @@ export default {
 
 <style scoped>
 
-  /* .btn.btn-primary{
-    background-color:#43744f;
-    border-color:black;
-  } */
+  .btn.btn-primary{
+    background-color:#53c16e;
+    border-color:#1bc541;
+  }
 
   .container {
     padding-top: 20px;

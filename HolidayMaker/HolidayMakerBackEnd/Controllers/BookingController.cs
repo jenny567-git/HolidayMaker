@@ -26,12 +26,32 @@ namespace HolidayMakerBackEnd.Controllers
         [HttpPost("AddBooking")]
         public ActionResult AddBooking(SearchViewModel model)
         {
-            _bookingService.MakeBooking(model);
+            int bookingId = _bookingService.MakeBooking(model);
+            return Ok(bookingId);
+        }
+
+        [HttpPut("CancelBooking")]
+        public ActionResult CancelBooking(int id)
+        {
+            int result = _bookingService.CancelBooking(id);
+            return Ok(result);
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<ReservationViewModel> Get(int id)
+        {
+            ReservationViewModel model = new();
+            int statusCode = this.GetBookingById(id, ref model);
+
+            if (statusCode == 200)
+            {
+                return Ok(model);
+            }
             return Ok();
         }
 
-        [HttpGet("Booking/{id}")]
-        public ActionResult<ReservationViewModel> GetBookingById(int id)
+
+        private int GetBookingById(int id, ref ReservationViewModel reference)
         {
             var result = new Reservation();
             var reservationDetails = new ReservationsDetail();
@@ -42,15 +62,26 @@ namespace HolidayMakerBackEnd.Controllers
                 reservationDetails = _bookingService.GetReservationsDetail(result.Id);
                 reservedRooms = _bookingService.GetReservedRooms(result.Id);
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
-                return StatusCode(204);
+                return 204;
             }
-            
-            
+
+
             ReservationViewModel model = new ReservationViewModel();
-            model.FullName = result.Guest.FullName;
+            model.FullName = result.FullName;
+            if (result.FullName != null)
+            {
+                model.GuestDetails.FirstName = result.FullName.Split(' ')[0];
+                model.GuestDetails.LastName = result.FullName.Split(' ')[1];
+            }
+            model.GuestDetails.Email = result.Email;
+            model.GuestDetails.Street = result.Street;
+            model.GuestDetails.PhoneNumber = result.Phone;
+            model.GuestDetails.City = result.City;
+            model.GuestDetails.ZipCode = result.Zipcode;
+            model.GuestDetails.Message = reservationDetails.CustomerMessage;
             model.HotelName = result.Hotel.Name;
             model.HotelId = result.HotelId;
             model.StartDate = result.StartDate;
@@ -64,51 +95,66 @@ namespace HolidayMakerBackEnd.Controllers
             model.Type = reservationDetails.Type;
             model.ExtraBed = reservationDetails.ExtraBed;
             model.HotelId = result.HotelId;
+            model.Status = result.Status;
 
             foreach (var item in reservedRooms)
             {
                 model.NumberOfRooms += item.BookedRooms;
-                if (item.Room.Type=="Single")
+                if (item.Room.Type == "Single")
                 {
                     model.hotelRoomsViewModel.SingleRooms = item.BookedRooms;
                 }
-                else if (item.Room.Type =="Double")
+                else if (item.Room.Type == "Double")
                 {
                     model.hotelRoomsViewModel.DoubleRooms = item.BookedRooms;
-                }else if (item.Room.Type == "Family")
-                {
-                    model.hotelRoomsViewModel.FamilyRooms =item.BookedRooms;
                 }
-                
+                else if (item.Room.Type == "Family")
+                {
+                    model.hotelRoomsViewModel.FamilyRooms = item.BookedRooms;
+                }
+
             }
-            
 
-            return model;
-           
-
+            reference = model;
+            return 200;
         }
 
-        //[HttpGet("Bookings/{id}")]
-        //public GuestAllBookingsViewModel GetAllBookingByGuestId(int id)
-        //{
-        //    GuestAllBookingsViewModel model = new GuestAllBookingsViewModel();
-        //    //hämta en gäst
-        //    //hämta ut gästens alla bokningar
-        //    //hämta ut tillhörande detaljer
-        //    //hämta ut tillhörande bokade rum
+        [HttpGet("guest/{id}")]
+        public List<ReservationViewModel> GetAllBookingByGuestId(int id)
+        {
+            GuestAllBookingsViewModel model = new GuestAllBookingsViewModel();
+            //hämta en gäst
+            //hämta ut gästens alla bokningar
+            //hämta ut tillhörande detaljer
+            //hämta ut tillhörande bokade rum
 
-        //    var guest = _guestService.FindGuestById(id);
-        //    var result = _bookingService.GetAllBookingByGuestId(guest.Id);
-        //    var nummer = new List<int>();
-        //    foreach (var item in result)
-        //    {
-        //        nummer.Add(item.Id);
-        //    }
-        //    var reservationsDetails = _bookingService.GetAllReservationsDetails(nummer);
-        //    return model;
+            var guest = _guestService.FindGuestById(id);
+            var bookingIds = _bookingService.GetAllBookingByGuestId(guest.Id);
 
+            List<ReservationViewModel> bookings = new();
 
+            foreach (var booking in bookingIds)
+            {
+                ReservationViewModel tmp = new();
+                GetBookingById(booking.Id, ref tmp);
+                bookings.Add(tmp);
+            }
 
-        //}
+            return bookings;
+        }
+
+        [HttpPut("{id}")]
+        public int UpdateBookingDetails(int id, CustomerDetailsModel model)
+        {
+            try
+            {
+                _bookingService.UpdateReservation(model, id);
+            }
+            catch (Exception)
+            {
+                return 1; // failed
+            }
+            return 0;
+        }
     }
 }

@@ -28,7 +28,7 @@ export default {
     }
 }
 </script>
-<style >
+<style scoped>
     *, *:before, *:after{
   margin: 0;
   padding: 0;
@@ -49,6 +49,13 @@ export default {
   padding: 0.7em 0;
 }
 
+.h1, h1{
+  padding-top: 50px;
+  color:white;
+}
+
+
+
 @media screen and (max-width: 640px){
   .container{
     display: block;
@@ -62,6 +69,11 @@ export default {
   }
 }
 
+.container .title{
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 10px;
+}
 
 .content {
   position: relative;

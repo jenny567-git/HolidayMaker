@@ -1,5 +1,6 @@
 <template>
-    <div id="test3">
+    <div class="p-4 rounded shadow-sm">
+    <div id="testOmega">
         <div class="row" >
             <div class="col-md-4">
                 <Images :id="hotel.id"/>
@@ -10,11 +11,11 @@
                         <b>{{hotel.name}}</b>
                         <p>{{hotel.city.cityName}}, {{hotel.country.countryName}}</p>
                         <p>Ratings: <span class="badge rounded-pill bg-secondary">{{hotel.averageRating}}</span></p>
-                        <p>Beach distance: <span class="badge rounded-pill bg-secondary">{{hotel.beachDistance}} m </span></p>
+                        <p>Beach distance: <span class="badge rounded-pill bg-secondary">{{hotel.beachDistance}} km </span></p>
                         <p>Centrum distance: <span class="badge rounded-pill bg-secondary">{{hotel.centrumDistance}} km </span></p>
                     </div>
                     <div class="col-md-6 text-start">
-                        <h3>{{lowestPrice}} SEK</h3>
+                        <h5><small>from</small> <b>{{lowestPrice}} kr/unit</b></h5>
                         <br/>
                         <p v-if="hotel.pool"> <i class="fas fa-check"></i> Pool</p>
                         <p v-if="hotel.nightEntertainment"> <i class="fas fa-check"></i> Night Entertainment</p>
@@ -23,12 +24,12 @@
                     </div>
                 </div>
                 <router-link :to="'/hotels/' + hotel.id" class="nav-link"> 
-                    <button class="btn btn-outline-primary" for="btn-check-outlined" @click="hotelDetailsClick">See details</button><br>
+                    <button class="btn btn-primary" for="btn-check-outlined" @click="hotelDetailsClick">See details</button><br>
                 </router-link>
 
             </div>
         </div>
-        <hr>
+    </div>
     </div>
 </template>
 
@@ -67,7 +68,16 @@ computed:{
 </script>
 
 <style scoped>
-    #test3{
+    #testOmega{
         opacity: 100% !important;
+    }
+
+    a.nav-link{
+        margin-left: 35mm;
+    }
+
+    .p-4{
+        margin-top:15px;
+        background-color:rgb(241, 241, 241);
     }
 </style>

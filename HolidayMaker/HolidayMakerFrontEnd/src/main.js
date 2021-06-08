@@ -12,7 +12,8 @@ import 'primevue/resources/primevue.min.css'
 import 'primeicons/primeicons.css'
 import 'primeflex/primeflex.css';
 
+import ConfirmationService from 'primevue/confirmationservice';
 
 
 
-createApp(App).use(router).use(store).use(PrimeVue).use(VueCookies).mount('#app')
+createApp(App).use(router).use(store).use(PrimeVue).use(ConfirmationService).use(VueCookies).mount('#app')

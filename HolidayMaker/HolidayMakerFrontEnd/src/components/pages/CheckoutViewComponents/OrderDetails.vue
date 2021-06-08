@@ -9,10 +9,10 @@
                     </template>
                     <template #content>
                         <ul class="list-group list-group-flush" >
-                            <li class="list-group-item leftTexAlignt"> <b>Full name:</b> {{Details.FirstName}} {{Details.LastName}}</li>
-                            <li class="list-group-item leftTexAlignt"> <b>Email:</b> {{Details.Email}}</li>
-                            <li class="list-group-item leftTexAlignt"> <b>Phone:</b> {{Details.PhoneNumber}}</li>
-                            <li class="list-group-item leftTexAlignt"> <b>Address:</b> {{Details.Street}}, {{Details.ZipCode}}, {{Details.City}}</li>
+                            <li class="list-group-item leftTexAlignt"> <b>Full name:</b> {{Details.firstName}} {{Details.lastName}}</li>
+                            <li class="list-group-item leftTexAlignt"> <b>Email:</b> {{Details.email}}</li>
+                            <li class="list-group-item leftTexAlignt"> <b>Phone:</b> {{Details.phoneNumber}}</li>
+                            <li class="list-group-item leftTexAlignt"> <b>Address:</b> {{Details.street}}, {{Details.zipCode}}, {{Details.city}}</li>
                         </ul>
                     </template>
                 </Card>
@@ -33,6 +33,9 @@
                             <li v-if="BookingDetails.extraBed" class="list-group-item leftTexAlignt"> <b>Extra bed:</b> Yes</li>
                             <li class="list-group-item leftTexAlignt"> <b>Total price:</b> {{BookingDetails.totalprice}}</li>
                         </ul>
+                        <router-link :to="link" class="btn btn-primary">
+                            Edit booking
+                        </router-link>
                     </template>
                 </Card>
             </div>
@@ -50,21 +53,22 @@ export default {
         return{
             Details:{},
             BookingDetails: {},
-            SearchString: {}
+            SearchString: {},
+            link: '/hotels/' + this.$store.state.bookingDetails.hotelId + '/rooms'
         }
     },
     computed:{
         checkinDate(){
             if(this.$store.state.searchString.dates[0] !== undefined){
                 console.log("sdasds",this.$store.state.searchString.dates[0]);
-                return this.$store.state.searchString.dates[0].toISOString().split('T')[0];
+                return this.$store.state.searchString.dates[0].toLocaleDateString('sv-SE');
             }else{
                 return "not specified"
             }
         },
         checkoutDate(){
            if(this.$store.state.searchString.dates[1]  !== undefined){
-                return this.$store.state.searchString.dates[1].toISOString().split('T')[0];
+                return this.$store.state.searchString.dates[1].toLocaleDateString('sv-SE');
             }else{
                 return "not specified"
             }
@@ -72,6 +76,7 @@ export default {
     },
     created(){
         this.Details = this.$store.state.customerDetailsCheckout;
+        console.log("order details cust details: ",this.$store.state.customerDetailsCheckout)
         this.BookingDetails = this.$store.state.bookingDetails;
         this.SearchString = this.$store.state.searchString;
     },

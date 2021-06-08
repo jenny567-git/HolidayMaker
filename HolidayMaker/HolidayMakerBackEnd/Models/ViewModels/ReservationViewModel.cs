@@ -11,7 +11,7 @@ namespace HolidayMakerBackEnd.Models.ViewModels
     {
         //Guest
         public string FullName { get; set; }
-        
+        public CustomerDetailsModel GuestDetails { get; set; } = new();
 
         //reservation
         public DateTime StartDate { get; set; }
@@ -21,6 +21,7 @@ namespace HolidayMakerBackEnd.Models.ViewModels
         
         public int HotelId { get; set; }
         public string HotelName { get; set; }
+        public string Status { get; set; }
 
 
         //ReservationDetails

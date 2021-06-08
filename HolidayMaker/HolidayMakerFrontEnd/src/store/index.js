@@ -1,5 +1,5 @@
-import { createStore } from 'vuex'
-import router from '../router/index'
+import { createStore } from "vuex";
+import router from "../router/index";
 
 const store = createStore({
   state: {
@@ -21,6 +21,7 @@ const store = createStore({
       inputRooms: 0,
       dates: [],
     },
+    bookedHotels: [],
     searchAutoComplete: [],
     seachResults: [],
     hotel: [],
@@ -47,15 +48,16 @@ const store = createStore({
     },
 
     reservation: {
-      fullName: 'sadas',
-      hotelName: 'sds',
-      startDate: '',
-      endDate: '',
-      adults: '',
-      children: '',
-      customerMessage: '',
-      type: '',
-      totalPrice: '',
+      fullName: "sadas",
+      hotelName: "sds",
+      startDate: "",
+      endDate: "",
+      adults: "",
+      children: "",
+      customerMessage: "",
+      type: "",
+      totalPrice: "",
+      extraBed:null,
       hotelRoomsViewModel: {
         singleRooms: '2',
         doubleRooms: '2',
@@ -63,6 +65,10 @@ const store = createStore({
       },
     },
     customerDetailsCheckout: {},
+    orderId: "",
+    user: {
+      loggedIn: false,
+    },
   },
   mutations: {
     setEmail(store, value) {
@@ -128,8 +134,8 @@ const store = createStore({
     },
     getTotalPrice(state) {
       var days = Math.floor(
-        (Date.parse(state.searchString.dates[1].toISOString().split('T')[0]) -
-          Date.parse(state.searchString.dates[0].toISOString().split('T')[0])) /
+        (Date.parse(state.searchString.dates[1].toLocaleDateString('sv-SE')) -
+          Date.parse(state.searchString.dates[0].toLocaleDateString('sv-SE'))) /
           86400000
       )
       console.log(days)
@@ -192,17 +198,49 @@ const store = createStore({
     setPassword(state, value) {
       state.user.Password = value
     },
+    setBookedHotels(state, value) {
+      state.bookedHotels = value;
+    },
+    setSavedHotels(state, data) {
+      state.savedHotels = data;
+      // console.log('in saved hotel ', data);
+    },
+    setOrderId(state, value) {
+      state.orderId = value;
+    },
+    clearBookingDetails(state){
+      state.bookingDetails.hotelId = "",
+      state.bookingDetails.hotelName = "",
+      state.bookingDetails.noOfSingleRooms = 0,
+      state.bookingDetails.noOfDoubleRooms= 0,
+      state.bookingDetails.noOfFamilyRooms= 0,
+      state.bookingDetails.singleRoomId= 0,
+      state.bookingDetails.doubleRoomId= 0,
+      state.bookingDetails.familyRoomId= 0,
+      state.bookingDetails.unitPriceSingleRoom= 0,
+      state.bookingDetails.unitPriceDoubleRoom= 0,
+      state.bookingDetails.unitPriceFamilyRoom= 0,
+      state.bookingDetails.serviceType= "",
+      state.bookingDetails.serviceFee= 0,
+      state.bookingDetails.extraBed= false,
+      state.bookingDetails.extraBedFee= 0
+      state.bookingDetails.totalprice= "";
+    },
+    setHotelId(state, value){
+      state.bookingDetails.hotelId = value;
+    }
   },
   actions: {
     saveCustomerDetailsCheckout({ commit }, data) {
       commit('setCustomerDetailsCheckout', data)
     },
     async searchHotels({ commit }, searchString) {
-      let startDate
-      let endDate
+      router.push({ name: "result" });
+      let startDate;
+      let endDate;
       if (this.state.searchString.dates.length) {
-        startDate = this.state.searchString.dates[0].toISOString().slice(0, 10)
-        endDate = this.state.searchString.dates[1].toISOString().slice(0, 10)
+        startDate = this.state.searchString.dates[0].toLocaleDateString('sv-SE');
+        endDate = this.state.searchString.dates[1].toLocaleDateString('sv-SE');
       }
       //search with all values but no string
       if (searchString === null || searchString == '') {
@@ -270,11 +308,10 @@ const store = createStore({
     },
     async getReservationById({ commit }, reservationId) {
       var response = await fetch(
-        'https://localhost:44356/api/Booking/Booking/' + reservationId
-      )
-      var result = await response.json()
-
-      commit('setReservationDetails', result)
+        "https://localhost:44356/api/Booking/" + reservationId
+      );
+      var result = await response.json();
+      commit("setReservationDetails", result);
     },
     async searchHotelByCity({ commit }, searchString) {
       var response = await fetch(
@@ -324,7 +361,7 @@ const store = createStore({
       Cookies.set('login', 'true')
       Cookies.set('userId', result.id)
 
-      router.push('/')
+      router.push("/profile");
     },
     checkLoggedInUser({ commit }) {
       console.log('dkjgb')
@@ -351,8 +388,9 @@ const store = createStore({
       )
       var result = await response.json()
       if (result) {
-        console.log(result)
-        commit('setSavedHotels', result)
+        // console.log('in saved hotel result: ', result);
+        // console.log(result);
+        commit("setSavedHotels", result);
       }
     },
     async addFavouriteHotel({ commit }, hotelId) {
@@ -452,6 +490,23 @@ const store = createStore({
       commit('logOutUser')
       router.push('/')
     },
+    async getBookings({ commit }) {
+      var response = await fetch(
+        "https://localhost:44356/api/Booking/guest/" + this.state.guestId
+      );
+      var result = await response.json();
+      console.log(result);
+      commit("setBookedHotels", result);
+    },
+    async setOrderId({ commit }, value) {
+      commit("setOrderId", value);
+    },
+    clearCart({commit}){
+      commit('clearBookingDetails')
+    },
+    setHotelId({commit}, value){
+      commit('setHotelId', value)
+    }
   },
 })
 

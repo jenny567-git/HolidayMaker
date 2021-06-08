@@ -8,12 +8,12 @@
                     </h3>
                 </div>
             </div>
-            <div class="card">
+            <div class="card p-shadow-1">
                 <Steps :model="items" />
             </div>
-            <router-view @payment-confirmed="confirmed"/>
-            <Button v-if="notAtStart" @click="prevPage" label="Prev" class="p-button-raised p-button-rounded" />
-            <Button v-if="notAtEnd" @click="nextPage" label="Next" class="p-button-raised p-button-rounded" />
+            <router-view class="" @payment-confirmed="confirmed"/>
+            <Button v-if="notAtStart" @click="prevPage" label="Prev" class="p-button-raised p-button-rounded mt-3" />
+            <Button v-if="notAtEnd" @click="nextPage" label="Next" class="p-button-raised p-button-rounded mt-3" />
         </div>
     </div>
 </template>
@@ -35,7 +35,7 @@ export default {
             return this.page > 0 ? true : false;
         },
         notAtEnd(){
-            return this.page < this.items.length - 1 ? true : false;
+            return this.page < this.items.length - 2 ? true : false;
         },
     },
     data() {
@@ -76,6 +76,7 @@ export default {
         },
         confirmed(id){
             // Set id in vuex
+            this.$store.dispatch('setOrderId', id);
             this.nextPage();
         }
     }
@@ -87,11 +88,11 @@ export default {
         padding-top: 20px;
     }
     #test2{
-        border-radius: 30px;
-        background-color: rgba(107, 146, 83, 0.5);
+        border-radius: 20px;
+        background-color: white;
         padding-left: 25px;
         padding-right: 25px;
-        padding-bottom: 40px;
+        padding-bottom: 20px;
         margin-top: 20px;
         color:rgb(255, 255, 255);
         /* text-shadow: 2px 2px black; */

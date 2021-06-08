@@ -7,25 +7,25 @@
           <Slider
             v-model="pricerange.value"
             v-bind="pricerange"
-            :max="50000"
+            :max="2000"
           ></Slider>
         </div>
         <hr />
         <div>
-          <p>Distance to beach (m)</p>
+          <p>Distance to beach</p>
           <Slider
             v-model="beachDistance.value"
             v-bind="beachDistance"
-            :max="8000"
+            :max="7"
           ></Slider>
         </div>
         <hr />
         <div>
-          <p>Distance to city (km)</p>
+          <p>Distance to city</p>
           <Slider
             v-model="centrumDistance.value"
             v-bind="centrumDistance"
-            :max="5000"
+            :max="5"
           ></Slider>
         </div>
         <hr />
@@ -87,7 +87,7 @@
                       @click="childClub = !childClub"
                     />
                     <label class="form-check-label" for="flexCheckDefault">
-                      Child club
+                      Kids club
                     </label>
                   </div>
                   <div class="form-check">
@@ -110,12 +110,16 @@
         </div>
       </div>
     </div>
-    <div class="col-md-8">
+
+    <div v-if="filteredHotels.length" class="col-md-8">
       <Result
         v-for="result in filteredHotels"
         :hotel="result.hotel"
         :key="result.hotel.id"
       />
+    </div>
+    <div v-else class="col-md-8 float-container">
+      <Skel v-for="n in nrOfSkeletons" :key="n"></Skel>
     </div>
   </div>
 </template>
@@ -125,25 +129,37 @@ import Slider from "/node_modules/@vueform/slider";
 import Images from "../HotelViewComponents/RoomPhotoSlider.vue";
 import Info from "../HotelViewComponents/Info.vue";
 import Result from "./Result.vue";
-
+import Skel from "./Skel.vue";
+import Card from "primevue/card";
 export default {
   components: {
     Slider,
     Images,
     Info,
     Result,
+    Skel,
+    Card,
   },
-
   data() {
     return {
       pricerange: {
-        value: [0, 40000],
+        value: [0, 2000],
       },
       beachDistance: {
-        value: 8000,
+        value: 7,
+        step: -1,
+        format: {
+          decimals: 1,
+          suffix: " km",
+        },
       },
       centrumDistance: {
-        value: 800,
+        value: 10,
+        step: -1,
+        format: {
+          decimals: 1,
+          suffix: " km",
+        },
       },
       pool: false,
       nightEntertainment: false,
@@ -152,43 +168,57 @@ export default {
     };
   },
   computed: {
+    nrOfSkeletons() {
+      return 3;
+    },
     searchResults() {
       return this.$store.state.seachResults;
     },
     hotelsCount() {
       return this.filteredHotels.length;
     },
-
     filteredHotels() {
-      let result = this.searchResults.filter(
-        (res) => res.hotel.beachDistance <= this.beachDistance.value
-      );
-
-      result = result.filter(
-        (res) => res.hotel.centrumDistance <= this.centrumDistance.value
-      );
-
-      if (this.pool) {
-        result = result.filter((res) => res.hotel.pool == this.pool);
-      }
-
-      if (this.nightEntertainment) {
-        result = result.filter(
-          (res) => res.hotel.nightEntertainment == this.nightEntertainment
+      if (this.searchResults.length) {
+        //filter price
+        let result = this.searchResults.filter(
+          (res) =>
+            this.pricerange.value[0] <= res.hotel.rooms[0].price &&
+            res.hotel.rooms[0].price <= this.pricerange.value[1]
         );
-      }
 
-      if (this.childClub) {
-        result = result.filter((res) => res.hotel.childClub == this.childClub);
-      }
-
-      if (this.restaurant) {
         result = result.filter(
-          (res) => res.hotel.restaurant == this.restaurant
+          (res) => res.hotel.beachDistance <= this.beachDistance.value
         );
+
+        result = result.filter(
+          (res) => res.hotel.centrumDistance <= this.centrumDistance.value
+        );
+
+        if (this.pool) {
+          result = result.filter((res) => res.hotel.pool == this.pool);
+        }
+
+        if (this.nightEntertainment) {
+          result = result.filter(
+            (res) => res.hotel.nightEntertainment == this.nightEntertainment
+          );
+        }
+
+        if (this.childClub) {
+          result = result.filter(
+            (res) => res.hotel.childClub == this.childClub
+          );
+        }
+
+        if (this.restaurant) {
+          result = result.filter(
+            (res) => res.hotel.restaurant == this.restaurant
+          );
+        }
+        this.$emit("updateNrOfHotels", result.length);
+        return result;
       }
-      this.$emit("updateNrOfHotels", result.length);
-      return result;
+      return 0;
     },
   },
 };
@@ -217,14 +247,18 @@ export default {
   position: absolute;
 }
 #sliders {
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  }
+
+
+#accordionFlushExample{
+  border:solid;
+  border-color: silver;
+  margin-bottom: 25px;
 }
 
 .accordion {
   color: black;
 }
-.slider-connect {
-  background: #5a3ff5;
-  cursor: pointer;
-}
+
 </style>

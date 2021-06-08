@@ -8,16 +8,6 @@
                 <Searcher/>
                 <router-view/>
               </div>
-                <div>
-                    <div>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                    </div>
-                </div>
             </div>
         </div>
         <figure>
@@ -30,12 +20,6 @@
                 </audio>
             </figure> 
     </div>
-      <!-- <div style="background: url(https://wallpaperaccess.com/full/1198002.jpg);" class="page-holder bg-cover">
-        <div class="container">
-          <Searcher/>
-          <router-view/>
-        </div>
-    </div> -->
         <Body v-if="showBody"/>
     <Footer/>
   </main>
@@ -51,8 +35,6 @@ import ColorPicker from 'primevue/colorpicker';
 import Navigator from '/src/components/Navigator.vue';
 import Footer from '/src/components/Footer.vue';
 import Body from "/src/components/pages/MainPage/Body.vue";
-
-
 import Searcher from './components/pages/SearchComponent/Search.vue'
 
 export default {
@@ -110,9 +92,7 @@ export default {
         this.$store.state.searchButtonLoading = true;
 
         this.$store.dispatch('searchHotels', this.searchString);
-      },
-      
-      
+      }
     },
     computed:{
       isLoading(){
@@ -120,8 +100,7 @@ export default {
       },
       showBody(){
         return this.$route.path == '/' ? true : false;
-      },
-      
+      }
     },
     created(){
         console.log("App created");
@@ -129,10 +108,6 @@ export default {
           this.$store.dispatch('checkLoggedInUser')
         }
       },
-    
-    
-    
-    
 }
 
 
@@ -158,33 +133,23 @@ export default {
 
 .intro-2 {
     background: url("https://wallpaperaccess.com/full/1198002.jpg")no-repeat center center;
-    background-size: cover !important;
-    background-position: center;
+    padding-bottom: 11cm;
+    background-size: cover ;
+    background-position: top;
+    background-attachment: fixed;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     border-color: black;
     border-style: solid;
     border-width: 2px 0px 2px 0px;
 }
 
-/* .full-bg-img{
-  max-height: 300fr;
-  max-width: none;
-  min-width: 100%;
-  min-height: 100%;
-  position: static;
-} */
-
 .view {
     height: 100%;
+    min-height: 900px;
 }
 
-/* .bg-cover {
-  padding: 40px;
-  width: auto;
-  height: auto;
-  border-color: black;
-  border-style: solid;
-  border-width: 2px 0px 2px 0px;
-  justify-content: center;
-} */
+audio{
+  margin-top: 20px;
+}
 </style>

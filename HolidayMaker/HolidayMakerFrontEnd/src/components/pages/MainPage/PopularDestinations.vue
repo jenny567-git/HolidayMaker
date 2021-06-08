@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Popular Destinations</h1>
+    <h1 id="pop">Popular Destinations</h1>
     <div class="row my-5">
       <div class="col-lg-12 mx-auto">
         <div class="row">
@@ -65,127 +65,16 @@ export default {
 
 
 
-<style>
-*, *:before, *:after{
-  margin: 0;
-  padding: 0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing:border-box;
-  box-sizing: border-box;
+<style scoped>
+
+h1{
+  margin-top: 35px;
 }
 
-
-.main-title{
-  color: #2d2d2d;
-  text-align: center;
-  text-transform: capitalize;
-  padding: 0.7em 0;
-}
-
-.h1, h1{
-  padding-top: 30px;
-  color:white;
-}
-
-@media screen and (max-width: 640px){
-  .container{
-    display: block;
-    width: 100%;
-  }
-}
-
-@media screen and (min-width: 900px){
-  .container{
-    width: 33.33333%;
-  }
-}
-
-.container .title{
-  color: #1a1a1a;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.content {
-  position: relative;
-  width: 100%;
-  max-width: 400px;
-  margin: auto;
-  overflow: hidden;
-}
-
-.content .content-overlay {
-  background: linear-gradient(180deg, rgba(255,255,255,0) 25%, rgba(0,0,0,1) 100%);
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  opacity: 0;
-  -webkit-transition: all 0.4s ease-in-out 0s;
-  -moz-transition: all 0.4s ease-in-out 0s;
-  transition: all 0.4s ease-in-out 0s;
-}
-
-.content:hover .content-overlay{
-  opacity: 1;
-}
-
-.content-image{
-  width: 100%;
-}
-
-.content-details {
-  position: absolute;
-  text-align: center;
-  padding-left: 1em;
-  padding-right: 1em;
-  width: 100%;
-  top: 50%;
-  left: 50%;
-  opacity: 0;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  -webkit-transition: all 0.3s ease-in-out 0s;
-  -moz-transition: all 0.3s ease-in-out 0s;
-  transition: all 0.3s ease-in-out 0s;
-}
-
-.content:hover .content-details{
-  top: 70%;
-  left: 50%;
-  opacity: 1;
-}
-
-.content-details h3{
-  color: #fff;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  margin-bottom: 0.5em;
-  text-transform: uppercase;
-}
-
-.content-details p{
-  color: #fff;
-  font-size: 0.8em;
-}
-
-.fadeIn-bottom{
-  top: 80%;
-}
-
-.fadeIn-top{
-  top: 20%;
-}
-
-.fadeIn-left{
-  left: 20%;
-}
-
-.fadeIn-right{
-  left: 80%;
+#pop{
+  padding-top: 60px;
+  font-family:'Times New Roman', Times, serif;
+  font-weight: bold;
+  text-decoration:underline;
 }
 </style>

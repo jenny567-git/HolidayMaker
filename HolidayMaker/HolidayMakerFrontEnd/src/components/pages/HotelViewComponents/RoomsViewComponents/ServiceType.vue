@@ -16,7 +16,7 @@
         
         @click="emitToParent('SelfService')"
       />
-      <label class="btn btn-outline-primary" for="btnSelfService">
+      <label class="btn btn-primary" for="btnSelfService">
         Self service
       </label>
 
@@ -29,7 +29,7 @@
         autocomplete="off"
         @click="emitToParent('HalfBoard')"
       />
-      <label class="btn btn-outline-primary" for="btnHalfBoard">
+      <label class="btn btn-primary" for="btnHalfBoard">
         Half board
       </label>
 
@@ -43,7 +43,7 @@
         @click="emitToParent('FullBoard')"
       />
 
-      <label class="btn btn-outline-primary" for="btnFullBoard">
+      <label class="btn btn-primary" for="btnFullBoard">
         Full board
       </label>
 
@@ -56,7 +56,7 @@
         autocomplete="off"
         @click="emitToParent('AllInclusive')"
       />
-      <label class="btn btn-outline-primary" for="btnAllInclusive">
+      <label class="btn btn-primary" for="btnAllInclusive">
         All inclusive
       </label>
     </div>
@@ -73,5 +73,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.p-4{
+        margin-top:15px;
+        background-color:rgb(241, 241, 241);
+    }
 </style>

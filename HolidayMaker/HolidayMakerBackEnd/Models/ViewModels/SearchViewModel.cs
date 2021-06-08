@@ -25,6 +25,7 @@ namespace HolidayMakerBackEnd.Models.ViewModels
         public int ReservationId { get; set; }
         public string Type { get; set; }
 
+        public CustomerDetailsModel customerDetails { get; set; }
 
         //ReservedRooms
         public List<ReservedRooms> ReservedRooms { get; set; }

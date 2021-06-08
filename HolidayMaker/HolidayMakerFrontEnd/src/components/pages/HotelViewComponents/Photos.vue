@@ -2,7 +2,7 @@
 <template>    
 <div class="container">
   <div class="row">
-    <div class="col-md-12">     
+    <div class="col-md-12 photos">     
     <div id="dynamic_slide_show" class="carousel slide light-shadow carousel-fade carousel-thumbnails" data-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#dynamic_slide_show" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">
@@ -43,10 +43,16 @@
   </div>                
   </div>
   </div>
-  <hr>
 </div>
-
 </template>
+
+<style scoped>
+    .col-md-12.photos{
+        padding-bottom: 20px;
+    }
+
+  
+</style>
 
 <script>
 import Images from './RoomPhotoSlider.vue'

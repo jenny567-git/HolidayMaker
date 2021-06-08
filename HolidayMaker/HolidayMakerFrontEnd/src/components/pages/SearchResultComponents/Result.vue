@@ -108,6 +108,11 @@ export default {
   opacity: 100% !important;
 }
 
+.btn.btn-primary{
+    background-color:#53c16e;
+    border-color:#1bc541;
+  }
+
 a.nav-link {
   margin-left: 35mm;
 }

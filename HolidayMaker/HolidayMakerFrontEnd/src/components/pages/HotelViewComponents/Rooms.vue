@@ -27,7 +27,7 @@
             >
             </div>
             <div v-else>
-              <p>Select service type to proceed to booking</p>
+              <b>Select service type to proceed to booking</b>
             </div>    
           </div>
         </div>
@@ -82,6 +82,7 @@ export default {
     Book() {
       this.$store.dispatch('setHotelName', this.hotelInfo.name)
       this.$store.dispatch('setHotelId', this.hotelInfo.id)
+      window.scrollTo(0,0)
     },
   },
   created(){
@@ -94,6 +95,16 @@ export default {
 
 
 <style scoped>
+
+  .p-buttonset .p-button.p-highlight {
+    background:#53c16e !important;
+    border-color:#1bc541 !important;
+  }
+
+  .p-buttonset .p-button.p-highlight:hover{
+    background:#53c16e !important;
+    border-color:#1bc541 !important;
+  }
 
   .btn.btn-primary{
     background-color:#53c16e;

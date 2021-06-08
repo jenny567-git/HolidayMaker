@@ -8,8 +8,16 @@
                             <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
                           </div>
                           <br>
-                            <h6>Upload a different photo...</h6>
-                            <input type="file" class="text-center center-block file-upload" aria-label="Sizing example input">
+                          <div class="container">
+                                <h6>Upload a different photo</h6>
+                            <div class="input-group mb-3">
+                            
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                <label class="custom-file-label" for="inputGroupFile01"></label>
+                            </div>
+                            </div>
+                          </div>
                     </div>
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->
@@ -108,7 +116,7 @@ export default {
     }
     
     .profile input{
-        padding-left:30px;
+        /* padding-left:30px; */
     }
     
     .profile-usertitle {

@@ -1,51 +1,58 @@
 <template>
-  <div id="test2">
-    <br />
-    <div class="container-fluid">
-      <h3>Success!</h3>
-      <p><strong>Name: </strong> {{ reservationInfo.fullName }}</p>
-      <p><strong>Hotel: </strong>{{ reservationInfo.hotelName }}</p>
-      <p><strong>Checkin: </strong>{{ checkInDate }}</p>
-      <p><strong>Checkout: </strong>{{ checkOutDate }}</p>
-      <h3>Booked rooms</h3>
-
-      <p>
-        <strong>Single rooms:</strong>
-        {{ reservationInfo.hotelRoomsViewModel.singleRooms }}
-      </p>
-      <p>
-        <strong>Double rooms: </strong>
-        {{ reservationInfo.hotelRoomsViewModel.doubleRooms }}
-      </p>
-      <p>
-        <strong>Family rooms: </strong>
-        {{ reservationInfo.hotelRoomsViewModel.familyRooms }}
-      </p>
-      <h3>Persons</h3>
-      <p>
-        <strong>Adults: {{ reservationInfo.adults }}</strong>
-      </p>
-      <p>
-        <strong>Children: {{ reservationInfo.children }}</strong>
-      </p>
-      <p><strong>Message to hotel: </strong></p>
-      <p>{{ reservationInfo.customerMessage }}</p>
-      <p><strong>Accomodation type: </strong> {{ reservationInfo.type }}</p>
-      <p v-if="reservationInfo.extraBed"><strong>Extra bed:</strong> Yes</p>
-      <p><strong>Price: </strong>{{ reservationInfo.totalPrice }}</p>
-    </div>
+  <div>
+    <h1>Order details</h1>
+        <div class="row">
+            <div class="col">
+                <Card style="">
+                    <template #title>
+                    Personal Details
+                    </template>
+                    <template #content>
+                        <ul class="list-group list-group-flush" >
+                            <li class="list-group-item leftTexAlignt"> <b>Full name:</b> {{reservationInfo.fullName}}</li>
+                            <li class="list-group-item leftTexAlignt"> <b>Email:</b> {{reservationInfo.guestDetails.email}}</li>
+                            <li class="list-group-item leftTexAlignt"> <b>Phone:</b> {{reservationInfo.guestDetails.phoneNumber}}</li>
+                            <li class="list-group-item leftTexAlignt"> <b>Address:</b> {{reservationInfo.guestDetails.street}}, {{reservationInfo.guestDetails.zipCode}}, {{reservationInfo.guestDetails.city}}</li>
+                        </ul>
+                    </template>
+                </Card>
+            </div>
+            <div class="col">
+                <Card style="">
+                    <template #title>
+                    Booking Details
+                    </template>
+                    <template #content>
+                        <ul class="list-group list-group-flush" >
+                            <li class="list-group-item leftTexAlignt"> <b>Hotel name:</b> {{reservationInfo.hotelName}}</li>
+                            <li class="list-group-item leftTexAlignt"> <b>Check in:</b> {{checkInDate}}</li>
+                            <li class="list-group-item leftTexAlignt"> <b>Check out:</b> {{checkOutDate}}</li>
+                            <li v-if="reservationInfo.children > 0" class="list-group-item leftTexAlignt"> <b>Number of people:</b> {{reservationInfo.adults}} adults, {{reservationInfo.children}} children</li>
+                            <li v-else class="list-group-item leftTexAlignt"> <b>Number of people:</b> {{reservationInfo.adults}} adults</li>
+                            <li class="list-group-item leftTexAlignt"> <b>Service type:</b> {{reservationInfo.type}}</li>
+                            <li v-if="reservationInfo.extraBed" class="list-group-item leftTexAlignt"> <b>Extra bed:</b> Yes</li>
+                            <li class="list-group-item leftTexAlignt"> <b>Total price:</b> {{reservationInfo.totalPrice}} SEK</li>
+                        </ul>
+                    </template>
+                </Card>
+            </div>
+        </div>
   </div>
 </template>
 
 <script>
+import Card from 'primevue/card'
+
 export default {
-  components: {},
+  components: {
+    Card,
+  },
   data() {
     return {
       reservationInfo: {
         fullName: "sadas",
         hotelName: "sds",
-        startDate: "",
+        startDate: '',
         endDate: "",
         adults: "",
         children: "",
@@ -58,6 +65,13 @@ export default {
           doubleRooms: "2",
           familyRooms: "2",
         },
+        guestDetails:{
+          email: '',
+          phoneNumber: '',
+          street: '',
+          city: '',
+          zipCode: '',
+        }
       },
     };
   },
@@ -66,10 +80,18 @@ export default {
       return this.$store.state.reservation;
     },
     checkInDate() {
-      return this.reservationInfo.startDate.split("T")[0];
+      if(this.reservationInfo.startDate === ''){
+        return "not found";
+      }else{
+        return this.reservationInfo.startDate.split("T")[0];
+      }
     },
     checkOutDate() {
-      return this.reservationInfo.endDate.split("T")[0];
+      if(this.reservationInfo.endDate === ''){
+        return "not found";
+      }else{
+        return this.reservationInfo.endDate.split("T")[0];
+      }
     },
   },
   created() {
@@ -77,6 +99,7 @@ export default {
       .dispatch("getReservationById", this.$route.params.id)
       .then(() => {
         this.reservationInfo = this.$store.state.reservation;
+        console.log(this.reservationInfo.startDate)
       });
   },
 };

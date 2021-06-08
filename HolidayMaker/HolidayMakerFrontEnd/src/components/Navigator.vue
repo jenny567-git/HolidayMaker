@@ -34,9 +34,9 @@
 					</div>
 				      <nav id="nav-menu-container">
 				        <ul class="nav-menu">
-				          <li><a href="">Home</a></li>
 				          <li><a href="">Work With us</a></li>
-				          <li><a href="">Contact</a></li>
+				          <li><a href="">Tourist Attraction</a></li>
+                  <li><a href="">Contacts</a></li>
 				        </ul>
 				      </nav><!-- #nav-menu-container -->					      		  
 				</div>
@@ -79,6 +79,7 @@ export default {
 
 nav#nav-menu-container{
   display:inline-block;
+  padding-top:10px;
 }
 
 ol, ul {
@@ -155,7 +156,6 @@ a {
 }
 
 .main-menu {
-  padding-bottom: 10px;
   padding-top: 10px;
   background: #33393a;
   padding-left: 15px;

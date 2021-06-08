@@ -17,7 +17,7 @@
                           <a  href=""><router-link to="/Profile">Profile</router-link></a>
                         </div>
 							</div>
-                        <div v-if="loggedIn">
+                        <div id="user" v-if="loggedIn">
                           <ul>
                               <li ><a>{{user.email}}</a></li>
                          </ul>
@@ -36,7 +36,7 @@
 				        <ul class="nav-menu">
 				          <li><a href="">Work With us</a></li>
 				          <li><a href="">Tourist Attraction</a></li>
-                  <li><a href="">Contacts</a></li>
+                  <li><a href="">Contacts Us</a></li>
 				        </ul>
 				      </nav><!-- #nav-menu-container -->					      		  
 				</div>
@@ -77,6 +77,11 @@ export default {
 
 <style scoped>
 
+#user{
+  color:rgb(131, 255, 93);
+  padding-right:25px;
+}
+
 nav#nav-menu-container{
   display:inline-block;
   padding-top:10px;
@@ -108,7 +113,7 @@ a {
 .header-top {
   font-size: 12px;
   padding: 6px 0px;
-  background-color:rgb(95, 138, 173);
+  background-color:rgb(108 193 109);
 }
 
 .header-top a {

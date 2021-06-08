@@ -1,7 +1,7 @@
 <template>
   <div>
     <p id="title">
-      <b>Total price: {{ totalPrice }}</b>
+      <b>Total price: {{ totalPrice }} SEK</b>
     </p>
     <div id="center">
       <form id="payment-form">

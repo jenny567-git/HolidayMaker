@@ -11,9 +11,11 @@ namespace HolidayMakerBackEnd.Services
     public class BookingService
     {
         private readonly HolidayMakerContext _db;
+        private readonly HotelService _hs;
         public BookingService()
         {
             _db = new HolidayMakerContext();
+            _hs = new HotelService();
         }
 
         public int latestId;
@@ -139,7 +141,8 @@ namespace HolidayMakerBackEnd.Services
             DateTime d1 = reservation.StartDate;
             DateTime d2 = reservation.EndDate;
             TimeSpan t = d2 - d1;
-            var accomodationTypePrice = _db.Accomodations.FirstOrDefault(x => x.Type == reservationsDetail.Type && x.HotelId == reservation.HotelId).Price;
+            var accomodationPrice = _hs.GetAccomodationFee(reservation.HotelId, reservationsDetail.Type);
+            //var accomodationTypePrice = _db.Accomodations.FirstOrDefault(x => x.Type == reservationsDetail.Type && x.HotelId == reservation.HotelId).Price;
             int days = (int)t.Days;
             int rooms = reservedRooms.Sum(b => b.BookedRooms);
 
@@ -147,11 +150,13 @@ namespace HolidayMakerBackEnd.Services
 
             totalprice += CostPerNightAndRoom;
 
-            totalprice += accomodationTypePrice;
+            totalprice += accomodationPrice;
 
             if (extrabed==true)
             {
-                totalprice += 200;
+                var hotel = _hs.GetById(reservation.HotelId);
+                totalprice += (double)hotel.ExtraBedFee;
+                //totalprice += 200;
             }
 
             using (var db = new HolidayMakerContext())

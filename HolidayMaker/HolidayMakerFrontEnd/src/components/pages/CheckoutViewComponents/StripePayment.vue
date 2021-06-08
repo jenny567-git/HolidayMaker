@@ -1,6 +1,6 @@
 <template>
+	<p id="title"><b>Total price: {{totalPrice}}</b></p>
     <div id="center">
-				<p> <b>Total price: {{totalPrice}}</b></p>
         <form id="payment-form">	
             <div id="card-element">
                 <!--Stripe.js injects the Card Element-->
@@ -200,10 +200,18 @@ var loading = function (isLoading) {
     box-sizing: border-box;
 }
 
+p{
+    color: black;
+}
+
+#title{
+    margin-top: 25px;
+}
+
 #center {
-    margin: auto;
-    width: 50%;
-    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    
 }
 
 body {
@@ -217,8 +225,9 @@ body {
     width: 100vw;
 }
 form {
-    width: 30vw;
-    min-width: 500px;
+    margin: 0 auto;
+    width: 80%;
+    min-width: 300px;
     align-self: center;
     box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
         0px 2px 5px 0px rgba(50, 50, 93, 0.1),

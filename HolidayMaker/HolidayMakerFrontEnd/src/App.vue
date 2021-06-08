@@ -146,6 +146,7 @@ export default {
 
 .view {
     height: 100%;
+    min-height: 900px;
 }
 
 /* .bg-cover {

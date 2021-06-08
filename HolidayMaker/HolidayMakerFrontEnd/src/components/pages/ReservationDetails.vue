@@ -1,6 +1,6 @@
 <template>
-  <br />
   <div id="test2">
+    <br />
     <div class="container-fluid">
       <h3>Success!</h3>
       <p><strong>Name: </strong> {{ reservationInfo.fullName }}</p>
@@ -31,6 +31,7 @@
       <p><strong>Message to hotel: </strong></p>
       <p>{{ reservationInfo.customerMessage }}</p>
       <p><strong>Accomodation type: </strong> {{ reservationInfo.type }}</p>
+      <p v-if="reservationInfo.extraBed"><strong>Extra bed:</strong> Yes</p>
       <p><strong>Price: </strong>{{ reservationInfo.totalPrice }}</p>
     </div>
   </div>
@@ -42,20 +43,21 @@ export default {
   data() {
     return {
       reservationInfo: {
-        fullName: 'sadas',
-        hotelName: 'sds',
-        startDate: '',
-        endDate: '',
-        adults: '',
-        children: '',
-        customerMessage: '',
-        type: '',
-        totalPrice: '',
-        hotelRoomsViewModel:{
-          singleRooms: '2',
-          doubleRooms: '2',
-          familyRooms: '2'
-        }
+        fullName: "sadas",
+        hotelName: "sds",
+        startDate: "",
+        endDate: "",
+        adults: "",
+        children: "",
+        customerMessage: "",
+        type: "",
+        totalPrice: "",
+        extraBed:false,
+        hotelRoomsViewModel: {
+          singleRooms: "2",
+          doubleRooms: "2",
+          familyRooms: "2",
+        },
       },
     };
   },
@@ -63,18 +65,19 @@ export default {
     reservation() {
       return this.$store.state.reservation;
     },
-    checkInDate(){
-      return this.reservationInfo.startDate.split('T')[0];
+    checkInDate() {
+      return this.reservationInfo.startDate.split("T")[0];
     },
-    checkOutDate(){
-      return this.reservationInfo.endDate.split('T')[0];
-    }
+    checkOutDate() {
+      return this.reservationInfo.endDate.split("T")[0];
+    },
   },
   created() {
-    this.$store.dispatch("getReservationById", this.$route.params.id)
-    .then(() =>{
-      this.reservationInfo = this.$store.state.reservation;
-    });
+    this.$store
+      .dispatch("getReservationById", this.$route.params.id)
+      .then(() => {
+        this.reservationInfo = this.$store.state.reservation;
+      });
   },
 };
 </script>

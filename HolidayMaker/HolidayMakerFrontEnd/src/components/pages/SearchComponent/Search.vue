@@ -84,10 +84,10 @@ export default {
   margin-top: 46px;
 }
 
-button.p-button.p-component.p-mx-auto{
+/* button.p-button.p-component.p-mx-auto{
   padding-left: 50px;
   padding-right: 50px;
-}
+} */
 
 
 #range{

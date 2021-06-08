@@ -23,7 +23,7 @@ export default {
 
     #welcome{
         font-size: 4em;
-        color: rgb(83 193 110);
+        color: rgb(134 238 255);
         padding-top: 20px;
         text-shadow: 2px 2px black;
     }

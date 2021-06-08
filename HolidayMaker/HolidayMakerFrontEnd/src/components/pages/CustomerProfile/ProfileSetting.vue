@@ -127,14 +127,13 @@ export default {
     },
     async updateGuest(){
       console.log("då")
-        var Id = this.user.Id
-      await fetch('https://localhost:44356/api/Guest/updateGuest', {
+      await fetch('https://localhost:44356/api/Guest/updateGuets', {
         method:'Post',
         headers:{
           'Accept': 'application/json',
           'Content-type': 'application/json'
         },
-        body: JSON.stringify({Id, Fullname:this.guest.Fullname, Street:this.guest.Street, Zipcode:this.guest.Zipcode, City:this.guest.City, Country:this.guest.Country, Phone:this.guest.Phone, Email:this.guest.Email, Password:this.guest.Password}),
+        body: JSON.stringify({Id: user.Id, Fullname:this.guest.Fullname, Street:this.guest.Street, Zipcode:this.guest.Zipcode, City:this.guest.City, Country:this.guest.Country, Phone:this.guest.Phone, Email:this.guest.Email, Password:this.guest.Password}),
         
       })
        this.resetForm()

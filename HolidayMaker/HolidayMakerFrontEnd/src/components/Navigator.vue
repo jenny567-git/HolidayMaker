@@ -113,7 +113,7 @@ a {
 .header-top {
   font-size: 12px;
   padding: 6px 0px;
-  background-color:rgb(108 193 109);
+  background-color:rgb(79 146 106);
 }
 
 .header-top a {

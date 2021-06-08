@@ -1,12 +1,12 @@
 <template>
-  <div v-if="photoExists">
+  <div v-if="photoExists" class="photoSliderDiv">
     <div :id="'carouselExampleFade' + photos[0].id" class="carousel slide carousel-fade" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="active carousel-item">
-          <img :src="photos[0].roomPhoto" class="d-block w-100" alt="...">
+          <img :src="photos[0].roomPhoto" class="d-block w-100 photoSlider" alt="...">
         </div>
         <div class="carousel-item" v-for="(photo, index) in photos.slice(1)" :key="index">
-          <img :src="photo.roomPhoto" class="d-block w-100" alt="...">
+          <img :src="photo.roomPhoto" class="d-block w-100 photoSlider" alt="...">
         </div>
       </div>
       <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExampleFade' + photos[0].id" data-bs-slide="prev">
@@ -41,14 +41,23 @@ export default {
 
 <style scoped>
 
-#carouselExampleFade{
-    margin-bottom:15px;
-    border-style:inset;
-}
+  .photoSliderDiv {
+    width: 210px;
+  }
+  .photoSlider {
+    width: 210px;
+    height: 150px;
+    object-fit: cover;
+  }
 
-.carousel-inner{
-  width:100%;
-  max-height: 550px !important;
-  /* min-height: 550px !important; */
-}
+  #carouselExampleFade{
+      margin-bottom:15px;
+      border-style:inset;
+  }
+
+  .carousel-inner{
+    width:100%;
+    max-height: 550px !important;
+    /* min-height: 550px !important; */
+  }
 </style>

@@ -203,6 +203,7 @@ const store = createStore({
     },
     setSavedHotels(state, data) {
       state.savedHotels = data;
+      // console.log('in saved hotel ', data);
     },
     setOrderId(state, value) {
       state.orderId = value;
@@ -387,7 +388,8 @@ const store = createStore({
       );
       var result = await response.json();
       if (result) {
-        console.log(result);
+        // console.log('in saved hotel result: ', result);
+        // console.log(result);
         commit("setSavedHotels", result);
       }
     },

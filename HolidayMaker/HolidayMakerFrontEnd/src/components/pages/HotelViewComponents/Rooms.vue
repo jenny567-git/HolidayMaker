@@ -84,6 +84,11 @@ export default {
       this.$store.dispatch('setHotelId', this.hotelInfo.id)
     },
   },
+  created(){
+    if(this.$store.state.bookingDetails.serviceType !== ''){
+      this.value = this.$store.state.bookingDetails.serviceType;
+    }
+  }
 };
 </script>
 

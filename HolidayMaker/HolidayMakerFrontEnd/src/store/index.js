@@ -40,7 +40,7 @@ const store = createStore({
       unitPriceSingleRoom: 0,
       unitPriceDoubleRoom: 0,
       unitPriceFamilyRoom: 0,
-      serviceType: "SelfService",
+      serviceType: "",
       serviceFee: 0,
       extraBed: false,
       extraBedFee: 0,
@@ -176,8 +176,8 @@ const store = createStore({
       state.bookingDetails.serviceType = value;
     },
     setServiceFee(state, value) {
-      console.log("in mutation set service");
-      console.log("value" + value);
+      // console.log("in mutation set service");
+      // console.log("value" + value);
       state.bookingDetails.serviceFee = value;
     },
     setCustomerDetailsCheckout(state, data) {

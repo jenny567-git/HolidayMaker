@@ -42,7 +42,7 @@
     />
 
     <img
-      src="https://mdbootstrap.com/img/Photos/Vertical/mountain1.jpg"
+      src="https://64.media.tumblr.com/tumblr_mcuwqghees1rx5m8ro1_250.jpg"
       class="w-100 shadow-1-strong rounded mb-4"
       alt=""
     />

@@ -7,7 +7,7 @@
       </div>
 
       <!-- right column -->
-      <div class="col-md-6 rounded shadow-sm">
+      <div class="col-md-6 rounded shadow-sm" id="rightCard">
         <Options @checked="setExtraBedFee" />
 
         <!-- Pension type -->
@@ -115,5 +115,8 @@ export default {
     padding-top: 20px;
   }
 
+  #rightCard {
+    margin-bottom: 15px;
+  }
 
 </style>

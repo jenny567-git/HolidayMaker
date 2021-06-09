@@ -3,7 +3,7 @@
     <div id="testOmega">
       <div class="row">
         <div class="col-md-4">
-          <PhotoSlider :photos="photos" :key="hotel.id"/>
+          <PhotoSlider :photos="photos" :width="'210px'" :height="'150px'" :key="hotel.id"/>
         </div>
         <div class="col-md-8">
           <div class="row">

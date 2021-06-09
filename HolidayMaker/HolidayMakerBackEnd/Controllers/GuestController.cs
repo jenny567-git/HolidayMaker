@@ -100,5 +100,19 @@ namespace HolidayMakerBackEnd.Controllers
             int result = _guestService.RemoveSavedHotel(model);
             return Ok(result);
         }
+
+        [HttpPost("removeGuest")]
+        public void RemoveGuest(Test id)
+        {
+           _guestService.RemoveGuest(id.Id);
+        }
+
+        
+       
+    }
+
+    public class Test
+    {
+        public int Id { get; set; }
     }
 }

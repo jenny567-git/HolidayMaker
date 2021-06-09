@@ -1,12 +1,12 @@
 <template>
-  <div v-if="photoExists">
+  <div v-if="photoExists" :style="{width: width, height: height}" >
     <div :id="'carouselExampleFade' + photos[0].id" class="carousel slide carousel-fade" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="active carousel-item">
-          <img :src="photos[0].roomPhoto" class="d-block w-100" alt="...">
+          <img :src="photos[0].roomPhoto" class="d-block w-100 photoSlider" :style="{height: height}" alt="...">
         </div>
         <div class="carousel-item" v-for="(photo, index) in photos.slice(1)" :key="index">
-          <img :src="photo.roomPhoto" class="d-block w-100" alt="...">
+          <img :src="photo.roomPhoto" class="d-block w-100 photoSlider" :style="{height: height}" alt="...">
         </div>
       </div>
       <button class="carousel-control-prev" type="button" :data-bs-target="'#carouselExampleFade' + photos[0].id" data-bs-slide="prev">
@@ -26,7 +26,15 @@ export default {
   props:{
     photos: {
       type: [Object]
-    }  
+    },
+    width: {
+      type: String,
+      default: ''
+    },
+    height:{
+      type: String,
+      default: ''
+    }
   },
   created(){
     // console.log("photo comp", this.photos)
@@ -34,21 +42,24 @@ export default {
   computed:{
     photoExists(){
       return (this.photos.length !== undefined )|| this.photos ? true : false;
-    }
+    },
   }
 }
 </script>
 
 <style scoped>
+  .photoSlider {
+    object-fit: cover;
+  }
 
-#carouselExampleFade{
-    margin-bottom:15px;
-    border-style:inset;
-}
+  #carouselExampleFade{
+      margin-bottom:15px;
+      border-style:inset;
+  }
 
-.carousel-inner{
-  width:100%;
-  max-height: 550px !important;
-  /* min-height: 550px !important; */
-}
+  .carousel-inner{
+    width:100%;
+    max-height: 550px !important;
+    /* min-height: 550px !important; */
+  }
 </style>

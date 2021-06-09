@@ -124,7 +124,7 @@ export default ({
             }
         },
         getSavedHotels(){ 
-            fetch('https://localhost:44356/api/Guest/GetSavedHotels/' + this.$store.state.guestId)
+            fetch('https://localhost:44356/api/Guest/GetSavedHotels/' + this.$store.state.user.id)
                 .then(response => response.json())
                 .then(result => {
                     if(result){

@@ -8,6 +8,7 @@
     :monthNavigator="true"
     :yearNavigator="true"
     yearRange="2021:2050"
+    :showButtonBar="true"
     @date-select="getDate"
   />
 </template>

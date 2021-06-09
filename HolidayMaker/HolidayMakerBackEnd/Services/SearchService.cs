@@ -104,7 +104,7 @@ namespace HolidayMakerBackEnd.Services
             }
 
             var hotels = _db.Hotels;
-            foreach (var hotel in hotels)
+            foreach (var hotel in hotels)   
             {
                 list.Add(hotel.Name);
             }

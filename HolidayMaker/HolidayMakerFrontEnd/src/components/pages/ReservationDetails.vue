@@ -24,6 +24,7 @@
                     </template>
                     <template #content>
                         <ul class="list-group list-group-flush" >
+                            <li class="list-group-item leftTexAlignt"> <b>Order ID:</b> {{reservationInfo.reservationId}}</li>
                             <li class="list-group-item leftTexAlignt"> <b>Hotel name:</b> {{reservationInfo.hotelName}}</li>
                             <li class="list-group-item leftTexAlignt"> <b>Check in:</b> {{checkInDate}}</li>
                             <li class="list-group-item leftTexAlignt"> <b>Check out:</b> {{checkOutDate}}</li>
@@ -102,5 +103,8 @@ export default {
         console.log(this.reservationInfo.startDate)
       });
   },
+  mounted(){
+    console.log('this reserv', this.reservationInfo);
+  }
 };
 </script>

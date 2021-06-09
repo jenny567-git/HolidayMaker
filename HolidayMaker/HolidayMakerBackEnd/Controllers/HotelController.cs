@@ -44,6 +44,8 @@ namespace HolidayMakerBackEnd.Controllers
                 tmp.HotelDescription = item.Hotel.Description;
                 tmp.HotelImg = item.Hotel.Img;
                 tmp.HotelId = item.HotelId;
+                //tmp.HotelName = "Dummy name";
+                //tmp.HotelDescription = "Dummy desc. (change in hotelController)";
                 model.Add(tmp);
                 // remove for loop after testing, use foreach
             }

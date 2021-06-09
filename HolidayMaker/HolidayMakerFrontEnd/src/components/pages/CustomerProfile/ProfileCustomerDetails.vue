@@ -100,6 +100,7 @@ export default {
             var result = await response.json();
 
             if(result === 0){
+                console.log("saved")
                 this.updated = true;
             }
             this.loading = false;

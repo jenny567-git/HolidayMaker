@@ -37,6 +37,7 @@ export default {
     }
   },
   created(){
+    // console.log("photo comp", this.photos)
   },
   computed:{
     photoExists(){

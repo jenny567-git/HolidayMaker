@@ -76,6 +76,7 @@ export default {
       this.serviceType = value.path[0].innerText;
       this.$store.dispatch('setServiceType', this.serviceType);
 
+      console.log("set fee");
       let id = this.$route.params.id;
       this.$store.dispatch('setServiceFee', { id: id, type: this.serviceType });
     },

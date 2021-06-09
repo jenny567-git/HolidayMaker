@@ -88,6 +88,7 @@ export default {
     methods:{
         save(){
             this.$store.dispatch('saveCustomerDetailsCheckout', this.Details);
+            console.log("saving cust details", this.Details)
         },
         updateMessage(msg){
             this.Details.Message = msg;

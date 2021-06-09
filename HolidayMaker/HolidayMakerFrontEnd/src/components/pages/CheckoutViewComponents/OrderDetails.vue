@@ -64,6 +64,7 @@ export default {
     computed:{
         checkinDate(){
             if(this.$store.state.searchString.dates[0] !== undefined){
+                console.log("sdasds",this.$store.state.searchString.dates[0]);
                 return this.$store.state.searchString.dates[0].toLocaleDateString('sv-SE');
             }else{
                 return "not specified"
@@ -79,6 +80,7 @@ export default {
     },
     created(){
         this.Details = this.$store.state.customerDetailsCheckout;
+        console.log("order details cust details: ",this.$store.state.customerDetailsCheckout)
         this.BookingDetails = this.$store.state.bookingDetails;
         this.SearchString = this.$store.state.searchString;
     },

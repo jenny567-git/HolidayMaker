@@ -98,6 +98,7 @@ export default {
        this.resetForm()
     },
       resetForm(){
+        console.log("hej")
         document.querySelector('.form1').reset()
       }
   }

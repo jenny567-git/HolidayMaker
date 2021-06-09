@@ -1,7 +1,8 @@
 <template>
-  <div>
-    <h1>Order details</h1>
-        <div class="row">
+  <div id="test2">
+    <div class="container-fluid">
+      <h1 style="color:black" class="pt-2 ">Order details</h1>
+      <div class="row">
             <div class="col">
                 <Card style="">
                     <template #title>
@@ -37,6 +38,7 @@
                     </template>
                 </Card>
             </div>
+        </div>
         </div>
   </div>
 </template>
@@ -108,3 +110,16 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+#test2{
+        border-radius: 20px;
+        background-color: white;
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-bottom: 20px;
+        margin-top: 20px;
+        color:rgb(255, 255, 255);
+        /* text-shadow: 2px 2px black; */
+    }
+</style>

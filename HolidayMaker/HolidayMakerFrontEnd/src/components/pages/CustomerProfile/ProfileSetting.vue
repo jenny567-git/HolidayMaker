@@ -72,6 +72,7 @@
                     <div class="text-right">
                         <button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
                         <button type="button" id="submit" name="submit" class="btn btn-primary">Update</button>
+                        <button type="button" id="submit" name="submit" class="btn btn-danger" @click.prevent="deleteAccout()">Delete your account</button>
                     </div>
                 </div>
             </div>
@@ -79,12 +80,37 @@
 </template>
 
 <script>
+export default {
+  data() {
+    return {
+      userInfo: {},
+    }
+  },
+  created() {
+    this.user = this.$store.state.user
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.state.user.loggedIn
+    },
+    user() {
+      return this.$store.state.user
+    },
+  },
+  methods: {
+    deleteAccout() {
+      let credentials = this.user.id
+      console.log(this.user.id)
+      if (confirm('Do you really want to delete your account?')) {
+        this.$store.dispatch('deleteGuestAccount', credentials)
+      }
+    },
+  },
+}
 </script>
 
 <style scoped>
-
-    label{
-        color: black;
-    }
-    
+label {
+  color: black;
+}
 </style>

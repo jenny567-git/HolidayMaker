@@ -43,26 +43,24 @@
 			</header><!-- #header -->
 </template>
 
-
-
 <script>
 export default {
   components: {},
   data() {
     return {
       userInfo: {},
-    };
+    }
   },
   computed: {
-    loggedIn(){
-            return this.$store.state.user.loggedIn
+    loggedIn() {
+      return this.$store.state.user.loggedIn
     },
     user() {
-      return this.$store.state.user;
+      return this.$store.state.user
     },
-    
   },
   created() {
+  
   },
   methods:{
       logout(){
@@ -309,4 +307,3 @@ a {
 }
 
 </style>
-

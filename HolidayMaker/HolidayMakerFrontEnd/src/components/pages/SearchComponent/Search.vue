@@ -49,6 +49,7 @@ export default {
     onSubmit() {},
     Search(event){
         this.$store.state.searchButtonLoading = true;
+        console.log("The search string is ", this.searchString);
         this.$store.dispatch('searchHotels', this.searchString);
       },
       setSearchText(value){

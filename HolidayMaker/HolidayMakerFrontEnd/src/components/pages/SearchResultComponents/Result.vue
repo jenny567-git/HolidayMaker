@@ -63,11 +63,13 @@
 
 
 <script>
+import Images from "../HotelViewComponents/RoomPhotoSlider.vue";
 import Info from "../HotelViewComponents/Info.vue";
 import PhotoSlider from "../HotelViewComponents/RoomsViewComponents/PhotoSlider.vue";
 
 export default {
   components: {
+    Images,
     Info,
     PhotoSlider,
   },
@@ -94,6 +96,7 @@ export default {
   },
   methods: {
     hotelDetailsClick(event) {
+      console.log("Set hotel in result", this.hotel.id);
       this.$store.dispatch("setHotel", this.hotel);
     },
   },

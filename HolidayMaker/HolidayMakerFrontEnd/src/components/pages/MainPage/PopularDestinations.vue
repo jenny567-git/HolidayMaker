@@ -4,7 +4,9 @@
     <div class="row my-5">
       <div class="col-lg-12 mx-auto">
         <div class="row">
+          
         <Destination v-for="destination in popularDestinations" :destination="destination" :key="destination.title"/>
+
         </div>
       </div>
     </div>

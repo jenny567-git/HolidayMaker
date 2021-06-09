@@ -5,12 +5,17 @@
       <div class="col-md-6">
         <Room v-for="room in hotelInfo.rooms" :room="room" :key="room.id" />
       </div>
+
       <!-- right column -->
       <div class="col-md-6 rounded shadow-sm" id="rightCard">
         <Options @checked="setExtraBedFee" />
+
+        <!-- Pension type -->
         <div class="row">
+          <!-- <ServiceType @serviceType="getServicetype" /> -->
           <SelectButton @click="getServicetype" v-model="value" :options="serviceTypes" />
         </div>
+
         <div class="row pt-5">
           <div class="col-md-6">
             <b>Total price: {{ totalprice }} SEK</b>
@@ -18,7 +23,8 @@
           <div class="col-md-6">
             <div v-if="CanBook">
             <router-link to="/checkout" class="btn btn-primary" @click="Book"
-              ><span class="far fa-bookmark"></span> Book</router-link>
+              ><span class="far fa-bookmark"></span> Book</router-link
+            >
             </div>
             <div v-else>
               <b>Select service type and rooms to proceed to booking</b>
@@ -31,12 +37,14 @@
 </template>
 
 <script>
+import Images from "./RoomPhotoSlider.vue";
 import Room from "./RoomsViewComponents/Room.vue";
 import ServiceType from "./RoomsViewComponents/ServiceType.vue";
 import Options from "./RoomsViewComponents/Option.vue";
 import SelectButton from 'primevue/selectbutton';
 export default {
   components: {
+    Images,
     Room,
     ServiceType,
     Options,

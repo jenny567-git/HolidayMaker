@@ -16,6 +16,7 @@ export default {
     data(){
         return{
             errorText: false,
+            // SavedHotels: []
         }
     },
     components:{
@@ -23,6 +24,8 @@ export default {
         ProgressSpinner,
     },
     async created(){
+        // Get hotels
+        console.log("gettings saved hotels");
         await this.$store.dispatch('getSavedHotelsInfo');
 
         if(!this.SavedHotels.length){
@@ -30,11 +33,24 @@ export default {
         }
         
     },
+    data(){
+        return{
+            // savedHotelsList: []
+        }
+    },
     computed:{
         SavedHotels(){
             return this.$store.state.savedHotels || [];
         }
     }, 
+    methods:{
+        // deleteSaved(id){
+        //     console.log(id);
+        //     this.$store.dispatch('removeFavouriteHotel', id)
+        //     this.SavedHotels.filter((hotel) => hotel.hotelId !== id);
+        //     // console.log('saved hotels now '. this.savedHotelsList);
+        // }
+    },
     unmounted(){
         // console.log("destroy");
     }

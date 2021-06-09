@@ -19,6 +19,9 @@
           </div>
           <!-- Button trigger modal -->
           <div v-if="hotel.status != 'Cancelled' && !canceled">
+            <router-link :to="'/reservationDetails/' + hotel.reservationId">
+                <Button class="p-button-info mr-1" label="Order details"></Button>
+            </router-link>
             <Button @click="toggleEdit" class="p-button-info mr-1" label="Edit Booking"></Button>
 
             <Button @click="delete" class="p-button-danger" label="Cancel booking"></Button>

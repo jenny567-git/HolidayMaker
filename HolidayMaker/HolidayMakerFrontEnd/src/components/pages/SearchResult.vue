@@ -12,14 +12,14 @@
                         Sort by
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Price: Lowest first</a></li>
-                        <li><a class="dropdown-item" href="#">Rating: Highest first</a></li>
+                        <li><a class="dropdown-item" v-on:click="sortListByPrice">Price: Lowest first</a></li>
+                        <li><a class="dropdown-item" v-on:click="sortListByRating">Rating: Highest first</a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <hr>
-        <Filter @updateNrOfHotels="updateHotelsCount" /> 
+        <Filter @updateNrOfHotels="updateHotelsCount"/> 
             </template>     
         </Card>
     
@@ -38,11 +38,24 @@ export default ({
     data(){
         return{
             nrOfSearchResults: 0,
+            searchResultList: []
         }
     },
     methods: {
         updateHotelsCount(count){
             this.nrOfSearchResults = count;
+        },
+        sortListByPrice(){
+            this.searchResultList = this.$store.state.seachResults
+            return this.searchResultList.sort((a, b) => 
+                a.hotel.rooms[0].price - b.hotel.rooms[0].price 
+                );
+        },
+        sortListByRating(){
+            this.searchResultList = this.$store.state.seachResults
+            return this.searchResultList.sort((a, b) => 
+                b.hotel.averageRating - a.hotel.averageRating 
+                );
         }
     },
 })

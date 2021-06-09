@@ -41,19 +41,19 @@ export default {
       },
       {
         title: 'Copenhagen',
-        description: 'See available hotels in Copenhangen',
+        description: 'See available hotels in Copenhagen',
         img: 'https://www.flytap.com/-/media/Flytap/new-tap-pages/destinations/europe/denmark/copenhagen/destinations-copenhagen-banner-mobile-1024x553.jpg',
         searchQuery: ''
       },
       {
-        title: 'The Table Bay Hotel',
-        description: 'See available hotels in South Africa',
+        title: 'Cape Town',
+        description: 'See available hotels in Cape Town',
         img: 'https://foto.hrsstatic.com/fotos/0/3/1090/700/80/000000/http%3A%2F%2Ffoto-origin.hrsstatic.com%2Ffoto%2F3%2F5%2F1%2F7%2F351788%2F351788_a_13291718.jpg/mB04g2nLq58aw%2FS0i36ycA%3D%3D/2896,2914/6/The_Table_Bay-Cape_Town-Exterior_view-3-351788.jpg',
         searchQuery: ''
       },
       {
-        title: 'Fairmont Nile City',
-        description: 'See available hotels in Egypt',
+        title: 'Cairo',
+        description: 'See available hotels in Cairo',
         img: 'https://i.middle-east-online.com/styles/home_special_coverage_1920xauto/s3/2020-08/fairmont%20hotel%20cairo.jpg?3DRH75K8aS2dza_mlE9YA0RsEo3L3l7k&itok=ARlc1LW6',
         searchQuery: ''
       },

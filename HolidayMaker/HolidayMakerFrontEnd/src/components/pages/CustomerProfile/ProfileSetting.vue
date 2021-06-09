@@ -78,7 +78,8 @@
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="text-right">
                         <button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
-                        <button id="submit" name="submit" class="btn btn-primary">Update</button>
+                        <button type="button" id="submit" name="submit" class="btn btn-primary">Update</button>
+                        <button type="button" id="submit" name="submit" class="btn btn-danger" @click.prevent="deleteAccout()">Delete your account</button>
                     </div>
                 </div>
             </div>
@@ -105,7 +106,8 @@ export default {
         Password: "",
         confirmPassword:"",
         
-      }
+      },
+    userInfo: {},
     }
   },
   async mounted(){
@@ -145,6 +147,14 @@ export default {
         document.querySelector('.form1').reset()
       }
   },
+    methods: {
+    deleteAccout() {
+      let credentials = this.user.id
+      console.log(this.user.id)
+      if (confirm('Do you really want to delete your account?')) {
+        this.$store.dispatch('deleteGuestAccount', credentials)
+      }
+    },
    created() {
     this.user = this.$store.state.user
   },

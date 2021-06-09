@@ -1,4 +1,4 @@
-<template v-if="!deleted">
+<template>
     <div class="card mb-3">
     <!-- style="max-width: 540px;" (in style)-->
     <div class="row g-0">
@@ -52,8 +52,8 @@ export default {
   methods:{
     remove(){
       // this.$emit('delete-saved', this.hotel.hotelId)
-      // this.$store.dispatch('removeFavouriteHotel', this.hotel.hotelId);
-      this.deleted = true;
+      this.$store.dispatch('removeFavouriteHotel', this.hotel.hotelId);
+      this.$router.go()
     }
   },
   created(){

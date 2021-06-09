@@ -21,6 +21,7 @@ const store = createStore({
       inputRooms: 0,
       dates: [],
     },
+    savedHotel: [],
     bookedHotels: [],
     searchAutoComplete: [],
     seachResults: [],
@@ -388,9 +389,13 @@ const store = createStore({
       );
       var result = await response.json();
       if (result) {
-        // console.log('in saved hotel result: ', result);
+        console.log('in saved hotel result: ', result);
         // console.log(result);
         commit("setSavedHotels", result);
+      }
+      else{
+        console.log("else...");
+        commit("setSavedHotels", []);
       }
     },
     async addFavouriteHotel({ commit }, hotelId) {

@@ -135,7 +135,6 @@ export default ({
                 .then(result => {
                     if(result){
                         for (let i = 0; i < result.length; i++) {
-                            // console.log(result[i].hotelId, this.hotelInfo )
                             if(result[i].hotelId === this.hotel.id){
                                 this.star = true;
                             }

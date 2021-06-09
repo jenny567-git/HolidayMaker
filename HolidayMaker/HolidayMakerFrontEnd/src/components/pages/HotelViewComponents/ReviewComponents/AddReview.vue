@@ -60,10 +60,7 @@ export default {
         guestID: this.$store.state.user.id,
       };
 
-      console.log(newReview);
-
       this.addReview(newReview);
-
 
       this.message = "";
       this.rating = null;

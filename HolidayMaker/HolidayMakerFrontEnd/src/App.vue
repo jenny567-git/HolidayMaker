@@ -103,7 +103,6 @@ export default {
       }
     },
     created(){
-        console.log("App created");
         if(Cookies.get('login')){
           this.$store.dispatch('checkLoggedInUser')
         }

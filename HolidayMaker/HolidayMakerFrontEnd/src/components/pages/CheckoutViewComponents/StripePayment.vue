@@ -69,7 +69,6 @@ export default {
       loading(true);
       var ref = this;
       var email = this.$store.state.customerDetailsCheckout.email;
-      console.log(email);
       stripe
         .confirmCardPayment(clientSecret, {
           receipt_email: email,
@@ -84,7 +83,6 @@ export default {
           } else {
             // The payment succeeded!
             orderComplete(result.paymentIntent.id);
-            console.log("Payment Confirmed!");
             ref.createBooking();
           }
         });

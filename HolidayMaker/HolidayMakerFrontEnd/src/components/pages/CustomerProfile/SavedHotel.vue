@@ -17,6 +17,7 @@
             data-toggle="tooltip"
             data-placement="top"
             title="Delete"
+            @click="remove"
           >
             <i class="fa fa-trash"></i>
           </button>
@@ -42,6 +43,11 @@ export default {
   },
   props:{
       hotel: {}
+  },
+  methods:{
+    remove(){
+      this.$store.dispatch('removeFavouriteHotel', this.hotel.hotelId)
+    }
   },
   created(){
     // console.log('this hotel', this.hotel);

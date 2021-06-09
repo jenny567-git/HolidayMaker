@@ -1,4 +1,4 @@
-<template>
+<template v-if="!deleted">
     <div class="card mb-3">
     <!-- style="max-width: 540px;" (in style)-->
     <div class="row g-0">
@@ -41,12 +41,19 @@ export default {
   components:{
     Button
   },
+  data(){
+    return{
+      deleted: false,
+    }
+  },
   props:{
       hotel: {}
   },
   methods:{
     remove(){
-      this.$store.dispatch('removeFavouriteHotel', this.hotel.hotelId)
+      // this.$emit('delete-saved', this.hotel.hotelId)
+      // this.$store.dispatch('removeFavouriteHotel', this.hotel.hotelId);
+      this.deleted = true;
     }
   },
   created(){

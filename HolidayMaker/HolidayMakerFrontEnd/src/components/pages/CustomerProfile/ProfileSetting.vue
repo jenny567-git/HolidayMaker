@@ -109,17 +109,6 @@
           <div class="input-group flex-nowrap form-group">
             <input type="password" id="RePassword" class="form-control" placeholder="Re-enter Password" v-model="guest.confirmPassword">
           </div>
-          <!-- <div class="form-group">
-            <label for="zIp">Verify Password</label>
-            <input
-              type="password"
-              class="confirmPassword"
-              id="RePassword"
-              placeholder="Re-enter Password"
-              v-model="guest.confirmPassword"
-            />
-            <p class="text"></p>
-          </div> -->
         </div>
       </div>
       <div class="row gutters">

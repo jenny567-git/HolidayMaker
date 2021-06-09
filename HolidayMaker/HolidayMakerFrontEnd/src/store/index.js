@@ -1,5 +1,5 @@
-import { createStore } from "vuex";
-import router from "../router/index";
+import { createStore } from 'vuex'
+import router from '../router/index'
 
 const store = createStore({
   state: {
@@ -40,7 +40,7 @@ const store = createStore({
       unitPriceSingleRoom: 0,
       unitPriceDoubleRoom: 0,
       unitPriceFamilyRoom: 0,
-      serviceType: "",
+      serviceType: '',
       serviceFee: 0,
       extraBed: false,
       extraBedFee: 0,
@@ -48,16 +48,16 @@ const store = createStore({
     },
 
     reservation: {
-      fullName: "sadas",
-      hotelName: "sds",
-      startDate: "",
-      endDate: "",
-      adults: "",
-      children: "",
-      customerMessage: "",
-      type: "",
-      totalPrice: "",
-      extraBed:null,
+      fullName: 'sadas',
+      hotelName: 'sds',
+      startDate: '',
+      endDate: '',
+      adults: '',
+      children: '',
+      customerMessage: '',
+      type: '',
+      totalPrice: '',
+      extraBed: null,
       hotelRoomsViewModel: {
         singleRooms: '2',
         doubleRooms: '2',
@@ -65,7 +65,7 @@ const store = createStore({
       },
     },
     customerDetailsCheckout: {},
-    orderId: "",
+    orderId: '',
     user: {
       loggedIn: false,
     },
@@ -176,9 +176,9 @@ const store = createStore({
       state.bookingDetails.serviceType = value
     },
     setServiceFee(state, value) {
-      console.log("in mutation set service");
-      console.log("value" + value);
-      state.bookingDetails.serviceFee = value;
+      console.log('in mutation set service')
+      console.log('value' + value)
+      state.bookingDetails.serviceFee = value
     },
     setCustomerDetailsCheckout(state, data) {
       state.customerDetailsCheckout = data
@@ -186,7 +186,6 @@ const store = createStore({
     setUser(state, data) {
       state.user = data
       state.user.loggedIn = true
-      console.log(data)
     },
 
     logOutUser(state) {
@@ -199,48 +198,48 @@ const store = createStore({
       state.user.Password = value
     },
     setBookedHotels(state, value) {
-      state.bookedHotels = value;
+      state.bookedHotels = value
     },
     setSavedHotels(state, data) {
-      state.savedHotels = data;
+      state.savedHotels = data
       // console.log('in saved hotel ', data);
     },
     setOrderId(state, value) {
-      state.orderId = value;
+      state.orderId = value
     },
-    clearBookingDetails(state){
-      state.bookingDetails.hotelId = "",
-      state.bookingDetails.hotelName = "",
-      state.bookingDetails.noOfSingleRooms = 0,
-      state.bookingDetails.noOfDoubleRooms= 0,
-      state.bookingDetails.noOfFamilyRooms= 0,
-      state.bookingDetails.singleRoomId= 0,
-      state.bookingDetails.doubleRoomId= 0,
-      state.bookingDetails.familyRoomId= 0,
-      state.bookingDetails.unitPriceSingleRoom= 0,
-      state.bookingDetails.unitPriceDoubleRoom= 0,
-      state.bookingDetails.unitPriceFamilyRoom= 0,
-      state.bookingDetails.serviceType= "",
-      state.bookingDetails.serviceFee= 0,
-      state.bookingDetails.extraBed= false,
-      state.bookingDetails.extraBedFee= 0
-      state.bookingDetails.totalprice= "";
+    clearBookingDetails(state) {
+      ;(state.bookingDetails.hotelId = ''),
+        (state.bookingDetails.hotelName = ''),
+        (state.bookingDetails.noOfSingleRooms = 0),
+        (state.bookingDetails.noOfDoubleRooms = 0),
+        (state.bookingDetails.noOfFamilyRooms = 0),
+        (state.bookingDetails.singleRoomId = 0),
+        (state.bookingDetails.doubleRoomId = 0),
+        (state.bookingDetails.familyRoomId = 0),
+        (state.bookingDetails.unitPriceSingleRoom = 0),
+        (state.bookingDetails.unitPriceDoubleRoom = 0),
+        (state.bookingDetails.unitPriceFamilyRoom = 0),
+        (state.bookingDetails.serviceType = ''),
+        (state.bookingDetails.serviceFee = 0),
+        (state.bookingDetails.extraBed = false),
+        (state.bookingDetails.extraBedFee = 0)
+      state.bookingDetails.totalprice = ''
     },
-    setHotelId(state, value){
-      state.bookingDetails.hotelId = value;
-    }
+    setHotelId(state, value) {
+      state.bookingDetails.hotelId = value
+    },
   },
   actions: {
     saveCustomerDetailsCheckout({ commit }, data) {
       commit('setCustomerDetailsCheckout', data)
     },
     async searchHotels({ commit }, searchString) {
-      router.push({ name: "result" });
-      let startDate;
-      let endDate;
+      router.push({ name: 'result' })
+      let startDate
+      let endDate
       if (this.state.searchString.dates.length) {
-        startDate = this.state.searchString.dates[0].toLocaleDateString('sv-SE');
-        endDate = this.state.searchString.dates[1].toLocaleDateString('sv-SE');
+        startDate = this.state.searchString.dates[0].toLocaleDateString('sv-SE')
+        endDate = this.state.searchString.dates[1].toLocaleDateString('sv-SE')
       }
       //search with all values but no string
       if (searchString === null || searchString == '') {
@@ -308,10 +307,10 @@ const store = createStore({
     },
     async getReservationById({ commit }, reservationId) {
       var response = await fetch(
-        "https://localhost:44356/api/Booking/" + reservationId
-      );
-      var result = await response.json();
-      commit("setReservationDetails", result);
+        'https://localhost:44356/api/Booking/' + reservationId
+      )
+      var result = await response.json()
+      commit('setReservationDetails', result)
     },
     async searchHotelByCity({ commit }, searchString) {
       var response = await fetch(
@@ -357,11 +356,14 @@ const store = createStore({
       })
       let result = await response.json()
 
-      commit('setUser', result)
-      Cookies.set('login', 'true')
-      Cookies.set('userId', result.id)
-
-      router.push("/profile");
+      if (result.message == 'Username or password is incorrect') {
+        document.querySelector('.text').innerHTML = result.message
+      } else {
+        commit('setUser', result)
+        Cookies.set('login', 'true')
+        Cookies.set('userId', result.id)
+        router.push('/profile')
+      }
     },
     checkLoggedInUser({ commit }) {
       console.log('dkjgb')
@@ -381,22 +383,22 @@ const store = createStore({
       router.push('/')
     },
     async getSavedHotelsInfo({ commit }) {
-      console.log("Getting saved hotels for guest id ", this.state.user.id);
+      console.log('Getting saved hotels for guest id ', this.state.user.id)
       var response = await fetch(
-        "https://localhost:44356/api/Hotel/SavedHotelsInfo?id=" +
+        'https://localhost:44356/api/Hotel/SavedHotelsInfo?id=' +
           this.state.user.id
-      );
-      var result = await response.json();
+      )
+      var result = await response.json()
       if (result) {
         // console.log('in saved hotel result: ', result);
         // console.log(result);
-        commit("setSavedHotels", result);
+        commit('setSavedHotels', result)
       }
     },
     async addFavouriteHotel({ commit }, hotelId) {
-      fetch("https://localhost:44356/api/Guest/saveFavoriteHotel", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      fetch('https://localhost:44356/api/Guest/saveFavoriteHotel', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ hotelID: hotelId, guestID: this.state.user.id }),
       })
         .then((response) => response.json())
@@ -408,9 +410,9 @@ const store = createStore({
         })
     },
     async removeFavouriteHotel({ commit }, hotelId) {
-      fetch("https://localhost:44356/api/Guest/removeFavoriteHotel", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
+      fetch('https://localhost:44356/api/Guest/removeFavoriteHotel', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ hotelID: hotelId, guestID: this.state.user.id }),
       })
         .then((response) => response.json())
@@ -492,21 +494,21 @@ const store = createStore({
     },
     async getBookings({ commit }) {
       var response = await fetch(
-        "https://localhost:44356/api/Booking/guest/" + this.state.user.id
-      );
-      var result = await response.json();
-      console.log(result);
-      commit("setBookedHotels", result);
+        'https://localhost:44356/api/Booking/guest/' + this.state.user.id
+      )
+      var result = await response.json()
+      console.log(result)
+      commit('setBookedHotels', result)
     },
     async setOrderId({ commit }, value) {
-      commit("setOrderId", value);
+      commit('setOrderId', value)
     },
-    clearCart({commit}){
+    clearCart({ commit }) {
       commit('clearBookingDetails')
     },
-    setHotelId({commit}, value){
+    setHotelId({ commit }, value) {
       commit('setHotelId', value)
-    }
+    },
   },
 })
 

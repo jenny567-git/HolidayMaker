@@ -117,6 +117,7 @@ namespace HolidayMakerBackEnd.Services
         public LoginResponseViewModel Login(LoginRequestViewModel model)
         {
             Guest user =null;
+            bool isValid = false;
             if (model.UserId !=0)
             {
                 user = _db.Guests.FirstOrDefault(x => x.Id == model.UserId);
@@ -125,9 +126,13 @@ namespace HolidayMakerBackEnd.Services
             else
             {
                 user = _db.Guests.FirstOrDefault(x => x.Email == model.Email);
-                bool isValid = BCrypt.Net.BCrypt.Verify(model.Password, user.Password);
-
                 
+                isValid = BCrypt.Net.BCrypt.Verify(model.Password, user.Password);
+               
+            }
+            if (isValid==false)
+            {
+                return null;
             }
 
             if (user == null)

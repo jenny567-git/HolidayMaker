@@ -131,7 +131,7 @@
               type="button"
               id="cancel"
               name="cancel"
-              class="btn btn-secondary"
+              class="btn btn-secondary mr-1"
             >
               Cancel
             </button>
@@ -139,7 +139,7 @@
               type="button"
               id="update"
               name="update"
-              class="btn btn-primary"
+              class="btn btn-primary mr-1"
               @click="checkPasswords()"
             >
               Update

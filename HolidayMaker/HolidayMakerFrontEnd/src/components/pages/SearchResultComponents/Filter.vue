@@ -140,11 +140,6 @@ export default {
     Skel,
     Card,
   },
-  props:{
-    searchResultList:{
-      type:[Object]
-    }
-  },
   data() {
     return {
       pricerange: {

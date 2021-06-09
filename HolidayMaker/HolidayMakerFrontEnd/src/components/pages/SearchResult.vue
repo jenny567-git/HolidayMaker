@@ -19,7 +19,7 @@
             </div>
         </div>
         <hr>
-        <Filter @updateNrOfHotels="updateHotelsCount" :searchResultList="searchResultList"/> 
+        <Filter @updateNrOfHotels="updateHotelsCount"/> 
             </template>     
         </Card>
     

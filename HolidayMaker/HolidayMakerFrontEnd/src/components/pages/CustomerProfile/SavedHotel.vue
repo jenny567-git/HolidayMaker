@@ -55,3 +55,17 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+button.p-button.p-component{
+  background: #53c16e;
+  border:#14a04d;
+  text-decoration: none;
+}
+
+.p-button:enabled:hover{
+  background:#348047 !important;
+  border-color:#14a04d;
+  text-decoration: none;
+}
+</style>

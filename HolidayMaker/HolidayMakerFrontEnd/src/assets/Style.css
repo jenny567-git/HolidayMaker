@@ -9,3 +9,30 @@
     margin-top: 20px;
     color:white;
 }
+
+
+.p-inputnumber-button{
+    background: #53c16e !important;
+    border:#14a04d !important;
+  }
+
+.p-inputnumber-button:enabled:active {
+    background: #53c16e !important;
+    border:#14a04d !important;
+}
+
+.p-inputnumber-button:enabled:hover{
+  background: #53c16e !important;
+  border:#14a04d !important;
+}
+
+
+.p-buttonset .p-button.p-highlight {
+    background:#53c16e !important;
+    border-color:#1bc541 !important;
+  }
+
+  .p-buttonset .p-button.p-highlight:hover{
+    background:#53c16e !important;
+    border-color:#1bc541 !important;
+  }

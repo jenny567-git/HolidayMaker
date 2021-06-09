@@ -20,11 +20,11 @@
           <!-- Button trigger modal -->
           <div v-if="hotel.status != 'Cancelled' && !canceled">
             <router-link :to="'/reservationDetails/' + hotel.reservationId">
-                <Button class="p-button-info mr-1" label="Order details"></Button>
+                <Button id="buttonG" class="p-button-info mr-1" label="Order details"></Button>
             </router-link>
-            <Button @click="toggleEdit" class="p-button-info mr-1" label="Edit Booking"></Button>
+            <Button id="buttonG" @click="toggleEdit" class="p-button-info mr-1" label="Edit Booking"></Button>
 
-            <Button @click="delete" class="p-button-danger" label="Cancel booking"></Button>
+            <Button  @click="cancel" class="p-button-danger" label="Cancel booking"></Button>
           </div>
           <div v-else>
             <p style="color: red">This booking is cancelled</p>
@@ -90,9 +90,9 @@ export default {
           console.error("Error:", error);
         });
     },
-    delete() {
+    cancel() {
       this.$confirm.require({
-        message: "Are you sure you want to cancel?",
+        message: "Are you sure you want to cancel your booking?",
         header: "Confirmation",
         icon: "pi pi-exclamation-triangle",
         acceptClass: 'p-button-danger',
@@ -108,3 +108,18 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+
+#buttonG{
+  background: #53c16e;
+  border:#14a04d;
+}
+
+#buttonG:enabled:hover{
+  background:#348047 !important;
+  border-color:#14a04d;
+}
+
+
+</style>

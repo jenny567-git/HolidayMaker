@@ -30,8 +30,8 @@
 						</div>
 					</div>
                 <hr>
-                <h1>This is totally Africa</h1>
-                <small>Dont double check please</small>
+                <h1>Tourism in Africa!</h1>
+                <small>Everything shown is from africa!<small> Do not double check please</small></small>
                 <hr>
                 <div class="row">
   <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">

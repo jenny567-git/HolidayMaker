@@ -126,15 +126,14 @@
 <script>
 // code: https://www.vuescript.com/custom-range-slider/
 import Slider from "/node_modules/@vueform/slider";
-import Images from "../HotelViewComponents/RoomPhotoSlider.vue";
 import Info from "../HotelViewComponents/Info.vue";
 import Result from "./Result.vue";
 import Skel from "./Skel.vue";
 import Card from "primevue/card";
+
 export default {
   components: {
     Slider,
-    Images,
     Info,
     Result,
     Skel,

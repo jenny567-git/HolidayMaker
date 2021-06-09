@@ -121,7 +121,6 @@ export default ({
             if(this.star === false){
                 // Set fav
                 this.$store.dispatch('addFavouriteHotel', this.hotel.id)
-                console.log(this.hotel.id)
                 this.star = !this.star;
             }
             else{
@@ -135,8 +134,6 @@ export default ({
                 .then(response => response.json())
                 .then(result => {
                     if(result){
-                        // console.log("result",result);
-                        console.log(this.hotel, this.hotelInfo);
                         for (let i = 0; i < result.length; i++) {
                             // console.log(result[i].hotelId, this.hotelInfo )
                             if(result[i].hotelId === this.hotel.id){
@@ -150,9 +147,7 @@ export default ({
     watch:{
         hotelInfo: {
             handler: function(oldVal, newVal){
-                console.log("Hotel info changed", this.hotelInfo);
                 setTimeout(function(that){ 
-                    console.log("call getsavedhotels");
                     that.getSavedHotels();
                 }, 500, this);
             },
@@ -166,7 +161,6 @@ export default ({
   
         this.$store.dispatch('getHotelById', this.$route.params.id)
         .then(() =>{
-            console.log("Test somethng");
             this.getSavedHotels();
         });
 

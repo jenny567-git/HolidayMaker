@@ -2,7 +2,6 @@
     <div class="p-4 rounded shadow-sm">
       <div class="row">
       <div class="col">
-        <!-- <Images :id="room.id" /> -->
         <img :src="room.img" alt="" width="250" height="150">
       </div>
       <div class="col">
@@ -59,12 +58,10 @@
 </template>
 
 <script>
-import Images from "../RoomPhotoSlider.vue";
 import InputNumber from "primevue/inputnumber";
 
 export default {
   components: {
-    Images,
     InputNumber,
   },
   data() {
@@ -80,7 +77,6 @@ export default {
     room: {},
   },
   mounted() {
-    // console.log("in room mounted");
     if (this.$store.state.seachResults.length) {
       this.array = this.$store.state.seachResults;
       this.arrayIndex = this.array.findIndex(
@@ -91,11 +87,7 @@ export default {
         this.doubleRooms = this.array[this.arrayIndex].roomList.doubleRooms;
         this.familyRooms = this.array[this.arrayIndex].roomList.familyRooms;
       }
-      // console.log("single rooms" + this.singleRooms);
-      // console.log("double rooms" + this.doubleRooms);
-      // console.log("family rooms" + this.familyRooms);
     }
-    console.log('img: ', this.room.img);
   },
   computed: {
     inputSingleRooms: {
@@ -103,7 +95,6 @@ export default {
         return this.$store.state.bookingDetails.noOfSingleRooms;
       },
       set(noOfUnit) {
-        console.log('single input: ' + noOfUnit);
         if(this.room.type == 'Single'){
           let unitPrice = this.room.price;
           let roomId = this.room.id;
@@ -116,7 +107,6 @@ export default {
         return this.$store.state.bookingDetails.noOfDoubleRooms;
       },
       set(noOfUnit) {
-        console.log('double input: ' + noOfUnit);
         if(this.room.type == 'Double'){
           let unitPrice = this.room.price
           let roomId = this.room.id;
@@ -130,7 +120,6 @@ export default {
         return this.$store.state.bookingDetails.noOfFamilyRooms;
       },
       set(noOfUnit) {
-        console.log('family input: ' + noOfUnit);
         if(this.room.type == 'Family'){
           let unitPrice = this.room.price
           let roomId = this.room.id;

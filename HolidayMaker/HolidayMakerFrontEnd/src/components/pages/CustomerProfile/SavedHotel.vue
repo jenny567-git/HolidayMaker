@@ -51,15 +51,10 @@ export default {
   },
   methods:{
     remove(){
-      // this.$emit('delete-saved', this.hotel.hotelId)
       this.$store.dispatch('removeFavouriteHotel', this.hotel.hotelId);
       this.$router.go()
     }
   },
-  created(){
-    // console.log('this hotel', this.hotel);
-    // console.log('img: ', this.hotel.hotelImg);
-  }
 }
 </script>
 

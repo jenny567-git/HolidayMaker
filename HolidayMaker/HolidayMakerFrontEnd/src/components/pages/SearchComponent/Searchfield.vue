@@ -2,7 +2,6 @@
   <div>
     <input
       class="form-control"
-      
       id="searchInput"
       placeholder="Type to search..."
       @input="searchFieldChange"
@@ -16,8 +15,6 @@
 </template>
 
 <script>
-// import $ from '/node_modules/jquery'
-
 export default {
   data() {
     return {
@@ -31,7 +28,6 @@ export default {
   },
   mounted() {
     this.GetAutoComplete();
-    
   },
   methods: {
     GetAutoComplete() {
@@ -39,18 +35,17 @@ export default {
     },
     searchFieldChange() {
       this.$emit("input-changed", this.searchString);
-      if(this.searchString.length >= 2){
-        var input = document.querySelector("#searchInput")
-        input.setAttribute("list", "datalistOptions")
-      } else{
-        var input = document.querySelector("#searchInput")
-        input.setAttribute("list", "")
+      if (this.searchString.length >= 2) {
+        var input = document.querySelector("#searchInput");
+        input.setAttribute("list", "datalistOptions");
+      } else {
+        var input = document.querySelector("#searchInput");
+        input.setAttribute("list", "");
       }
-    }
+    },
   },
 };
 </script>
 
 <style scoped>
-
 </style>

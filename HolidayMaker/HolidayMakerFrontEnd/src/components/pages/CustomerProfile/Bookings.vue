@@ -25,16 +25,14 @@ export default {
         ConfirmDialog,
         ProgressSpinner
     },
-    created(){
+    async created(){
         // Get booked hotels
-        this.$store.dispatch('getBookings');
-        console.log(this.$store.state.bookedHotels)
-
-        setTimeout(function(that){
-            if(!that.bookedHotels.length){
-                that.errorText = true;
-            }
-        }, 10000, this)
+        await this.$store.dispatch('getBookings');
+        
+        if(!this.bookedHotels.length){
+            this.errorText = true;
+        }
+        
     },
     computed:{
         bookedHotels(){
@@ -43,6 +41,6 @@ export default {
     }
 }
 </script>
-<style lang="">
+<style lang=""> 
     
 </style>

@@ -24,9 +24,9 @@
           <div class="textS">
             {{hotel.hotelDescription}}
           </div>
-          <button type="button" class="btn btn-primary float-end">
-            See Hotel
-          </button>
+          <router-link :to="'/hotels/' + hotel.hotelId">
+                <Button class="p-button-info mt-2" label="See Hotel"></Button>
+            </router-link>
         </div>
       </div>
     </div>
@@ -34,13 +34,18 @@
 </template>
 
 <script>
+import Button from "primevue/button";
+
 export default {
-    props:{
-        hotel: {}
-    },
-    created(){
-      // console.log('this hotel', this.hotel);
-      // console.log('img: ', this.hotel.hotelImg);
-    }
+  components:{
+    Button
+  },
+  props:{
+      hotel: {}
+  },
+  created(){
+    // console.log('this hotel', this.hotel);
+    // console.log('img: ', this.hotel.hotelImg);
+  }
 }
 </script>

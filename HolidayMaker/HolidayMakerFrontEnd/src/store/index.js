@@ -381,10 +381,10 @@ const store = createStore({
       router.push("/");
     },
     async getSavedHotelsInfo({ commit }) {
-      console.log("Getting saved hotels for guest id ", this.state.guestId);
+      console.log("Getting saved hotels for guest id ", this.state.user.id);
       var response = await fetch(
         "https://localhost:44356/api/Hotel/SavedHotelsInfo?id=" +
-          this.state.guestId
+          this.state.user.id
       );
       var result = await response.json();
       if (result) {
@@ -397,7 +397,7 @@ const store = createStore({
       fetch("https://localhost:44356/api/Guest/saveFavoriteHotel", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ hotelID: hotelId, guestID: this.state.guestId }),
+        body: JSON.stringify({ hotelID: hotelId, guestID: this.state.user.id }),
       })
         .then((response) => response.json())
         .then((data) => {
@@ -411,7 +411,7 @@ const store = createStore({
       fetch("https://localhost:44356/api/Guest/removeFavoriteHotel", {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ hotelID: hotelId, guestID: this.state.guestId }),
+        body: JSON.stringify({ hotelID: hotelId, guestID: this.state.user.id }),
       })
         .then((response) => response.json())
         .then((data) => {
@@ -480,7 +480,7 @@ const store = createStore({
     },
     async getBookings({ commit }) {
       var response = await fetch(
-        "https://localhost:44356/api/Booking/guest/" + this.state.guestId
+        "https://localhost:44356/api/Booking/guest/" + this.state.user.id
       );
       var result = await response.json();
       console.log(result);

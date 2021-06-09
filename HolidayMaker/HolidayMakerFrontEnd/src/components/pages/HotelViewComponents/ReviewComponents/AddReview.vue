@@ -37,7 +37,7 @@ export default {
     };
   },
   mounted(){
-    if(this.$store.state.guestId == null || this.$store.state.guestId == undefined){
+    if(this.$store.state.user.id == null || this.$store.state.user.id == undefined){
       document.querySelector(".text").innerHTML = "Log in to submit a review";
       document.querySelector("#btnSubmit").disabled = true;
     }else{
@@ -57,8 +57,7 @@ export default {
         rating: this.rating,
         message: this.message,
         hotelID: this.$route.params.id,
-        //connected to guest in state
-        guestID: this.$store.state.guestId,
+        guestID: this.$store.state.user.id,
       };
 
       console.log(newReview);

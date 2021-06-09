@@ -175,8 +175,9 @@ export default {
         Email: "",
         Password: "",
         confirmPassword: "",
+        id:''
       },
-      user: {},
+      // user: {},
     };
   },
   async mounted() {},
@@ -214,7 +215,7 @@ export default {
           Password: this.guest.Password,
         }),
       });
-      this.resetForm();
+      this.$router.go()
     },
     resetForm() {
       console.log("hej");

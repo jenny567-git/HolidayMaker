@@ -1,7 +1,10 @@
 <template>
     <div>
-        <div v-if="!bookedHotels.length">
+        <div v-if="!bookedHotels.length && !errorText">
             <ProgressSpinner />
+        </div>
+        <div v-if="errorText">
+            <p>No bookings have been loaded. Try refreshing or create a booking for them to show up here!</p>
         </div>
         <BookedHotel v-for="hotel in bookedHotels" :hotel="hotel" :key="hotel.reservationId"></BookedHotel>
         <ConfirmDialog></ConfirmDialog>
@@ -12,6 +15,11 @@ import BookedHotel from './BookedHotel.vue'
 import ConfirmDialog from "primevue/confirmdialog";
 import ProgressSpinner from 'primevue/progressspinner';
 export default {
+    data(){
+        return{
+            errorText: false
+        }
+    },
     components:{
         BookedHotel,
         ConfirmDialog,
@@ -21,6 +29,12 @@ export default {
         // Get booked hotels
         this.$store.dispatch('getBookings');
         console.log(this.$store.state.bookedHotels)
+
+        setTimeout(function(that){
+            if(!that.bookedHotels.length){
+                that.errorText = true;
+            }
+        }, 10000, this)
     },
     computed:{
         bookedHotels(){

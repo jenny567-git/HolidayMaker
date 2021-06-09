@@ -9,10 +9,10 @@
                     </template>
                     <template #content>
                         <ul class="list-group list-group-flush" >
-                            <li class="list-group-item leftTexAlignt"> <b>Full name:</b> {{Details.firstName}} {{Details.lastName}}</li>
-                            <li class="list-group-item leftTexAlignt"> <b>Email:</b> {{Details.email}}</li>
-                            <li class="list-group-item leftTexAlignt"> <b>Phone:</b> {{Details.phoneNumber}}</li>
-                            <li class="list-group-item leftTexAlignt"> <b>Address:</b> {{Details.street}}, {{Details.zipCode}}, {{Details.city}}</li>
+                            <li class="list-group-item leftTexAlignt"><span class="fas fa-user"></span><b> Full name:</b> {{Details.firstName}} {{Details.lastName}}</li>
+                            <li class="list-group-item leftTexAlignt"><span class="fas fa-at"></span><b> Email:</b> {{Details.email}}</li>
+                            <li class="list-group-item leftTexAlignt"><span class="fas fa-phone"></span><b> Phone:</b> {{Details.phoneNumber}}</li>
+                            <li class="list-group-item leftTexAlignt"><span class="fas fa-address-book"></span><b> Address:</b> {{Details.street}}, {{Details.zipCode}}, {{Details.city}}</li>
                         </ul>
                     </template>
                 </Card>
@@ -24,18 +24,19 @@
                     </template>
                     <template #content>
                         <ul class="list-group list-group-flush" >
-                            <li class="list-group-item leftTexAlignt"> <b>Hotel name:</b> {{BookingDetails.hotelName}}</li>
-                            <li class="list-group-item leftTexAlignt"> <b>Check in:</b> {{checkinDate}}</li>
-                            <li class="list-group-item leftTexAlignt"> <b>Check out:</b> {{checkoutDate}}</li>
-                            <li v-if="SearchString.inputChild > 0" class="list-group-item leftTexAlignt"> <b>Number of people:</b> {{SearchString.inputAdult}} adults, {{SearchString.inputChild}} children</li>
-                            <li v-else class="list-group-item leftTexAlignt"> <b>Number of people:</b> {{SearchString.inputAdult}} adults</li>
-                            <li class="list-group-item leftTexAlignt"> <b>Service type:</b> {{BookingDetails.serviceType}}</li>
+                            <li class="list-group-item leftTexAlignt"><span class="fas fa-hotel"></span><b> Hotel name:</b> {{BookingDetails.hotelName}}</li>
+                            <li class="list-group-item leftTexAlignt"><span class="fas fa-check-square"></span><b> Check in:</b> {{checkinDate}}</li>
+                            <li class="list-group-item leftTexAlignt"><span class="far fa-check-square"></span><b> Check out:</b> {{checkoutDate}}</li>
+                            <li v-if="SearchString.inputChild > 0" class="list-group-item leftTexAlignt"><span class="fas fa-users"></span><b> Number of people:</b> {{SearchString.inputAdult}} adults, {{SearchString.inputChild}} children</li>
+                            <li v-else class="list-group-item leftTexAlignt"><b> Number of people:</b> {{SearchString.inputAdult}} adults</li>
+                            <li class="list-group-item leftTexAlignt"><span class="fas fa-concierge-bell"></span><b> Service type:</b> {{BookingDetails.serviceType}}</li>
                             <li v-if="BookingDetails.extraBed" class="list-group-item leftTexAlignt"> <b>Extra bed:</b> Yes</li>
-                            <li class="list-group-item leftTexAlignt"> <b>Total price:</b> {{BookingDetails.totalprice}}</li>
+                            <li class="list-group-item leftTexAlignt"><span class="fas fa-money-check-alt"></span><b> Total price:</b> {{BookingDetails.totalprice}} SEK</li>
                         </ul>
-                        <router-link :to="link" class="btn btn-primary">
+                        <Button  label="Edit Booking" icon="pi pi-user-edit" @click="$router.push('/hotels/' + $store.state.bookingDetails.hotelId + '/rooms')"></Button>
+                        <!-- <router-link :to="link" class="btn btn-secondary">
                             Edit booking
-                        </router-link>
+                        </router-link> -->
                     </template>
                 </Card>
             </div>
@@ -45,9 +46,12 @@
 </template>
 <script>
 import Card from 'primevue/card';
+import Button from 'primevue/button';
+
 export default {
      components:{
          Card,
+         Button,
      },
      data(){
         return{

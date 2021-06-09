@@ -7,17 +7,9 @@
       </div>
       <div class="col">
         <h3>{{ room.type }}</h3>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <p>
-            Max Capacity: {{ room.maxCapacity }}
-            <i class="fas fa-user-alt"></i>
-          </p>
-        </div>
-        <div class="col-md-6">
+         
           <p>Rooms:</p>
-          <div v-if="$store.state.searchString.dates.length">
+          <div v-if="$store.state.searchString.dates.length && $store.state.seachResults.length">
             <InputNumber
               v-if="room.type == 'Single'"
               v-model="inputSingleRooms"
@@ -42,32 +34,9 @@
               :max="familyRooms"
               :value="inputFamilyRooms"
             />
-            <!-- <input v-if="room.type == 'Single'" type="number" min="0" value="0" :max="singleRooms"/> 
-                <input v-if="room.type == 'Double'" type="number" min="0" value="0" :max="doubleRooms"/> 
-                <input v-if="room.type == 'Family'" type="number" min="0" value="0" :max="familyRooms"/>  -->
           </div>
           <p v-else>Fill in dates to see available rooms</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <p>Price/unit:</p>
-        </div>
-        <div class="col-md-6">
-          <p style="color: red">{{ room.price }} SEK</p>
-        </div>
-      </div>
-    </div>
-    </div>
-
-
-  <!-- <div id="test3">
-    <div class="row">
-      <div class="col">
-        <Images :id="room.id" />
-      </div>
-      <div class="col">
-        <h3>{{ room.type }}</h3>
+        
       </div>
       <div class="row">
         <div class="col-md-6">
@@ -75,52 +44,18 @@
             Max Capacity: {{ room.maxCapacity }}
             <i class="fas fa-user-alt"></i>
           </p>
+          
+          <p>Price/unit: <span style="color: red">{{ room.price }} SEK</span> </p>
+
+        
         </div>
-        <div class="col-md-6">
-          <p>Rooms:</p>
-          <div v-if="$store.state.searchString.dates.length">
-            <InputNumber
-              v-if="room.type == 'Single'"
-              v-model="inputSingleRooms"
-              showButtons
-              :min="0"
-              :max="singleRooms"
-              :value="inputSingleRooms"
-            />
-            <InputNumber
-              v-if="room.type == 'Double'"
-              v-model="inputDoubleRooms"
-              showButtons
-              :min="0"
-              :max="doubleRooms"
-              :value="inputDoubleRooms"
-            />
-            <InputNumber
-              v-if="room.type == 'Family'"
-              v-model="inputFamilyRooms"
-              showButtons
-              :min="0"
-              :max="familyRooms"
-              :value="inputFamilyRooms"
-            /> -->
-            <!-- <input v-if="room.type == 'Single'" type="number" min="0" value="0" :max="singleRooms"/> 
-                <input v-if="room.type == 'Double'" type="number" min="0" value="0" :max="doubleRooms"/> 
-                <input v-if="room.type == 'Family'" type="number" min="0" value="0" :max="familyRooms"/>  -->
-          <!-- </div>
-          <p v-else>Fill in dates to see available rooms</p>
-        </div>
+       
       </div>
       <div class="row">
-        <div class="col-md-6">
-          <p>Price/unit:</p>
-        </div>
-        <div class="col-md-6">
-          <p style="color: red">{{ room.price }} SEK</p>
-        </div>
+        
       </div>
     </div>
-    <hr />
-  </div> -->
+    </div>
 </template>
 
 <script>
@@ -207,13 +142,19 @@ export default {
 };
 </script>
 
+<style >
+input{
+  width: 70px;
+}
+</style>
+
 <style scoped>
- p {
+   p {
    padding-top:5px;
  }
 
  .p-4{
-   margin-top: 15px;
+   margin-bottom: 15px;
    background-color:rgb(241, 241, 241);
  }
 </style>

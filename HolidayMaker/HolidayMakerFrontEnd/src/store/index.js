@@ -40,7 +40,7 @@ const store = createStore({
       unitPriceSingleRoom: 0,
       unitPriceDoubleRoom: 0,
       unitPriceFamilyRoom: 0,
-      serviceType: 'SelfService',
+      serviceType: "",
       serviceFee: 0,
       extraBed: false,
       extraBedFee: 0,
@@ -176,9 +176,9 @@ const store = createStore({
       state.bookingDetails.serviceType = value
     },
     setServiceFee(state, value) {
-      console.log('in mutation set service')
-      console.log('value' + value)
-      state.bookingDetails.serviceFee = value
+      console.log("in mutation set service");
+      console.log("value" + value);
+      state.bookingDetails.serviceFee = value;
     },
     setCustomerDetailsCheckout(state, data) {
       state.customerDetailsCheckout = data
@@ -381,12 +381,12 @@ const store = createStore({
       router.push('/')
     },
     async getSavedHotelsInfo({ commit }) {
-      console.log('Getting saved hotels for guest id ', this.state.guestId)
+      console.log("Getting saved hotels for guest id ", this.state.guestId);
       var response = await fetch(
-        'https://localhost:44356/api/Hotel/SavedHotelsInfo?id=' +
+        "https://localhost:44356/api/Hotel/SavedHotelsInfo?id=" +
           this.state.guestId
-      )
-      var result = await response.json()
+      );
+      var result = await response.json();
       if (result) {
         // console.log('in saved hotel result: ', result);
         // console.log(result);
@@ -394,9 +394,9 @@ const store = createStore({
       }
     },
     async addFavouriteHotel({ commit }, hotelId) {
-      fetch('https://localhost:44356/api/Guest/saveFavoriteHotel', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      fetch("https://localhost:44356/api/Guest/saveFavoriteHotel", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ hotelID: hotelId, guestID: this.state.guestId }),
       })
         .then((response) => response.json())
@@ -408,9 +408,9 @@ const store = createStore({
         })
     },
     async removeFavouriteHotel({ commit }, hotelId) {
-      fetch('https://localhost:44356/api/Guest/removeFavoriteHotel', {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
+      fetch("https://localhost:44356/api/Guest/removeFavoriteHotel", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ hotelID: hotelId, guestID: this.state.guestId }),
       })
         .then((response) => response.json())
@@ -492,7 +492,7 @@ const store = createStore({
     },
     async getBookings({ commit }) {
       var response = await fetch(
-        "https://localhost:44356/api/Booking/guest/" + this.state.guestId
+        "https://localhost:44356/api/Booking/guest/" + this.state.user.id
       );
       var result = await response.json();
       console.log(result);

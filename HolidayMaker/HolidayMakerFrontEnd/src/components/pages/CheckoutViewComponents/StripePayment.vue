@@ -1,7 +1,7 @@
 <template>
   <div>
     <p id="title">
-      <b>Total price: {{ totalPrice }}</b>
+      <b>Total price: {{ totalPrice }} SEK</b>
     </p>
     <div id="center">
       <form id="payment-form">
@@ -98,7 +98,7 @@ export default {
           this.$store.state.searchString.dates[1].toLocaleDateString("sv-SE"),
         totalPrice: bookingDetails.totalprice,
         hotelId: this.$store.state.hotel.id,
-        guestId: this.$store.state.guestId,
+        guestId: this.$store.state.user.id,
         adults: this.$store.state.searchString.inputAdult,
         children: this.$store.state.searchString.inputChild,
         extraBed: bookingDetails.extraBed,

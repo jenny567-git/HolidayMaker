@@ -85,6 +85,11 @@
 </template>
 
 <style scoped>
+.btn.btn-primary{
+    background-color:#53c16e;
+    border-color:#1bc541;
+  }
+
 h2 {
   margin-left: 5cm;
 }

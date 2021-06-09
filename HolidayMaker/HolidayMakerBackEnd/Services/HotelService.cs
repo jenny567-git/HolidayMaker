@@ -122,7 +122,11 @@ namespace HolidayMakerBackEnd.Services
         public double GetAccomodationFee(int hotelId, string type)
         {
             var result = _db.Accomodations.SingleOrDefault(h => h.HotelId == hotelId && h.Type.ToLower() == type.ToLower());
-            return result.Price;
+            if (result != null)
+            {
+                return result.Price;
+            }
+            return 0;
         }
         public List<SavedHotel> GetSavedHotels(int id)
         {

@@ -4,7 +4,7 @@
       <h1 style="color:black" class="pt-2 ">Order details</h1>
       <div class="row">
             <div class="col">
-                <Card style="">
+                <Card style="" class="p-shadow-2">
                     <template #title>
                     Personal Details
                     </template>
@@ -19,7 +19,7 @@
                 </Card>
             </div>
             <div class="col">
-                <Card style="">
+                <Card style="" class="p-shadow-2">
                     <template #title>
                     Booking Details
                     </template>

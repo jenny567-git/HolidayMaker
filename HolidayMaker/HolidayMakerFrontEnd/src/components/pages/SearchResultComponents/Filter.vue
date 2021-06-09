@@ -41,7 +41,7 @@
                   aria-expanded="false"
                   aria-controls="flush-collapseOne"
                 >
-                  More filter
+                  More filters
                 </button>
               </h2>
               <div

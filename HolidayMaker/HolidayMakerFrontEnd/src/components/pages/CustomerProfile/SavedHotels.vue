@@ -6,7 +6,7 @@
         <div v-if="errorText">
             <p>No saved hotels found. Click the heart at the hotel page for them to show up here!</p>
         </div>
-         <SavedHotel v-for="hotel in SavedHotels" :hotel="hotel" @delete-saved="deleteSaved" :key="hotel.hotelId"/>
+         <SavedHotel v-for="hotel in SavedHotels" :hotel="hotel"/>
     </div>
 </template>
 <script>
@@ -35,7 +35,7 @@ export default {
     },
     data(){
         return{
-            savedHotelsList: []
+            // savedHotelsList: []
         }
     },
     computed:{
@@ -44,12 +44,12 @@ export default {
         }
     }, 
     methods:{
-        deleteSaved(id){
-            console.log(id);
-            this.$store.dispatch('removeFavouriteHotel', id)
-            this.SavedHotels.filter((hotel) => hotel.hotelId !== id);
-            // console.log('saved hotels now '. this.savedHotelsList);
-        }
+        // deleteSaved(id){
+        //     console.log(id);
+        //     this.$store.dispatch('removeFavouriteHotel', id)
+        //     this.SavedHotels.filter((hotel) => hotel.hotelId !== id);
+        //     // console.log('saved hotels now '. this.savedHotelsList);
+        // }
     },
     unmounted(){
         // console.log("destroy");

@@ -23,8 +23,8 @@
                     <!-- SIDEBAR USER TITLE -->
                     <div class="profile-usertitle">
                         <div class="profile-usertitle-name">
-                            <p>Fullname</p>
-                            <p>Email</p>
+                            <p>{{user.fullName}}</p>
+                            <p>{{user.email}}</p>
                         </div>
                     </div>
                     <!-- END SIDEBAR USER TITLE -->
@@ -81,7 +81,16 @@ export default {
             fullName: "",
             eMail: "",
         };
-    }
+    },
+    computed: {
+    loggedIn(){
+            return this.$store.state.user.loggedIn
+    },
+    user() {
+      return this.$store.state.user;
+    },
+    
+  },
 }
 
 </script>

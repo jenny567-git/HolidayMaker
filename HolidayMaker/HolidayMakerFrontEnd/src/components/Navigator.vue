@@ -34,9 +34,9 @@
 					</div>
 				      <nav id="nav-menu-container">
 				        <ul class="nav-menu">
-				          <li><a href="">Work With us</a></li>
-				          <li><a href="">Tourist Attraction</a></li>
-                  <li><a href="">Contacts Us</a></li>
+				          <li><router-link to="/News">News</router-link></li>
+				          <li><router-link to="/Tourism">Tourist Attractions</router-link></li>
+                  <li><router-link to="/Contact">Contact Us</router-link></li>
 				        </ul>
 				      </nav><!-- #nav-menu-container -->					      		  
 				</div>

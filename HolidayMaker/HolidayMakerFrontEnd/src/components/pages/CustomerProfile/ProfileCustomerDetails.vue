@@ -1,6 +1,5 @@
 <template >
     <div>
-        <h1>{{hotel.reservationId}}</h1>
         <h4 class="mb-3">Billing address</h4>
         <div class="card h-100">
             <div class="card-body">
@@ -117,4 +116,16 @@ export default {
     label{
         color:black;
     }
+
+    button.p-button.p-component{
+  background: #53c16e;
+  border:#14a04d;
+  text-decoration: none;
+}
+
+.p-button:enabled:hover{
+  background:#348047 !important;
+  border-color:#14a04d;
+  text-decoration: none;
+}
 </style>

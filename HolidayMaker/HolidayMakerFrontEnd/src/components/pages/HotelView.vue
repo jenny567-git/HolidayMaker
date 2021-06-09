@@ -46,7 +46,14 @@
 
         #fuckyB{
            margin-right:5px;
-            height:45px; 
+            height:45px;
+            background: #53c16e;
+            border:#14a04d;
+        }
+
+        #fuckyB:enabled:hover{
+            background:#348047 !important;
+            border-color:#14a04d;
         }
 
         .col-md-12.buttons{

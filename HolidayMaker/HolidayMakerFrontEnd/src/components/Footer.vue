@@ -17,8 +17,8 @@
             <ul class="list-inline">
                 <li class="list-inline-item"><a href="#"><router-link to="/">Home</router-link></a></li>
                 <li class="list-inline-item"><a href="#">Services</a></li>
-                <li class="list-inline-item"><a href="#">About</a></li>
-                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><router-link to="/About">About</router-link></li>
+                <li class="list-inline-item"><a href="#">Insurance</a></li>
                 <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
             </ul>
             <p class="copyright">Ukubhuka © 2021</p>

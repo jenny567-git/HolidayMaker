@@ -144,7 +144,7 @@ export default {
     border-width: 2px 0px 2px 0px;
 }
 
-button.p-button.p-component{
+/* button.p-button.p-component{
   background: #53c16e;
   border:#14a04d;
 }
@@ -152,7 +152,7 @@ button.p-button.p-component{
 .p-button:enabled:hover{
   background:#348047 !important;
   border-color:#14a04d;
-}
+} */
 
 .view {
     height: 100%;

@@ -109,8 +109,61 @@ namespace HolidayMakerBackEnd.Controllers
            _guestService.RemoveGuest(id.Id);
         }
 
-        
-       
+        [HttpPost("updateGuest")]
+        public void UpdateGuest(UpdateGuestViewModel model)
+        {
+
+            if (model.Id != 0)
+            {
+
+                var guest = _db.Guests.FirstOrDefault(x => x.Id == model.Id);
+                if (model.FullName != "")
+                {
+                    guest.FullName = model.FullName;
+                }
+
+                if (model.Email != "")
+                {
+                    guest.Email = model.Email;
+                }
+
+                if (model.Phone != "")
+                {
+                    guest.Phone = model.Phone;
+                }
+
+                if (model.Street != "")
+                {
+                    guest.Street = model.Street;
+
+                }
+
+                if (model.ZipCode != "")
+                {
+                    guest.ZipCode = model.ZipCode;
+                }
+
+                if (model.City != "")
+                {
+                    guest.City = model.City;
+                }
+
+                if (model.Country != "")
+                {
+                    guest.Country = model.Country;
+                }
+
+                if (model.Password != "")
+                {
+                    guest.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
+                }
+
+
+            }
+
+            _db.SaveChanges();
+        }
+
     }
 
     public class Test

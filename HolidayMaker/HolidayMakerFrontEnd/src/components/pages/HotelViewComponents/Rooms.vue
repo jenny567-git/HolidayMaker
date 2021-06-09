@@ -21,13 +21,13 @@
             <b>Total price: {{ totalprice }} SEK</b>
           </div>
           <div class="col-md-6">
-            <div v-if="value != null">
+            <div v-if="CanBook">
             <router-link to="/checkout" class="btn btn-primary" @click="Book"
               ><span class="far fa-bookmark"></span> Book</router-link
             >
             </div>
             <div v-else>
-              <b>Select service type to proceed to booking</b>
+              <b>Select service type and rooms to proceed to booking</b>
             </div>    
           </div>
         </div>
@@ -65,6 +65,15 @@ export default {
         this.$store.dispatch('getTotalPrice');
         return this.$store.state.bookingDetails.totalprice;
       }
+    },
+    CanBook(){
+      var single = this.$store.state.bookingDetails.noOfSingleRooms > 0;
+      var double = this.$store.state.bookingDetails.noOfDoubleRooms > 0;
+      var family = this.$store.state.bookingDetails.noOfFamilyRooms > 0;
+      if(this.value != null && (single || double || family)) {
+        return true;
+      }
+      return false;
     },
   },
   methods: {

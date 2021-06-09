@@ -224,7 +224,9 @@ const store = createStore({
         (state.bookingDetails.serviceFee = 0),
         (state.bookingDetails.extraBed = false),
         (state.bookingDetails.extraBedFee = 0)
-      state.bookingDetails.totalprice = ''
+      state.bookingDetails.totalprice = '',
+      state.seachResults = [],
+      state.searchString.dates = []
     },
     setHotelId(state, value) {
       state.bookingDetails.hotelId = value

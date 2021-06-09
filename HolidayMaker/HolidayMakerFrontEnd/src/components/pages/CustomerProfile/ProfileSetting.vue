@@ -99,19 +99,17 @@
           <h6 class="mt-3 mb-2 text-primary">Password</h6>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-          <div class="form-group">
             <label for="sTate"> New Password</label>
-            <input
-              type="password"
-              class="password"
-              id="paSsword"
-              placeholder="Enter New Password"
-              v-model="guest.Password"
-            />
+          <div class="input-group flex-nowrap form-group">
+            <input type="password" id="password" class="form-control" placeholder="Enter New Password" v-model="guest.Password">
           </div>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-          <div class="form-group">
+          <label for="zIp"> Verify Password</label>
+          <div class="input-group flex-nowrap form-group">
+            <input type="password" id="RePassword" class="form-control" placeholder="Re-enter Password" v-model="guest.confirmPassword">
+          </div>
+          <!-- <div class="form-group">
             <label for="zIp">Verify Password</label>
             <input
               type="password"
@@ -121,7 +119,7 @@
               v-model="guest.confirmPassword"
             />
             <p class="text"></p>
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="row gutters">
@@ -183,8 +181,8 @@ export default {
   async mounted() {},
   methods: {
     checkPasswords() {
-      var password = document.querySelector(".password").value;
-      var confirmPassword = document.querySelector(".confirmPassword").value;
+      var password = document.getElementById("#password").value;
+      var confirmPassword = document.getElementById("#confirmPassword").value;
 
       if (confirmPassword != password) {
         document.querySelector(".text").innerHTML = "Passwords dont match";
@@ -250,5 +248,10 @@ label {
 
 .text {
   color: red;
+}
+
+#update{
+  background-color: rgb(83 193 110);
+  border: #0e833d
 }
 </style>

@@ -30,10 +30,13 @@
 						</div>
 					</div>
                 <hr>
+                <h1>This is totally Africa</h1>
+                <small>Dont double check please</small>
+                <hr>
                 <div class="row">
   <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
     <img
-      src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(73).jpg"
+      src="https://p0.pikist.com/photos/350/173/lesotho-africa-landscape-mountain-nature-travel-sky-outdoors-remote.jpg"
       class="w-100 shadow-1-strong rounded mb-4"
       alt=""
     />
@@ -47,7 +50,7 @@
 
   <div class="col-lg-4 mb-4 mb-lg-0">
     <img
-      src="https://mdbootstrap.com/img/Photos/Vertical/mountain2.jpg"
+      src="https://image.freepik.com/free-photo/vertical-shot-famous-table-mountain-cape-town-south-africa_181624-8463.jpg"
       class="w-100 shadow-1-strong rounded mb-4"
       alt=""
     />
@@ -67,7 +70,7 @@
     />
 
     <img
-      src="https://mdbootstrap.com/img/Photos/Vertical/mountain3.jpg"
+      src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/giraffe-walking-in-kenya-africa-vertical-susan-schmitz.jpg"
       class="w-100 shadow-1-strong rounded mb-4"
       alt=""
     />

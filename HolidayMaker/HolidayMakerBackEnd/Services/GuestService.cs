@@ -121,28 +121,23 @@ namespace HolidayMakerBackEnd.Services
             if (model.UserId !=0)
             {
                 user = _db.Guests.FirstOrDefault(x => x.Id == model.UserId);
-               
+                if (user != null)
+                {
+                    return new LoginResponseViewModel(user);
+                }
             }
             else
             {
                 user = _db.Guests.FirstOrDefault(x => x.Email == model.Email);
                 
                 isValid = BCrypt.Net.BCrypt.Verify(model.Password, user.Password);
-               
-            }
-            if (isValid==false)
-            {
-                return null;
-            }
-
-            if (user == null)
-            {
-                return null;
+                if (isValid==false)
+                {
+                    return null;
+                }
             }
 
             return new LoginResponseViewModel(user);
-
-
         }
 
         public void RemoveGuest(int id)

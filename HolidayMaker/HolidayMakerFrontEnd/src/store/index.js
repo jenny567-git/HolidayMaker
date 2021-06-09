@@ -369,7 +369,6 @@ const store = createStore({
       }
     },
     checkLoggedInUser({ commit }) {
-      console.log('dkjgb')
       var myCookie = Cookies.get('login')
       if (myCookie) {
         this.dispatch('login', {

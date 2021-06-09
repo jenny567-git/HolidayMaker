@@ -38,7 +38,7 @@
                             <div class="ratings mt-2"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
                             <p>
                                 Out again on her exploring ways, she tries to find out new ways to perfect her craft in making workable picture sliders.
-                                For future <b>"Possibly" sinister projekts.</b> <small>Lets hope no one tampers with them though</small>
+                                For future <b>"Possibly" sinister projekts.</b> <small>Lets hope no one tampers with them though.</small>
                             </p>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                             <h5 class="mb-0">Fisnik Haliti</h5> <small>Zombie</small>
                             <div class="ratings mt-2"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
                             <p>
-                                Rauuurghharh....Rooroiiah, Braiiiiiiiiins.... Braiiiiiiins..... Mcdonalds ruarhhrguhajg... brazilianarharhshgha
+                                Rauuurghharh....Rooroiiah, Braiiiiiiiiins.... Braiiiiiiins..... Mcdonalds ruarhhrguhajg... brazilianarharhshgha.
                                 <b>REDACTED</b>
                             </p>
                         </div>
@@ -59,8 +59,8 @@
                             <h5 class="mb-0">Sebastian L</h5> <small>Re-Hired Hobo</small>
                             <div class="ratings mt-2"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                Purus in massa tempor nec feugiat nisl pretium. Integer malesuada nunc vel risus commodo viverra.
+                                After spending all his money traveling to Africa multiple times, Sebastian eventually ended up broke and a hobo. Althogh a hobo, his knowledge about Africa proved to be more than valuable
+                                when developing Ukubhuka. He was hired on the spot!
                             </p>
                         </div>
                     </div>
@@ -70,8 +70,8 @@
                             <h5 class="mb-0">Alexander Nordin</h5> <small>Thug from stockholm</small>
                             <div class="ratings mt-2"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                Purus in massa tempor nec feugiat nisl pretium. Integer malesuada nunc vel risus commodo viverra.
+                                Alex, through his extensive contact network in Stockholm, has kept us in touch with the "right" people in Africa to fund the development of Ukubhuka. This site is not <b>at all</b> funded by
+                                blood money. Any rumors you've heard are the brainless doings of our competitors.
                             </p>
                         </div>
                     </div>

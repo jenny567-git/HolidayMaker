@@ -28,8 +28,8 @@ export default {
         console.log("gettings saved hotels");
         await this.$store.dispatch('getSavedHotelsInfo');
 
-        if(!that.SavedHotels.length){
-            that.errorText = true;
+        if(!this.SavedHotels.length){
+            this.errorText = true;
         }
         
     },

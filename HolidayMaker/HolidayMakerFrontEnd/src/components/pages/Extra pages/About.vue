@@ -4,7 +4,7 @@
             <h1>About us</h1>
             <div class="container">
             <p>The survivors of Deckelshop, unable to be pleased with simply one perfect projekt, set out so create something new. something grander then ever seen before
-                But where could they find such glory? such succes.... Then it dawned upon them.... AFRICA!
+                But where could they find such glory? such succes.... Then it dawned upon them....<b>AFRICA!</b>
             </p>
             </div>
                 <div class="container mt-5 mb-5">
@@ -66,7 +66,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="card p-2 py-3 text-center">
-                            <div class="img mb-2"> <img src="https://i.imgur.com/ZSkeqnd.jpg" width="70" class="rounded"> </div>
+                            <div class="img mb-2"> <img src="/src/assets/img/Profile/ThuggiBoi.jpg" width="70" class="rounded"> </div>
                             <h5 class="mb-0">Alexander Nordin</h5> <small>Thug from stockholm</small>
                             <div class="ratings mt-2"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
                             <p>

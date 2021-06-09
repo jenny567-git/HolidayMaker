@@ -1,8 +1,8 @@
 <template>
   <Card id="card">
     <template #content>
-
-						<!-- <h3 class="mb-30">Giraffes!</h3>
+        <h1>TOURISM it's crazy!</h1>
+						<h3 class="mb-30">Giraffes!</h3>
 						<div class="row">
 							<div class="col-md-3">
 								<img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.ItwnPurO78V7BKktMf9nzAEsDG%26pid%3DApi&f=1" alt="" class="img-fluid">
@@ -27,8 +27,8 @@
 								<img src="https://i.insider.com/57ac8dbace38f234008b6153?width=1500" alt="" class="img-fluid">
 							</div>
 						</div>
-					</div> -->
-
+					</div>
+                <hr>
                 <div class="container">
                 <div class="row">
                     <div class="col-lg-4">

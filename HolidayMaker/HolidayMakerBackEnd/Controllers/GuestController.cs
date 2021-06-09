@@ -109,77 +109,47 @@ namespace HolidayMakerBackEnd.Controllers
             {
                 
                 var guest = _db.Guests.FirstOrDefault(x => x.Id == model.Id);
-                if(model.FullName == "")
-                {
-                    guest.FullName = guest.FullName;
-
-                }
-                else
+                if(model.FullName != "")
                 {
                     guest.FullName = model.FullName;
                 }
-                if (model.Email == "")
-                {
-                    guest.Email = guest.Email;
-
-                }
-                else
+                
+                if (model.Email != "")
                 {
                     guest.Email = model.Email;
                 }
-                if (model.Phone == "")
-                {
-                    guest.Phone = guest.Phone;
-
-                }
-                else
+                
+                if (model.Phone != "")
                 {
                     guest.Phone = model.Phone;
                 }
-                if (model.Street =="")
-                {
-                    guest.Street = guest.Street;
-
-                }
-                else
+                
+                if (model.Street !="")
                 {
                     guest.Street = model.Street;
-                }
-                if (model.ZipCode =="")
-                {
-                    guest.ZipCode = guest.ZipCode;
 
                 }
-                else
+               
+                if (model.ZipCode !="")
                 {
                     guest.ZipCode = model.ZipCode;
                 }
-                if (model.City=="")
-                {
-                guest.City = guest.City;
-
-                }
-                else
+                
+                if (model.City!="")
                 {
                     guest.City = model.City;
                 }
-                if (model.Country=="")
-                {
-                    guest.Country = guest.Country;
-
-                }
-                else
+                
+                if (model.Country!="")
                 {
                     guest.Country = model.Country;
                 }
-                if (model.Password=="")
-                {
-                    guest.Password = BCrypt.Net.BCrypt.HashPassword(guest.Password);
-                }
-                else
+                
+                if (model.Password!="")
                 {
                     guest.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
                 }
+               
 
             }
 

@@ -30,7 +30,7 @@
                             <li v-if="SearchString.inputChild > 0" class="list-group-item leftTexAlignt"><span class="fas fa-users"></span><b> Number of people:</b> {{SearchString.inputAdult}} adults, {{SearchString.inputChild}} children</li>
                             <li v-else class="list-group-item leftTexAlignt"><b> Number of people:</b> {{SearchString.inputAdult}} adults</li>
                             <li class="list-group-item leftTexAlignt"><span class="fas fa-concierge-bell"></span><b> Service type:</b> {{BookingDetails.serviceType}}</li>
-                            <li v-if="BookingDetails.extraBed" class="list-group-item leftTexAlignt"> <b>Extra bed:</b> Yes</li>
+                            <li v-if="BookingDetails.extraBed" class="list-group-item leftTexAlignt"><span class="fas fa-bed"></span> <b>Extra bed:</b> Yes</li>
                             <li class="list-group-item leftTexAlignt"><span class="fas fa-money-check-alt"></span><b> Total price:</b> {{BookingDetails.totalprice}} SEK</li>
                         </ul>
                         <Button  label="Edit Booking" icon="pi pi-user-edit" @click="$router.push('/hotels/' + $store.state.bookingDetails.hotelId + '/rooms')"></Button>

@@ -36,9 +36,6 @@ namespace HolidayMakerBackEnd.Services
 
             var newGuest = new Guest()
             {
-
-
-
                 FullName = guest.FullName,
                 Street = guest.Street,
                 ZipCode = guest.ZipCode,
@@ -46,7 +43,6 @@ namespace HolidayMakerBackEnd.Services
                 Country = guest.Country,
                 Phone = guest.Phone,
                 Email = guest.Email
-
             };
 
             _db.Guests.Add(newGuest);
@@ -58,8 +54,6 @@ namespace HolidayMakerBackEnd.Services
             _db.Guests.Update(guest);
             return await _db.SaveChangesAsync();
         }
-
-        
 
         public int AddReview(ReviewModel model)
         {
@@ -160,17 +154,7 @@ namespace HolidayMakerBackEnd.Services
 
             _db.SaveChanges();
         }
-
-        
-
-
-
     }
 
-
-    public class InputData
-    {
-        public int Id { get; set; }
-    }   
 }
 

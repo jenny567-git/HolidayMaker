@@ -37,7 +37,6 @@ namespace HolidayMakerBackEnd.Models.ViewModels
         public string RoomType { get; set; }
 
         public HotelRoomsViewModel hotelRoomsViewModel = new HotelRoomsViewModel();
-        //public RoomTypeViewModel RoomTypeViewModel = new RoomTypeViewModel();
 
         public BookingViewModel()
         {

@@ -21,13 +21,11 @@ namespace HolidayMakerBackEnd.Controllers
         public GuestController()
         {
             _guestService = new GuestService();
-
         }
 
         [HttpGet("GetGuestById/{id}")]
         public IEnumerable<Guest> GetGuestById(int id)
         {
-            
             var result = _guestService.GetGuestById(id);
             return result;
         }
@@ -51,9 +49,6 @@ namespace HolidayMakerBackEnd.Controllers
                 Phone = model.Phone,
                 Email = model.Email,
                 Password = BCrypt.Net.BCrypt.HashPassword(model.Password)
-                
-                
-
             };
 
             _db.Guests.Add(newGuest);
@@ -79,22 +74,13 @@ namespace HolidayMakerBackEnd.Controllers
         [HttpPost("login")]
         public IActionResult Login(LoginRequestViewModel model)
         {
-            
             var response = _guestService.Login(model);
             if (response == null)
             {
                 return BadRequest(new { message = "Username or password is incorrect" });
-
-
             }
-
             return Ok(response);
-                
-
-
         }
-
-
 
         [HttpDelete("removeFavoriteHotel")]
         public ActionResult RemoveHotelFromFavorites(SaveModel model)

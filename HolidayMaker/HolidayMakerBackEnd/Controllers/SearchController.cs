@@ -25,10 +25,8 @@ namespace HolidayMakerBackEnd.Controllers
         [HttpGet("GetAllHotels")]
         public IEnumerable<Hotel> GetAllHotel()
         {
-            
                 var result = _hotelService.GetAllHotels();
                 return result;
-
         }
 
         [HttpGet("GetHotelByName")]
@@ -93,6 +91,7 @@ namespace HolidayMakerBackEnd.Controllers
                 result = _searchService.GetAvailableHotels(startDate.Value, endDate.Value, rooms.Value, people.Value);
             }else if(startDate == null && endDate == null)
             {
+                //only string input
                 IEnumerable<Hotel> searchresult = _searchService.GetAllHotelByInput(input);
                 
                 List<AvailableHotelViewModel> viewModelList = new List<AvailableHotelViewModel>();

@@ -59,9 +59,15 @@ export default {
   },
   computed: {
     startDate() {
+      if(this.hotel.startDate === undefined){
+        return 'Not available'
+      }
       return this.hotel.startDate.split("T")[0];
     },
     endDate() {
+      if(this.hotel.endDate === undefined){
+        return 'Not available'
+      }
       return this.hotel.endDate.split("T")[0];
     },
   },

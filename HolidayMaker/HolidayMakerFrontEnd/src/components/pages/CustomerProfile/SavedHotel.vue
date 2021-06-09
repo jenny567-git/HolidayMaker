@@ -41,12 +41,19 @@ export default {
   components:{
     Button
   },
+  data(){
+    return{
+      deleted: false,
+    }
+  },
   props:{
       hotel: {}
   },
   methods:{
     remove(){
-      this.$store.dispatch('removeFavouriteHotel', this.hotel.hotelId)
+      // this.$emit('delete-saved', this.hotel.hotelId)
+      this.$store.dispatch('removeFavouriteHotel', this.hotel.hotelId);
+      this.$router.go()
     }
   },
   created(){

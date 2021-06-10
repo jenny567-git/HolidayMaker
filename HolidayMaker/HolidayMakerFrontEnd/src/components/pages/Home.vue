@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 id="welcome">Welcome to Africa Motherfucker!</h1>
+        <!-- <h1 id="welcome">Welcome to Africa Motherfucker!</h1> -->
         
     </div>
 </template>

@@ -213,9 +213,6 @@ export default {
       }
     },
   },
-  created() {
-    this.user = this.$store.state.user;
-  },
   computed: {
     loggedIn() {
       return this.$store.state.user.loggedIn;

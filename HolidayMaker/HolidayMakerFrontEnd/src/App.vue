@@ -52,7 +52,6 @@ export default {
   data() {
         return {
           searchString: '',
-          showBody: true,
             color2: '1976D2',
             items: [
             {

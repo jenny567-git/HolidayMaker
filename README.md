@@ -22,7 +22,7 @@ This project uses the following technologies:
 npm install # in frontend directory
 npm run dev # in frontend directory
 ```
-3. Create the database with the provided SQL script
+3. Create the database with the provided Database_SQL_Script.sql script in the Docs folder
 4. Change the connection string in HolidayMakerContext.cs to your own string
 5. Make sure the backend server is on the port 44356. Alternatively you can find and replace this port where necessary
 6. Run the asp net backend server with your preferred choice (either in vs studio or via terminal)

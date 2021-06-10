@@ -6,7 +6,7 @@
         <div v-if="errorText">
             <p>No saved hotels found. Click the heart at the hotel page for them to show up here!</p>
         </div>
-         <SavedHotel v-for="hotel in SavedHotels" :hotel="hotel"/>
+         <SavedHotel v-for="hotel in SavedHotels" :hotel="hotel" :key="hotel"/>
     </div>
 </template>
 <script>

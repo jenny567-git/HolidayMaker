@@ -64,7 +64,7 @@ namespace HolidayMakerBackEnd.Controllers
                 reservationDetails = _bookingService.GetReservationsDetail(result.Id);
                 reservedRooms = _bookingService.GetReservedRooms(result.Id);
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
                 return 204;

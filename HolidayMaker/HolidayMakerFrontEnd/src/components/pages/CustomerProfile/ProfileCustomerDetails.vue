@@ -100,15 +100,12 @@ export default {
             var result = await response.json();
 
             if(result === 0){
-                console.log("saved")
                 this.updated = true;
             }
             this.loading = false;
         }
     },
     created(){
-        // api to get res details
-        // this.Details = this.$store.state.customerDetailsCheckout;
     },
 }
 </script>

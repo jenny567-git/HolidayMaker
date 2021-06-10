@@ -21,9 +21,6 @@ namespace HolidayMakerBackEnd.Services
 
         }
 
-        //search by string, dates, rooms
-        //search by string + filter(s)
-
         public IEnumerable<Hotel> GetHotelByName(string input)
         {
             return _db.Hotels.Where(n => n.Name.Contains(input)).Include(n => n.Country).Include(n => n.City).Include(r => r.Rooms).AsEnumerable();
@@ -31,20 +28,14 @@ namespace HolidayMakerBackEnd.Services
 
         public IEnumerable<Hotel> GetHotelByCity(string input)
         {
-
             var result = _db.Hotels.Where(n => n.City.CityName.Contains(input)).Include(n => n.Country).Include(n => n.City).Include(r => r.Rooms).AsEnumerable();
-
             return result;
-
         }
 
         public IEnumerable<Hotel> GetHotelByCountry(string input)
         {
-
             var result = _db.Hotels.Where(n => n.Country.CountryName.Contains(input)).Include(n => n.Country).Include(n=> n.City).Include(r => r.Rooms).AsEnumerable();
-
             return result;
-
         }
 
         //includes hotel name, city name and country name

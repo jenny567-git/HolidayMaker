@@ -16,7 +16,6 @@
 
 <script>
 export default {
-  
   computed: {
     hotel() {
       return this.$store.state.hotel;

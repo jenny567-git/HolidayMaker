@@ -5,7 +5,6 @@
           <div class="col-md-4">
             <p>Name: {{review.guest.fullName}}</p>
             <p>Date created: {{ createdDate }}</p>
-            <!-- <p>Language: (English)</p> -->
           </div>
           <div class="col-md-8">
             <p>
@@ -30,9 +29,7 @@ export default {
   },
   computed:{
         createdDate(){
-                // console.log('this review', this.review)
                 let date = new Date(this.review.creationDate).toISOString().slice(0,10);
-                // console.log('this date', date)
                 return date;
         },
   }

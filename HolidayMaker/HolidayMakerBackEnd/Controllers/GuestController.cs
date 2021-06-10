@@ -51,9 +51,6 @@ namespace HolidayMakerBackEnd.Controllers
                 Phone = model.Phone,
                 Email = model.Email,
                 Password = BCrypt.Net.BCrypt.HashPassword(model.Password)
-                
-                
-
             };
 
             _db.Guests.Add(newGuest);
@@ -84,14 +81,9 @@ namespace HolidayMakerBackEnd.Controllers
             if (response == null)
             {
                 return BadRequest(new { message = "Username or password is incorrect" });
-
-
             }
 
             return Ok(response);
-                
-
-
         }
 
 
@@ -157,7 +149,6 @@ namespace HolidayMakerBackEnd.Controllers
                 {
                     guest.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
                 }
-
 
             }
 

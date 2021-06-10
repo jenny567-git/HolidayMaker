@@ -5,23 +5,6 @@
           <Checkbox id="option" v-model="extraBed" :binary="true" @change="emitToParent"/>
           <label for="option">{{ extraBed }}</label>
         </div>
-
-
-
-    <!-- with card -->
-
-    <!-- <Card>
-      <template #title>
-        <h3>Extra bed</h3>
-      </template>
-      <template #content>
-        <div class="p-field-checkbox">
-          <Checkbox id="option" v-model="checked" :binary="true" />
-          <label for="option">{{ checked }}</label>
-        </div>
-      </template>
-    </Card> -->
-
   </div>
 </template>
 

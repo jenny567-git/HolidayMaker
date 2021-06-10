@@ -22,7 +22,6 @@ export default {
     },
     methods:{
       searchDestination(){
-        //console.log("search destination");
         this.$store.dispatch('searchSpecific', {type: 'city', searchString: this.destination.title});
       }
     }

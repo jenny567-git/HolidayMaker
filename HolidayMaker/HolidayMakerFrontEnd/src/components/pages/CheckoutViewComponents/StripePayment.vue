@@ -69,7 +69,6 @@ export default {
       loading(true);
       var ref = this;
       var email = this.$store.state.customerDetailsCheckout.email;
-      console.log(email);
       stripe
         .confirmCardPayment(clientSecret, {
           receipt_email: email,

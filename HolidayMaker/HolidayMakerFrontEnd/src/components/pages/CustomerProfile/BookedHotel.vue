@@ -74,10 +74,8 @@ export default {
   methods: {
     toggleEdit() {
       this.edit = !this.edit;
-      //this.$store.dispatch('saveCustomerDetailsCheckout', this.hotel.guestDetails);
     },
     CancelBooking() {
-      console.log(this.hotel.reservationId);
       fetch(
         "https://localhost:44356/api/Booking/CancelBooking?id=" +
           this.hotel.reservationId,

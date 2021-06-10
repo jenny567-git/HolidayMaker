@@ -142,7 +142,6 @@ namespace HolidayMakerBackEnd.Services
             DateTime d2 = reservation.EndDate;
             TimeSpan t = d2 - d1;
             var accomodationPrice = _hs.GetAccomodationFee(reservation.HotelId, reservationsDetail.Type);
-            //var accomodationTypePrice = _db.Accomodations.FirstOrDefault(x => x.Type == reservationsDetail.Type && x.HotelId == reservation.HotelId).Price;
             int days = (int)t.Days;
             int rooms = reservedRooms.Sum(b => b.BookedRooms);
 
@@ -156,7 +155,6 @@ namespace HolidayMakerBackEnd.Services
             {
                 var hotel = _hs.GetById(reservation.HotelId);
                 totalprice += (double)hotel.ExtraBedFee;
-                //totalprice += 200;
             }
 
             using (var db = new HolidayMakerContext())
@@ -192,4 +190,3 @@ namespace HolidayMakerBackEnd.Services
     }
 }
 
-//Räkna ut vad det kommer att kosta i bokningen

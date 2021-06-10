@@ -98,7 +98,6 @@ namespace HolidayMakerBackEnd.Controllers
             model.ExtraBed = reservationDetails.ExtraBed;
             model.HotelId = result.HotelId;
             model.Status = result.Status;
-            //get hotel img
             var getHotelImg = _hotelService.GetById(result.HotelId);
             model.HotelImg = getHotelImg.Img;
 

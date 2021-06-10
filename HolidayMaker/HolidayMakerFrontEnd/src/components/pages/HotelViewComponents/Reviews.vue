@@ -69,26 +69,14 @@
         :key="review.id"
       />
     </div>
-    <!-- <div class="row">
-      <b>Pagination not working yet, only visual</b>
-      <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-      </nav>
-    </div> -->
   </div>
 </template>
 
 <style scoped>
-.btn.btn-primary{
-    background-color:#53c16e;
-    border-color:#1bc541;
-  }
+.btn.btn-primary {
+  background-color: #53c16e;
+  border-color: #1bc541;
+}
 
 h2 {
   margin-left: 5cm;
@@ -111,7 +99,6 @@ export default {
     Review,
   },
   mounted() {
-    // console.log(this.$route.params.id);
     this.getReviews(this.$route.params.id);
   },
   data() {
@@ -149,8 +136,6 @@ export default {
               b = new Date(y.creationDate);
             return b - a;
           });
-          // console.log('all reviews ')
-          // console.log(this.allreviews)
         });
     },
   },

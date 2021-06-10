@@ -34,9 +34,6 @@
                             <li class="list-group-item leftTexAlignt"><span class="fas fa-money-check-alt"></span><b> Total price:</b> {{BookingDetails.totalprice}} SEK</li>
                         </ul>
                         <Button  label="Edit Booking" icon="pi pi-user-edit" @click="$router.push('/hotels/' + $store.state.bookingDetails.hotelId + '/rooms')"></Button>
-                        <!-- <router-link :to="link" class="btn btn-secondary">
-                            Edit booking
-                        </router-link> -->
                     </template>
                 </Card>
             </div>
@@ -64,7 +61,6 @@ export default {
     computed:{
         checkinDate(){
             if(this.$store.state.searchString.dates[0] !== undefined){
-                console.log("sdasds",this.$store.state.searchString.dates[0]);
                 return this.$store.state.searchString.dates[0].toLocaleDateString('sv-SE');
             }else{
                 return "not specified"
@@ -80,7 +76,6 @@ export default {
     },
     created(){
         this.Details = this.$store.state.customerDetailsCheckout;
-        console.log("order details cust details: ",this.$store.state.customerDetailsCheckout)
         this.BookingDetails = this.$store.state.bookingDetails;
         this.SearchString = this.$store.state.searchString;
     },

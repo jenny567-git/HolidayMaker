@@ -2,7 +2,6 @@
   <div>
     <input
       class="form-control"
-      
       id="searchInput"
       placeholder="Type to search..."
       @input="searchFieldChange"
@@ -16,7 +15,6 @@
 </template>
 
 <script>
-// import $ from '/node_modules/jquery'
 
 export default {
   data() {

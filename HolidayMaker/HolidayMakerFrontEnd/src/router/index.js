@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HelloWorld from "/src/components/HelloWorld.vue";
 import Info from "../components/pages/HotelViewComponents/Info.vue";
 import HotelView from "/src/components/pages/HotelView.vue";
 import Rooms from "../components/pages/HotelViewComponents/Rooms.vue";

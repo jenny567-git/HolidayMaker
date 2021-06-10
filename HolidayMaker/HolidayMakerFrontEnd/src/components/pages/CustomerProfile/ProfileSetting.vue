@@ -165,7 +165,6 @@ export default {
         confirmPassword: "",
         id:''
       },
-      // user: {},
     };
   },
   async mounted() {},
@@ -183,7 +182,6 @@ export default {
     },
     async updateGuest() {
       var id = this.user.id;
-      console.log(id);
       await fetch("https://localhost:44356/api/Guest/updateGuest", {
         method: "Post",
         headers: {
@@ -206,12 +204,10 @@ export default {
       this.$router.go()
     },
     resetForm() {
-      console.log("hej");
       document.querySelector(".form1").reset();
     },
     deleteAccout() {
       let credentials = this.user.id;
-      console.log(this.user.id);
       if (confirm("Do you really want to delete your account?")) {
         this.$store.dispatch("deleteGuestAccount", credentials);
       }

@@ -1,46 +1,56 @@
 <template>
-<header id="header">
-				<div class="header-top">
-					<div class="container">
-			  		<div class="row align-items-center">
-			  			<div class="col-lg-6 col-sm-6 col-6 header-top-left">
-			  							
-			  			</div>
-			  			<div class="col-lg-6 col-sm-6 col- header-top-right">
-							<div class="nav-menu">
-                        <div v-if="!loggedIn">
-                            <a href=""><router-link to="/login">Log in</router-link></a>
-                            <a href="#"><router-link to="/registration">Register</router-link></a>
-                        </div>
-                        <div v-if="loggedIn">
-                          <a  href="" @click="logout()">Log out</a>
-                          <a  href=""><router-link to="/Profile">Profile</router-link></a>
-                        </div>
-							</div>
-                        <div id="user" v-if="loggedIn">
-                          <ul>
-                              <li ><a>{{user.email}}</a></li>
-                         </ul>
-                        </div>
-			  			</div>
-			  		</div>			  					
-					</div>
-				</div>
-				<div class=" main-menu">
-					<div class="row align-items-center justify-content-between d-flex">
-				      <div id="logo">
-                <router-link to="/"><img src="/src/assets/Logo5_cropped.png" alt="" title="" height="80"></router-link>
-				      </div>
-					</div>
-				      <nav id="nav-menu-container">
-				        <ul class="nav-menu">
-				          <li><router-link to="/News">News</router-link></li>
-				          <li><router-link to="/Tourism">Tourist Attractions</router-link></li>
-                  <li><router-link to="/Contact">Contact Us</router-link></li>
-				        </ul>
-				      </nav><!-- #nav-menu-container -->					      		  
-				</div>
-			</header><!-- #header -->
+  <header id="header">
+    <div class="header-top">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 col-sm-6 col-6 header-top-left"></div>
+          <div class="col-lg-6 col-sm-6 col- header-top-right">
+            <div class="nav-menu">
+              <div v-if="!loggedIn">
+                <a href=""><router-link to="/login">Log in</router-link></a>
+                <a href="#"
+                  ><router-link to="/registration">Register</router-link></a
+                >
+              </div>
+              <div v-if="loggedIn">
+                <a href="" @click="logout()">Log out</a>
+                <a href=""><router-link to="/Profile">Profile</router-link></a>
+              </div>
+            </div>
+            <div id="user" v-if="loggedIn">
+              <ul>
+                <li>
+                  <a>{{ user.email }}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="main-menu">
+      <div class="row align-items-center justify-content-between d-flex">
+        <div id="logo">
+          <router-link to="/"
+            ><img
+              src="/src/assets/Logo5_cropped.png"
+              alt=""
+              title=""
+              height="80"
+          /></router-link>
+        </div>
+      </div>
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li><router-link to="/News">News</router-link></li>
+          <li><router-link to="/Tourism">Tourist Attractions</router-link></li>
+          <li><router-link to="/Contact">Contact Us</router-link></li>
+        </ul>
+      </nav>
+      <!-- #nav-menu-container -->
+    </div>
+  </header>
+  <!-- #header -->
 </template>
 
 <script>
@@ -49,43 +59,39 @@ export default {
   data() {
     return {
       userInfo: {},
-    }
+    };
   },
   computed: {
     loggedIn() {
-      return this.$store.state.user.loggedIn
+      return this.$store.state.user.loggedIn;
     },
     user() {
-      return this.$store.state.user
+      return this.$store.state.user;
     },
   },
-  created() {
-  
+  created() {},
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+    },
   },
-  methods:{
-      logout(){
-            this.$store.dispatch('logout')
-            
-        }
-  },
-  
 };
 </script>
 
 
 <style scoped>
-
-#user{
-  color:rgb(131, 255, 93);
-  padding-right:25px;
+#user {
+  color: rgb(131, 255, 93);
+  padding-right: 25px;
 }
 
-nav#nav-menu-container{
-  display:inline-block;
-  padding-top:10px;
+nav#nav-menu-container {
+  display: inline-block;
+  padding-top: 10px;
 }
 
-ol, ul {
+ol,
+ul {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -111,7 +117,7 @@ a {
 .header-top {
   font-size: 12px;
   padding: 6px 0px;
-  background-color:rgb(83 193 110);
+  background-color: rgb(83 193 110);
 }
 
 .header-top a {
@@ -163,18 +169,18 @@ a {
   background: #33393a;
   padding-left: 15px;
   padding-right: 15px;
-  border-bottom:solid 2px;
-  border-color:black;
+  border-bottom: solid 2px;
+  border-color: black;
 }
 
 #header {
-  position:absolute;
+  position: absolute;
   left: 0;
   top: 0;
   right: 0;
   transition: all 0.5s;
   z-index: 997;
-} 
+}
 
 /* #header.header-scrolled {
   transition: all 0.5s;
@@ -193,7 +199,8 @@ a {
 # Navigation Menu
 --------------------------------------------------------------*/
 /* Nav Menu Essentials */
-.nav-menu, .nav-menu * {
+.nav-menu,
+.nav-menu * {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -253,7 +260,6 @@ a {
   #nav-menu-container {
     display: none;
   }
-  
 }
 
 /* Nav Meu Styling */
@@ -267,7 +273,6 @@ a {
   text-transform: uppercase;
   outline: none;
 }
-
 
 .nav-menu li:hover > a {
   color: #309c4b;
@@ -305,5 +310,4 @@ a {
   margin-right: 10px;
   margin-top: 0;
 }
-
 </style>

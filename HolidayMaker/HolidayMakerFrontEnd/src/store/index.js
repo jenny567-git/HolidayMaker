@@ -83,12 +83,9 @@ const store = createStore({
     },
     setHotelSeachResultsList(store, value) {
       store.seachResults = value
-      console.log('set search result')
-      console.log(store.seachResults)
       store.searchButtonLoading = false
     },
     setHotel(store, value) {
-      console.log(value)
       store.hotel = value
     },
     updateAdults(state, value) {
@@ -139,7 +136,6 @@ const store = createStore({
           Date.parse(state.searchString.dates[0].toLocaleDateString('sv-SE'))) /
           86400000
       )
-      console.log(days)
 
       let singleRoomsTotalPrice =
         state.bookingDetails.noOfSingleRooms *
@@ -177,8 +173,6 @@ const store = createStore({
       state.bookingDetails.serviceType = value
     },
     setServiceFee(state, value) {
-      console.log('in mutation set service')
-      console.log('value' + value)
       state.bookingDetails.serviceFee = value
     },
     setCustomerDetailsCheckout(state, data) {
@@ -203,7 +197,6 @@ const store = createStore({
     },
     setSavedHotels(state, data) {
       state.savedHotels = data
-      // console.log('in saved hotel ', data);
     },
     setOrderId(state, value) {
       state.orderId = value
@@ -279,8 +272,6 @@ const store = createStore({
         )
       }
       var result = await response.json()
-      // console.log('search hotel');
-      // console.log(result);
       commit('setHotelSeachResultsList', result)
       if (result) {
         router.push({ name: 'result' })
@@ -291,7 +282,6 @@ const store = createStore({
         'https://localhost:44356/api/Search/search?input=' + searchString
       ) // Default is GET
       var result = await response.json()
-      console.log(searchString, result)
       if (result) {
         commit('setHotelSeachResultsList', result)
         router.push({ name: 'result' })
@@ -302,7 +292,6 @@ const store = createStore({
         'https://localhost:44356/api/Hotel/GetById/' + hotelId
       ) // Default is GET
       var result = await response.json()
-      console.log('getHotelById action')
       commit('setHotel', result)
     },
     async setHotel({ commit }, hotel) {
@@ -321,7 +310,6 @@ const store = createStore({
           searchString
       ) // Default is GET
       var result = await response.json()
-      console.log(searchString, result)
       if (result) {
         commit('setHotelSeachResultsList', result)
         router.push({ name: 'result' })
@@ -385,19 +373,15 @@ const store = createStore({
       router.push('/')
     },
     async getSavedHotelsInfo({ commit }) {
-      console.log('Getting saved hotels for guest id ', this.state.user.id)
       var response = await fetch(
         'https://localhost:44356/api/Hotel/SavedHotelsInfo?id=' +
           this.state.user.id
       )
       var result = await response.json()
       if (result) {
-        console.log('in saved hotel result: ', result);
-        // console.log(result);
         commit('setSavedHotels', result)
       }
       else{
-        console.log("else...");
         commit("setSavedHotels", []);
       }
     },
@@ -476,7 +460,6 @@ const store = createStore({
       commit('setServiceType', value)
     },
     async setServiceFee({ commit }, payload) {
-      // console.log('in action set service');
       var response = await fetch(
         'https://localhost:44356/api/Hotel/GetAccomodationFee?id=' +
           payload.id +
@@ -487,7 +470,6 @@ const store = createStore({
       commit('setServiceFee', result)
     },
     deleteGuestAccount({ commit }, Id) {
-      console.log(Id)
       fetch('https://localhost:44356/api/Guest/removeGuest', {
         method: 'post',
         headers: { 'Content-type': 'application/json' },
@@ -503,7 +485,6 @@ const store = createStore({
         'https://localhost:44356/api/Booking/guest/' + this.state.user.id
       )
       var result = await response.json()
-      console.log(result)
       commit('setBookedHotels', result)
     },
     async setOrderId({ commit }, value) {

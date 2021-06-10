@@ -26,7 +26,6 @@
 </template>
 
 <script>
-import ConfirmDate from './components/pages/Datepicker/ConfirmDate.vue'
 import Dialog from 'primevue/dialog';
 import InputText from 'primevue/InputText';
 import Button from 'primevue/button';
@@ -40,7 +39,6 @@ import Searcher from './components/pages/SearchComponent/Search.vue'
 export default {
   name: "App",
   components: {
-    ConfirmDate,
     Dialog,
     ColorPicker,
     InputText,
@@ -103,7 +101,6 @@ export default {
       }
     },
     created(){
-      console.log("App created");
       if(Cookies.get('login')){
           this.$store.dispatch('checkLoggedInUser')
         }

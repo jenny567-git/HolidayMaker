@@ -12,7 +12,6 @@
 
         <!-- Pension type -->
         <div class="row">
-          <!-- <ServiceType @serviceType="getServicetype" /> -->
           <SelectButton @click="getServicetype" v-model="value" :options="serviceTypes" />
         </div>
 
@@ -37,16 +36,12 @@
 </template>
 
 <script>
-import Images from "./RoomPhotoSlider.vue";
 import Room from "./RoomsViewComponents/Room.vue";
-import ServiceType from "./RoomsViewComponents/ServiceType.vue";
 import Options from "./RoomsViewComponents/Option.vue";
 import SelectButton from 'primevue/selectbutton';
 export default {
   components: {
-    Images,
     Room,
-    ServiceType,
     Options,
     SelectButton
   },
@@ -84,7 +79,6 @@ export default {
       this.serviceType = value.path[0].innerText;
       this.$store.dispatch('setServiceType', this.serviceType);
 
-      console.log("set fee");
       let id = this.$route.params.id;
       this.$store.dispatch('setServiceFee', { id: id, type: this.serviceType });
     },

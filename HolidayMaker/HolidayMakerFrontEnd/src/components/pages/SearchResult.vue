@@ -1,28 +1,26 @@
 <template>
-   
         <Card id="test3">
-      <template #content>
-        <div class="row">
-            <div class="col-md-6">
-                <h1>Search results: {{nrOfSearchResults}} found</h1>
-            </div>
-            <div class="col-md-6">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Sort by
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" v-on:click="sortListByPrice">Price: Lowest first</a></li>
-                        <li><a class="dropdown-item" v-on:click="sortListByRating">Rating: Highest first</a></li>
-                    </ul>
+            <template #content>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1>Search results: {{nrOfSearchResults}} found</h1>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                Sort by
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" v-on:click="sortListByPrice">Price: Lowest first</a></li>
+                                <li><a class="dropdown-item" v-on:click="sortListByRating">Rating: Highest first</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <hr>
-        <Filter @updateNrOfHotels="updateHotelsCount"/> 
+                <hr>
+                <Filter @updateNrOfHotels="updateHotelsCount"/> 
             </template>     
         </Card>
-    
 </template>
 
 <script>

@@ -99,7 +99,6 @@ export default {
   },
   methods:{
     searchHotel(hotel){
-        //console.log("search hotel");
         this.$store.dispatch('searchSpecific', {type: null, searchString: hotel});
       }
   }

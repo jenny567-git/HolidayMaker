@@ -102,11 +102,9 @@ export default {
       .dispatch("getReservationById", this.$route.params.id)
       .then(() => {
         this.reservationInfo = this.$store.state.reservation;
-        console.log(this.reservationInfo.startDate)
       });
   },
   mounted(){
-    console.log('this reserv', this.reservationInfo);
   }
 };
 </script>

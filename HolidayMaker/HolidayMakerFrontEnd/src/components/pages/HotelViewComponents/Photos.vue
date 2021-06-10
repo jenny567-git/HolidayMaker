@@ -55,11 +55,7 @@
 </style>
 
 <script>
-import Images from './RoomPhotoSlider.vue'
 
 export default {
-components: {
-    Images
-  }
 }
 </script>

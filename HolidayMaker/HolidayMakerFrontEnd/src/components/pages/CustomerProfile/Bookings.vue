@@ -17,6 +17,7 @@
 import BookedHotel from './BookedHotel.vue'
 import ConfirmDialog from "primevue/confirmdialog";
 import ProgressSpinner from 'primevue/progressspinner';
+//explanation: https://stackoverflow.com/questions/64604714/vue-pagination-how-to-use-it
 import Pagination from 'v-pagination-3';
 
 export default {

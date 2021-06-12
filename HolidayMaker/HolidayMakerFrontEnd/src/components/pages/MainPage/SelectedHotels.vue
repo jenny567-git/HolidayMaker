@@ -114,9 +114,8 @@ export default {
 }
 
 #popa{
-  font-family:'Times New Roman', Times, serif;
+  font-family: 'Century Gothic', Times, serif;
   font-weight: bold;
-  text-decoration:underline;
   color:#2c3e50;
 }
 

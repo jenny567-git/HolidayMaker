@@ -41,7 +41,7 @@
                     </ul>
                     <!-- END SIDEBAR BUTTONS -->
                     <!-- SIDEBAR MENU -->
-                    <div class="profile-usermenu">
+                    <div class="profile-usermenu text-start pl-5">
                         <ul class="nav"> 
                             <li > <!-- class="active" -->
                                 <i class="fas fa-user"></i>

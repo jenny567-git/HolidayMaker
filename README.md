@@ -14,6 +14,9 @@ This project uses the following technologies:
 2. Node.JS Stable
 3. MS SQL
 
+## Screenshots
+https://drive.google.com/drive/folders/1OygIVZ158-K69dgiE2-d6RbAGzusvoJ5?usp=sharing
+
 ## Usage:
 1. Clone the repo
 2. Then run the following:
